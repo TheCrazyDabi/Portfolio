@@ -12,7 +12,7 @@ export const initialProfile: Profile = {
   githubUrl: "https://github.com/thecrazydabi",
   linkedinUrl: "https://linkedin.com/in/vasudev-saras-km",
   resumeUrl: "", // Only shown when verified file is uploaded
-  profileImageUrl: "",
+  profileImageUrl: "assets/profile/vasudev-photo.jpg",
   location: "Kerala, India",
   statusIndicator: "Available for Robotics & Embedded Systems Roles"
 };

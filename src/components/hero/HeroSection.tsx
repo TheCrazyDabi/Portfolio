@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowDown, FileText, ChevronRight, Compass, ShieldCheck } from 'lucide-react';
 import { Profile } from '../../types/content';
 import { RoboticArmCAD } from './RoboticArmCAD';
+import { getAssetUrl } from '../../utils/assets';
 
 interface HeroSectionProps {
   profile: Profile;
@@ -21,18 +22,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Editorial Copy (Col 7) */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Engineering Status Pill */}
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cream-surface border border-burgundy/15 shadow-sm text-xs font-mono text-wine">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-medium">{profile.statusIndicator || 'Available for Robotics & Embedded Roles'}</span>
+            {/* Creator Profile Chip & Status */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center space-x-2.5 p-1 pr-3 rounded-full bg-cream-surface border border-burgundy/20 shadow-sm">
+                <div className="w-8 h-8 rounded-full overflow-hidden border border-burgundy flex-shrink-0">
+                  <img
+                    src={getAssetUrl(profile.profileImageUrl || 'assets/profile/vasudev-photo.jpg')}
+                    alt={profile.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="text-xs font-mono font-semibold text-wine">
+                  {profile.name}
+                </div>
+              </div>
+
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cream-surface border border-burgundy/15 shadow-sm text-xs font-mono text-wine">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-medium">{profile.statusIndicator || 'Available for Robotics & Embedded Roles'}</span>
+              </div>
             </div>
 
             {/* Main Headline */}
             <div className="space-y-3">
               <div className="text-xs sm:text-sm font-mono tracking-widest text-taupe uppercase font-semibold flex items-center gap-2">
-                <span>{profile.name}</span>
+                <span>ROBOTICS &amp; AUTOMATION ENGINEER</span>
                 <span className="w-6 h-[1px] bg-dusky"></span>
-                <span className="text-burgundy">{profile.title}</span>
+                <span className="text-burgundy">SAINTGITS COLLEGE</span>
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-wine tracking-tight leading-[1.08]">
                 Engineering Intelligence.{' '}
