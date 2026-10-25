@@ -1,0 +1,17 @@
+[package]
+name = "portfolio-backend"
+version = "0.1.0"
+edition = "2021"
+authors = ["Vasudev Saras K M <vasudevsaraskm@gmail.com>"]
+description = "High-performance Rust Axum API backend for Portfolio Studio"
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1.38", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tower-http = { version = "0.5", features = ["cors", "trace", "fs"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+jsonwebtoken = "9.3"
+chrono = { version = "0.4", features = ["serde"] }

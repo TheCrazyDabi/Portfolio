@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-burgundy: #641F36;
+  --color-wine: #451425;
+  --color-cream: #F7F0E7;
+  --color-dusky: #C28B9A;
+  --color-blush: #DFB9BF;
+  --color-taupe: #826D72;
+}
+
+@layer base {
+  body {
+    background-color: #F7F0E7;
+    color: #451425;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* CAD & Blueprint Technical Elements */
+.cad-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(100, 31, 54, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(100, 31, 54, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.cad-grid-bg-dark {
+  background-image: 
+    linear-gradient(to right, rgba(223, 185, 191, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(223, 185, 191, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.cad-crosshair {
+  position: relative;
+}
+.cad-crosshair::before, .cad-crosshair::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+.cad-crosshair::before {
+  top: 50%;
+  left: -8px;
+  right: -8px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
+}
+.cad-crosshair::after {
+  left: 50%;
+  top: -8px;
+  bottom: -8px;
+  width: 1px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+/* Engineering Corner Markers */
+.cad-bracket {
+  position: relative;
+}
+.cad-bracket::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--color-burgundy);
+  border-left: 2px solid var(--color-burgundy);
+  pointer-events: none;
+}
+.cad-bracket::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid var(--color-burgundy);
+  border-right: 2px solid var(--color-burgundy);
+  pointer-events: none;
+}
+
+/* Technical Dimension Callout Line */
+.cad-dimension-line {
+  display: flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: var(--color-taupe);
+}
+.cad-dimension-line::before,
+.cad-dimension-line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px dashed var(--color-dusky);
+  margin: 0 6px;
+}
+
+/* Keyframe animations for CAD construction lines */
+@keyframes drawStroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.animate-draw {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawStroke 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-subtle-pulse {
+  animation: pulseSubtle 4s ease-in-out infinite;
+}
+
+/* Chibi Character Animations */
+@keyframes chibiBreathe {
+  0%, 100% {
+    transform: translateY(0px) scale(1, 1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.01, 0.99);
+  }
+}
+
+@keyframes chibiWave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-18deg);
+  }
+  75% {
+    transform: rotate(14deg);
+  }
+}
+
+@keyframes chibiTypeLeft {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes chibiTypeRight {
+  0%, 100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes chibiZzz {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(8px, -14px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(16px, -28px) scale(1.2);
+  }
+}
+
+@keyframes chibiBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-12px) scale(1.05, 0.95);
+  }
+  60% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes chibiSparkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+.chibi-breathe {
+  animation: chibiBreathe 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.chibi-wave {
+  animation: chibiWave 1s ease-in-out infinite;
+  transform-origin: 110px 145px;
+}
+
+.chibi-type-left {
+  animation: chibiTypeLeft 0.18s ease-in-out infinite;
+}
+
+.chibi-type-right {
+  animation: chibiTypeRight 0.18s ease-in-out infinite;
+}
+
+.chibi-zzz-1 {
+  animation: chibiZzz 2.4s ease-out infinite;
+}
+
+.chibi-zzz-2 {
+  animation: chibiZzz 2.4s ease-out 0.8s infinite;
+}
+
+.chibi-zzz-3 {
+  animation: chibiZzz 2.4s ease-out 1.6s infinite;
+}
+
+.chibi-celebrate-bounce {
+  animation: chibiBounce 0.8s ease-in-out infinite;
+}
+
+.chibi-sparkle {
+  animation: chibiSparkle 1.5s ease-in-out infinite;
+}
+
+/* Accessible reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F0E7;
+}
+::-webkit-scrollbar-thumb {
+  background: #C28B9A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #641F36;
+}

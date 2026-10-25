@@ -1,0 +1,149 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Cpu, Settings, ArrowUpRight } from 'lucide-react';
+
+interface NavigationProps {
+  onOpenStudio: () => void;
+  activeSection: string;
+}
+
+export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSection }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { label: 'Overview', href: '#hero' },
+    { label: 'About', href: '#about' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Systems & Skills', href: '#skills' },
+    { label: 'Journey', href: '#journey' },
+    { label: 'Credentials', href: '#credentials' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-cream/90 backdrop-blur-md border-b border-burgundy/10 shadow-sm py-3'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Brand / Logo */}
+        <a
+          href="#hero"
+          className="group flex items-center space-x-2.5 text-burgundy focus:outline-none"
+        >
+          <div className="w-8 h-8 rounded-lg bg-burgundy flex items-center justify-center text-cream shadow-sm group-hover:bg-wine transition-colors">
+            <Cpu className="w-4 h-4 text-dusky group-hover:rotate-45 transition-transform duration-300" />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-display font-bold text-sm tracking-tight text-wine flex items-center gap-1.5">
+              VASUDEV SARAS K M
+              <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-dusky"></span>
+            </span>
+            <span className="text-[10px] font-mono text-taupe uppercase tracking-widest hidden sm:inline">
+              ROBOTICS &amp; AUTOMATION
+            </span>
+          </div>
+        </a>
+
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center space-x-1">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.replace('#', '');
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`px-3 py-1.5 rounded-md text-xs font-mono tracking-wider transition-all ${
+                  isActive
+                    ? 'text-burgundy bg-burgundy/10 font-semibold'
+                    : 'text-taupe hover:text-burgundy hover:bg-cream-darker/50'
+                }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Action Controls: Portfolio Studio Button & Mobile Menu Toggle */}
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={onOpenStudio}
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-burgundy/5 hover:bg-burgundy text-burgundy hover:text-cream border border-burgundy/20 hover:border-burgundy transition-all duration-200"
+            title="Open Portfolio Studio Admin"
+          >
+            <Settings className="w-3.5 h-3.5 text-dusky" />
+            <span className="hidden sm:inline">Portfolio Studio</span>
+            <span className="sm:hidden">Studio</span>
+          </button>
+
+          <a
+            href="#contact"
+            className="hidden sm:inline-flex items-center space-x-1 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-burgundy text-cream hover:bg-wine shadow-sm transition-colors"
+          >
+            <span>Inquire</span>
+            <ArrowUpRight className="w-3 h-3 text-dusky" />
+          </a>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-lg text-burgundy hover:bg-cream-darker/60 focus:outline-none"
+            aria-label="Toggle navigation menu"
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer Menu */}
+      {isOpen && (
+        <div className="lg:hidden bg-cream border-b border-burgundy/15 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
+          <div className="flex flex-col space-y-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="px-3 py-2 rounded-md text-sm font-mono text-wine hover:bg-cream-darker/60 flex items-center justify-between"
+              >
+                <span>{link.label}</span>
+                <span className="text-[10px] text-taupe">#</span>
+              </a>
+            ))}
+            <div className="pt-3 border-t border-burgundy/10 flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  onOpenStudio();
+                }}
+                className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg text-xs font-mono bg-burgundy/10 text-burgundy font-medium"
+              >
+                <Settings className="w-4 h-4 text-dusky" />
+                <span>Open Portfolio Studio</span>
+              </button>
+              <a
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+                className="w-full text-center px-4 py-2.5 rounded-lg text-xs font-mono bg-burgundy text-cream font-medium"
+              >
+                Get In Touch
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
