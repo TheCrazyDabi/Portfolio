@@ -30,6 +30,53 @@ export const initialSiteSettings: SiteSettings = {
 
 export const initialProjects: Project[] = [
   {
+    id: "proj-first-responder",
+    slug: "autonomous-first-responder",
+    title: "Autonomous First-Responder: Vision-Inertial Campus Vehicle",
+    category: "Robotics",
+    shortDescription: "Low-cost vision-inertial navigation for campus emergency response, engineered to run real-time obstacle avoidance and localization on affordable edge hardware.",
+    status: "published",
+    projectState: "Prototype Validated",
+    coverImage: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1200&q=80",
+    galleryImages: [
+      {
+        url: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1200&q=80",
+        caption: "Autonomous emergency rover chassis during outdoor test track navigation"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+        caption: "Computer vision disparity map and obstacle bounding box telemetry"
+      }
+    ],
+    technologies: ["Computer Vision", "ROS 2", "Inertial Odometry (IMU)", "OpenCV", "Extended Kalman Filter (EKF)", "Python", "Raspberry Pi 4", "LiDAR Lite"],
+    problemStatement: "Campus emergency responder units need reliable indoor/outdoor navigation without depending on expensive industrial RTK-GPS or multi-thousand-dollar LiDAR sensor suites.",
+    designProcess: "Synthesized an Extended Kalman Filter fusing monocular camera visual feature tracking with 6-axis IMU acceleration vectors. Tuned covariance matrices to eliminate drift in GPS-denied campus corridors.",
+    hardwareSoftwareArchitecture: "Camera feed -> OpenCV feature point tracking -> EKF state estimation -> ROS 2 Navigation stack -> Motor driver PWM controllers.",
+    personalContribution: "Designed system architecture, ROS 2 node pipeline, sensor calibration routines, and physical chassis integration.",
+    challengesAndSolutions: [
+      {
+        challenge: "Optical flow lost tracking in low-light campus corridors.",
+        solution: "Fused high-rate IMU angular velocity integration to maintain state estimation until visual features were reacquired."
+      }
+    ],
+    results: "Maintained <0.3m positional error across 120m traverse on sub-$250 computing hardware.",
+    lessonsLearned: "Sensor fusion mathematically compensates for low-cost hardware noise when noise covariance profiles are accurately calibrated.",
+    sourceCodeUrl: "https://github.com/thecrazydabi/Autonomous-First-Responder",
+    demoUrl: "",
+    documentationUrl: "",
+    specifications: {
+      "Navigation": "Visual-Inertial Odometry (VIO)",
+      "Compute Core": "Raspberry Pi 4 + Coral Edge TPU",
+      "Sensor Suite": "Global Shutter Camera + 6-DOF IMU",
+      "Middleware": "ROS 2 Humble / OpenCV 4.x",
+      "Drive Mechanism": "4WD Skid-Steer with High-Torque Planetary Gearboxes"
+    },
+    isFeatured: true,
+    orderIndex: 1,
+    createdAt: "2025-10-10T09:00:00Z",
+    updatedAt: "2026-03-01T12:00:00Z"
+  },
+  {
     id: "proj-mediarm",
     slug: "mediarm",
     title: "MediArm: Articulated Assistive Robotic Manipulator",
@@ -214,6 +261,90 @@ export const initialProjects: Project[] = [
     orderIndex: 4,
     createdAt: "2025-09-01T15:00:00Z",
     updatedAt: "2026-02-18T16:00:00Z"
+  },
+  {
+    id: "proj-netsentinel",
+    slug: "netsentinel-v2",
+    title: "NetSentinel v2.0: Terminal WiFi Packet Sniffer & Threat Detector",
+    category: "Cybersecurity",
+    shortDescription: "Terminal-based Python 802.11 packet inspection and rogue AP/deauthentication anomaly detection with real-time heuristic alarms.",
+    status: "published",
+    projectState: "Completed",
+    coverImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    galleryImages: [
+      {
+        url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+        caption: "NetSentinel v2.0 live terminal monitor detecting high-rate deauthentication floods"
+      }
+    ],
+    technologies: ["Python 3", "Scapy", "802.11 Raw Sockets", "Packet Heuristics", "Rich CLI", "Linux Monitor Mode", "Network Security"],
+    problemStatement: "Wireless cyber-physical threats like deauthentication floods and evil-twin access points disrupt robotics telemetry without triggering traditional IP-layer firewalls.",
+    designProcess: "Constructed a zero-overhead raw socket listener using Scapy and Linux mac80211 monitor interfaces, evaluating sliding-window packet frequencies against known attack signatures.",
+    hardwareSoftwareArchitecture: "Wireless NIC in RF monitor mode -> raw packet ingestion -> frame type parser -> anomaly engine -> terminal alert dashboard.",
+    personalContribution: "Architected raw 802.11 frame parser, deauth threshold detection state machine, and curses/Rich terminal dashboard.",
+    challengesAndSolutions: [
+      {
+        challenge: "High-density packet streams dropped frames during packet parsing.",
+        solution: "Decoupled packet capture into a ring-buffer consumer thread with lockless queues."
+      }
+    ],
+    results: "Detected simulated deauth attacks within 180ms with 0% missed flood bursts.",
+    lessonsLearned: "Physical layer and link-layer security cannot be delegated entirely to upper-layer TLS when wireless links govern robotic actuators.",
+    sourceCodeUrl: "https://github.com/thecrazydabi/NetSentinel-v2",
+    demoUrl: "",
+    documentationUrl: "",
+    specifications: {
+      "Interface": "802.11 a/b/g/n/ac Monitor Mode",
+      "Engine": "Python Scapy + C-accelerated pcap",
+      "Heuristics": "Deauth flood, Beacon anomaly, Evil twin detection",
+      "Alerting": "Rich live terminal UI with ANSI color codes"
+    },
+    isFeatured: true,
+    orderIndex: 5,
+    createdAt: "2025-05-12T14:00:00Z",
+    updatedAt: "2026-01-15T18:00:00Z"
+  },
+  {
+    id: "proj-rakuzan-soc",
+    slug: "rakuzan-soc",
+    title: "Rakuzan SOC: Security Operations Dashboard & Secret Scanner",
+    category: "Cybersecurity",
+    shortDescription: "High-throughput cybersecurity operations dashboard with automated git repository entropy analysis to catch leaked credentials early.",
+    status: "published",
+    projectState: "Completed",
+    coverImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+    galleryImages: [
+      {
+        url: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+        caption: "Rakuzan SOC real-time entropy scanner dashboard showing flagged token alerts"
+      }
+    ],
+    technologies: ["FastAPI", "React / TypeScript", "Git Hook Engine", "Shannon Entropy Scanner", "Regex Tokenizer", "Docker", "Tailwind CSS"],
+    problemStatement: "Engineering teams inadvertently commit high-entropy tokens, private SSH keys, and cloud credentials into robotics firmware repositories.",
+    designProcess: "Engineered pre-commit and CI scanning workers calculating Shannon entropy on commit diffs combined with pattern matching for 120+ credential formats.",
+    hardwareSoftwareArchitecture: "Git webhooks -> FastAPI ingestion -> asynchronous worker queue -> Redis caching -> React real-time SOC dashboard.",
+    personalContribution: "Implemented the core Shannon entropy formula, pattern database for cloud keys, and interactive React dashboard.",
+    challengesAndSolutions: [
+      {
+        challenge: "High false-positive rate on compiled binary assets and base64 hashes.",
+        solution: "Implemented mime-type file filtering and Shannon entropy threshold calibration."
+      }
+    ],
+    results: "Scanned 10,000+ commit lines in <1.2s with verified detection of AWS, GitHub, and private key tokens.",
+    lessonsLearned: "Preventive automated pre-commit scanning saves orders of magnitude more effort than post-incident credential revocation.",
+    sourceCodeUrl: "https://github.com/thecrazydabi/Rakuzan-SOC",
+    demoUrl: "",
+    documentationUrl: "",
+    specifications: {
+      "Scanner Core": "Python Shannon Entropy + Regex Engine",
+      "Dashboard": "React 18 + Tailwind CSS",
+      "Backend API": "FastAPI Async Python",
+      "Deployment": "Docker Containerized"
+    },
+    isFeatured: true,
+    orderIndex: 6,
+    createdAt: "2025-07-20T11:00:00Z",
+    updatedAt: "2026-02-05T16:00:00Z"
   }
 ];
 

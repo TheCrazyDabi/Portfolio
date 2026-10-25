@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Cpu, Settings, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Cpu, Settings, ArrowUpRight, Sun, Moon } from 'lucide-react';
+import { SpiderLily } from './SpiderLily';
 
 interface NavigationProps {
   onOpenStudio: () => void;
@@ -9,14 +10,42 @@ interface NavigationProps {
 export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    // Check initial theme preference
+    const savedTheme = localStorage.getItem('portfolio_theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      setIsDark(true);
+      document.documentElement.classList.add('dark');
+      document.documentElement.dataset.theme = 'dark';
+    } else {
+      setIsDark(false);
+      document.documentElement.classList.remove('dark');
+      document.documentElement.dataset.theme = 'light';
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.dataset.theme = 'light';
+      localStorage.setItem('portfolio_theme', 'light');
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.dataset.theme = 'dark';
+      localStorage.setItem('portfolio_theme', 'dark');
+      setIsDark(true);
+    }
+  };
 
   const navLinks = [
     { label: 'Overview', href: '#hero' },
@@ -32,7 +61,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-cream/90 backdrop-blur-md border-b border-burgundy/10 shadow-sm py-3'
+          ? 'bg-cream/90 dark:bg-[#220B14]/90 backdrop-blur-md border-b border-burgundy/10 dark:border-white/10 shadow-sm py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -48,10 +77,10 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
           <div className="flex flex-col">
             <span className="font-display font-bold text-sm tracking-tight text-wine flex items-center gap-1.5">
               VASUDEV SARAS K M
-              <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-dusky"></span>
+              <SpiderLily variant="icon" className="w-3.5 h-3.5 opacity-80" />
             </span>
             <span className="text-[10px] font-mono text-taupe uppercase tracking-widest hidden sm:inline">
-              ROBOTICS &amp; AUTOMATION
+              ROBOTICS &amp; AUTOMATION · DABI
             </span>
           </div>
         </a>
@@ -64,10 +93,10 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
               <a
                 key={link.label}
                 href={link.href}
-                className={`px-3 py-1.5 rounded-md text-xs font-mono tracking-wider transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all ${
                   isActive
-                    ? 'text-burgundy bg-burgundy/10 font-semibold'
-                    : 'text-taupe hover:text-burgundy hover:bg-cream-darker/50'
+                    ? 'text-burgundy dark:text-cream bg-burgundy/10 dark:bg-white/10 font-semibold'
+                    : 'text-taupe hover:text-burgundy dark:hover:text-cream hover:bg-cream-darker/50 dark:hover:bg-white/5'
                 }`}
               >
                 {link.label}
@@ -76,11 +105,26 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
           })}
         </nav>
 
-        {/* Action Controls: Portfolio Studio Button & Mobile Menu Toggle */}
-        <div className="flex items-center space-x-3">
+        {/* Action Controls: Theme Toggle, Portfolio Studio & Mobile Menu Toggle */}
+        <div className="flex items-center space-x-2.5">
+          {/* Dark / Light Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            id="th"
+            aria-label="Toggle dark/light theme"
+            className="p-2 rounded-full border border-burgundy/20 dark:border-white/20 text-wine hover:text-burgundy dark:hover:text-cream hover:bg-cream-darker/50 dark:hover:bg-white/10 transition-colors"
+            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {isDark ? (
+              <Sun className="w-4 h-4 text-blush" />
+            ) : (
+              <Moon className="w-4 h-4 text-burgundy" />
+            )}
+          </button>
+
           <button
             onClick={onOpenStudio}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-burgundy/5 hover:bg-burgundy text-burgundy hover:text-cream border border-burgundy/20 hover:border-burgundy transition-all duration-200"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-mono bg-burgundy/5 hover:bg-burgundy text-burgundy hover:text-cream border border-burgundy/20 hover:border-burgundy transition-all duration-200"
             title="Open Portfolio Studio Admin"
           >
             <Settings className="w-3.5 h-3.5 text-dusky" />
@@ -90,7 +134,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
 
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center space-x-1 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-burgundy text-cream hover:bg-wine shadow-sm transition-colors"
+            className="hidden sm:inline-flex items-center space-x-1 px-4 py-1.5 rounded-full text-xs font-mono font-medium bg-burgundy text-cream hover:bg-wine shadow-sm transition-colors"
           >
             <span>Inquire</span>
             <ArrowUpRight className="w-3 h-3 text-dusky" />
@@ -109,7 +153,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
 
       {/* Mobile Drawer Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-cream border-b border-burgundy/15 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden bg-cream dark:bg-[#220B14] border-b border-burgundy/15 dark:border-white/10 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
           <div className="flex flex-col space-y-2">
             {navLinks.map((link) => (
               <a

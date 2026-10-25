@@ -12,6 +12,7 @@ import {
 import { ContentService } from './services/contentService';
 import { Navigation } from './components/common/Navigation';
 import { ProgressBar } from './components/common/ProgressBar';
+import { MarqueeBanner } from './components/common/MarqueeBanner';
 import { HeroSection } from './components/hero/HeroSection';
 import { AboutSection } from './components/about/AboutSection';
 import { ProjectShowcase } from './components/projects/ProjectShowcase';
@@ -196,6 +197,7 @@ export const App: React.FC = () => {
       {/* Public Portfolio Flow */}
       <main>
         <HeroSection profile={profile} />
+        <MarqueeBanner />
         <AboutSection profile={profile} />
         <ProjectShowcase projects={projects} />
         {settings.showSystemArchitecture && <SkillsDiagram skills={skills} />}

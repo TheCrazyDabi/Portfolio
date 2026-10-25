@@ -9,19 +9,40 @@
   --color-dusky: #C28B9A;
   --color-blush: #DFB9BF;
   --color-taupe: #826D72;
+
+  --theme-bg: #F7F0E7;
+  --theme-surface: #FAF6F0;
+  --theme-text: #451425;
+  --theme-muted: #826D72;
+  --theme-line: #E6D3D3;
+  --theme-accent: #641F36;
+  --theme-pink: #C28B9A;
+  --theme-blush: #DFB9BF;
+}
+
+html.dark {
+  --theme-bg: #220B14;
+  --theme-surface: #35101F;
+  --theme-text: #F7F0E7;
+  --theme-muted: #C9AEB4;
+  --theme-line: #5C2A3D;
+  --theme-accent: #DFB9BF;
+  --theme-pink: #C28B9A;
+  --theme-blush: #641F36;
 }
 
 @layer base {
   body {
-    background-color: #F7F0E7;
-    color: #451425;
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  h1, h2, h3, h4, .font-display {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    letter-spacing: -0.02em;
+  .font-serif, h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    letter-spacing: -0.015em;
   }
 
   code, pre, .font-mono {
@@ -255,6 +276,132 @@
 
 .chibi-sparkle {
   animation: chibiSparkle 1.5s ease-in-out infinite;
+}
+
+/* Mechanical Gear Spin Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gear-spin {
+  animation: spin 20s linear infinite;
+  transform-origin: center;
+}
+
+.gear-spin-reverse {
+  animation: spin 14s linear infinite reverse;
+  transform-origin: center;
+}
+
+/* Marquee Continuous Banner Animation */
+@keyframes mq {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marq-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: mq 32s linear infinite;
+}
+
+.marq-track:hover {
+  animation-play-state: paused;
+}
+
+/* Floating Ambient Blur Blobs */
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(35px, -25px) scale(1.15);
+  }
+}
+
+.animate-drift {
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+/* Floating Badge Animation */
+@keyframes fl {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: fl 5s ease-in-out infinite;
+}
+
+/* Spider Lily Floral Animations */
+@keyframes lilySway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3.5deg);
+  }
+}
+
+@keyframes petalDrift {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-90px, 140px) rotate(60deg);
+    opacity: 0;
+  }
+}
+
+.spider-lily-sway {
+  animation: lilySway 8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.petal-drift-1 {
+  animation: petalDrift 9s ease-in-out infinite;
+}
+
+.petal-drift-2 {
+  animation: petalDrift 11s ease-in-out 3s infinite;
+}
+
+.petal-drift-3 {
+  animation: petalDrift 10s ease-in-out 6s infinite;
+}
+
+/* Arch Photo Portal */
+.photo-arch {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 999px 999px 36px 36px;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 0%, #641F36, #330D1B 75%);
+  box-shadow: 0 30px 60px rgba(69, 20, 37, 0.35);
+  isolation: isolate;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+}
+
+html.dark .photo-arch {
+  background: radial-gradient(120% 90% at 50% 0%, #451425, #1E0711 75%);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
 }
 
 /* Accessible reduced motion support */

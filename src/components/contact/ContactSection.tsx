@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, FileText, Send, CheckCircle2, Copy, ArrowUpRight } from 'lucide-react';
 import { Profile } from '../../types/content';
+import { SpiderLily } from '../common/SpiderLily';
 
 interface ContactSectionProps {
   profile: Profile;
@@ -25,8 +26,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
               <span className="w-2 h-2 rounded-full bg-burgundy"></span>
               <span>SECTION 07 // PROFESSIONAL INQUIRIES &amp; COLLABORATION</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-display font-extrabold text-wine tracking-tight">
-              Initiate Technical Communication
+            <h2 className="text-3xl sm:text-5xl font-display font-semibold text-wine tracking-tight flex items-center justify-center gap-3">
+              <span>Let&apos;s <i className="text-burgundy font-serif font-normal">talk</i> &amp; Collaborate</span>
+              <SpiderLily variant="icon" className="w-6 h-6 opacity-80" />
             </h2>
             <p className="text-taupe-dark text-sm sm:text-base max-w-xl mx-auto font-sans">
               Currently open for robotics engineering internships, embedded firmware projects, and motorsports CAD challenges.

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Cpu, Layers, Eye, ShieldCheck, Terminal, CheckCircle2, ChevronRight } from 'lucide-react';
 import { Skill, SkillCategory } from '../../types/content';
+import { SpiderLily } from '../common/SpiderLily';
 
 interface SkillsDiagramProps {
   skills: Skill[];
@@ -60,8 +61,9 @@ export const SkillsDiagram: React.FC<SkillsDiagramProps> = ({ skills }) => {
               <span className="w-2 h-2 rounded-full bg-burgundy"></span>
               <span>SECTION 03 // SYSTEMS ARCHITECTURE &amp; COMPETENCIES</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-wine tracking-tight">
-              Cyber-Physical Systems &amp; Skills Matrix
+            <h2 className="text-3xl sm:text-4xl font-display font-semibold text-wine tracking-tight flex items-center gap-3">
+              <span>Skills &amp; <i className="text-burgundy font-serif font-normal">toolkit</i></span>
+              <SpiderLily variant="icon" className="w-6 h-6 opacity-75" />
             </h2>
           </div>
           <p className="mt-4 md:mt-0 text-xs font-mono text-taupe max-w-sm">

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -16,6 +17,7 @@ export default {
         wine: {
           DEFAULT: '#451425',
           deep: '#2F0B18',
+          darkest: '#1E0711',
         },
         cream: {
           DEFAULT: '#F7F0E7',
@@ -40,8 +42,8 @@ export default {
       fontFamily: {
         mono: ['"JetBrains Mono"', '"Space Mono"', '"Fira Code"', 'ui-monospace', 'monospace'],
         sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        display: ['"Space Grotesk"', '"Inter"', 'sans-serif'],
+        serif: ['"Fraunces"', 'Georgia', 'serif'],
+        display: ['"Fraunces"', '"Space Grotesk"', 'sans-serif'],
       },
       boxShadow: {
         'cad': '0 0 0 1px rgba(100, 31, 54, 0.15), 0 4px 20px -2px rgba(69, 20, 37, 0.08)',

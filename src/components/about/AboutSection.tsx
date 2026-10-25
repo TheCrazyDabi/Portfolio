@@ -2,6 +2,7 @@ import React from 'react';
 import { Layers, Cpu, Box, ShieldCheck, Eye, Terminal, MapPin, GraduationCap, Sparkles } from 'lucide-react';
 import { Profile } from '../../types/content';
 import { getAssetUrl } from '../../utils/assets';
+import { SpiderLily } from '../common/SpiderLily';
 
 interface AboutSectionProps {
   profile: Profile;
@@ -51,8 +52,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
               <span className="w-2 h-2 rounded-full bg-burgundy"></span>
               <span>SECTION 01 // PROFESSIONAL IDENTITY &amp; CREATOR PROFILE</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-wine tracking-tight">
-              Engineering Foundations &amp; Craft
+            <h2 className="text-3xl sm:text-4xl font-display font-semibold text-wine tracking-tight flex items-center gap-3">
+              <span>Engineering Foundations &amp; <i className="text-burgundy font-serif font-normal">Craft</i></span>
+              <SpiderLily variant="icon" className="w-6 h-6 opacity-75" />
             </h2>
           </div>
           <div className="mt-4 md:mt-0 text-xs font-mono text-taupe flex items-center gap-2">

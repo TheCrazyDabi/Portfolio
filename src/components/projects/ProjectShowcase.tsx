@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ExternalLink, Github, ArrowRight, Layers, SlidersHorizontal, Sparkles } from 'lucide-react';
 import { Project } from '../../types/content';
 import { CaseStudyModal } from '../common/CaseStudyModal';
+import { SpiderLily } from '../common/SpiderLily';
 
 interface ProjectShowcaseProps {
   projects: Project[];
@@ -16,6 +17,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) =>
     'Robotics',
     'CAD & Mechanical',
     'Software & AI',
+    'Cybersecurity',
     'Embedded & IoT',
   ];
 
@@ -33,12 +35,13 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) =>
               <span className="w-2 h-2 rounded-full bg-burgundy"></span>
               <span>SECTION 02 // ENGINEERING ARTIFACTS</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-wine tracking-tight">
-              Project Case Studies &amp; Builds
+            <h2 className="text-3xl sm:text-4xl font-display font-semibold text-wine tracking-tight flex items-center gap-3">
+              <span>Selected <i className="text-burgundy font-serif font-normal">projects</i></span>
+              <SpiderLily variant="icon" className="w-6 h-6 opacity-75" />
             </h2>
           </div>
           <p className="mt-4 md:mt-0 text-xs font-mono text-taupe max-w-sm">
-            Select any project to inspect full problem statements, CAD processes, kinematics, and telemetry architectures.
+            Each one is a system I designed, built and shipped across robotics, CAD kinematics, AI, and cybersecurity.
           </p>
         </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { GitBranch, Shield, Terminal, ArrowUp, ExternalLink } from 'lucide-react';
 import { Profile } from '../../types/content';
+import { SpiderLily } from './SpiderLily';
 
 interface FooterProps {
   profile: Profile;
@@ -106,10 +107,11 @@ export const Footer: React.FC<FooterProps> = ({ profile, onOpenStudio }) => {
 
         {/* Bottom Technical Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-taupe-light gap-4">
-          <div className="flex items-center space-x-3">
-            <span>© {new Date().getFullYear()} Vasudev Saras K M</span>
+          <div className="flex items-center space-x-2">
+            <SpiderLily variant="icon" className="w-4 h-4 opacity-80" />
+            <span>Designed &amp; built by Dabi (Vasudev Saras K M)</span>
             <span className="text-blush/30">•</span>
-            <span>All Rights Reserved</span>
+            <span>B.Tech Robotics &amp; Automation</span>
             <span className="text-blush/30">•</span>
             <span className="text-dusky">Saintgits College of Engineering</span>
           </div>
