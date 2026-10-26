@@ -1,6 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowDown, ChevronRight, Compass, FileText, Sparkles, Cpu, Bot, Shield, Wrench } from 'lucide-react';
+import {
+  ArrowDown,
+  ChevronRight,
+  Compass,
+  FileText,
+  Sparkles,
+  Cpu,
+  Bot,
+  Wrench,
+  Camera,
+  Activity,
+  Layers
+} from 'lucide-react';
 import { Profile } from '../../types/content';
+import { BuggySuspensionCAD } from './BuggySuspensionCAD';
 import { RoboticArmCAD } from './RoboticArmCAD';
 import { SpiderLily } from '../common/SpiderLily';
 import { getAssetUrl } from '../../utils/assets';
@@ -11,15 +24,15 @@ interface HeroSectionProps {
 
 const ROLES = [
   'Robotics & Automation Engineer',
-  'Autonomous Navigation & ROS 2',
-  'Vehicle Dynamics & CAD Kinematics',
-  'Embedded Systems & CAN Bus',
-  'Cyber-Physical Security Tooling'
+  'Automotive Buggy Suspension & Steering (Lotus SHARK)',
+  'Autonomous Navigation & ROS 2 / Nav2',
+  'Drive-by-Wire CAN Bus & Embedded Firmware',
+  'Cyber-Physical Security & Offline Speech AI'
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
-  // Triple-mode stage toggle: 'facecard' | 'baja' | 'cad'
-  const [stageMode, setStageMode] = useState<'facecard' | 'baja' | 'cad'>('facecard');
+  // Showcase Mode: 'suspension' | 'facecard' | 'workshop' | 'arm'
+  const [activeStage, setActiveStage] = useState<'suspension' | 'facecard' | 'workshop' | 'arm'>('suspension');
 
   // Typewriter effect state
   const [typewriterText, setTypewriterText] = useState('');
@@ -27,7 +40,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
   const charIndexRef = useRef(0);
   const isDeletingRef = useRef(false);
 
-  // 3D perspective tilt on portrait stage
+  // 3D perspective tilt on face card
   const stageRef = useRef<HTMLDivElement>(null);
   const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({});
 
@@ -52,7 +65,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           timer = setTimeout(tick, 1800);
           return;
         }
-        timer = setTimeout(tick, 60);
+        timer = setTimeout(tick, 55);
       } else {
         charIndexRef.current -= 1;
         setTypewriterText(currentRole.slice(0, charIndexRef.current));
@@ -63,7 +76,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           timer = setTimeout(tick, 350);
           return;
         }
-        timer = setTimeout(tick, 30);
+        timer = setTimeout(tick, 28);
       }
     };
 
@@ -78,14 +91,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       k1 += 1;
       setBuildCount(k1);
       if (k1 >= 7) clearInterval(iv1);
-    }, 160);
+    }, 150);
 
     let k2 = 0;
     const iv2 = setInterval(() => {
       k2 += 1;
       setDomainCount(k2);
       if (k2 >= 3) clearInterval(iv2);
-    }, 240);
+    }, 220);
 
     return () => {
       clearInterval(iv1);
@@ -100,7 +113,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     setTiltStyle({
-      transform: `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 9}deg) scale(1.02)`,
+      transform: `perspective(900px) rotateY(${x * 12}deg) rotateX(${-y * 10}deg) scale(1.02)`,
       transition: 'transform 0.08s ease-out'
     });
   };
@@ -119,369 +132,399 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
   return (
     <section
       id="hero"
-      className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20 min-h-[calc(100vh-4rem)] flex flex-col justify-center overflow-hidden cad-grid-bg transition-colors scroll-mt-20"
+      className="relative pt-24 pb-14 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20 overflow-hidden cad-grid-bg transition-colors scroll-mt-20"
     >
-      {/* Softened Ambient Glowing Fog Blobs (No sharp square artifacts) */}
-      <div className="absolute -left-20 top-10 w-96 h-96 rounded-full bg-blush/25 filter blur-3xl pointer-events-none -z-0" />
-      <div className="absolute right-0 top-1/4 w-80 h-80 rounded-full bg-dusky/20 filter blur-3xl pointer-events-none -z-0" />
+      {/* Soft Gaussian Ambient Atmospheric Light (Zero sharp squares) */}
+      <div className="absolute -left-20 top-12 w-96 h-96 rounded-full bg-blush/20 filter blur-3xl pointer-events-none -z-0" />
+      <div className="absolute right-0 top-1/4 w-96 h-96 rounded-full bg-dusky/20 filter blur-3xl pointer-events-none -z-0" />
 
-      {/* Floating Spider Lily Petals */}
+      {/* Floating Spider Lily Botanical Petals */}
       <SpiderLily variant="petals" className="pointer-events-none z-0" />
 
-      {/* Subtle Technical Coordinates Marker */}
-      <div className="absolute top-20 left-6 hidden 2xl:block text-[10px] font-mono text-taupe/60 space-y-0.5 select-none pointer-events-none z-10">
-        <div>SYS_DATUM: LAT 9.5915° N, LON 76.5222° E</div>
-        <div>INST: SAINTGITS COLLEGE OF ENGINEERING (APJ KTU)</div>
-        <div>DISCIPLINE: ROBOTICS &amp; AUTOMATION ENG</div>
-      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-10">
+        {/* Unified Editorial Top Canvas (Harmonious, not rigid side-by-side columns) */}
+        <div className="text-center max-w-4xl mx-auto space-y-5">
+          {/* Top Status Badges Row */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5">
+            <span className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cream-surface border border-burgundy/20 shadow-sm text-xs font-mono font-medium text-burgundy tracking-wider uppercase">
+              <span className="w-2 h-2 rounded-full bg-burgundy animate-pulse" />
+              <span>Saintgits College · B.Tech Robotics &amp; Automation (APJ KTU)</span>
+            </span>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Editorial Copy (Col 7) */}
-          <div className="lg:col-span-7 space-y-5">
-            {/* Top Status & Education Pill */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cream-surface border border-burgundy/20 shadow-sm text-xs font-mono font-medium text-burgundy tracking-wider uppercase">
-                <span className="w-2 h-2 rounded-full bg-burgundy animate-pulse" />
-                <span>Saintgits · B.Tech Robotics &amp; Automation</span>
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cream-surface border border-burgundy/15 shadow-sm text-xs font-mono text-wine">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+              <span className="font-medium">
+                {profile.statusIndicator || 'Available for Robotics & Embedded Roles'}
               </span>
-
-              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cream-surface border border-burgundy/15 shadow-sm text-xs font-mono text-wine">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                <span className="font-medium">
-                  {profile.statusIndicator || 'Available for Robotics & Embedded Roles'}
-                </span>
-              </div>
-            </div>
-
-            {/* Editorial Headline */}
-            <div className="space-y-2.5">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-semibold text-wine tracking-tight leading-[1.05]">
-                Building machines that{' '}
-                <em className="text-burgundy font-serif italic font-normal">
-                  sense, decide
-                </em>{' '}
-                &amp; act.
-              </h1>
-
-              {/* Dynamic Typewriter Role */}
-              <div className="text-base sm:text-lg text-taupe font-mono min-h-[1.7em] flex items-center">
-                <span className="font-medium text-burgundy">{typewriterText}</span>
-                <span className="inline-block w-2 h-5 bg-dusky ml-1 animate-pulse" />
-              </div>
-            </div>
-
-            {/* Editorial Introduction */}
-            <p className="text-base sm:text-lg text-taupe-dark max-w-2xl leading-relaxed font-sans font-normal">
-              {profile.introduction ||
-                'I explore the intersection of robotics, embedded systems, intelligent software, and mechanical design to turn engineering ideas into working systems.'}
-            </p>
-
-            {/* Action CTA Buttons with V.E.D.A. Guide Launcher */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <a
-                href="#projects"
-                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-burgundy hover:bg-wine text-cream font-mono text-xs uppercase tracking-wider font-semibold shadow-cad hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
-              >
-                <span>View projects</span>
-                <ChevronRight className="w-4 h-4 text-dusky" />
-              </a>
-
-              {/* V.E.D.A. AI Guide Trigger */}
-              <button
-                onClick={() => handleOpenVeda('chat')}
-                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-cream-surface hover:bg-cream-darker/70 text-wine border border-emerald-600/30 hover:border-emerald-600 font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm group"
-                title="Open V.E.D.A. interactive guide"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <Bot className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform" />
-                <span>Ask V.E.D.A.</span>
-              </button>
-
-              <button
-                onClick={() => handleOpenVeda('tour')}
-                className="inline-flex items-center space-x-1.5 px-4 py-2.5 rounded-full bg-cream-surface hover:bg-cream-darker/60 text-taupe-dark hover:text-wine border border-burgundy/20 font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-sm"
-                title="Start step-by-step guided portfolio tour"
-              >
-                <Compass className="w-3.5 h-3.5 text-burgundy" />
-                <span>Take Tour</span>
-              </button>
-
-              <a
-                href="#contact"
-                className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-full bg-cream-surface hover:bg-cream-darker/60 text-wine border border-burgundy/20 font-mono text-xs uppercase tracking-wider font-medium transition-all shadow-sm"
-              >
-                <span>Contact</span>
-              </a>
-
-              {/* Verified Résumé */}
-              {profile.resumeUrl ? (
-                <a
-                  href={profile.resumeUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center space-x-1.5 px-4 py-2.5 rounded-full bg-blush/20 hover:bg-blush/40 text-burgundy border border-dusky/40 font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-200"
-                >
-                  <FileText className="w-3.5 h-3.5 text-burgundy" />
-                  <span>Verified Résumé</span>
-                </a>
-              ) : null}
-            </div>
-
-            {/* Key Verified Engineering Stats */}
-            <div className="pt-4 border-t border-burgundy/15 flex flex-wrap gap-7 items-center">
-              <div>
-                <strong className="block text-3xl font-serif font-bold text-burgundy">
-                  {buildCount}
-                </strong>
-                <small className="text-[11px] font-mono text-taupe uppercase tracking-wider">
-                  Flagship Builds
-                </small>
-              </div>
-              <div className="h-7 w-[1px] bg-burgundy/20 hidden sm:block" />
-              <div>
-                <strong className="block text-3xl font-serif font-bold text-burgundy">
-                  {domainCount}
-                </strong>
-                <small className="text-[11px] font-mono text-taupe uppercase tracking-wider">
-                  Robotics · Security · AI
-                </small>
-              </div>
-              <div className="h-7 w-[1px] bg-burgundy/20 hidden sm:block" />
-              <div>
-                <div className="flex items-center space-x-1.5 text-xs font-mono text-wine font-semibold">
-                  <SpiderLily variant="icon" className="w-4 h-4 text-burgundy" />
-                  <span>TheCrazyDabi Studio</span>
-                </div>
-                <small className="text-[11px] font-mono text-taupe block">
-                  Saintgits College of Eng.
-                </small>
-              </div>
             </div>
           </div>
 
-          {/* Right Signature Visual Stage: High-Impact Face Card (Col 5) */}
-          <div className="lg:col-span-5 relative flex flex-col items-center">
-            {/* Mode Switcher Tabs */}
-            <div className="mb-3 inline-flex p-1 rounded-full bg-cream-surface border border-burgundy/20 shadow-sm text-xs font-mono z-20">
-              <button
-                onClick={() => setStageMode('facecard')}
-                className={`flex items-center space-x-1.5 px-3 py-1 rounded-full transition-all duration-200 ${
-                  stageMode === 'facecard'
-                    ? 'bg-burgundy text-cream font-semibold shadow-sm'
-                    : 'text-taupe hover:text-wine'
-                }`}
-              >
-                <Sparkles className="w-3 h-3" />
-                <span>Face Card</span>
-              </button>
+          {/* Grand Headline */}
+          <div className="space-y-2">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-semibold text-wine tracking-tight leading-[1.08]">
+              Building machines that{' '}
+              <em className="text-burgundy font-serif italic font-normal">
+                sense, decide
+              </em>{' '}
+              &amp; act.
+            </h1>
 
-              <button
-                onClick={() => setStageMode('baja')}
-                className={`flex items-center space-x-1.5 px-3 py-1 rounded-full transition-all duration-200 ${
-                  stageMode === 'baja'
-                    ? 'bg-burgundy text-cream font-semibold shadow-sm'
-                    : 'text-taupe hover:text-wine'
-                }`}
-              >
-                <Wrench className="w-3 h-3" />
-                <span>aBAJA 2026</span>
-              </button>
+            {/* Dynamic Typewriter Role */}
+            <div className="text-base sm:text-lg text-taupe font-mono min-h-[1.7em] flex items-center justify-center">
+              <span className="font-medium text-burgundy">{typewriterText}</span>
+              <span className="inline-block w-2 h-5 bg-dusky ml-1.5 animate-pulse" />
+            </div>
+          </div>
 
-              <button
-                onClick={() => setStageMode('cad')}
-                className={`flex items-center space-x-1.5 px-3 py-1 rounded-full transition-all duration-200 ${
-                  stageMode === 'cad'
-                    ? 'bg-burgundy text-cream font-semibold shadow-sm'
-                    : 'text-taupe hover:text-wine'
-                }`}
+          {/* Concise Narrative */}
+          <p className="text-sm sm:text-base text-taupe-dark max-w-2xl mx-auto leading-relaxed font-sans">
+            {profile.introduction ||
+              'Robotics and Automation engineer bridging physical kinematics in Lotus SHARK & SolidWorks with deterministic computing on Jetson Orin Nano, ROS 2, and Drive-by-Wire CAN.'}
+          </p>
+
+          {/* Action CTAs Cluster */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+            <a
+              href="#projects"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-full bg-burgundy hover:bg-wine text-cream font-mono text-xs uppercase tracking-wider font-semibold shadow-cad hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+            >
+              <span>Explore projects</span>
+              <ChevronRight className="w-4 h-4 text-dusky" />
+            </a>
+
+            {/* V.E.D.A. AI Guide Trigger */}
+            <button
+              onClick={() => handleOpenVeda('chat')}
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-cream-surface hover:bg-cream-darker/70 text-wine border border-emerald-600/30 hover:border-emerald-600 font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm group"
+              title="Launch V.E.D.A. interactive guide"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <Bot className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform" />
+              <span>Ask V.E.D.A.</span>
+            </button>
+
+            <button
+              onClick={() => handleOpenVeda('tour')}
+              className="inline-flex items-center space-x-1.5 px-4 py-2.5 rounded-full bg-cream-surface hover:bg-cream-darker/60 text-taupe-dark hover:text-wine border border-burgundy/20 font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-sm"
+              title="Start step-by-step guided walkthrough"
+            >
+              <Compass className="w-3.5 h-3.5 text-burgundy" />
+              <span>Take Tour</span>
+            </button>
+
+            <a
+              href="#contact"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-cream-surface hover:bg-cream-darker/60 text-wine border border-burgundy/20 font-mono text-xs uppercase tracking-wider font-medium transition-all shadow-sm"
+            >
+              <span>Get in touch</span>
+            </a>
+
+            {profile.resumeUrl ? (
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center space-x-1.5 px-4 py-2.5 rounded-full bg-blush/20 hover:bg-blush/40 text-burgundy border border-dusky/40 font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-200"
               >
-                <Cpu className="w-3 h-3" />
-                <span>CAD 3D</span>
-              </button>
+                <FileText className="w-3.5 h-3.5 text-burgundy" />
+                <span>Verified Résumé</span>
+              </a>
+            ) : null}
+          </div>
+        </div>
+
+        {/* Cohesive Engineering Centerpiece Stage (Integrated Visual Arena) */}
+        <div className="max-w-5xl mx-auto space-y-4">
+          {/* Stage Switcher Controls Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-3 px-3 py-2 rounded-2xl bg-cream-surface border border-burgundy/20 shadow-sm text-xs font-mono">
+            <div className="flex items-center space-x-2 text-taupe font-semibold text-[11px]">
+              <Layers className="w-4 h-4 text-burgundy" />
+              <span>ENGINEERING SHOWCASE:</span>
             </div>
 
-            {/* Mode 1: Premium Editorial Face Card Stage (Inspired by getlayers reference) */}
-            {stageMode === 'facecard' && (
-              <div
-                ref={stageRef}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                className="relative w-full max-w-[320px] sm:max-w-[370px] md:max-w-[390px] cursor-pointer mx-auto select-none"
+            <div className="flex flex-wrap gap-1">
+              <button
+                onClick={() => setActiveStage('suspension')}
+                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl transition-all duration-200 text-xs ${
+                  activeStage === 'suspension'
+                    ? 'bg-burgundy text-cream font-bold shadow-sm'
+                    : 'text-taupe hover:text-wine hover:bg-cream'
+                }`}
+                title="Automotive Buggy Suspension & Steering Kinematic Simulation"
               >
-                {/* Rotating Delicate CAD Outer Ring */}
-                <div className="ring" />
+                <Wrench className="w-3.5 h-3.5" />
+                <span>🏎️ Buggy Suspension &amp; Steering CAD</span>
+              </button>
 
-                {/* Rotating CAD Mechanical Gears */}
-                <svg className="gear" viewBox="0 0 100 100" aria-hidden="true">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="34"
-                    fill="none"
-                    stroke="var(--color-dusky)"
-                    strokeWidth="14"
-                    strokeDasharray="9.4 6.2"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="26"
-                    fill="var(--theme-bg)"
-                    stroke="var(--color-dusky)"
-                    strokeWidth="3"
-                  />
-                  <circle cx="50" cy="50" r="8" fill="var(--color-dusky)" />
-                </svg>
+              <button
+                onClick={() => setActiveStage('facecard')}
+                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl transition-all duration-200 text-xs ${
+                  activeStage === 'facecard'
+                    ? 'bg-burgundy text-cream font-bold shadow-sm'
+                    : 'text-taupe hover:text-wine hover:bg-cream'
+                }`}
+                title="Vasudev Saras 3D Face Card"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>👤 3D Face Card</span>
+              </button>
 
-                <svg className="gear gear2" viewBox="0 0 100 100" aria-hidden="true">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="34"
-                    fill="none"
-                    stroke="var(--color-blush)"
-                    strokeWidth="14"
-                    strokeDasharray="9.4 6.2"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="26"
-                    fill="var(--theme-bg)"
-                    stroke="var(--color-blush)"
-                    strokeWidth="3"
-                  />
-                  <circle cx="50" cy="50" r="8" fill="var(--color-blush)" />
-                </svg>
+              <button
+                onClick={() => setActiveStage('workshop')}
+                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl transition-all duration-200 text-xs ${
+                  activeStage === 'workshop'
+                    ? 'bg-burgundy text-cream font-bold shadow-sm'
+                    : 'text-taupe hover:text-wine hover:bg-cream'
+                }`}
+                title="Team Equinox aBAJA 2026 Scrutiny Photography"
+              >
+                <Camera className="w-3.5 h-3.5" />
+                <span>📸 aBAJA 2026 Scrutiny</span>
+              </button>
 
-                {/* Main Face Card Container */}
-                <div
-                  className="photo-arch shadow-2xl relative rounded-[32px] overflow-hidden border-2 border-burgundy/30 bg-gradient-to-b from-[#4A1525] via-[#2F0B18] to-[#1E0711]"
-                  style={tiltStyle}
-                >
-                  {/* Subtle Blueprint Grid Lines in Face Card */}
-                  <div className="absolute inset-0 cad-grid-bg-dark opacity-40 pointer-events-none" />
+              <button
+                onClick={() => setActiveStage('arm')}
+                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl transition-all duration-200 text-xs ${
+                  activeStage === 'arm'
+                    ? 'bg-burgundy text-cream font-bold shadow-sm'
+                    : 'text-taupe hover:text-wine hover:bg-cream'
+                }`}
+                title="3-DOF Articulated Arm Manipulator"
+              >
+                <Cpu className="w-3.5 h-3.5" />
+                <span>🦾 Arm Kinematics</span>
+              </button>
+            </div>
+          </div>
 
-                  {/* Vasudev's Transparent Cutout Portrait */}
-                  <img
-                    src={getAssetUrl('assets/profile/vasudev-burgundy-cutout-transparent.png')}
-                    alt={profile.name}
-                    className="absolute inset-0 w-full h-full object-cover z-10"
-                    style={{
-                      objectPosition: '50% 18%',
-                      transform: 'scale(1.12)',
-                      transformOrigin: '50% 20%',
-                      filter: 'contrast(1.06) brightness(1.02)'
-                    }}
-                  />
-
-                  {/* Gradient shadow vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-20 pointer-events-none" />
-
-                  {/* Architectural Crosshair Datum Marks */}
-                  <div className="absolute top-3 left-3 text-[9px] font-mono text-dusky/80 z-20 flex items-center space-x-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>SYS_TARGET: 01 // VASUDEV</span>
-                  </div>
-
-                  <div className="absolute top-3 right-3 text-[9px] font-mono text-dusky/70 z-20">
-                    S7_ROBOTICS
-                  </div>
-
-                  {/* Bottom Face Card Identity Badge */}
-                  <div className="absolute bottom-4 left-4 right-4 z-20 p-2.5 rounded-2xl bg-wine/80 backdrop-blur-md border border-white/15 text-cream space-y-0.5">
-                    <div className="flex items-center justify-between">
-                      <span className="font-display font-bold text-sm tracking-wide">
-                        {profile.name}
-                      </span>
-                      <span className="text-[9px] font-mono text-blush uppercase tracking-widest">
-                        SAINTGITS // KTU
-                      </span>
-                    </div>
-                    <p className="text-[10px] font-mono text-cream/80 truncate">
-                      Robotics &amp; Automation Engineer · Dabi
-                    </p>
-                  </div>
-                </div>
-
-                {/* Graceful Red Spider Lily Botanical Curling Accent */}
-                <div className="absolute -bottom-6 -left-6 sm:-left-8 z-30 pointer-events-none">
-                  <SpiderLily variant="curling" className="w-24 h-24 sm:w-28 sm:h-28 filter drop-shadow-xl" />
-                </div>
-
-                {/* Floating Glassmorphic Tech Chips around Face Card */}
-                <span
-                  className="chipf animate-float text-[11px] sm:text-xs"
-                  style={{ left: '-12px', bottom: '110px' }}
-                >
-                  ROS 2 / Jetson
-                </span>
-                <span
-                  className="chipf animate-float text-[11px] sm:text-xs"
-                  style={{ right: '-10px', top: '70px', animationDelay: '-2s' }}
-                >
-                  aBAJA CAD
-                </span>
-                <span
-                  className="chipf animate-float text-[11px] sm:text-xs"
-                  style={{ right: '14px', bottom: '-14px', animationDelay: '-3.5s' }}
-                >
-                  Guided by V.E.D.A.
-                </span>
+          {/* Stage Content Renderers */}
+          <div className="relative rounded-3xl overflow-hidden border border-burgundy/20 shadow-cad bg-cream-surface/90">
+            {/* View 1: Automotive Buggy Suspension & Steering Simulation */}
+            {activeStage === 'suspension' && (
+              <div className="p-2 sm:p-4">
+                <BuggySuspensionCAD interactive={true} />
               </div>
             )}
 
-            {/* Mode 2: Team Equinox aBAJA 2026 Photography */}
-            {stageMode === 'baja' && (
-              <div className="w-full max-w-[360px] rounded-2xl overflow-hidden border border-burgundy/25 bg-cream-surface shadow-xl p-3 space-y-2.5">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden relative">
-                  <img
-                    src={getAssetUrl('assets/projects/abaja-2026-workshop.png')}
-                    alt="Vasudev Saras at aBAJA 2026"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-2 left-2 px-2 py-1 rounded-md bg-wine/80 backdrop-blur-sm text-cream text-[10px] font-mono">
-                    Team Equinox // aBAJA 2026 Scrutiny
+            {/* View 2: High-End Editorial 3D Face Card */}
+            {activeStage === 'facecard' && (
+              <div className="p-6 sm:p-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+                {/* 3D Perspective Photo Card */}
+                <div
+                  ref={stageRef}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                  className="relative w-full max-w-[320px] sm:max-w-[360px] cursor-pointer select-none"
+                >
+                  <div className="ring" />
+
+                  {/* Rotating Mechanical Gears */}
+                  <svg className="gear" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="34" fill="none" stroke="var(--color-dusky)" strokeWidth="14" strokeDasharray="9.4 6.2" />
+                    <circle cx="50" cy="50" r="26" fill="var(--theme-bg)" stroke="var(--color-dusky)" strokeWidth="3" />
+                    <circle cx="50" cy="50" r="8" fill="var(--color-dusky)" />
+                  </svg>
+
+                  <svg className="gear gear2" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle cx="50" cy="50" r="34" fill="none" stroke="var(--color-blush)" strokeWidth="14" strokeDasharray="9.4 6.2" />
+                    <circle cx="50" cy="50" r="26" fill="var(--theme-bg)" stroke="var(--color-blush)" strokeWidth="3" />
+                    <circle cx="50" cy="50" r="8" fill="var(--color-blush)" />
+                  </svg>
+
+                  {/* Face Card Arched Frame */}
+                  <div
+                    className="photo-arch shadow-2xl relative rounded-[32px] overflow-hidden border-2 border-burgundy/30 bg-gradient-to-b from-[#4A1525] via-[#2F0B18] to-[#1E0711]"
+                    style={tiltStyle}
+                  >
+                    <div className="absolute inset-0 cad-grid-bg-dark opacity-35 pointer-events-none" />
+
+                    <img
+                      src={getAssetUrl('assets/profile/vasudev-burgundy-cutout-transparent.png')}
+                      alt={profile.name}
+                      className="absolute inset-0 w-full h-full object-cover z-10"
+                      style={{
+                        objectPosition: '50% 18%',
+                        transform: 'scale(1.12)',
+                        transformOrigin: '50% 20%',
+                        filter: 'contrast(1.06) brightness(1.02)'
+                      }}
+                    />
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-20 pointer-events-none" />
+
+                    <div className="absolute top-3 left-3 text-[9px] font-mono text-dusky/80 z-20 flex items-center space-x-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>SYS_TARGET: 01 // VASUDEV</span>
+                    </div>
+
+                    <div className="absolute top-3 right-3 text-[9px] font-mono text-dusky/70 z-20">
+                      S7_ROBOTICS
+                    </div>
+
+                    <div className="absolute bottom-4 left-4 right-4 z-20 p-2.5 rounded-2xl bg-wine/80 backdrop-blur-md border border-white/15 text-cream space-y-0.5">
+                      <div className="flex items-center justify-between">
+                        <span className="font-display font-bold text-sm tracking-wide">
+                          {profile.name}
+                        </span>
+                        <span className="text-[9px] font-mono text-blush uppercase tracking-widest">
+                          SAINTGITS // KTU
+                        </span>
+                      </div>
+                      <p className="text-[10px] font-mono text-cream/80 truncate">
+                        Robotics &amp; Automation Engineer · Dabi
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="absolute -bottom-6 -left-6 sm:-left-8 z-30 pointer-events-none">
+                    <SpiderLily variant="curling" className="w-24 h-24 sm:w-28 sm:h-28 filter drop-shadow-xl" />
+                  </div>
+
+                  <span className="chipf animate-float text-[11px]" style={{ left: '-12px', bottom: '110px' }}>
+                    ROS 2 / Jetson
+                  </span>
+                  <span className="chipf animate-float text-[11px]" style={{ right: '-10px', top: '70px', animationDelay: '-2s' }}>
+                    aBAJA CAD
+                  </span>
+                  <span className="chipf animate-float text-[11px]" style={{ right: '14px', bottom: '-14px', animationDelay: '-3.5s' }}>
+                    Guided by V.E.D.A.
+                  </span>
+                </div>
+
+                {/* Accompanying Editorial Card Bio */}
+                <div className="max-w-md space-y-4 text-left">
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-mono text-burgundy font-bold tracking-wider uppercase">
+                      // Verified Subject Dossier
+                    </span>
+                    <h3 className="text-2xl font-display font-bold text-wine">
+                      Vasudev Saras K M
+                    </h3>
+                    <p className="text-xs font-mono text-taupe">
+                      Undergraduate Engineer · Saintgits College of Engineering
+                    </p>
+                  </div>
+
+                  <p className="text-sm text-taupe-dark leading-relaxed font-sans">
+                    Specializing in autonomous vehicle kinematics, CAN bus drive-by-wire integration, and cyber-physical security. Designed the suspension and Ackermann steering geometry for Team Equinox (aBAJA SAE 2026), suppressing bump steer to under 0.35°.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-3 text-xs font-mono pt-1">
+                    <div className="p-3 rounded-xl bg-cream border border-burgundy/15">
+                      <span className="text-[10px] text-taupe block">DISCIPLINE</span>
+                      <strong className="text-wine">Robotics &amp; Automation</strong>
+                    </div>
+                    <div className="p-3 rounded-xl bg-cream border border-burgundy/15">
+                      <span className="text-[10px] text-taupe block">LOCATION</span>
+                      <strong className="text-wine">Calicut, Kerala</strong>
+                    </div>
                   </div>
                 </div>
-                <div className="text-xs font-mono text-wine space-y-1">
-                  <div className="flex items-center justify-between font-bold">
-                    <span>Double-Wishbone Kinematics</span>
-                    <span className="text-burgundy">Lotus SHARK</span>
+              </div>
+            )}
+
+            {/* View 3: Team Equinox aBAJA 2026 Real Photography */}
+            {activeStage === 'workshop' && (
+              <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div className="space-y-3">
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden relative border border-burgundy/25 shadow-md">
+                    <img
+                      src={getAssetUrl('assets/projects/abaja-2026-workshop.png')}
+                      alt="Vasudev Saras at aBAJA 2026 Vehicle Staging"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-2 left-2 px-3 py-1 rounded-lg bg-wine/85 backdrop-blur-sm text-cream text-[10px] font-mono">
+                      On-Site Technical Scrutiny // aBAJA 2026
+                    </div>
                   </div>
-                  <p className="text-[11px] text-taupe font-sans">
-                    Engineered Ackermann steering hardpoints and suspension uprights in SolidWorks to suppress bump steer to &lt;0.35°.
+                  <p className="text-xs font-mono text-taupe text-center">
+                    Vasudev Saras on-site with Team Equinox during vehicle staging &amp; scrutiny
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden relative border border-burgundy/25 shadow-md">
+                    <img
+                      src={getAssetUrl('assets/projects/abaja-2026-transit.png')}
+                      alt="Vasudev Saras in aBAJA Transit Gear"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-2 left-2 px-3 py-1 rounded-lg bg-wine/85 backdrop-blur-sm text-cream text-[10px] font-mono">
+                      National Competition Transit Gear
+                    </div>
+                  </div>
+                  <p className="text-xs font-mono text-taupe text-center">
+                    National competition travel &amp; dynamic track test gear
                   </p>
                 </div>
               </div>
             )}
 
-            {/* Mode 3: Interactive 3D CAD Kinematics Manipulator */}
-            {stageMode === 'cad' && (
-              <div className="w-full max-w-[400px] transition-all duration-300">
-                <RoboticArmCAD interactive={true} />
-                <div className="mt-2 text-center">
-                  <span className="text-[10px] font-mono text-taupe">
-                    Drag joints to solve analytical inverse kinematics (ESP32 C++ engine)
-                  </span>
+            {/* View 4: MediArm 3-DOF Arm Kinematics */}
+            {activeStage === 'arm' && (
+              <div className="p-4 sm:p-6 flex flex-col items-center">
+                <div className="w-full max-w-lg">
+                  <RoboticArmCAD interactive={true} />
                 </div>
+                <span className="text-[10px] font-mono text-taupe mt-3">
+                  Drag joints to evaluate closed-form inverse kinematics decoupled for low-power ESP32 microcontrollers
+                </span>
               </div>
             )}
           </div>
         </div>
-      </div>
 
-      {/* Down Scroll Indicator */}
-      <div className="mt-8 text-center">
-        <a
-          href="#about"
-          className="inline-flex flex-col items-center text-[10px] font-mono text-taupe hover:text-burgundy transition-colors"
-          aria-label="Scroll to about section"
-        >
-          <span className="tracking-widest uppercase">DISCOVER ENGINEERING SPEC</span>
-          <ArrowDown className="w-3.5 h-3.5 mt-1 text-dusky animate-bounce" />
-        </a>
+        {/* Bottom Verified Engineering Stats Strip */}
+        <div className="max-w-4xl mx-auto pt-6 border-t border-burgundy/15 flex flex-wrap justify-around items-center gap-6 text-center">
+          <div>
+            <strong className="block text-3xl font-serif font-bold text-burgundy">
+              {buildCount}
+            </strong>
+            <small className="text-[11px] font-mono text-taupe uppercase tracking-wider">
+              Flagship Builds
+            </small>
+          </div>
+          <div className="h-8 w-[1px] bg-burgundy/20 hidden sm:block" />
+          <div>
+            <strong className="block text-3xl font-serif font-bold text-burgundy">
+              {domainCount}
+            </strong>
+            <small className="text-[11px] font-mono text-taupe uppercase tracking-wider">
+              Robotics · Security · AI
+            </small>
+          </div>
+          <div className="h-8 w-[1px] bg-burgundy/20 hidden sm:block" />
+          <div>
+            <strong className="block text-3xl font-serif font-bold text-emerald-700 dark:text-emerald-400">
+              &lt; 0.35°
+            </strong>
+            <small className="text-[11px] font-mono text-taupe uppercase tracking-wider">
+              Bump Steer Suppressed
+            </small>
+          </div>
+          <div className="h-8 w-[1px] bg-burgundy/20 hidden sm:block" />
+          <div>
+            <div className="flex items-center justify-center space-x-1.5 text-xs font-mono text-wine font-semibold">
+              <SpiderLily variant="icon" className="w-4 h-4 text-burgundy" />
+              <span>TheCrazyDabi Studio</span>
+            </div>
+            <small className="text-[11px] font-mono text-taupe block">
+              Calicut, Kerala · India
+            </small>
+          </div>
+        </div>
+
+        {/* Down Scroll Indicator */}
+        <div className="text-center pt-2">
+          <a
+            href="#about"
+            className="inline-flex flex-col items-center text-[10px] font-mono text-taupe hover:text-burgundy transition-colors"
+            aria-label="Scroll to about section"
+          >
+            <span className="tracking-widest uppercase">DISCOVER ENGINEERING SPEC</span>
+            <ArrowDown className="w-3.5 h-3.5 mt-1 text-dusky animate-bounce" />
+          </a>
+        </div>
       </div>
     </section>
   );
