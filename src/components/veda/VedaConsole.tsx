@@ -291,7 +291,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
           <div className="flex items-center space-x-2 pl-2 border-l border-burgundy/25">
             <Terminal className="w-4 h-4 text-dusky" />
             <span className="font-mono text-xs font-bold text-cream tracking-wide">
-              VEDA_TERMINAL // v2.4 (Ollama Loopback Emulation)
+              VEDA_TERMINAL // v2.4
             </span>
           </div>
         </div>
