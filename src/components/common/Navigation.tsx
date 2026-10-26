@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Cpu, Settings, ArrowUpRight, Sun, Moon } from 'lucide-react';
+import { Menu, X, Settings, ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { SpiderLily } from './SpiderLily';
 
 interface NavigationProps {
@@ -72,8 +72,15 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
           href="#hero"
           className="group flex items-center space-x-2.5 text-burgundy focus:outline-none"
         >
-          <div className="w-8 h-8 rounded-lg bg-burgundy flex items-center justify-center text-cream shadow-sm group-hover:bg-wine transition-colors">
-            <Cpu className="w-4 h-4 text-dusky group-hover:rotate-45 transition-transform duration-300" />
+          <div
+            className="w-8 h-8 rounded-lg bg-burgundy flex items-center justify-center text-cream shadow-sm group-hover:bg-wine transition-colors relative overflow-hidden"
+            aria-hidden="true"
+          >
+            <span className="font-display font-black text-[1.65rem] leading-none -translate-y-px group-hover:scale-110 transition-transform duration-300">
+              V
+            </span>
+            <span className="absolute top-1.5 right-1.5 w-1 h-1 rounded-full bg-dusky" />
+            <span className="absolute top-2.5 right-1 w-1 h-1 rounded-full bg-blush/80" />
           </div>
           <div className="flex flex-col">
             <span className="font-display font-bold text-sm tracking-tight text-wine flex items-center gap-1.5">
