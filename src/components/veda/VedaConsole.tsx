@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Send, Sparkles, Cpu, Shield, Zap, X, CornerDownLeft, Volume2, VolumeX, Maximize2, Minimize2, Trash2, HelpCircle } from 'lucide-react';
 import { Profile } from '../../types/content';
+import { VedaGuideService } from '../../services/vedaGuideService';
 
 interface VedaConsoleProps {
   profile?: Profile | null;
@@ -58,7 +59,7 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
 [✔] Domain Graph: ROS 2 · Jetson Orin Nano · Lotus SHARK CAD · aBAJA 2026 · Cybersecurity
 [✔] Telemetry Protocol: Strict Local Execution (Zero External Cloud Telemetry)
 
-Type 'help' for available commands or ask any question about Vasudev's engineering work below.`,
+Ask me anything about Vasudev's robotics work, engineering builds, or background below! You can chat naturally (e.g. "hey veda", "explain MediArm") or type 'help' for terminal commands.`,
         timestamp: getTimestamp(),
         badge: 'READY'
       }
@@ -133,7 +134,7 @@ Type 'help' for available commands or ask any question about Vasudev's engineeri
   };
 
   // Process terminal command or natural language query
-  const handleExecute = (rawCmd: string) => {
+  const handleExecute = async (rawCmd: string) => {
     const trimmed = rawCmd.trim();
     if (!trimmed || isStreaming) return;
 
@@ -154,122 +155,31 @@ Type 'help' for available commands or ask any question about Vasudev's engineeri
 
     const lower = trimmed.toLowerCase();
 
-    // 1. Built-in Terminal Commands
+    // 1. Built-in Terminal System Commands
     if (lower === 'clear' || lower === 'cls') {
       setHistory([]);
       return;
     }
 
     if (lower === 'help') {
-      const helpText = `Available V.E.D.A. Terminal Commands:
-  • projects     - Summarize verified robotics, CAD, and cybersecurity projects
-  • baja         - Equinox aBAJA SAE 2026 vehicle dynamics, suspension & steering
-  • robotics     - Autonomous first-responder rover & MediArm 3-DOF manipulator
-  • skills       - Technical matrix (ROS 2, SolidWorks, Jetson, Python, C++)
-  • about        - Academic background, Saintgits College (APJ KTU), and location
-  • contact      - Email, LinkedIn, GitHub, and communication endpoints
+      const helpText = `Available V.E.D.A. Core Commands & Conversational Prompts:
+  • projects     - Flagship robotics, CAD, and cybersecurity systems
+  • baja         - Team Equinox aBAJA SAE 2026 vehicle dynamics & CAD
+  • robotics     - Autonomous first-responder rover & MediArm 3-DOF arm
+  • skills       - Technical systems matrix (ROS 2, SolidWorks, Jetson, CAN Bus)
+  • about        - Academic background, Saintgits College (APJ KTU), and bio
+  • contact      - Email, LinkedIn, GitHub, and hiring channels
   • diagnostics  - Real-time client browser telemetry & memory check
-  • clear        - Clear terminal screen buffer
+  • clear        - Clear terminal buffer
   • overdrive    - Trigger Sakura and Spider Lily ambience dispersion
 
-You can also ask freeform questions, e.g.:
-  "Tell me about the Jetson Orin emergency rover"
-  "How did you reduce bump steer in Lotus SHARK?"
-  "What speech model powers Silent Guardian?"
-  "Are you open to robotics engineering roles?"`;
+You can also chat naturally like with an AI assistant:
+  "Hey Veda, what are you working on?"
+  "Tell me about the Autonomous First-Responder Rover"
+  "Explain MediArm"
+  "What was his contribution to Baja SAE?"
+  "How can I contact Vasudev?"`;
       streamResponse(helpText, 'HELP');
-      return;
-    }
-
-    if (lower === 'about') {
-      const aboutText = `Vasudev Saras K M (TheCrazyDabi)
-• Discipline: Robotics & Automation Engineering
-• Institution: Saintgits College of Engineering, Kottayam (APJ Abdul Kalam Technological University)
-• Location: Calicut, Kerala, India
-• Focus Areas:
-   1. Autonomous Mobile Robots (Jetson Orin Nano, ROS 2 Humble, Nav2, YOLOv8)
-   2. Mechatronics & Vehicle Dynamics (Lotus SHARK, SolidWorks, MSC Adams Car)
-   3. Cyber-Physical Security (Acoustic threat classification, RF packet inspection, secrets scanning)
-• Ethos: Disciplined mechatronic precision—bridging physical linkages with deterministic computing.`;
-      streamResponse(aboutText, 'ABOUT');
-      return;
-    }
-
-    if (lower === 'projects') {
-      const projText = `Verified Engineering Projects on Record (7 Active):
-1. Autonomous First-Responder Rover
-   Retrofitting an electric aBAJA rover with NVIDIA Jetson Orin Nano, ROS 2/Nav2, YOLOv8 road segmentation, and Drive-by-Wire CAN integration for campus emergency dispatch.
-2. Equinox aBAJA SAE 2026 (Steering & Suspension Lead)
-   Synthesized double-wishbone kinematics in Lotus SHARK, engineered Ackermann geometry in SolidWorks to reduce tyre scrub by 34%, and configured MSC Adams Car multibody dynamics.
-3. Silent Guardian: Acoustic Security Firewall
-   100% in-browser scam call firewall built at Hack@Cooee 24h sprint with Vosk speech processing, dual threat scoring, and automated OTP/PIN redaction.
-4. MediArm: 3-DOF Semi-Autonomous Manipulator
-   S6 Mini Project with ESP32, high-current IBT-2 43A motor drivers, Python/Flask web dashboard, and Vosk offline voice control.
-5. VYBE: Swipe-Based Travel Discovery App
-   15.5-hour TinkerHub Calicut hackathon sprint with gesture card physics and role-based portals (Traveller, Operator, Admin).
-6. NetSentinel v2.0: Terminal 802.11 Threat Detector
-   Promiscuous mode raw packet sniffer with deauthentication flood anomaly detection (<180ms response).
-7. Rakuzan SOC: Real-Time Git Entropy Secrets Scanner
-   FastAPI + Redis + Shannon entropy pre-commit engine scanning 10k lines in <1.2s to block exposed credentials.`;
-      streamResponse(projText, 'PROJECTS');
-      return;
-    }
-
-    if (lower === 'baja' || lower.includes('equinox') || lower.includes('suspension')) {
-      const bajaText = `Team Equinox | aBAJA SAE 2026 Vehicle Dynamics Analysis:
-• Subsystem: Suspension & Steering Kinematics Development
-• Kinematic Synthesis: Lotus SHARK
-   - Analyzed dynamic roll-centre migration envelope (RC = +48mm target).
-   - Optimized tie-rod length & rack height to suppress bump-steer to under 0.35° per 100mm wheel travel.
-• Steering CAD: Dassault Systèmes SOLIDWORKS
-   - Synthesized steering knuckle and upright hardpoints using 88% Ackermann principle.
-   - Mitigated cornering tyre scrub during high-articulation off-road turns.
-• Multibody Verification: MSC Adams Car
-   - Full-vehicle transient roll & cornering compliance evaluation.
-• Status: Successfully fabricated and tested on-site during aBAJA 2026 competition scrutiny!`;
-      streamResponse(bajaText, 'BAJA-SAE');
-      return;
-    }
-
-    if (lower === 'robotics' || lower.includes('first responder') || lower.includes('mediarm')) {
-      const robText = `Autonomous Mobile Robotics & Manipulator Work:
-• Autonomous First-Responder Buggy:
-   - Compute: NVIDIA Jetson Orin Nano (TensorRT accelerated inference).
-   - Middleware: ROS 2 Humble with Nav2 2D Costmap & DWB Local Planner.
-   - Perception: Custom-trained YOLOv8 / PIDNet-S instance segmentation model for outdoor pathway masking (38.4 FPS).
-   - Actuation: Drive-by-Wire CAN bus transceiver commanding high-torque linear steering actuator & PWM motor speed.
-   - Remote Bridge: MQTT reverse-tunnel for real-time mobile emergency dispatch.
-• MediArm 3-DOF Articulated Prototype:
-   - Microcontroller: ESP32 (Dual-Core 240MHz).
-   - High-Power Drivers: IBT-2 (BTS7960 43A H-Bridge modules) isolating actuator noise from logic rail.
-   - Voice Subsystem: Vosk offline acoustic model running locally on web controller.
-   - Safety: Dedicated physical and software emergency E-Stop kill switch.`;
-      streamResponse(robText, 'ROBOTICS');
-      return;
-    }
-
-    if (lower === 'skills') {
-      const skillsText = `Technical Proficiencies & Systems Matrix:
-• Robotics & Autonomy:  [████████████████░░] 88% (ROS 2, Nav2, Jetson Orin, OpenCV, YOLOv8)
-• CAD & Kinematics:      [██████████████████] 92% (SolidWorks, Lotus SHARK, MSC Adams Car)
-• Embedded Systems:      [███████████████░░░] 84% (ESP32, STM32, Arduino, CAN Bus, FreeRTOS)
-• Programming Languages: [████████████████░░] 86% (Python, C++, TypeScript, Rust, Shell)
-• Cybersecurity:         [███████████████░░░] 82% (802.11 Sniffing, Threat Analysis, Vosk Audio)
-• Hardware Tools:        3D Printing, Laser Cutting, Oscilloscope, Logic Analyzer, Power Drivers`;
-      streamResponse(skillsText, 'SKILLS');
-      return;
-    }
-
-    if (lower === 'contact' || lower.includes('email') || lower.includes('phone') || lower.includes('linkedin')) {
-      const contactText = `Direct Professional Communication Channels:
-• Email:    vasudevb2w@gmail.com
-• Phone:    +91 7012541567
-• Location: Calicut, Kerala, India
-• GitHub:   https://github.com/TheCrazyDabi
-• LinkedIn: https://linkedin.com/in/d4biie
-• Portfolio: https://thecrazydabi.github.io/Portfolio/
-• Current Status: Available for Robotics Engineering, Embedded Systems, and Autonomous Vehicle Roles.`;
-      streamResponse(contactText, 'CONTACT');
       return;
     }
 
@@ -292,57 +202,21 @@ You can also ask freeform questions, e.g.:
     if (lower.includes('easter') || lower === 'overdrive') {
       const easterText = `🌸 ROBOTICS OVERDRIVE PROTOCOL ENGAGED! 🌺
 Triggering Sakura and Spider Lily breeze dispersion across all viewports.
-Keep exploring the case studies or try asking VEDA about CAD kinematics!`;
+Keep exploring the case studies or ask VEDA about any engineering builds!`;
       streamResponse(easterText, 'OVERDRIVE');
       return;
     }
 
-    // 2. Intelligent Natural Language Answering
-    if (lower.includes('jetson') || lower.includes('orin') || lower.includes('nav2') || lower.includes('first responder')) {
+    // 2. Adaptive Conversational AI Guide Engine (Natural Language & Projects)
+    try {
+      const aiResponse = await VedaGuideService.answerQuestion(trimmed);
+      streamResponse(aiResponse.text, 'VEDA-AI');
+    } catch {
       streamResponse(
-        `On the Autonomous First-Responder project, Vasudev utilizes the NVIDIA Jetson Orin Nano as the central edge processor. It executes real-time camera inference using YOLOv8 (and currently migrating to PIDNet-S) to segment dirt pathways and paved campus roads. Nav2 handles costmap generation and local path planning, and commands are translated to Drive-by-Wire actuators via a high-speed CAN bus network. An MQTT bridge connects campus emergency dispatch apps to the robot in real-time.`,
+        `I encountered a temporary processing glitch while analyzing your request. Please feel free to ask again or try clicking one of the quick suggestions below!`,
         'VEDA-AI'
       );
-      return;
     }
-
-    if (lower.includes('baja') || lower.includes('solidworks') || lower.includes('shark') || lower.includes('ackermann')) {
-      streamResponse(
-        `For Team Equinox at aBAJA SAE 2026, Vasudev led suspension kinematic synthesis and steering design. He leveraged Lotus SHARK to model double-wishbone linkages, roll-centre height migration, and camber curves, successfully reducing bump-steer to under 0.35°. In SOLIDWORKS, he calculated 88% Ackermann geometry to eliminate tyre scrub during sharp turns on rugged off-road tracks. Full multibody dynamic simulations were validated in MSC Adams Car.`,
-        'VEDA-AI'
-      );
-      return;
-    }
-
-    if (lower.includes('silent guardian') || lower.includes('scam') || lower.includes('vosk') || lower.includes('firewall')) {
-      streamResponse(
-        `Silent Guardian was developed by Vasudev during the Hack@Cooee 24-hour hackathon. It is a local-first acoustic firewall that intercepts live call audio directly inside the browser using Vosk and the Web Speech API. A dual heuristic threat engine calculates real-time coercion/urgency scores. If fraudulent patterns emerge, sensitive numbers (credit cards, OTPs, PINs) are instantly redacted, and an intercept banner silences the call. Crucially, benign calls generate zero logs, guaranteeing complete user privacy.`,
-        'VEDA-AI'
-      );
-      return;
-    }
-
-    if (lower.includes('hire') || lower.includes('job') || lower.includes('role') || lower.includes('internship') || lower.includes('available')) {
-      streamResponse(
-        `Yes! Vasudev is actively seeking robotics engineering, autonomous vehicle, and embedded systems opportunities (full-time roles and internships). He brings hands-on hardware expertise in CAN-bus drive-by-wire, Jetson Orin edge computing, ROS 2 Nav2, and industrial CAD kinematics. You can connect with him directly at vasudevb2w@gmail.com or via LinkedIn at https://linkedin.com/in/d4biie.`,
-        'VEDA-AI'
-      );
-      return;
-    }
-
-    if (lower.includes('guide') || lower.includes('walkthrough')) {
-      streamResponse(
-        `V.E.D.A. is Vasudev's interactive portfolio guide! You can launch the guided walkthrough at any time by clicking "Ask V.E.D.A. for guides" at the bottom-right of your screen or clicking "Take Tour" in the hero section.`,
-        'VEDA-AI'
-      );
-      return;
-    }
-
-    // Default conversational fallback
-    streamResponse(
-      `Query received: "${trimmed}"\n\nI have cross-referenced Vasudev's engineering portfolio database. He specializes in bridging physical mechatronics (CAD, kinematics, vehicle dynamics) with deterministic computing (ROS 2 Humble, Jetson Orin Nano, CAN bus, and local-first AI).\n\nTry typing 'projects', 'baja', 'robotics', 'skills', or 'contact' for detailed technical specifications!`,
-      'VEDA-AI'
-    );
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -475,13 +349,15 @@ Keep exploring the case studies or try asking VEDA about CAD kinematics!`;
           <span>Quick Commands:</span>
         </span>
         {[
-          { label: 'help', cmd: 'help' },
-          { label: 'aBAJA 2026', cmd: 'baja' },
-          { label: 'First Responder', cmd: 'robotics' },
-          { label: 'Skills Matrix', cmd: 'skills' },
-          { label: 'About Vasudev', cmd: 'about' },
-          { label: 'Contact Info', cmd: 'contact' },
-          { label: 'Diagnostics', cmd: 'diagnostics' },
+          { label: 'Say Hello 👋', cmd: 'hey veda' },
+          { label: 'Featured Projects 🚀', cmd: 'projects' },
+          { label: 'Autonomous Rover 🚗', cmd: 'tell me about the rover' },
+          { label: 'Equinox aBAJA 🏎️', cmd: 'baja' },
+          { label: 'MediArm Arm 🦾', cmd: 'explain mediarm' },
+          { label: 'Skills & Tech ⚙️', cmd: 'skills' },
+          { label: 'About Vasudev 👤', cmd: 'about' },
+          { label: 'Contact Info 📬', cmd: 'contact' },
+          { label: 'Terminal Help 💻', cmd: 'help' },
         ].map((pill, idx) => (
           <button
             key={idx}

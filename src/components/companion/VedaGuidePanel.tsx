@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import {
   GuideMessage,
+  GuideAction,
   TourStep,
   TOUR_STEPS,
   SUGGESTED_QUESTIONS,
@@ -248,7 +249,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
                   {/* Contextual Action Buttons in Bot Messages */}
                   {msg.actions && msg.actions.length > 0 && (
                     <div className="mt-2.5 pt-2 border-t border-burgundy/10 dark:border-white/10 flex flex-wrap gap-1.5">
-                      {msg.actions.map((act, i) => (
+                      {msg.actions.map((act: GuideAction, i: number) => (
                         <button
                           key={i}
                           onClick={() => handleActionClick(act)}
@@ -368,7 +369,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
                   KEY HIGHLIGHTS:
                 </span>
                 <ul className="space-y-1 text-[11px] text-wine dark:text-cream/80 font-sans">
-                  {currentStep.highlightTips.map((tip, i) => (
+                  {currentStep.highlightTips.map((tip: string, i: number) => (
                     <li key={i} className="flex items-start space-x-1.5">
                       <span className="text-burgundy dark:text-blush font-bold">•</span>
                       <span>{tip}</span>
