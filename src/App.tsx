@@ -13,6 +13,7 @@ import { ContentService } from './services/contentService';
 import { Navigation } from './components/common/Navigation';
 import { ProgressBar } from './components/common/ProgressBar';
 import { MarqueeBanner } from './components/common/MarqueeBanner';
+import { SakuraSpiderLilyAmbience } from './components/common/SakuraSpiderLilyAmbience';
 import { HeroSection } from './components/hero/HeroSection';
 import { AboutSection } from './components/about/AboutSection';
 import { ProjectShowcase } from './components/projects/ProjectShowcase';
@@ -187,6 +188,7 @@ export const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-cream text-wine font-sans antialiased selection:bg-dusky selection:text-white">
       <ProgressBar />
+      <SakuraSpiderLilyAmbience />
 
       {/* Global Header Navigation */}
       <Navigation

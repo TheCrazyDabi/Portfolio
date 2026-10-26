@@ -6,19 +6,24 @@ interface ChibiArtworkProps {
   state: ChibiState;
   className?: string;
   onClick?: () => void;
+  isOverdrive?: boolean;
 }
 
 export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
   state,
-  className = 'w-36 h-44 sm:w-40 sm:h-48',
+  className = 'w-28 h-36 sm:w-36 sm:h-44 md:w-40 md:h-48',
   onClick,
+  isOverdrive = false,
 }) => {
   const [imageError, setImageError] = useState(false);
 
   const isSleeping = state === 'sleeping';
   const isCelebrating = state === 'celebrating';
+  const isCoding = state === 'coding';
+  const isEngineering = state === 'engineering';
+  const isThinking = state === 'thinking';
 
-  // Map state to the user's authentic illustrated chibi poses
+  // Map state to the authentic illustrated chibi poses
   const getPoseImage = (s: ChibiState): string => {
     switch (s) {
       case 'greeting':
@@ -48,26 +53,64 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`relative cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95 select-none ${className}`}
+      className={`relative cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95 select-none ${className} ${
+        isOverdrive ? 'chibi-overdrive-aura rounded-full p-1' : ''
+      }`}
       role="img"
       aria-label={`Vasudev Chibi Companion in ${state} mode`}
     >
-      {/* Floating Animated Zzz Bubbles for Sleeping State */}
+      {/* Animated Prop 1: Floating Zzz Bubbles for Sleeping State */}
       {isSleeping && (
-        <div className="absolute -top-3 right-2 pointer-events-none z-10 flex flex-col items-center">
+        <div className="absolute -top-3 right-2 pointer-events-none z-20 flex flex-col items-center">
           <span className="text-burgundy font-mono font-bold text-sm chibi-zzz-1">Z</span>
           <span className="text-dusky font-mono font-bold text-xs chibi-zzz-2">z</span>
           <span className="text-blush font-mono font-bold text-[10px] chibi-zzz-3">z</span>
         </div>
       )}
 
-      {/* Floating Celebration Stars & Confetti for Celebrating State */}
+      {/* Animated Prop 2: Celebration Stars & Petals for Celebrating State */}
       {isCelebrating && (
-        <div className="absolute inset-0 pointer-events-none z-10 chibi-sparkle">
-          <div className="absolute top-2 left-3 w-2 h-2 rounded-full bg-dusky" />
-          <div className="absolute top-1 right-4 w-2.5 h-2.5 rounded-full bg-blush" />
-          <div className="absolute bottom-6 left-1 text-burgundy text-xs">✨</div>
-          <div className="absolute top-6 right-2 text-dusky text-xs">⭐</div>
+        <div className="absolute inset-0 pointer-events-none z-20 chibi-sparkle">
+          <div className="absolute -top-2 left-2 text-burgundy text-xs">🌸</div>
+          <div className="absolute -top-1 right-2 text-dusky text-xs">🌺</div>
+          <div className="absolute bottom-6 left-0 text-burgundy text-xs">✨</div>
+          <div className="absolute top-6 right-0 text-dusky text-xs">⭐</div>
+          <div className="absolute -top-4 right-1/2 text-blush text-sm font-bold">🎉</div>
+        </div>
+      )}
+
+      {/* Animated Prop 3: Floating Binary Sparks for Coding Mode */}
+      {isCoding && (
+        <div className="absolute -top-2 right-1 pointer-events-none z-20 flex flex-col font-mono text-[9px] font-bold">
+          <span className="text-emerald-600 chibi-code-spark-1">0101</span>
+          <span className="text-burgundy chibi-code-spark-2">ROS2</span>
+          <span className="text-dusky chibi-code-spark-3">&lt;/&gt;</span>
+        </div>
+      )}
+
+      {/* Animated Prop 4: Rotating Technical Gear for Engineering Mode */}
+      {isEngineering && (
+        <div className="absolute -top-1 left-1 pointer-events-none z-20">
+          <svg className="w-5 h-5 animate-spin" style={{ animationDuration: '6s' }} viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="14" fill="none" stroke="#C28B9A" strokeWidth="6" strokeDasharray="6 3" />
+            <circle cx="20" cy="20" r="6" fill="#641F36" />
+          </svg>
+        </div>
+      )}
+
+      {/* Animated Prop 5: Lightbulb Sparkle for Thinking Mode */}
+      {isThinking && (
+        <div className="absolute -top-3 right-4 pointer-events-none z-20 animate-bounce">
+          <span className="text-sm">💡</span>
+        </div>
+      )}
+
+      {/* Overdrive Flame Aura indicator */}
+      {isOverdrive && (
+        <div className="absolute -bottom-1 inset-x-0 text-center pointer-events-none z-20">
+          <span className="inline-block px-1.5 py-0.5 rounded-full bg-burgundy text-[8px] font-mono font-bold text-cream tracking-widest shadow">
+            OVERDRIVE
+          </span>
         </div>
       )}
 
@@ -108,15 +151,9 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
           <ellipse cx="100" cy="80" rx="38" ry="34" fill="#E6C4A6" />
           <ellipse cx="76" cy="88" rx="7" ry="4" fill="#DFB9BF" fillOpacity="0.8" />
           <ellipse cx="124" cy="88" rx="7" ry="4" fill="#DFB9BF" fillOpacity="0.8" />
-          <path d="M 88 102 C 94 108 106 108 112 102 Z" fill="#2E1C24" fillOpacity="0.75" />
-          <ellipse cx="100" cy="107" rx="3.5" ry="2" fill="#24141B" />
-          <ellipse cx="84" cy="76" rx="8" ry="10" fill="#3E2723" />
-          <circle cx="82" cy="73" r="3.2" fill="#FFFFFF" />
-          <ellipse cx="116" cy="76" rx="8" ry="10" fill="#3E2723" />
-          <circle cx="114" cy="73" r="3.2" fill="#FFFFFF" />
           <path
-            d="M 60 76 C 54 54 68 32 94 28 C 118 24 140 34 144 54 C 148 70 144 88 140 96 C 136 78 134 68 128 62 C 122 58 116 58 108 58 C 96 58 84 62 76 68 C 68 76 64 88 60 76 Z"
-            fill="#1A1517"
+            d="M 62 82 C 60 40 140 40 138 82 C 145 68 140 30 115 22 C 90 18 68 30 62 82 Z"
+            fill="#1E1418"
           />
         </svg>
       )}

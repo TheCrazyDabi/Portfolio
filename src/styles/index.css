@@ -240,6 +240,49 @@ html.dark {
   }
 }
 
+/* Chibi Overdrive Aura Animation */
+@keyframes chibiAura {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(100, 31, 54, 0.4), inset 0 0 10px rgba(194, 139, 154, 0.4);
+    filter: drop-shadow(0 0 8px rgba(100, 31, 54, 0.6));
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(138, 34, 68, 0.7), inset 0 0 20px rgba(223, 185, 191, 0.6);
+    filter: drop-shadow(0 0 16px rgba(194, 139, 154, 0.8));
+  }
+}
+
+/* Binary Code Sparkle rising from Laptop */
+@keyframes codeFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.7);
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-24px) scale(1.1);
+  }
+}
+
+.chibi-overdrive-aura {
+  animation: chibiAura 2s ease-in-out infinite;
+}
+
+.chibi-code-spark-1 {
+  animation: codeFloat 1.8s ease-out infinite;
+}
+
+.chibi-code-spark-2 {
+  animation: codeFloat 1.8s ease-out 0.6s infinite;
+}
+
+.chibi-code-spark-3 {
+  animation: codeFloat 1.8s ease-out 1.2s infinite;
+}
+
 .chibi-breathe {
   animation: chibiBreathe 3s ease-in-out infinite;
   transform-origin: bottom center;
@@ -293,6 +336,71 @@ html.dark {
 .gear-spin-reverse {
   animation: spin 14s linear infinite reverse;
   transform-origin: center;
+}
+
+.ring {
+  position: absolute;
+  inset: -20px;
+  border: 1.5px dashed var(--theme-pink);
+  border-radius: 999px 999px 40px 40px;
+  animation: spin 40s linear infinite;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.gear {
+  position: absolute;
+  right: -42px;
+  bottom: 36px;
+  width: 105px;
+  animation: spin 18s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gear2 {
+  left: -36px;
+  top: 70px;
+  width: 76px;
+  animation: spin 12s linear infinite reverse;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.chipf {
+  position: absolute;
+  background: var(--theme-bg);
+  color: var(--theme-accent);
+  border: 1px solid var(--theme-pink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 99px;
+  box-shadow: 0 8px 20px rgba(69, 20, 37, 0.15);
+  animation: fl 5s ease-in-out infinite alternate;
+  z-index: 25;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .gear {
+    right: -20px;
+    width: 70px;
+    bottom: 24px;
+  }
+  .gear2 {
+    left: -18px;
+    top: 50px;
+    width: 52px;
+  }
+  .ring {
+    inset: -12px;
+  }
+  .chipf {
+    font-size: 10px;
+    padding: 4px 10px;
+  }
 }
 
 /* Marquee Continuous Banner Animation */

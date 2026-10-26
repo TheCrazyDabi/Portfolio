@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Github, Linkedin, FileText, Send, CheckCircle2, Copy, ArrowUpRight } from 'lucide-react';
+import { Mail, Github, Linkedin, Phone, MapPin, Send, CheckCircle2, Copy, ArrowUpRight, FileText } from 'lucide-react';
 import { Profile } from '../../types/content';
 import { SpiderLily } from '../common/SpiderLily';
 
@@ -36,7 +36,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
           </div>
 
           {/* Contact Methods Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {/* Primary Email Card */}
             <div className="p-6 rounded-2xl bg-cream-surface border border-burgundy/20 shadow-cad flex flex-col justify-between space-y-4">
               <div className="space-y-2">
@@ -45,6 +45,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                 </div>
                 <h3 className="font-display font-bold text-wine text-lg">Direct Channel</h3>
                 <p className="text-xs text-taupe font-mono break-all">{profile.publicEmail}</p>
+                <div className="flex items-center space-x-1.5 text-xs text-taupe font-mono pt-1">
+                  <Phone className="w-3.5 h-3.5 text-dusky" />
+                  <span>+91 7012541567</span>
+                </div>
               </div>
 
               <div className="flex items-center space-x-2 pt-2">
@@ -72,7 +76,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                   <Github className="w-5 h-5 text-dusky" />
                 </div>
                 <h3 className="font-display font-bold text-wine text-lg">Source Code &amp; Repos</h3>
-                <p className="text-xs text-taupe font-mono">@thecrazydabi</p>
+                <p className="text-xs text-taupe font-mono">github.com/TheCrazyDabi</p>
+                <div className="flex items-center space-x-1.5 text-xs text-taupe font-mono pt-1">
+                  <MapPin className="w-3.5 h-3.5 text-dusky" />
+                  <span>{profile.location || 'Calicut, Kerala, India'}</span>
+                </div>
               </div>
 
               <div className="pt-2">
@@ -95,7 +103,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                   <Linkedin className="w-5 h-5 text-dusky" />
                 </div>
                 <h3 className="font-display font-bold text-wine text-lg">Professional Network</h3>
-                <p className="text-xs text-taupe font-mono">Vasudev Saras K M</p>
+                <p className="text-xs text-taupe font-mono">linkedin.com/in/d4biie</p>
+                <p className="text-xs text-taupe font-sans pt-1">Vasudev Saras · Dabi</p>
               </div>
 
               <div className="pt-2">

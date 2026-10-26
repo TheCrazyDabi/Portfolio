@@ -530,12 +530,44 @@ export class ContentService {
         return { success: false, error: err.message };
       }
     } else {
-      // Local/Offline file handling: generate Data URL for preview & local storage
-      publicUrl = await new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.readAsDataURL(file);
-      });
+      // Local/Offline file handling: downscale large images to avoid localStorage quota issues
+      if (isImage && file.type !== 'image/svg+xml') {
+        publicUrl = await new Promise<string>((resolve) => {
+          const img = new window.Image();
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            img.src = e.target?.result as string;
+            img.onload = () => {
+              const maxDim = 1600;
+              let w = img.width;
+              let h = img.height;
+              if (w > maxDim || h > maxDim) {
+                if (w > h) {
+                  h = Math.round((h * maxDim) / w);
+                  w = maxDim;
+                } else {
+                  w = Math.round((w * maxDim) / h);
+                  h = maxDim;
+                }
+              }
+              const canvas = document.createElement('canvas');
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              ctx?.drawImage(img, 0, 0, w, h);
+              resolve(canvas.toDataURL('image/jpeg', 0.85));
+            };
+            img.onerror = () => resolve(reader.result as string);
+          };
+          reader.readAsDataURL(file);
+        });
+      } else {
+        publicUrl = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.readAsDataURL(file);
+        });
+      }
     }
 
     const newItem: MediaItem = {

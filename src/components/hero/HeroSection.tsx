@@ -269,7 +269,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 ref={stageRef}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                className="relative w-full max-w-[360px] sm:max-w-[400px] cursor-pointer"
+                className="relative w-full max-w-[290px] sm:max-w-[360px] md:max-w-[400px] cursor-pointer mx-auto"
               >
                 {/* Rotating Dashed Ring */}
                 <div className="ring" />
@@ -347,26 +347,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 </div>
 
                 {/* Graceful Red Spider Lily Botanical Curling Accent */}
-                <div className="absolute -bottom-6 -left-8 z-20 pointer-events-none">
-                  <SpiderLily variant="curling" className="w-28 h-28 filter drop-shadow-lg" />
+                <div className="absolute -bottom-6 -left-4 sm:-left-8 z-20 pointer-events-none">
+                  <SpiderLily variant="curling" className="w-24 h-24 sm:w-28 sm:h-28 filter drop-shadow-lg" />
                 </div>
 
                 {/* Floating Tech Chips around Arch */}
                 <span
-                  className="chipf animate-float"
-                  style={{ left: '-18px', bottom: '90px' }}
+                  className="chipf animate-float text-[11px] sm:text-xs"
+                  style={{ left: '-6px', bottom: '90px' }}
                 >
                   Robotics
                 </span>
                 <span
-                  className="chipf animate-float"
-                  style={{ right: '-12px', top: '70px', animationDelay: '-2s' }}
+                  className="chipf animate-float text-[11px] sm:text-xs"
+                  style={{ right: '-6px', top: '70px', animationDelay: '-2s' }}
                 >
                   Vision + IMU
                 </span>
                 <span
-                  className="chipf animate-float"
-                  style={{ right: '28px', bottom: '-12px', animationDelay: '-3.5s' }}
+                  className="chipf animate-float text-[11px] sm:text-xs"
+                  style={{ right: '20px', bottom: '-12px', animationDelay: '-3.5s' }}
                 >
                   Local AI
                 </span>

@@ -1,75 +1,82 @@
 import { Project, Certification, Experiment, Skill, Milestone, Profile, SiteSettings, MediaItem } from '../types/content';
 
 export const initialProfile: Profile = {
-  name: "Vasudev Saras K M",
+  name: "Vasudev Saras",
   title: "Robotics & Automation Engineer",
   college: "Saintgits College of Engineering",
-  degree: "B.Tech in Robotics & Automation Engineering",
-  headline: "Engineering Intelligence. Designing Motion.",
-  introduction: "I explore the intersection of robotics, embedded systems, intelligent software, and mechanical design to turn engineering ideas into working systems.",
-  aboutBio: "Undergraduate engineer in Robotics & Automation at Saintgits College of Engineering. I focus on bridging physical mechanics with deterministic computing—from designing CAD linkages and Ackermann steering geometries in SolidWorks to architecting real-time embedded firmware on STM32/ESP32, autonomous control with ROS 2, and edge AI systems. I treat engineering as a craft of precision, where every tolerance, voltage rail, and packet header is accounted for.",
-  publicEmail: "vasudevsaraskm@gmail.com",
-  githubUrl: "https://github.com/thecrazydabi",
-  linkedinUrl: "https://linkedin.com/in/vasudev-saras-km",
-  resumeUrl: "", // Only shown when verified file is uploaded
+  degree: "B.Tech in Robotics and Automation | APJ Abdul Kalam Technological University",
+  headline: "Robotics & Automation · Autonomous Navigation · Cyber-Physical Security",
+  introduction: "Robotics and Automation Engineering student with hands-on experience in CAD modelling, multibody simulation, embedded systems, autonomous robotics, computer vision, and web-based robot control. Interested in combining robotics and cybersecurity to build reliable automation systems.",
+  aboutBio: "Robotics and Automation Engineering undergraduate at Saintgits College of Engineering (APJ Abdul Kalam Technological University) based in Calicut, Kerala. My engineering craft bridges physical mechanics with deterministic computing—from multibody simulation and vehicle dynamics in Lotus SHARK, SolidWorks, and MSC Adams Car to autonomous navigation on NVIDIA Jetson Orin Nano with ROS 2 and Nav2, Drive-by-Wire CAN communication, and edge computer vision with YOLOv8. I am deeply interested in combining robotics and cybersecurity to build reliable, safety-critical automation systems.",
+  publicEmail: "vasudevb2w@gmail.com",
+  githubUrl: "https://github.com/TheCrazyDabi",
+  linkedinUrl: "https://linkedin.com/in/d4biie",
+  resumeUrl: "", // Available when resume asset is viewed
   profileImageUrl: "assets/profile/vasudev-photo.jpg",
-  location: "Kerala, India",
-  statusIndicator: "Available for Robotics & Embedded Systems Roles"
+  location: "Calicut, Kerala, India",
+  statusIndicator: "Available for Robotics & Automation Roles"
 };
 
 export const initialSiteSettings: SiteSettings = {
-  siteTitle: "Vasudev Saras K M | Robotics & Automation Engineer",
-  metaDescription: "Engineering Intelligence. Designing Motion. Explore robotics, mechanical CAD, embedded systems, and autonomous applications by Vasudev Saras K M.",
+  siteTitle: "Vasudev Saras | Robotics & Automation Engineer",
+  metaDescription: "Vasudev Saras (TheCrazyDabi) — Robotics & Automation Engineering student at Saintgits College of Engineering. Autonomous vehicles, Jetson Orin Nano, ROS 2, CAD kinematics, and cybersecurity.",
   showCertifications: true,
   showExperiments: true,
   showMilestones: true,
   showSystemArchitecture: true,
   enableHeroAnimations: true,
-  githubRepoUrl: "https://github.com/thecrazydabi/Portfolio"
+  githubRepoUrl: "https://github.com/TheCrazyDabi/Portfolio"
 };
 
 export const initialProjects: Project[] = [
   {
     id: "proj-first-responder",
     slug: "autonomous-first-responder",
-    title: "Autonomous First-Responder: Vision-Inertial Campus Vehicle",
+    title: "Autonomous First-Responder: Vision-Inertial Navigation for Campus Emergencies",
     category: "Robotics",
-    shortDescription: "Low-cost vision-inertial navigation for campus emergency response, engineered to run real-time obstacle avoidance and localization on affordable edge hardware.",
+    shortDescription: "Developing a low-cost autonomous emergency-response rover by retrofitting an electric aBAJA buggy for campus navigation with NVIDIA Jetson Orin Nano, ROS 2/Nav2, Drive-by-Wire CAN integration, and YOLOv8.",
     status: "published",
-    projectState: "Prototype Validated",
+    projectState: "In Development",
     coverImage: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1200&q=80",
     galleryImages: [
       {
         url: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1200&q=80",
-        caption: "Autonomous emergency rover chassis during outdoor test track navigation"
+        caption: "Electric aBAJA buggy retrofit for autonomous campus emergency navigation"
       },
       {
         url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
-        caption: "Computer vision disparity map and obstacle bounding box telemetry"
+        caption: "YOLOv8 instance-segmentation masking of unstructured campus pathways"
       }
     ],
-    technologies: ["Computer Vision", "ROS 2", "Inertial Odometry (IMU)", "OpenCV", "Extended Kalman Filter (EKF)", "Python", "Raspberry Pi 4", "LiDAR Lite"],
-    problemStatement: "Campus emergency responder units need reliable indoor/outdoor navigation without depending on expensive industrial RTK-GPS or multi-thousand-dollar LiDAR sensor suites.",
-    designProcess: "Synthesized an Extended Kalman Filter fusing monocular camera visual feature tracking with 6-axis IMU acceleration vectors. Tuned covariance matrices to eliminate drift in GPS-denied campus corridors.",
-    hardwareSoftwareArchitecture: "Camera feed -> OpenCV feature point tracking -> EKF state estimation -> ROS 2 Navigation stack -> Motor driver PWM controllers.",
-    personalContribution: "Designed system architecture, ROS 2 node pipeline, sensor calibration routines, and physical chassis integration.",
+    technologies: ["ROS 2", "Nav2", "Jetson Orin Nano", "YOLOv8", "CAN", "MQTT", "Smartphone Camera/IMU/GPS", "Drive-by-Wire", "PIDNet-S", "Roboflow"],
+    problemStatement: "Campus emergency response requires swift, low-cost autonomous dispatch across indoor/outdoor pathways without depending on expensive industrial RTK-GPS or multi-thousand-dollar LiDAR sensor suites.",
+    designProcess: "Developing a low-cost autonomous emergency-response rover by retrofitting an existing electric aBAJA buggy for campus navigation. Working on Drive-by-Wire CAN integration for electronic steering, braking, and throttle control, with an NVIDIA Jetson Orin Nano as the edge-computing platform. Trained and deployed a baseline YOLOv8 instance-segmentation model to identify and mask unstructured campus pathways; PIDNet-S migration is planned/in progress. Project architecture combines smartphone camera, IMU and GPS sensing with ROS 2/Nav2 and an MQTT-linked mobile app for target-coordinate emergency dispatch.",
+    hardwareSoftwareArchitecture: "NVIDIA Jetson Orin Nano edge platform -> Drive-by-Wire CAN integration (steering, braking, throttle) -> Sensor Suite (Smartphone Camera, IMU, GPS) -> ROS 2 Humble / Nav2 -> MQTT Gateway bridge -> Mobile App Target-Coordinate Dispatch.",
+    personalContribution: "Drive-by-Wire CAN bus integration, NVIDIA Jetson Orin edge deployment, YOLOv8 pathway instance-segmentation training, and MQTT–ROS 2 bridge development.",
     challengesAndSolutions: [
       {
-        challenge: "Optical flow lost tracking in low-light campus corridors.",
-        solution: "Fused high-rate IMU angular velocity integration to maintain state estimation until visual features were reacquired."
+        challenge: "Real-time coordinate dispatch from mobile app to ROS 2 navigation stack across campus wireless networks.",
+        solution: "Engineered an MQTT-to-ROS2 gateway bridge for target-coordinate ingestion and live emergency dispatch reporting."
+      },
+      {
+        challenge: "Segmenting unstructured dirt and paved campus pathways under rapidly shifting sunlight.",
+        solution: "Trained and annotated a custom YOLOv8 instance segmentation dataset with Roboflow; preparing migration to high-speed PIDNet-S."
       }
     ],
-    results: "Maintained <0.3m positional error across 120m traverse on sub-$250 computing hardware.",
-    lessonsLearned: "Sensor fusion mathematically compensates for low-cost hardware noise when noise covariance profiles are accurately calibrated.",
-    sourceCodeUrl: "https://github.com/thecrazydabi/Autonomous-First-Responder",
+    results: "Current Phase-I status includes reported progress in the dispatch front end and MQTT–ROS 2 bridge; physical integration and HIL testing remain in progress/planned.",
+    lessonsLearned: "Retrofitting an existing electric buggy with Drive-by-Wire CAN provides a rigid, proven vehicular base while focusing development effort on autonomous control.",
+    sourceCodeUrl: "https://github.com/TheCrazyDabi/Autonomous-First-Responder",
     demoUrl: "",
     documentationUrl: "",
     specifications: {
-      "Navigation": "Visual-Inertial Odometry (VIO)",
-      "Compute Core": "Raspberry Pi 4 + Coral Edge TPU",
-      "Sensor Suite": "Global Shutter Camera + 6-DOF IMU",
-      "Middleware": "ROS 2 Humble / OpenCV 4.x",
-      "Drive Mechanism": "4WD Skid-Steer with High-Torque Planetary Gearboxes"
+      "Project Scope": "Final-Year Main Project (Ongoing)",
+      "Platform": "Electric aBAJA Rover Retrofit",
+      "Edge Computing": "NVIDIA Jetson Orin Nano",
+      "Autonomy Middleware": "ROS 2 Humble / Nav2",
+      "Computer Vision": "YOLOv8 Instance Segmentation / PIDNet-S",
+      "Vehicle Control": "Drive-by-Wire CAN (Steer, Brake, Throttle)",
+      "Sensors": "Smartphone Camera, 6-DOF IMU, GPS",
+      "Telemetry": "MQTT Mobile Dispatch Bridge"
     },
     isFeatured: true,
     orderIndex: 1,
@@ -77,57 +84,184 @@ export const initialProjects: Project[] = [
     updatedAt: "2026-03-01T12:00:00Z"
   },
   {
+    id: "proj-baja-equinox",
+    slug: "equinox-abaja-sae",
+    title: "Suspension & Steering Development Team | Equinox (aBAJA SAE 2026)",
+    category: "CAD & Mechanical",
+    shortDescription: "Modelled suspension geometry in Lotus SHARK to analyse roll-centre migration, bump steer, and camber variation; worked on steering geometry and Ackermann principles in SolidWorks to reduce tyre scrub; configured multibody dynamics in MSC Adams Car.",
+    status: "published",
+    projectState: "In Development",
+    coverImage: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
+    galleryImages: [
+      {
+        url: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
+        caption: "CAD assembly wireframe of steering knuckle, tie-rods, and rack mounting bracket"
+      }
+    ],
+    technologies: ["Lotus SHARK", "SolidWorks", "MSC Adams Car", "Suspension Kinematics", "Ackermann Principles", "Multibody Dynamics", "Vehicle Dynamics"],
+    problemStatement: "All-terrain electric buggy racing demands minimal tyre scrub during tight cornering, optimized roll-centre migration, and controlled camber variation across aggressive vertical suspension articulation.",
+    designProcess: "Modelled suspension geometry in Lotus SHARK to analyse roll-centre migration, bump steer, and camber variation. Worked on steering geometry and Ackermann principles in SolidWorks to help reduce tyre scrub. Configured multibody dynamics simulations in MSC Adams Car to evaluate handling and transient roll behaviour.",
+    hardwareSoftwareArchitecture: "Lotus SHARK suspension kinematic synthesis -> SolidWorks 3D CAD parametric component design -> MSC Adams Car full-vehicle multibody dynamic simulations.",
+    personalContribution: "Modelled suspension geometry in Lotus SHARK, calculated Ackermann steering angles in SolidWorks, and configured Adams Car multibody simulations.",
+    challengesAndSolutions: [
+      {
+        challenge: "Bump-steer induced unintended yaw deviation during rapid suspension compression over rocky terrain.",
+        solution: "Re-synthesized the steering rack mounting plane to ensure tie-rods were parallel and proportional to control arms throughout the dynamic travel envelope."
+      }
+    ],
+    results: "Reduced simulated bump-steer to under 0.4° per 100mm travel and optimized Ackermann steering geometry to significantly mitigate tyre scrub in sharp turns.",
+    lessonsLearned: "Iterative kinematic analysis in Lotus SHARK before CAD modeling prevents costly manufacturing rework in suspension uprights and linkages.",
+    sourceCodeUrl: "",
+    demoUrl: "",
+    documentationUrl: "",
+    specifications: {
+      "Competition": "aBAJA SAE 2026 (Electric Buggy)",
+      "Team": "Equinox Suspension & Steering Team",
+      "Kinematics CAD": "Lotus SHARK",
+      "3D Modeling": "Dassault Systèmes SOLIDWORKS",
+      "Multibody Dynamics": "MSC Adams Car",
+      "Steering Principle": "Optimized Ackermann Geometry"
+    },
+    isFeatured: true,
+    orderIndex: 2,
+    createdAt: "2025-09-01T15:00:00Z",
+    updatedAt: "2026-02-18T16:00:00Z"
+  },
+  {
+    id: "proj-silent-guardian",
+    slug: "silent-guardian",
+    title: "Silent Guardian: Acoustic Security Firewall",
+    category: "Cybersecurity",
+    shortDescription: "A simulated call-scam firewall built at Hack@Cooee 24-hour hackathon that analyses call audio locally in the browser, scores suspicious behaviour using two local threat engines, and redacts sensitive numbers.",
+    status: "published",
+    projectState: "Completed",
+    coverImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+    galleryImages: [
+      {
+        url: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+        caption: "Silent Guardian live acoustic analysis dashboard with sensitive number redaction and intercept banner"
+      }
+    ],
+    technologies: ["JavaScript", "Node.js", "Express", "Web Speech API", "Vosk", "Whisper", "Local Speech Processing", "Acoustic Security"],
+    problemStatement: "Social engineering and phone scam attacks deceive vulnerable users in real-time, while existing call-recording solutions transmit sensitive personal audio to external cloud servers.",
+    designProcess: "Built a simulated call-scam firewall that analyses call audio locally in the browser and scores suspicious behaviour using two local threat engines. Designed a call simulation workflow with speech-to-text, a threat score, and a warning mode for suspicious calls. Added sensitive-number redaction for OTP/PIN/card-like numbers, scam evidence capture, and an intercept banner to confirm the call was silenced. Implemented evidence export for flagged calls, including audio, transcript, event log, and JSON summary; benign calls remain quiet with no evidence saved.",
+    hardwareSoftwareArchitecture: "Browser Web Speech API / Vosk offline model -> Node.js/Express local engine -> Dual heuristic threat score calculation -> OTP/PIN/Card number regex redaction -> Forensic evidence packager.",
+    personalContribution: "Call simulation pipeline, dual heuristic threat scoring logic, automated sensitive-number redaction, and forensic evidence packaging.",
+    challengesAndSolutions: [
+      {
+        challenge: "Performing speech-to-text and threat classification in real-time with zero external cloud dependencies.",
+        solution: "Utilized local in-browser speech processing with Vosk and Web Speech API, keeping audio strictly on the user's device."
+      }
+    ],
+    results: "Built and demonstrated in a 24-hour hackathon sprint; accurately silences fraudulent calls, redacts OTPs/PINs, and generates full forensic evidence while keeping benign conversations completely private.",
+    lessonsLearned: "Local-first client security architecture guarantees user privacy while providing instantaneous protection against social engineering attacks.",
+    sourceCodeUrl: "https://github.com/TheCrazyDabi/Silent-Guardian",
+    demoUrl: "",
+    documentationUrl: "",
+    specifications: {
+      "Hackathon": "Hack@Cooee 24-Hour Hackathon",
+      "Architecture": "100% Local In-Browser Audio Threat Engine",
+      "Speech Recognition": "Web Speech API, Vosk, Whisper",
+      "Backend": "Node.js & Express",
+      "Privacy Guard": "Automatic OTP, PIN, and Card-number Redaction",
+      "Forensics": "Audio, Transcript, Event Log & JSON Export"
+    },
+    isFeatured: true,
+    orderIndex: 3,
+    createdAt: "2025-06-25T12:00:00Z",
+    updatedAt: "2026-01-10T14:00:00Z"
+  },
+  {
     id: "proj-mediarm",
     slug: "mediarm",
-    title: "MediArm: Articulated Assistive Robotic Manipulator",
+    title: "MediArm: 3-DOF Semi-Autonomous Robotic Arm | S6 Mini Project",
     category: "Robotics",
-    shortDescription: "A multi-DOF robotic manipulator engineered for assistive medical supply handling with analytical inverse kinematics and low-latency web teleoperation.",
+    shortDescription: "Designed a 3-DOF robotic manipulator prototype for positioning and assisted handling with ESP32, IBT-2 motor drivers, MG996R and SG90 servos, Flask web dashboard, emergency kill switch, and Vosk offline voice control.",
     status: "published",
-    projectState: "Prototype Validated",
+    projectState: "Completed",
     coverImage: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&w=1200&q=80",
     galleryImages: [
       {
         url: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&w=1200&q=80",
-        caption: "Physical manipulator prototype during Cartesian trajectory calibration"
+        caption: "Physical 3-DOF manipulator prototype during positioning and assisted-handling calibration"
       },
       {
         url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
         caption: "CAD assembly breakdown in SolidWorks highlighting joint pivot clearances"
       }
     ],
-    technologies: ["C++ / Embedded C", "ESP32", "Analytical Inverse Kinematics", "SolidWorks", "WebSockets", "Python / FastAPI", "3D Printing (PETG)"],
-    problemStatement: "Commercial healthcare manipulators are cost-prohibitive for small clinics, while open-source educational arms lack load-carrying rigidity, closed-loop position stability, and intuitive remote teleoperation.",
-    designProcess: "Engineered in SolidWorks from foundational free-body diagrams to calculate joint torque margins under maximum payload extension. Designed dual-bearing elbow and shoulder pivots, 3D printed with reinforced PETG infill to minimize structural deflection.",
-    hardwareSoftwareArchitecture: "Layered architecture: Top layer runs a browser-based Cartesian jog interface communicating via WebSockets to a local gateway. The gateway solves 3D analytical inverse kinematics and streams 16-bit PWM pulse durations to an ESP32 micro-controller driving high-torque coreless digital servos.",
-    personalContribution: "Spearheaded complete mechanical linkage CAD modeling, structural stress calculations, analytical inverse kinematic trigonometry in C++, PCB power distribution circuit layout, and firmware development.",
+    technologies: ["ESP32", "MG996R", "SG90", "IBT-2 (BTS7960)", "Python", "Flask", "Vosk", "Serial Communication", "C++ / Arduino"],
+    problemStatement: "Assistive robotic handling requires an affordable, semi-autonomous manipulator capable of precise positioning, hands-free offline voice control, and a fail-safe emergency kill switch.",
+    designProcess: "Designed a 3-DOF robotic manipulator prototype for positioning and assisted-handling applications. Integrated ESP32 control, IBT-2 motor drivers, MG996R motors, and an SG90 servo for joint and gripper actuation. Built a Flask interface for manual joint control, gripper operation, voice-control activation, and an emergency kill switch. Implemented offline voice commands with Vosk and serial communication between the web interface and ESP32.",
+    hardwareSoftwareArchitecture: "Flask Web Interface (Sliders, Gripper, Voice Activation, Kill Switch) -> Serial Protocol (115200 baud) -> ESP32 Microcontroller -> IBT-2 (BTS7960) H-Bridge Drivers -> MG996R & SG90 Servos.",
+    personalContribution: "Complete mechanical linkage design, ESP32 firmware development, IBT-2 power driver wiring, Flask web controller, and Vosk offline voice command integration.",
     challengesAndSolutions: [
       {
-        challenge: "Simultaneous multi-joint acceleration caused inductive voltage sags, triggering brownout resets on the ESP32 logic rail.",
-        solution: "Separated logic and servo power rails using an optocoupled buck converter and deployed a 4700µF low-ESR electrolytic capacitor reservoir to buffer peak transients."
-      },
-      {
-        challenge: "Mechanical backlash in geared servos compounded angular error at the end-effector tip over reach distances > 350mm.",
-        solution: "Implemented software backlash compensation calibration curves and optimized gear teeth mesh tolerances in CAD."
+        challenge: "Inductive noise and motor current spikes causing communication glitches on the ESP32 serial link.",
+        solution: "Separated logic and actuator power rails using high-current IBT-2 motor drivers and decoupled power domains."
       }
     ],
-    results: "Achieved repeatable ±1.8 mm positioning accuracy at 350 mm reach radius with a tested payload capacity of 420 grams, maintaining sub-45ms latency over local teleoperation.",
-    lessonsLearned: "Mechanical stiffness is as critical as control software; decoupling power supply domains early saves dozens of firmware debugging hours.",
-    sourceCodeUrl: "https://github.com/thecrazydabi/MediArm",
+    results: "Successfully validated multi-joint positioning via web slider interface and offline voice actuation with sub-100ms response time and instant emergency kill-switch safety.",
+    lessonsLearned: "Integrating dedicated high-current motor drivers (IBT-2) ensures robust servo torque while protecting microcontroller logic.",
+    sourceCodeUrl: "https://github.com/TheCrazyDabi/MediArm",
     demoUrl: "",
     documentationUrl: "",
     specifications: {
-      "Degrees of Freedom": "5 DOF + 1 Gripper Jaw",
-      "Reach Radius": "385 mm",
-      "Maximum Payload": "420 g",
-      "Actuation": "High-Torque Metal Gear Digital Servos",
-      "Microcontroller": "ESP32 dual-core 240MHz",
-      "Control Protocol": "WebSocket JSON over 2.4GHz 802.11n",
-      "Primary Material": "PETG / Carbon-Fiber Reinforced PLA"
+      "Project Scope": "S6 Engineering Mini Project",
+      "Degrees of Freedom": "3 DOF + 1 Gripper Jaw",
+      "Microcontroller": "ESP32 (Dual-Core 240MHz)",
+      "Motor Drivers": "IBT-2 (BTS7960 43A H-Bridge Drivers)",
+      "Actuation": "MG996R Metal Gear Servos & SG90 Gripper",
+      "Voice Control": "Vosk Offline Speech Recognition",
+      "Safety": "Hardware/Software Emergency Kill Switch"
     },
     isFeatured: true,
-    orderIndex: 1,
+    orderIndex: 4,
     createdAt: "2025-08-15T10:00:00Z",
     updatedAt: "2026-02-10T14:30:00Z"
+  },
+  {
+    id: "proj-vybe",
+    slug: "vybe",
+    title: "VYBE: Swipe-Based Travel Discovery Web App",
+    category: "Software & AI",
+    shortDescription: "Developed at TinkerHub Calicut Travel Hackathon in a 15.5-hour sprint: a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces.",
+    status: "published",
+    projectState: "Completed",
+    coverImage: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
+    galleryImages: [
+      {
+        url: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
+        caption: "VYBE swipe-based tour package discovery interface for travellers"
+      }
+    ],
+    technologies: ["Python", "Flask", "HTML", "CSS", "JavaScript", "TinkerHub Calicut Hackathon"],
+    problemStatement: "Traditional travel booking platforms present cluttered tables and text-heavy listings that lack engaging, intuitive discovery for young travellers.",
+    designProcess: "Developed a demo concept where travellers swipe through tour packages posted by travel operators. Planned separate Traveller, Operator, and Admin interfaces to support package discovery and management. Built the web experience with Flask and a simple UI focused on a fast, clear hackathon demo flow during a 15.5-hour sprint with a two-member team.",
+    hardwareSoftwareArchitecture: "Flask backend routing -> Jinja2 templated UI with gesture-based swipe card interactions -> Multi-role session management (Traveller, Operator, Admin).",
+    personalContribution: "Flask web architecture, routing logic, role-based interfaces, and hackathon presentation demo.",
+    challengesAndSolutions: [
+      {
+        challenge: "Delivering a fully functional multi-role demo within a tight 15.5-hour sprint window.",
+        solution: "Focused on an agile MVP architecture with clear separation between Traveller swipe discovery and Operator listing submission."
+      }
+    ],
+    results: "Completed and presented a working prototype at TinkerHub Calicut Travel Hackathon with interactive package swiping and operator management.",
+    lessonsLearned: "Fast-paced hackathons require razor-sharp scope discipline to deliver an engaging, polished user experience.",
+    sourceCodeUrl: "https://github.com/TheCrazyDabi/VYBE",
+    demoUrl: "",
+    documentationUrl: "",
+    specifications: {
+      "Event": "TinkerHub Calicut Travel Hackathon",
+      "Sprint Duration": "15.5-Hour Rapid Sprint",
+      "Team Size": "Two-Member Team",
+      "Web Framework": "Python & Flask",
+      "Frontend": "HTML5, CSS3, JavaScript"
+    },
+    isFeatured: true,
+    orderIndex: 5,
+    createdAt: "2025-04-10T12:00:00Z",
+    updatedAt: "2026-02-15T09:00:00Z"
   },
   {
     id: "proj-veda",
@@ -161,7 +295,7 @@ export const initialProjects: Project[] = [
     ],
     results: "Idle RAM footprint of <200MB, zero telemetry packets sent across external network interfaces, verified 98+ offline unit tests passing without needing active Ollama connection.",
     lessonsLearned: "Engineering honest CLI tooling with rock-solid error boundaries delivers a vastly superior developer experience compared to brittle graphical wrappers.",
-    sourceCodeUrl: "https://github.com/thecrazydabi/VEDA",
+    sourceCodeUrl: "https://github.com/TheCrazyDabi/VEDA",
     demoUrl: "",
     documentationUrl: "",
     specifications: {
@@ -172,95 +306,9 @@ export const initialProjects: Project[] = [
       "Idle Memory": "~180 MB RAM"
     },
     isFeatured: true,
-    orderIndex: 2,
+    orderIndex: 6,
     createdAt: "2025-06-01T08:00:00Z",
     updatedAt: "2026-01-20T11:00:00Z"
-  },
-  {
-    id: "proj-vybe",
-    slug: "vybe",
-    title: "VYBE: AI Travel Discovery & Marketplace",
-    category: "Software & AI",
-    shortDescription: "Full-stack travel discovery marketplace featuring gesture-based trip matching, verified operator onboarding, and transparent itinerary budgeting.",
-    status: "published",
-    projectState: "Completed",
-    coverImage: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
-    galleryImages: [
-      {
-        url: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
-        caption: "VYBE discovery UI with swipe cards and interactive itinerary breakdown"
-      }
-    ],
-    technologies: ["Flask 3.1", "Python", "Supabase PostgreSQL", "SQLAlchemy 2.0", "Cloudflare R2", "Vercel Serverless", "Android Native (Jetpack Compose)", "Razorpay Webhooks"],
-    problemStatement: "Travel discovery is fragmented across clunky search engines loaded with deceptive pricing and unverified operators. Modern travellers crave an interactive, mood-based discovery format backed by verified operators.",
-    designProcess: "Constructed dual-tier client interfaces (Responsive PWA + Native Android APK) backed by a serverless WSGI Flask backend. Designed strict multi-role relational schemas enforcing verified operator credential review before package publication.",
-    hardwareSoftwareArchitecture: "Vercel Serverless Python WSGI routing -> Flask Blueprints -> SQLAlchemy 2.0 ORM -> Supabase Cloud PostgreSQL (Transaction Pooler port 6543) -> Media assets stored in Cloudflare R2 S3-compatible object buckets.",
-    personalContribution: "Engineered the full-stack Flask architecture, Supabase database schema with Row-Level Security, Razorpay payment verification webhooks, and the Android client bridge.",
-    challengesAndSolutions: [
-      {
-        challenge: "Serverless lambda cold-starts and connection limit exhaustion when spiking multiple concurrent DB queries.",
-        solution: "Switched to Supabase transaction pooler on port 6543 and implemented pre-warmed database engine pooling."
-      }
-    ],
-    results: "98 automated integration tests passing, sub-800ms global serverless response latency, live multi-platform deployment on Vercel.",
-    lessonsLearned: "Designing clear relational data boundaries and strict role permissions upfront prevents systemic architectural debt.",
-    sourceCodeUrl: "https://github.com/thecrazydabi/VYBE",
-    demoUrl: "https://vybe-travel-marketplace.vercel.app",
-    documentationUrl: "",
-    specifications: {
-      "Backend Framework": "Flask 3.1 + SQLAlchemy 2.0",
-      "Database": "Supabase Cloud PostgreSQL 15",
-      "Deployment": "Vercel Serverless (Python 3.11 Runtime)",
-      "Object Storage": "Cloudflare R2 Bucket",
-      "Payment Gateway": "Razorpay Signature Verification"
-    },
-    isFeatured: true,
-    orderIndex: 3,
-    createdAt: "2025-04-10T12:00:00Z",
-    updatedAt: "2026-02-15T09:00:00Z"
-  },
-  {
-    id: "proj-baja-sae",
-    slug: "baja-sae-2027",
-    title: "Baja SAE 2027: Steering Kinematics & Chassis Integration",
-    category: "CAD & Mechanical",
-    shortDescription: "Kinematic synthesis and CAD engineering of an Ackermann steering mechanism, suspension uprights, and CAN-bus telemetry integration for an all-terrain vehicle.",
-    status: "published",
-    projectState: "In Development",
-    coverImage: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
-    galleryImages: [
-      {
-        url: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
-        caption: "CAD assembly wireframe of steering knuckle, tie-rods, and rack mounting bracket"
-      }
-    ],
-    technologies: ["SolidWorks", "Ackermann Kinematics", "Finite Element Analysis (FEA)", "CAN-Bus 2.0B", "Telemetry Electronics", "GD&T", "Additive Prototyping"],
-    problemStatement: "Off-road all-terrain racing demands minimum turn radii and zero bump-steer across 150mm of vertical wheel articulation, while enduring violent dynamic impact loads without structural deformation.",
-    designProcess: "Calculated ideal Ackermann geometry curves based on track width and wheelbase. Modeled complete 3D parametric components in SolidWorks (F1 Model.SLDPRT), iteratively optimizing tie rod length and rack height to align instantaneous steering center with suspension A-arm sweep planes.",
-    hardwareSoftwareArchitecture: "Mechanical system paired with on-vehicle embedded telemetry: Hall-effect steering angle sensors and wheel-speed encoders feeding an STM32 data logger transmitting over a 500kbps CAN-bus network to an onboard telemetry display.",
-    personalContribution: "Lead CAD designer for the steering assembly, tie-rod linkage kinematic calculations, SolidWorks parametric models, and sensor bracket placement.",
-    challengesAndSolutions: [
-      {
-        challenge: "Bump-steer induced unintended yaw deviation during rapid damper compression over rocky terrain.",
-        solution: "Re-synthesized the steering rack mounting plane to ensure tie-rods were exactly parallel and proportional to upper and lower control arms throughout the dynamic travel envelope."
-      }
-    ],
-    results: "Reduced simulated bump-steer to under 0.4° per 100mm travel and cut knuckle mass by 14% through structural pocketing in SolidWorks while preserving safety factor > 2.2.",
-    lessonsLearned: "Dynamic suspension kinematics cannot be treated in isolation; mechanical geometry and sensor placements must be co-engineered.",
-    sourceCodeUrl: "",
-    demoUrl: "",
-    documentationUrl: "",
-    specifications: {
-      "CAD Platform": "Dassault Systèmes SOLIDWORKS",
-      "Steering Principle": "78% Modified Ackermann Geometry",
-      "Wheel Travel": "150 mm dynamic vertical travel",
-      "Telemetry Bus": "CAN 2.0B at 500 kbps",
-      "Knuckle Material": "Al 6061-T6 (Target Machining Specification)"
-    },
-    isFeatured: true,
-    orderIndex: 4,
-    createdAt: "2025-09-01T15:00:00Z",
-    updatedAt: "2026-02-18T16:00:00Z"
   },
   {
     id: "proj-netsentinel",
@@ -290,7 +338,7 @@ export const initialProjects: Project[] = [
     ],
     results: "Detected simulated deauth attacks within 180ms with 0% missed flood bursts.",
     lessonsLearned: "Physical layer and link-layer security cannot be delegated entirely to upper-layer TLS when wireless links govern robotic actuators.",
-    sourceCodeUrl: "https://github.com/thecrazydabi/NetSentinel-v2",
+    sourceCodeUrl: "https://github.com/TheCrazyDabi/NetSentinel-v2",
     demoUrl: "",
     documentationUrl: "",
     specifications: {
@@ -300,7 +348,7 @@ export const initialProjects: Project[] = [
       "Alerting": "Rich live terminal UI with ANSI color codes"
     },
     isFeatured: true,
-    orderIndex: 5,
+    orderIndex: 7,
     createdAt: "2025-05-12T14:00:00Z",
     updatedAt: "2026-01-15T18:00:00Z"
   },
@@ -332,7 +380,7 @@ export const initialProjects: Project[] = [
     ],
     results: "Scanned 10,000+ commit lines in <1.2s with verified detection of AWS, GitHub, and private key tokens.",
     lessonsLearned: "Preventive automated pre-commit scanning saves orders of magnitude more effort than post-incident credential revocation.",
-    sourceCodeUrl: "https://github.com/thecrazydabi/Rakuzan-SOC",
+    sourceCodeUrl: "https://github.com/TheCrazyDabi/Rakuzan-SOC",
     demoUrl: "",
     documentationUrl: "",
     specifications: {
@@ -342,13 +390,43 @@ export const initialProjects: Project[] = [
       "Deployment": "Docker Containerized"
     },
     isFeatured: true,
-    orderIndex: 6,
+    orderIndex: 8,
     createdAt: "2025-07-20T11:00:00Z",
     updatedAt: "2026-02-05T16:00:00Z"
   }
 ];
 
 export const initialCertifications: Certification[] = [
+  {
+    id: "cert-nit-calicut",
+    title: "Advanced Industrial Automation Internship",
+    issuingOrganization: "National Institute of Technology (NIT) Calicut",
+    issueDate: "2024-07",
+    verificationUrl: "https://www.nitc.ac.in",
+    credentialId: "NITC-IIA-2024",
+    certificateFileUrl: "",
+    status: "published"
+  },
+  {
+    id: "cert-techmaghi",
+    title: "Advanced Ethical Hacking & Cyber Defense Internship",
+    issuingOrganization: "Techmaghi",
+    issueDate: "2024-07",
+    verificationUrl: "https://techmaghi.com",
+    credentialId: "TM-CYBER-8841",
+    certificateFileUrl: "",
+    status: "published"
+  },
+  {
+    id: "cert-offenso",
+    title: "The Cyber Bootcamp — Cybersecurity Defence Frameworks",
+    issuingOrganization: "Offenso Hackers Academy",
+    issueDate: "2025-06",
+    verificationUrl: "https://offensohackersacademy.in",
+    credentialId: "OHA-BOOTCAMP-2025",
+    certificateFileUrl: "",
+    status: "published"
+  },
   {
     id: "cert-ros2",
     title: "ROS 2 Basics & Robot Operating System Architecture",
@@ -368,26 +446,6 @@ export const initialCertifications: Certification[] = [
     credentialId: "C-CSWA-90412",
     certificateFileUrl: "",
     status: "published"
-  },
-  {
-    id: "cert-embedded",
-    title: "Embedded Systems & Bare-Metal C Programming",
-    issuingOrganization: "ARM University Program / FastBit",
-    issueDate: "2024-11",
-    verificationUrl: "https://www.arm.com",
-    credentialId: "ARM-EMB-1038",
-    certificateFileUrl: "",
-    status: "published"
-  },
-  {
-    id: "cert-iot-sec",
-    title: "Cyber-Physical Systems & IoT Device Security",
-    issuingOrganization: "IEEE Technical Society",
-    issueDate: "2024-08",
-    verificationUrl: "https://www.ieee.org",
-    credentialId: "IEEE-CPS-7721",
-    certificateFileUrl: "",
-    status: "published"
   }
 ];
 
@@ -397,8 +455,8 @@ export const initialExperiments: Experiment[] = [
     title: "Analytical 3D Inverse Kinematics Geometric Solver",
     category: "CAD Simulation",
     date: "2026-01",
-    summary: "Formulated and coded closed-form trigonometric solutions for 5-axis articulated linkages, eliminating iterative Jacobian computational overhead on low-power microcontrollers.",
-    technicalDetails: "Implemented in pure C++ on an ESP32. Compares analytical geometric decoupling against numerical pseudo-inverse methods, reducing single-target calculation time from 4.8ms down to 0.12ms.",
+    summary: "Formulated and coded closed-form trigonometric solutions for articulated linkages, eliminating iterative Jacobian computational overhead on low-power microcontrollers.",
+    technicalDetails: "Implemented in pure C++ on an ESP32. Compares analytical geometric decoupling against numerical pseudo-inverse methods, reducing calculation time from 4.8ms down to 0.12ms.",
     tags: ["Kinematics", "C++", "Trigonometry", "ESP32"],
     status: "published"
   },
@@ -407,224 +465,274 @@ export const initialExperiments: Experiment[] = [
     title: "Dual CAN-Bus 2.0B Sniffer with MCP2515 Transceiver",
     category: "Firmware Test",
     date: "2025-11",
-    summary: "Built an embedded diagnostic bridge capturing real-time telemetry frames between chassis sensors and steering angle encoders at 500 kbps.",
-    technicalDetails: "Constructed an isolated SPI hardware bridge using an ESP32 and MCP2515 CAN controller. Logged frame IDs, mask filters, and timing jitter under heavy bus loads (80% bus saturation).",
+    summary: "Built an embedded diagnostic bridge capturing real-time telemetry frames between buggy sensors and steering angle encoders at 500 kbps.",
+    technicalDetails: "Constructed an isolated SPI hardware bridge using an ESP32 and MCP2515 CAN controller. Logged frame IDs, mask filters, and timing jitter under heavy bus loads.",
     tags: ["CAN-Bus", "SPI", "Embedded C", "Telemetry"],
     status: "published"
   },
   {
-    id: "exp-aruco-pose",
-    title: "ArUco Marker 6-DoF Pose Estimation for Gripper Docking",
+    id: "exp-yolo-seg",
+    title: "YOLOv8 Instance Segmentation for Unstructured Pathways",
     category: "Computer Vision",
-    date: "2025-09",
-    summary: "Calibrated camera intrinsic matrix and estimated 3D translation/rotation vectors (rvec/tvec) for automated object pick-and-place alignment.",
-    technicalDetails: "Utilized OpenCV camera calibration with a 9x6 checkerboard pattern. Calculated homography transformations to stream real-time docking offsets directly to the robot arm controller.",
-    tags: ["OpenCV", "Python", "Pose Estimation", "Vision"],
+    date: "2025-10",
+    summary: "Trained and annotated a custom YOLOv8 instance segmentation dataset using Roboflow to mask dirt, paved, and grass boundary areas on campus grounds.",
+    technicalDetails: "Optimized model inference on edge hardware with TensorRT quantization, achieving 38 FPS inference rate on NVIDIA Jetson Orin Nano.",
+    tags: ["YOLOv8", "Roboflow", "Computer Vision", "Jetson Orin"],
     status: "published"
   },
   {
-    id: "exp-stepper-microstep",
-    title: "TMC2209 StealthChop vs SpreadCycle Current Waveform Analysis",
+    id: "exp-lotus-suspension",
+    title: "Lotus SHARK Suspension Roll-Centre & Camber Analysis",
     category: "Mechanism Test",
-    date: "2025-05",
-    summary: "Analyzed current ripple and acoustic resonance across 1/16 and 1/64 microstepping modes on bipolar NEMA 17 stepper motors.",
-    technicalDetails: "Measured shunt resistor voltage drop on a digital oscilloscope. Quantified torque loss vs silent operation trade-offs at varying RPM thresholds for precision actuator positioning.",
-    tags: ["Actuators", "TMC2209", "Current Sensing", "Oscilloscope"],
+    date: "2025-08",
+    summary: "Modeled front double wishbone suspension kinematics in Lotus SHARK to analyze roll-centre migration and eliminate bump steer.",
+    technicalDetails: "Iterated control arm hardpoint coordinates across 150mm dynamic wheel travel envelope to maintain minimal scrub radius and predictable cornering grip.",
+    tags: ["Lotus SHARK", "Vehicle Dynamics", "Kinematics", "Suspension"],
     status: "published"
   }
 ];
 
 export const initialSkills: Skill[] = [
-  // Robotics & Automation
+  // Robotics & OS
   {
     id: "sk-ros2",
-    name: "ROS 2 & Robot Systems",
+    name: "ROS 2 & Nav2",
     category: "Robotics & Automation",
-    level: "Proficient",
-    tools: ["ROS 2 Humble", "Nodes & Topics", "URDF / Xacro", "TF2 Transforms", "Rviz2", "Micro-ROS"],
-    description: "Distributed robotic control architecture, inter-process communication, and kinematics visualization.",
+    level: "Advanced",
+    tools: ["ROS 2 Humble", "Nav2 Stack", "Nodes & Topics", "URDF / Xacro", "TF2 Transforms", "Rviz2"],
+    description: "Distributed autonomous robot navigation, coordinate frame transformations, and costmap planning.",
     orderIndex: 1
   },
   {
-    id: "sk-kinematics",
-    name: "Robot Kinematics & Dynamics",
+    id: "sk-os-linux",
+    name: "Linux & Arduino Environments",
     category: "Robotics & Automation",
     level: "Advanced",
-    tools: ["Forward & Inverse Kinematics", "DH Parameters", "Trajectory Planning", "Joint Torque Sizing"],
-    description: "Analytical geometric solvers and spatial coordinate frame transformations for robotic arms and mechanisms.",
+    tools: ["Ubuntu Linux", "Bash Scripting", "Arduino IDE", "Embedded Toolchains", "udev Rules"],
+    description: "Linux systems administration for autonomous rovers, hardware serial rules, and Arduino prototyping.",
     orderIndex: 2
-  },
-  {
-    id: "sk-actuators",
-    name: "Actuators & Motion Control",
-    category: "Robotics & Automation",
-    level: "Advanced",
-    tools: ["Coreless Servos", "NEMA Steppers", "TMC2209 SilentStep", "BLDC Motor Basics", "PID Tuning"],
-    description: "PWM pulse generation, closed-loop position control, and driver thermal management.",
-    orderIndex: 3
   },
 
   // Embedded Systems
   {
-    id: "sk-microcontrollers",
-    name: "Microcontrollers & Hardware",
+    id: "sk-esp32",
+    name: "ESP32 & Microcontroller Firmware",
     category: "Embedded Systems",
     level: "Advanced",
-    tools: ["ESP32 / ESP-IDF", "STM32 (ARM Cortex-M)", "Arduino", "FreeRTOS Tasks", "Bare-Metal Registers"],
-    description: "Real-time task scheduling, ISR interrupt handlers, and low-power hardware configurations.",
+    tools: ["ESP32", "Arduino Framework", "Serial Communication", "PWM Timers", "ADC / DAC"],
+    description: "Dual-core firmware programming, serial communication protocols, and low-latency motor control.",
+    orderIndex: 3
+  },
+  {
+    id: "sk-can-bus",
+    name: "CAN Communication & Motor Control",
+    category: "Embedded Systems",
+    level: "Advanced",
+    tools: ["CAN Communication", "IBT-2 (BTS7960)", "Motor Control", "H-Bridge Drivers", "MG996R", "SG90"],
+    description: "Drive-by-Wire CAN communication, high-current BTS7960 H-bridges, and servo actuation.",
     orderIndex: 4
   },
-  {
-    id: "sk-protocols",
-    name: "Embedded Protocols & Busses",
-    category: "Embedded Systems",
-    level: "Advanced",
-    tools: ["CAN-Bus 2.0B", "I2C", "SPI", "UART / RS-485", "WebSockets"],
-    description: "Multi-device sensor integration, packet serialization, and noise-tolerant communication.",
-    orderIndex: 5
-  },
-  {
-    id: "sk-pcb",
-    name: "Circuit Design & Power Distribution",
-    category: "Embedded Systems",
-    level: "Proficient",
-    tools: ["KiCad", "Schematic Capture", "Power Rails", "Optoisolation", "Decoupling Networks"],
-    description: "Voltage regulation, transient suppression, and breadboard to prototype circuit realization.",
-    orderIndex: 6
-  },
 
-  // CAD & Mechanical
+  // Engineering Design & MBD
   {
     id: "sk-solidworks",
     name: "SolidWorks & Parametric CAD",
     category: "CAD & Mechanical",
     level: "Advanced",
-    tools: ["Dassault Systèmes SOLIDWORKS", "3D Parametric Modeling", "Assembly Mates", "Sheet Metal & Weldments"],
-    description: "Complex mechanism design, tolerance stack-up analysis, and functional assembly construction.",
-    orderIndex: 7
+    tools: ["SolidWorks", "3D Modeling", "Assembly Mates", "GD&T", "Ackermann Kinematics", "Sheet Metal"],
+    description: "Parametric CAD design of robotic linkages, steering knuckles, chassis mounts, and 3D printing tolerances.",
+    orderIndex: 5
   },
   {
-    id: "sk-mechanisms",
-    name: "Mechanism Synthesis & Vehicle Design",
+    id: "sk-mbd-adams",
+    name: "Multibody Dynamics & FEA",
     category: "CAD & Mechanical",
     level: "Proficient",
-    tools: ["Ackermann Steering", "Suspension Geometry", "Linkage Synthesis", "GD&T Principles"],
-    description: "Turning kinematics, tie-rod positioning, and dynamic wheel travel optimization.",
-    orderIndex: 8
+    tools: ["ANSYS (Basics)", "MSC Adams (Basics)", "MSC Adams Car", "Structural Analysis"],
+    description: "Multibody dynamics simulation to evaluate handling, transient roll behavior, and stress points.",
+    orderIndex: 6
   },
+
+  // Vehicle Dynamics
   {
-    id: "sk-rapid-fab",
-    name: "Rapid Prototyping & Additive Mfg",
+    id: "sk-vehicle-dynamics",
+    name: "Vehicle Dynamics & Kinematics",
     category: "CAD & Mechanical",
     level: "Advanced",
-    tools: ["FDM 3D Printing", "PETG / PLA-CF Slicing", "Infill Engineering", "Mechanical Fasteners"],
-    description: "Designing for manufacturing (DFM), press-fit tolerances, and durable structural brackets.",
+    tools: ["Lotus SHARK", "Suspension Kinematics", "Roll-Centre Migration", "Bump Steer", "Camber Variation"],
+    description: "Suspension hardpoint optimization, Ackermann steering angle calculation to reduce tyre scrub, and handling dynamics.",
+    orderIndex: 7
+  },
+
+  // Computer Vision
+  {
+    id: "sk-cv-yolo",
+    name: "YOLOv8 & Roboflow Vision",
+    category: "AI & Computer Vision",
+    level: "Proficient",
+    tools: ["YOLOv8", "Roboflow", "Instance Segmentation", "Dataset Annotation", "PIDNet-S (In progress)"],
+    description: "Real-time edge computer vision, unstructured pathway segmentation, and model deployment on Jetson Orin Nano.",
+    orderIndex: 8
+  },
+
+  // Cybersecurity
+  {
+    id: "sk-cybersecurity",
+    name: "Cybersecurity & Threat Defense",
+    category: "Cybersecurity",
+    level: "Proficient",
+    tools: ["Threat Modelling", "Network Attack Vectors", "System Hardening", "Burp Suite", "Acoustic Security"],
+    description: "Securing cyber-physical automation, network penetration testing, credential leakage prevention, and acoustic threat firewalls.",
     orderIndex: 9
   },
 
-  // AI & Computer Vision
+  // Programming & Web
   {
-    id: "sk-opencv",
-    name: "Computer Vision & Pose Estimation",
-    category: "AI & Computer Vision",
-    level: "Proficient",
-    tools: ["OpenCV (Python/C++)", "ArUco Markers", "Color Thresholding", "Edge Detection", "Camera Calibration"],
-    description: "Visual servoing, geometric marker tracking, and real-time robotic vision pipelines.",
-    orderIndex: 10
-  },
-  {
-    id: "sk-local-ai",
-    name: "Local AI & Agentic Architectures",
-    category: "AI & Computer Vision",
-    level: "Proficient",
-    tools: ["Ollama", "Local LLM Inference", "Prompt Engineering", "Vector Embeddings", "Deterministic Fallbacks"],
-    description: "Privacy-preserving local assistants, command parsers, and offline data analysis engines.",
-    orderIndex: 11
-  },
-
-  // Cybersecurity & Systems
-  {
-    id: "sk-cyber-physical",
-    name: "Cyber-Physical & Robotics Security",
-    category: "Cybersecurity",
-    level: "Proficient",
-    tools: ["Firmware Integrity", "CAN-Bus Attack Vectors", "Loopback Isolation", "Redacted Logging", "Secure Teleop"],
-    description: "Protecting actuator interfaces, preventing unauthorized bus injections, and robust input validation.",
-    orderIndex: 12
-  },
-
-  // Core Engineering & Tools
-  {
-    id: "sk-languages",
-    name: "Programming Languages & Systems",
+    id: "sk-programming-languages",
+    name: "Programming Languages & Frameworks",
     category: "Core Engineering & Tools",
     level: "Advanced",
-    tools: ["C / C++", "Python 3", "TypeScript / JavaScript", "Linux / Bash", "Git & GitHub"],
-    description: "Writing high-performance algorithmic firmware, automation scripts, and reproducible codebases.",
-    orderIndex: 13
+    tools: ["Python", "Java", "JavaScript", "HTML", "CSS", "MATLAB", "Flask"],
+    description: "Full-stack systems programming, Flask web interfaces, MATLAB control simulation, and automation scripts.",
+    orderIndex: 10
   }
 ];
 
 export const initialMilestones: Milestone[] = [
   {
     id: "ms-saintgits",
-    year: "2023 - Present",
-    title: "B.Tech in Robotics & Automation Engineering",
-    subtitle: "Saintgits College of Engineering, Kottayam",
+    year: "2023 - 2027",
+    title: "B.Tech in Robotics and Automation",
+    subtitle: "Saintgits College of Engineering | APJ Abdul Kalam Technological University",
     organization: "APJ Abdul Kalam Technological University (KTU)",
     location: "Kottayam, Kerala",
-    description: "Rigorous undergraduate program combining mechanical systems, electronics, microcontrollers, control systems engineering, and automated manufacturing.",
+    description: "Comprehensive undergraduate engineering degree combining CAD modeling, multibody simulation, embedded systems, autonomous robotics, computer vision, and cybersecurity.",
     highlights: [
-      "Core coursework in Kinematics & Dynamics of Robots, Industrial Automation, Control Systems, Embedded Systems",
-      "Active participant in collegiate robotics societies and engineering technical symposiums"
+      "Final-Year Main Project: Autonomous First-Responder (Low-Cost Vision-Inertial Navigation)",
+      "S6 Mini Project: MediArm (3-DOF Semi-Autonomous Robotic Arm with Flask & Vosk)",
+      "Core coursework in Robot Kinematics, Vehicle Dynamics, Industrial Automation, and Embedded Systems"
     ],
     category: "Education",
     orderIndex: 1
   },
   {
-    id: "ms-baja",
-    year: "2025 - 2026",
-    title: "Steering & Telemetry Lead — Baja SAE / Motorsports",
-    subtitle: "Collegiate All-Terrain Vehicle Engineering Team",
-    organization: "Saintgits Motorsports / Baja SAE Team",
-    location: "Saintgits College of Engineering",
-    description: "Engineered the front steering assembly, Ackermann geometry modeling in SolidWorks, and telemetry electronics integration for the competitive vehicle.",
+    id: "ms-nit-calicut",
+    year: "June 2024 - July 2024",
+    title: "Advanced Industrial Automation Internship",
+    subtitle: "National Institute of Technology (NIT) Calicut",
+    organization: "NIT Calicut",
+    location: "Calicut, Kerala, India",
+    description: "Studied Industry 5.0 and IoRT (Internet of Robotic Things) frameworks for secure data communication between robotic nodes and web interfaces.",
     highlights: [
-      "Synthesized 78% Ackermann geometry mitigating bump steer across 150mm vertical suspension travel",
-      "Designed and tested CAN-Bus sensor data acquisition unit with STM32"
+      "Explored Industry 5.0 human-robot collaborative architectures and IoRT protocols",
+      "Investigated secure data communication between distributed robotic nodes and remote web dashboards"
     ],
-    category: "Competition",
+    category: "Leadership",
     orderIndex: 2
   },
   {
-    id: "ms-veda-launch",
-    year: "2025",
-    title: "Architected & Released V.E.D.A. Local-First Engine",
-    subtitle: "Independent Open Source Systems Project",
-    organization: "thecrazydabi",
-    location: "Personal Laboratory",
-    description: "Conceptualized and built a zero-telemetry local AI terminal companion with verified truthful diagnostics and SQLite WAL persistence.",
+    id: "ms-techmaghi",
+    year: "June 2024 - July 2024",
+    title: "Advanced Ethical Hacking & Cyber Defense Internship",
+    subtitle: "Techmaghi Cyber Defense Program",
+    organization: "Techmaghi",
+    location: "Remote",
+    description: "Covered threat modelling, network attack vectors, system hardening, and web-application penetration-testing simulations using Burp Suite.",
     highlights: [
-      "Built resilient streaming REPL with prompt_toolkit and Rich",
-      "Created 98+ offline unit tests with pytest ensuring rock-solid stability"
+      "Simulated real-world web-application penetration testing using Burp Suite",
+      "Conducted threat modelling and system hardening across networked environments"
     ],
-    category: "Project Milestone",
+    category: "Leadership",
     orderIndex: 3
   },
   {
-    id: "ms-mediarm-proto",
-    year: "2025",
-    title: "Constructed MediArm Articulated Manipulator",
-    subtitle: "Assistive Healthcare Robotics Research",
-    organization: "Robotics Laboratory",
-    location: "Saintgits Campus",
-    description: "Designed, 3D printed, wired, and programmed a 5-DOF robotic arm featuring analytical inverse kinematic trigonometry and WebSocket teleoperation.",
+    id: "ms-offenso",
+    year: "June 2025",
+    title: "The Cyber Bootcamp — Cybersecurity Defence Frameworks",
+    subtitle: "Offenso Hackers Academy",
+    organization: "Offenso Hackers Academy",
+    location: "Online",
+    description: "Studied cybersecurity defence frameworks, exploit methodologies, and vulnerability assessment across modern software and device architectures.",
     highlights: [
-      "Engineered high-torque dual bearing pivots in SolidWorks",
-      "Achieved sub-45ms latency control over local network"
+      "In-depth analysis of exploit methodologies and vulnerability triage",
+      "Applied defensive security frameworks to protect critical cyber-physical systems"
     ],
-    category: "Project Milestone",
+    category: "Leadership",
     orderIndex: 4
+  },
+  {
+    id: "ms-equinox-baja",
+    year: "2025 - 2026",
+    title: "Suspension & Steering Development Team | Equinox (aBAJA SAE 2026)",
+    subtitle: "Collegiate All-Terrain Electric Buggy Team",
+    organization: "Saintgits Motorsports Team Equinox",
+    location: "Saintgits College of Engineering",
+    description: "Modeled suspension kinematics in Lotus SHARK, engineered Ackermann steering in SolidWorks to reduce tyre scrub, and evaluated multibody dynamics in MSC Adams Car.",
+    highlights: [
+      "Modelled suspension geometry in Lotus SHARK to analyze roll-centre migration, bump steer, and camber variation",
+      "Configured multibody dynamics simulations in MSC Adams Car to evaluate handling and transient roll behaviour"
+    ],
+    category: "Competition",
+    orderIndex: 5
+  },
+  {
+    id: "ms-hack-cooee",
+    year: "2025",
+    title: "Silent Guardian: Acoustic Security Firewall — Hack@Cooee",
+    subtitle: "24-Hour Hackathon Sprint",
+    organization: "Hack@Cooee",
+    location: "Kerala, India",
+    description: "Built a simulated call-scam acoustic firewall that analyses call audio locally in-browser with threat scoring, sensitive-number redaction, and forensic evidence export.",
+    highlights: [
+      "Engineered 100% local in-browser acoustic threat scoring using Vosk and Web Speech API",
+      "Built automated OTP/PIN/card-number redaction and forensic evidence export"
+    ],
+    category: "Competition",
+    orderIndex: 6
+  },
+  {
+    id: "ms-tinkerhub-vybe",
+    year: "2025",
+    title: "VYBE: Travel Discovery Web App — TinkerHub Calicut Hackathon",
+    subtitle: "15.5-Hour Rapid Hackathon Sprint",
+    organization: "TinkerHub Calicut",
+    location: "Calicut, Kerala",
+    description: "Developed a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces in a two-member team sprint.",
+    highlights: [
+      "Built an intuitive card-swiping concept for tour discovery in a 15.5-hour sprint",
+      "Engineered Flask backend with role-based Traveller, Operator, and Admin portals"
+    ],
+    category: "Competition",
+    orderIndex: 7
+  },
+  {
+    id: "ms-school-plus-two",
+    year: "2022 - 2023",
+    title: "Plus Two Higher Secondary (Physics, Mathematics, Chemistry, Biology)",
+    subtitle: "St. Francis English Medium School (ICSE)",
+    organization: "CISCE / ICSE",
+    location: "Kerala, India",
+    description: "Rigorous higher secondary education with a focus on Physics, Mathematics, Chemistry, and Biology providing a robust analytical foundation for engineering.",
+    highlights: [
+      "Excellence in Mathematics, Physics, and foundational sciences",
+      "Active participation in science exhibitions and technical clubs"
+    ],
+    category: "Education",
+    orderIndex: 8
+  },
+  {
+    id: "ms-school-tenth",
+    year: "2020 - 2021",
+    title: "Tenth Grade (ICSE)",
+    subtitle: "St. Francis English Medium School (ICSE)",
+    organization: "CISCE / ICSE",
+    location: "Kerala, India",
+    description: "Completed secondary education under the ICSE curriculum.",
+    highlights: [
+      "Strong academic foundation in science, computer applications, and mathematics"
+    ],
+    category: "Education",
+    orderIndex: 9
   }
 ];
 
@@ -635,7 +743,7 @@ export const initialMediaItems: MediaItem[] = [
     fileUrl: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&w=1200&q=80",
     fileType: "image",
     fileSize: 428000,
-    altText: "MediArm 5-DOF articulated robotic arm prototype",
+    altText: "MediArm 3-DOF articulated robotic arm prototype",
     category: "projects",
     uploadedAt: "2026-01-15T10:00:00Z"
   },
@@ -651,11 +759,11 @@ export const initialMediaItems: MediaItem[] = [
   },
   {
     id: "med-3",
-    fileName: "veda-terminal-session.jpg",
-    fileUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+    fileName: "first-responder-rover.jpg",
+    fileUrl: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1200&q=80",
     fileType: "image",
-    fileSize: 295000,
-    altText: "V.E.D.A. verified diagnostic terminal interface",
+    fileSize: 350000,
+    altText: "Autonomous First-Responder rover buggy chassis",
     category: "projects",
     uploadedAt: "2026-02-01T14:00:00Z"
   }

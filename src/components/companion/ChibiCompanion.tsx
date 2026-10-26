@@ -221,6 +221,7 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
           <ChibiArtwork
             state={chibiState}
             onClick={handleChibiClick}
+            isOverdrive={hasUnlockedEasterEgg}
           />
         </div>
 
