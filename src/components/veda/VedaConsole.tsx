@@ -44,7 +44,11 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
     const bootSequence: CommandHistoryItem[] = [
       {
         type: 'system',
-        content: 'VEDA',
+        content: `\\   /   _____   _____     /\\
+ \\ /   | ____| |  __ \\   /  \\
+  V    |  _|   | |  | | / /\\ \\
+  |    | |___  | |__| |/ ____ \\
+  |    |_____| |_____/ /_/    \\_\\`,
         timestamp: getTimestamp(),
         badge: 'BOOT'
       },
@@ -352,7 +356,11 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
                 <span className="text-[10px] text-taupe/60 select-none ml-auto">[{item.timestamp}]</span>
               </div>
             ) : item.type === 'system' ? (
-              <div className="text-dusky bg-[#200713]/60 p-3 rounded-lg border border-burgundy/20 whitespace-pre-wrap">
+              <div className={`text-dusky bg-[#200713]/60 p-3 rounded-lg border border-burgundy/20 ${
+                item.badge === 'BOOT'
+                  ? 'whitespace-pre overflow-x-auto text-[10px] sm:text-[13px] leading-tight'
+                  : 'whitespace-pre-wrap'
+              }`}>
                 {item.content}
               </div>
             ) : (
