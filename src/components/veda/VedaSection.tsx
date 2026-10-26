@@ -78,10 +78,10 @@ export const VedaSection: React.FC<VedaSectionProps> = ({ profile }) => {
           <div className="p-4 rounded-xl bg-cream border border-burgundy/15 space-y-1.5">
             <div className="text-burgundy font-bold flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-emerald-600" />
-              <span>COMPANION SYNERGY</span>
+              <span>GUIDED WALKTHROUGH</span>
             </div>
             <p className="text-taupe-dark font-sans leading-relaxed">
-              Synched directly with Dabi's Mini-Me Chibi companion to provide live mechatronic explanations across the portfolio.
+              Provides real-time mechatronic explanations, project specifications, and interactive guided walkthrough across the portfolio.
             </p>
           </div>
         </div>

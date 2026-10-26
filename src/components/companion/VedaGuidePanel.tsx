@@ -24,12 +24,10 @@ import {
   VedaGuideService
 } from '../../services/vedaGuideService';
 import { VedaBackendAdapter } from '../../services/vedaBackendAdapter';
-import { ChibiState } from '../../types/chibi';
 
 interface VedaGuidePanelProps {
   onClose: () => void;
   onNavigate: (sectionId: string) => void;
-  onSetChibiPose: (pose: ChibiState) => void;
   activeSection: string;
   initialMode?: 'chat' | 'tour';
 }
@@ -37,7 +35,6 @@ interface VedaGuidePanelProps {
 export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
   onClose,
   onNavigate,
-  onSetChibiPose,
   activeSection,
   initialMode = 'chat',
 }) => {
@@ -73,13 +70,6 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
     }
   }, [messages, isTyping, activeTab]);
 
-  // Synchronize Tour Step pose with Chibi avatar
-  useEffect(() => {
-    if (activeTab === 'tour') {
-      onSetChibiPose(currentStep.pose as ChibiState);
-    }
-  }, [activeTab, currentTourIndex]);
-
   // Handle sending a question
   const handleSendMessage = async (textToSend: string) => {
     const trimmed = textToSend.trim();
@@ -99,16 +89,9 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
     try {
       const botResponse = await VedaBackendAdapter.query(trimmed);
       setMessages((prev) => [...prev, botResponse]);
-
-      if (botResponse.pose) {
-        onSetChibiPose(botResponse.pose as ChibiState);
-      }
     } catch {
       const fallback = await VedaGuideService.answerQuestion(trimmed);
       setMessages((prev) => [...prev, fallback]);
-      if (fallback.pose) {
-        onSetChibiPose(fallback.pose as ChibiState);
-      }
     } finally {
       setIsTyping(false);
     }
@@ -141,7 +124,6 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       onNavigate(TOUR_STEPS[nextIdx].sectionId);
     } else {
       // Completed tour!
-      onSetChibiPose('celebrating');
       setActiveTab('chat');
       setMessages((prev) => [
         ...prev,

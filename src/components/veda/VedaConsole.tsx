@@ -170,7 +170,7 @@ Type 'help' for available commands or ask any question about Vasudev's engineeri
   • contact      - Email, LinkedIn, GitHub, and communication endpoints
   • diagnostics  - Real-time client browser telemetry & memory check
   • clear        - Clear terminal screen buffer
-  • easteregg    - Trigger Chibi robotics overdrive protocol
+  • overdrive    - Trigger Sakura and Spider Lily ambience dispersion
 
 You can also ask freeform questions, e.g.:
   "Tell me about the Jetson Orin emergency rover"
@@ -292,7 +292,6 @@ You can also ask freeform questions, e.g.:
     if (lower.includes('easter') || lower === 'overdrive') {
       const easterText = `🌸 ROBOTICS OVERDRIVE PROTOCOL ENGAGED! 🌺
 Triggering Sakura and Spider Lily breeze dispersion across all viewports.
-Mini-Me Chibi companion entering high-energy celebration state!
 Keep exploring the case studies or try asking VEDA about CAD kinematics!`;
       streamResponse(easterText, 'OVERDRIVE');
       return;
@@ -331,9 +330,9 @@ Keep exploring the case studies or try asking VEDA about CAD kinematics!`;
       return;
     }
 
-    if (lower.includes('chibi') || lower.includes('mini me') || lower.includes('companion')) {
+    if (lower.includes('guide') || lower.includes('walkthrough')) {
       streamResponse(
-        `The Chibi Companion ("Mini Me") is Vasudev's interactive animated avatar docked at the bottom of the portfolio! It reacts contextually as you navigate between sections, blinks, breathes, waves, codes, and celebrates. You can click on the chibi directly to switch poses or unlock the secret 5-click Robotics Overdrive mode!`,
+        `V.E.D.A. is Vasudev's interactive portfolio guide! You can launch the guided walkthrough at any time by clicking "Ask V.E.D.A. for guides" at the bottom-right of your screen or clicking "Take Tour" in the hero section.`,
         'VEDA-AI'
       );
       return;
