@@ -188,7 +188,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cream text-wine font-sans antialiased selection:bg-dusky selection:text-white">
+    <div className="min-h-screen bg-cream dark:bg-[#1F0711] text-wine dark:text-cream font-sans antialiased selection:bg-dusky selection:text-white transition-colors duration-300">
       <ProgressBar />
       <SakuraSpiderLilyAmbience />
 
