@@ -108,7 +108,7 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
       case 'hero':
       default:
         return {
-          text: "Hey! I'm Dabi's mini-me chibi companion. Welcome to my Robotics & Automation engineering studio!",
+          text: "Hey! I'm Dabi's mini-me chibi companion. Welcome to my studio! You can play the soothing cherry blossom zen ambience at the bottom-left 🌸",
           actionText: 'Explore Case Studies',
           actionId: 'projects',
         };

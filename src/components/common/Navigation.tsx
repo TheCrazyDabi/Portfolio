@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Cpu, Settings, ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { SpiderLily } from './SpiderLily';
+import { AmbientSoundController } from './AmbientSoundController';
 
 interface NavigationProps {
   onOpenStudio: () => void;
@@ -109,8 +110,11 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
           })}
         </nav>
 
-        {/* Action Controls: Theme Toggle, Portfolio Studio & Mobile Menu Toggle */}
+        {/* Action Controls: Ambient Sound, Theme Toggle, Portfolio Studio & Mobile Menu Toggle */}
         <div className="flex items-center space-x-2.5">
+          {/* Soothing Cherry Blossom Ambient Sound Controller */}
+          <AmbientSoundController variant="navbar" />
+
           {/* Dark / Light Theme Toggle Button */}
           <button
             onClick={toggleTheme}
