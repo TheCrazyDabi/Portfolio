@@ -543,6 +543,31 @@ html.dark .bg-dusky\/20 {
   animation: chibiAngry 160ms ease-in-out infinite;
 }
 
+.chibi-3d-stage.chibi-bonk .chibi-3d-card {
+  animation: chibiBonk 850ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  filter: saturate(1.15) brightness(1.06);
+}
+
+@keyframes chibiBonk {
+  0% { transform: scale(1) rotateZ(0); }
+  16% { transform: scale(1.14, 0.78) rotateZ(-6deg); }
+  34% { transform: scale(0.9, 1.12) rotateZ(5deg); }
+  52% { transform: scale(1.07, 0.94) rotateZ(-4deg); }
+  70% { transform: scale(0.97, 1.04) rotateZ(2deg); }
+  100% { transform: scale(1) rotateZ(0); }
+}
+
+.chibi-bonk-reaction {
+  animation: chibiBonkPop 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes chibiBonkPop {
+  0% { opacity: 0; transform: translate(-50%, 8px) scale(0.4) rotate(-15deg); }
+  18% { opacity: 1; transform: translate(-50%, -5px) scale(1.2) rotate(10deg); }
+  45% { opacity: 1; transform: translate(-50%, -2px) scale(1) rotate(-5deg); }
+  100% { opacity: 0; transform: translate(-50%, -10px) scale(0.8) rotate(8deg); }
+}
+
 .chibi-code-spark-1 {
   animation: codeFloat 1.8s ease-out infinite;
 }

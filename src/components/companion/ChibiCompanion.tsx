@@ -13,12 +13,19 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
   const [isDialogueOpen, setIsDialogueOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [clickCount, setClickCount] = useState(0);
+  const [isBonked, setIsBonked] = useState(false);
   const [hasUnlockedEasterEgg, setHasUnlockedEasterEgg] = useState(false);
   const [guideInitialMode, setGuideInitialMode] = useState<'chat' | 'tour'>('chat');
 
   const inactivityTimerRef = useRef<number | null>(null);
   const userOverrideRef = useRef<boolean>(false);
   const clickTimerRef = useRef<number | null>(null);
+  const bonkTimerRef = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (clickTimerRef.current !== null) window.clearTimeout(clickTimerRef.current);
+    if (bonkTimerRef.current !== null) window.clearTimeout(bonkTimerRef.current);
+  }, []);
 
   // Listen for global custom open event (e.g. from Hero CTA buttons or navigation)
   useEffect(() => {
@@ -124,9 +131,11 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
     }, 3000);
 
     if (newCount >= 5) {
+      setIsBonked(true);
+      if (bonkTimerRef.current !== null) window.clearTimeout(bonkTimerRef.current);
+      bonkTimerRef.current = window.setTimeout(() => setIsBonked(false), 900);
       setChibiState('celebrating');
       setHasUnlockedEasterEgg(true);
-      setIsDialogueOpen(true);
       setClickCount(0);
       userOverrideRef.current = true;
 
@@ -230,6 +239,7 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
             state={chibiState}
             onClick={handleChibiClick}
             isOverdrive={hasUnlockedEasterEgg}
+            isBonked={isBonked}
           />
         </div>
 

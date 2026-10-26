@@ -6,12 +6,14 @@ interface ChibiArtworkProps {
   state: ChibiState;
   onClick?: () => void;
   isOverdrive?: boolean;
+  isBonked?: boolean;
 }
 
 export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
   state,
   onClick,
   isOverdrive = false,
+  isBonked = false,
 }) => {
   const [imageError, setImageError] = useState(false);
   const [isDisturbed, setIsDisturbed] = useState(false);
@@ -62,14 +64,14 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
       onPointerLeave={handlePointerLeave}
       data-state={state}
       className={`chibi-3d-stage w-[5.5rem] h-[5.5rem] sm:w-24 sm:h-24 md:w-28 md:h-28 relative cursor-pointer select-none ${
-        isAngry ? 'chibi-angry' : isStartled ? 'chibi-disturbed' : ''
+        isBonked ? 'chibi-bonk' : isAngry ? 'chibi-angry' : isStartled ? 'chibi-disturbed' : ''
       } ${
         isOverdrive ? 'chibi-overdrive-aura rounded-full p-1' : ''
       }`}
       role={onClick ? 'button' : 'img'}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={onClick ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(); } } : undefined}
-      aria-label={`Vasudev's animated 3D chibi companion, ${state} mode${isAngry ? ', annoyed by the cursor' : isDisturbed ? ', startled by the cursor' : ', working on a project'}`}
+      aria-label={`Vasudev's animated 3D chibi companion, ${state} mode${isBonked ? ', reacting to rapid clicks' : isAngry ? ', annoyed by the cursor' : isDisturbed ? ', startled by the cursor' : ', working on a project'}`}
     >
       {/* Animated Prop 1: Floating Zzz Bubbles for Sleeping State */}
       {isSleeping && (
@@ -126,6 +128,12 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
           aria-live="polite"
         >
           {isAngry ? '💢 HEY!' : '?!'}
+        </div>
+      )}
+
+      {isBonked && (
+        <div className="chibi-bonk-reaction absolute -top-5 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-xl drop-shadow-md" role="status" aria-live="polite">
+          💥
         </div>
       )}
 
