@@ -473,6 +473,11 @@ html.dark .bg-dusky\/20 {
   50% { transform: translateY(-3px) rotateY(4deg) rotateX(-2deg); }
 }
 
+@keyframes chibi3dSleep {
+  0%, 100% { transform: translateY(0) rotateZ(-1deg) scale(0.99); }
+  50% { transform: translateY(-2px) rotateZ(1deg) scale(1); }
+}
+
 .chibi-3d-stage[data-state='greeting'] .chibi-3d-card,
 .chibi-3d-stage[data-state='happy'] .chibi-3d-card,
 .chibi-3d-stage[data-state='celebrating'] .chibi-3d-card {
@@ -482,6 +487,10 @@ html.dark .bg-dusky\/20 {
 .chibi-3d-stage[data-state='thinking'] .chibi-3d-card,
 .chibi-3d-stage[data-state='explaining'] .chibi-3d-card {
   animation-name: chibi3dThinking;
+}
+
+.chibi-3d-stage[data-state='sleeping'] .chibi-3d-card {
+  animation-name: chibi3dSleep;
 }
 
 .chibi-code-spark-1 {

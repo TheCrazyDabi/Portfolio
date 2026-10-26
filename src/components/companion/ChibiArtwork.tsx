@@ -4,14 +4,12 @@ import { getAssetUrl } from '../../utils/assets';
 
 interface ChibiArtworkProps {
   state: ChibiState;
-  className?: string;
   onClick?: () => void;
   isOverdrive?: boolean;
 }
 
 export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
   state,
-  className = 'w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28',
   onClick,
   isOverdrive = false,
 }) => {
@@ -23,45 +21,20 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
   const isEngineering = state === 'engineering';
   const isThinking = state === 'thinking';
 
-  // Map state to the authentic illustrated chibi poses
-  const getPoseImage = (s: ChibiState): string => {
-    switch (s) {
-      case 'greeting':
-        return getAssetUrl('assets/companion/poses/hello.png');
-      case 'coding':
-        return getAssetUrl('assets/companion/vasudev-chibi-working-3d.png');
-      case 'engineering':
-        return getAssetUrl('assets/companion/poses/engineering.png');
-      case 'thinking':
-        return getAssetUrl('assets/companion/poses/thinking.png');
-      case 'explaining':
-        return getAssetUrl('assets/companion/poses/sectionguide.png');
-      case 'happy':
-        return getAssetUrl('assets/companion/poses/happy.png');
-      case 'sleeping':
-        return getAssetUrl('assets/companion/poses/sleeping.png');
-      case 'celebrating':
-        return getAssetUrl('assets/companion/poses/excited.png');
-      case 'idle':
-      default:
-        return getAssetUrl('assets/companion/poses/cool.png');
-    }
-  };
-
-  const isThreeDimensionalPose = state === 'coding';
-  const poseSrc = getPoseImage(state);
+  // Keep the companion consistent across every interaction state.
+  const poseSrc = getAssetUrl('assets/companion/vasudev-chibi-working-3d.png');
 
   return (
     <div
       onClick={onClick}
       data-state={state}
-      className={`${isThreeDimensionalPose ? 'chibi-3d-stage w-[5.5rem] h-[5.5rem] sm:w-24 sm:h-24 md:w-28 md:h-28' : className} relative cursor-pointer select-none ${
+      className={`chibi-3d-stage w-[5.5rem] h-[5.5rem] sm:w-24 sm:h-24 md:w-28 md:h-28 relative cursor-pointer select-none ${
         isOverdrive ? 'chibi-overdrive-aura rounded-full p-1' : ''
       }`}
       role={onClick ? 'button' : 'img'}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={onClick ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(); } } : undefined}
-      aria-label={`Vasudev's 3D chibi companion, ${state} mode`}
+      aria-label={`Vasudev's animated 3D chibi companion, ${state} mode`}
     >
       {/* Animated Prop 1: Floating Zzz Bubbles for Sleeping State */}
       {isSleeping && (
@@ -120,20 +93,12 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
 
       {/* Primary Character Image / Fallback */}
       {!imageError ? (
-        <div className={`w-full h-full flex items-center justify-center filter drop-shadow-md transition-all duration-300 ${
-          isThreeDimensionalPose
-            ? 'chibi-3d-card overflow-hidden rounded-[1.15rem]'
-            : isCelebrating
-            ? 'chibi-celebrate-bounce'
-            : state === 'greeting'
-            ? 'chibi-wave'
-            : 'chibi-breathe'
-        }`}>
+        <div className="w-full h-full flex items-center justify-center filter drop-shadow-md transition-all duration-300 chibi-3d-card overflow-hidden rounded-[1.15rem]">
           <img
             src={poseSrc}
-            alt={`Vasudev's chibi companion, ${state} pose`}
+            alt={`Vasudev's 3D chibi companion in ${state} mode`}
             onError={() => setImageError(true)}
-            className={`w-full h-full ${isThreeDimensionalPose ? 'object-contain rounded-[1.15rem]' : 'object-contain'} pointer-events-none`}
+            className="w-full h-full object-contain rounded-[1.15rem] pointer-events-none"
             loading="eager"
           />
         </div>

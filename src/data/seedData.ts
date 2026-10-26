@@ -409,11 +409,11 @@ export const initialMediaItems: MediaItem[] = [
   },
   {
     id: "med-4",
-    fileName: "vasudev-chibi-laptop-transparent.png",
-    fileUrl: "assets/companion/vasudev-chibi-laptop-transparent.png",
+    fileName: "vasudev-chibi-working-3d.png",
+    fileUrl: "assets/companion/vasudev-chibi-working-3d.png",
     fileType: "image",
-    fileSize: 815444,
-    altText: "Illustrated Mini-Me Chibi Engineering Companion with Laptop and Reference Textbooks",
+    fileSize: 1619583,
+    altText: "3D chibi engineering companion working at a laptop",
     category: "profile",
     uploadedAt: "2026-02-20T14:00:00Z"
   },
