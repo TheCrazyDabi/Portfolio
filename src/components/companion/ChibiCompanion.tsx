@@ -10,7 +10,7 @@ interface ChibiCompanionProps {
 
 export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection }) => {
   const [chibiState, setChibiState] = useState<ChibiState>('greeting');
-  const [isDialogueOpen, setIsDialogueOpen] = useState(true);
+  const [isDialogueOpen, setIsDialogueOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [hasUnlockedEasterEgg, setHasUnlockedEasterEgg] = useState(false);
@@ -178,7 +178,7 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
 
   return (
     <aside
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end pointer-events-none select-none"
+      className="chibi-companion fixed bottom-4 right-3 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end pointer-events-none select-none"
       aria-label="Interactive portfolio companion"
     >
       {/* Dialogue Speech Bubble */}
@@ -210,16 +210,7 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
 
         {/* Chibi Vector Artwork */}
         <div
-          tabIndex={0}
-          role="button"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              handleChibiClick();
-            }
-          }}
-          aria-label="Click to interact with Vasudev Chibi"
-          className="outline-none focus:ring-2 focus:ring-burgundy/40 rounded-2xl"
+          className="outline-none rounded-2xl"
         >
           <ChibiArtwork
             state={chibiState}

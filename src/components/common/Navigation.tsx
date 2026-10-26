@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Cpu, Settings, ArrowUpRight, Sun, Moon } from 'lucide-react';
 import { SpiderLily } from './SpiderLily';
-import { AmbientSoundController } from './AmbientSoundController';
 
 interface NavigationProps {
   onOpenStudio: () => void;
@@ -88,14 +87,14 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-1">
+        <nav className="hidden 2xl:flex items-center gap-0.5">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
               <a
                 key={link.label}
                 href={link.href}
-                className={`px-3 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all flex items-center gap-1.5 ${
+                className={`px-2 py-1.5 rounded-full text-[11px] font-mono tracking-wide transition-all flex items-center gap-1.5 ${
                   link.isHighlight
                     ? 'text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 font-bold shadow-sm'
                     : isActive
@@ -111,10 +110,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
         </nav>
 
         {/* Action Controls: Ambient Sound, Theme Toggle, Portfolio Studio & Mobile Menu Toggle */}
-        <div className="flex items-center space-x-2.5">
-          {/* Soothing Cherry Blossom Ambient Sound Controller */}
-          <AmbientSoundController variant="navbar" />
-
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Dark / Light Theme Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -136,8 +132,8 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
             title="Open Portfolio Studio Admin"
           >
             <Settings className="w-3.5 h-3.5 text-dusky" />
-            <span className="hidden sm:inline">Portfolio Studio</span>
-            <span className="sm:hidden">Studio</span>
+            <span className="hidden xl:inline">Portfolio Studio</span>
+            <span className="xl:hidden">Studio</span>
           </button>
 
           <a
@@ -151,7 +147,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg text-burgundy hover:bg-cream-darker/60 focus:outline-none"
+            className="2xl:hidden p-2 rounded-lg text-burgundy hover:bg-cream-darker/60 focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

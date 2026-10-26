@@ -11,7 +11,7 @@ interface ChibiArtworkProps {
 
 export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
   state,
-  className = 'w-28 h-36 sm:w-36 sm:h-44 md:w-40 md:h-48',
+  className = 'w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28',
   onClick,
   isOverdrive = false,
 }) => {
@@ -56,7 +56,9 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
       className={`relative cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95 select-none ${className} ${
         isOverdrive ? 'chibi-overdrive-aura rounded-full p-1' : ''
       }`}
-      role="img"
+      role={onClick ? 'button' : 'img'}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(); } } : undefined}
       aria-label={`Vasudev Chibi Companion in ${state} mode`}
     >
       {/* Animated Prop 1: Floating Zzz Bubbles for Sleeping State */}

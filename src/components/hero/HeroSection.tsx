@@ -112,7 +112,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
   return (
     <section
       id="hero"
-      className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden cad-grid-bg transition-colors"
+      className="relative pt-40 pb-16 sm:pt-44 md:pt-48 md:pb-24 overflow-hidden cad-grid-bg transition-colors scroll-mt-24"
     >
       {/* Ambient Drifting Glow Blobs */}
       <div className="blob b1 -left-20 top-16 w-80 h-80 bg-blush/40 pointer-events-none" />

@@ -119,7 +119,7 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
 
   return (
     <div
-      className="w-72 sm:w-80 rounded-2xl bg-cream-surface border border-burgundy/20 shadow-xl p-4 text-xs font-mono text-wine relative animate-in fade-in slide-in-from-bottom-3 duration-200 backdrop-blur-sm"
+      className="chibi-dialogue w-[min(19rem,calc(100vw-1.5rem))] sm:w-80 rounded-2xl bg-cream-surface border border-burgundy/20 shadow-xl p-4 text-xs font-mono text-wine relative animate-in fade-in slide-in-from-bottom-3 duration-200 backdrop-blur-sm"
       role="complementary"
       aria-label="Chibi companion dialogue"
     >

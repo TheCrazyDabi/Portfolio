@@ -537,3 +537,19 @@ html.dark .photo-arch {
 ::-webkit-scrollbar-thumb:hover {
   background: #641F36;
 }
+
+
+/* Layout corrections: keep the fixed header and companion from competing with content. */
+html { scroll-padding-top: 7rem; }
+section[id] { scroll-margin-top: 6rem; }
+.chibi-companion { max-width: calc(100vw - 1rem); }
+.chibi-companion img { user-select: none; -webkit-user-drag: none; }
+@media (max-width: 640px) {
+  .chibi-companion { right: 0.65rem; bottom: 0.75rem; }
+  .chibi-companion .chibi-dialogue { max-width: calc(100vw - 1.5rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chibi-breathe, .chibi-wave, .chibi-type-left, .chibi-type-right,
+  .chibi-zzz-1, .chibi-zzz-2, .chibi-zzz-3, .chibi-celebrate-bounce,
+  .chibi-sparkle, .chibi-overdrive-aura { animation: none !important; }
+}

@@ -23,7 +23,7 @@ import {
 // Local storage keys for local development persistence
 const STORAGE_PREFIX = 'portfolio_vasudev_';
 const KEYS = {
-  PROJECTS: `${STORAGE_PREFIX}projects`,
+  PROJECTS: `${STORAGE_PREFIX}projects_v2`,
   CERTS: `${STORAGE_PREFIX}certs`,
   EXPERIMENTS: `${STORAGE_PREFIX}experiments`,
   SKILLS: `${STORAGE_PREFIX}skills`,
