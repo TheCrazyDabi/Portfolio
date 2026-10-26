@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChibiState } from '../../types/chibi';
 import { ChibiArtwork } from './ChibiArtwork';
-import { CompanionDialogue } from './CompanionDialogue';
-import { Sparkles, ChevronDown, ChevronUp, Bot } from 'lucide-react';
+import { VedaGuidePanel } from './VedaGuidePanel';
+import { Sparkles, ChevronDown, ChevronUp, Bot, Compass } from 'lucide-react';
 
 interface ChibiCompanionProps {
   activeSection: string;
@@ -14,10 +14,26 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
   const [isMinimized, setIsMinimized] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [hasUnlockedEasterEgg, setHasUnlockedEasterEgg] = useState(false);
+  const [guideInitialMode, setGuideInitialMode] = useState<'chat' | 'tour'>('chat');
 
   const inactivityTimerRef = useRef<number | null>(null);
   const userOverrideRef = useRef<boolean>(false);
   const clickTimerRef = useRef<number | null>(null);
+
+  // Listen for global custom open event (e.g. from hero button)
+  useEffect(() => {
+    const handleOpenGuide = (e: Event) => {
+      const customEvent = e as CustomEvent<{ mode?: 'chat' | 'tour' }>;
+      setIsMinimized(false);
+      setIsDialogueOpen(true);
+      if (customEvent.detail?.mode) {
+        setGuideInitialMode(customEvent.detail.mode);
+      }
+    };
+
+    window.addEventListener('open-veda-guide', handleOpenGuide);
+    return () => window.removeEventListener('open-veda-guide', handleOpenGuide);
+  }, []);
 
   // Section-aware automatic state updates (unless user explicitly overrode state recently)
   useEffect(() => {
@@ -111,14 +127,12 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
     }, 3000);
 
     if (newCount >= 5) {
-      // Trigger Easter Egg Celebration!
       setChibiState('celebrating');
       setHasUnlockedEasterEgg(true);
       setIsDialogueOpen(true);
       setClickCount(0);
       userOverrideRef.current = true;
 
-      // Return to happy/idle after 7 seconds
       setTimeout(() => {
         setChibiState('happy');
         userOverrideRef.current = false;
@@ -126,10 +140,10 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
       return;
     }
 
-    // Toggle dialogue or rotate playful reaction
+    // Toggle guide panel
     setIsDialogueOpen(!isDialogueOpen);
 
-    // Alternate friendly states
+    // Alternate friendly state
     const states: ChibiState[] = ['happy', 'thinking', 'coding', 'engineering', 'explaining'];
     const next = states[Math.floor(Math.random() * states.length)];
     setChibiState(next);
@@ -164,12 +178,12 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
             setIsMinimized(false);
             setIsDialogueOpen(true);
           }}
-          className="flex items-center space-x-2 px-3 py-2 rounded-full bg-burgundy hover:bg-wine text-cream shadow-xl border border-dusky/40 text-xs font-mono transition-transform hover:scale-105 active:scale-95"
-          title="Restore Chibi Companion"
-          aria-label="Expand chibi companion"
+          className="flex items-center space-x-2 px-3.5 py-2 rounded-full bg-burgundy hover:bg-wine text-cream shadow-xl border border-dusky/40 text-xs font-mono transition-transform hover:scale-105 active:scale-95"
+          title="Restore V.E.D.A. Guide Companion"
+          aria-label="Expand V.E.D.A. companion"
         >
           <Bot className="w-4 h-4 text-dusky animate-pulse" />
-          <span className="font-semibold">Vasudev.Chibi</span>
+          <span className="font-semibold">V.E.D.A. // Guide</span>
           <ChevronUp className="w-3.5 h-3.5 text-dusky" />
         </button>
       </div>
@@ -179,25 +193,37 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
   return (
     <aside
       className="chibi-companion fixed bottom-4 right-3 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end pointer-events-none select-none"
-      aria-label="Interactive portfolio companion"
+      aria-label="Interactive V.E.D.A. portfolio companion"
     >
-      {/* Dialogue Speech Bubble */}
+      {/* V.E.D.A. Conversation & Guided Walkthrough Panel */}
       {isDialogueOpen && (
-        <div className="pointer-events-auto mb-2 mr-2">
-          <CompanionDialogue
-            state={chibiState}
+        <div className="pointer-events-auto mb-2 mr-1 sm:mr-2">
+          <VedaGuidePanel
             activeSection={activeSection}
+            initialMode={guideInitialMode}
             onClose={() => setIsDialogueOpen(false)}
-            onSetState={handleManualSetState}
             onNavigate={handleNavigate}
-            easterEggCount={clickCount}
+            onSetChibiPose={handleManualSetState}
           />
         </div>
       )}
 
+      {/* Floating "Ask V.E.D.A." pill (inspired by modern portfolio prompt pills) */}
+      {!isDialogueOpen && (
+        <button
+          onClick={() => setIsDialogueOpen(true)}
+          className="pointer-events-auto mb-2 px-3 py-1.5 rounded-full bg-cream-surface/90 hover:bg-burgundy text-wine hover:text-cream border border-burgundy/20 shadow-md text-[11px] font-mono flex items-center gap-1.5 backdrop-blur-sm transition-all duration-200 transform hover:scale-105 active:scale-95"
+          title="Open V.E.D.A. Portfolio Guide"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <Bot className="w-3.5 h-3.5 text-burgundy group-hover:text-cream" />
+          <span className="font-semibold">Ask V.E.D.A. for guides</span>
+        </button>
+      )}
+
       {/* Chibi Character & Floating Control Strip */}
       <div className="pointer-events-auto relative flex flex-col items-end">
-        {/* Minimize button pill */}
+        {/* Dock button pill */}
         <button
           onClick={() => setIsMinimized(true)}
           className="mb-1 p-1 rounded-full bg-cream/90 hover:bg-cream-darker text-taupe border border-burgundy/15 shadow-sm text-[10px] flex items-center gap-1 px-2 font-mono transition-colors"
@@ -209,9 +235,7 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
         </button>
 
         {/* Chibi Vector Artwork */}
-        <div
-          className="outline-none rounded-2xl"
-        >
+        <div className="outline-none rounded-2xl cursor-pointer">
           <ChibiArtwork
             state={chibiState}
             onClick={handleChibiClick}
