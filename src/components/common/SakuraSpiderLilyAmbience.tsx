@@ -33,9 +33,9 @@ export const SakuraSpiderLilyAmbience: React.FC = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Responsive particle count: fewer on mobile for battery and smoothness
+    // Keep the ambient particles sparse, especially on smaller screens.
     const isMobile = width < 768;
-    const PARTICLE_COUNT = isMobile ? 22 : 46;
+    const PARTICLE_COUNT = isMobile ? 14 : 32;
 
     const sakuraColors = ['#F3DCE2', '#DFB9BF', '#E8C5CC', '#F7E7EB'];
     const lilyColors = ['#8A2244', '#641F36', '#A13355', '#C28B9A'];
@@ -61,12 +61,12 @@ export const SakuraSpiderLilyAmbience: React.FC = () => {
         x: Math.random() * width,
         y: initialY !== undefined ? initialY : Math.random() * height - 20,
         size: type === 'sparkle' ? 2 + Math.random() * 2 : 7 + Math.random() * 9,
-        speedY: 0.6 + Math.random() * 1.2,
-        speedX: -0.4 + Math.random() * 0.8,
+        speedY: 0.35 + Math.random() * 0.65,
+        speedX: -0.25 + Math.random() * 0.5,
         rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02,
+        rotationSpeed: (Math.random() - 0.5) * 0.014,
         flip: Math.random() * Math.PI,
-        flipSpeed: 0.015 + Math.random() * 0.025,
+        flipSpeed: 0.01 + Math.random() * 0.015,
         type,
         color,
         opacity: 0.35 + Math.random() * 0.45,
@@ -158,7 +158,7 @@ export const SakuraSpiderLilyAmbience: React.FC = () => {
 
         // Natural descent & sway
         p.y += p.speedY;
-        p.x += p.speedX + Math.sin(p.flip) * 0.6;
+        p.x += p.speedX + Math.sin(p.flip) * 0.35;
         p.rotation += p.rotationSpeed;
         p.flip += p.flipSpeed;
 
@@ -170,10 +170,10 @@ export const SakuraSpiderLilyAmbience: React.FC = () => {
           const maxDist = 120;
 
           if (dist < maxDist && dist > 0) {
-            const force = (1 - dist / maxDist) * 2.8;
+            const force = (1 - dist / maxDist) * 1.8;
             p.x += (dx / dist) * force;
             p.y += (dy / dist) * force * 0.6;
-            p.rotation += (dx / dist) * 0.05;
+            p.rotation += (dx / dist) * 0.03;
           }
         }
 
