@@ -252,15 +252,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               </div>
               <div className="h-7 w-[1px] bg-burgundy/20 hidden sm:block" />
               <div>
-                <strong className="block text-3xl font-serif font-bold text-emerald-700 dark:text-emerald-400">
-                  &lt; 0.35°
-                </strong>
-                <small className="text-[11px] font-mono text-taupe uppercase tracking-wider">
-                  Bump Steer (100mm)
-                </small>
-              </div>
-              <div className="h-7 w-[1px] bg-burgundy/20 hidden sm:block" />
-              <div>
                 <div className="flex items-center space-x-1.5 text-xs font-mono text-wine font-semibold">
                   <SpiderLily variant="icon" className="w-4 h-4 text-burgundy" />
                   <span>TheCrazyDabi Studio</span>
