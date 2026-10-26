@@ -4,15 +4,9 @@ import {
   ChevronRight,
   Compass,
   FileText,
-  Sparkles,
-  Cpu,
-  Bot,
-  Wrench,
-  CheckCircle2,
-  Sliders
+  Bot
 } from 'lucide-react';
 import { Profile } from '../../types/content';
-import { BuggySuspensionCAD } from './BuggySuspensionCAD';
 import { SpiderLily } from '../common/SpiderLily';
 import { getAssetUrl } from '../../utils/assets';
 
@@ -22,16 +16,13 @@ interface HeroSectionProps {
 
 const ROLES = [
   'Robotics & Automation Engineer',
-  'Automotive Buggy Suspension & Steering (Lotus SHARK)',
   'Autonomous Navigation & ROS 2 / Nav2',
   'Drive-by-Wire CAN Bus & Embedded Firmware',
+  'Vehicle Dynamics & CAD Kinematics',
   'Cyber-Physical Security Tooling'
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
-  // Stage view toggle: 'portrait' (primary authentic portrait) | 'suspension' (CAD simulation)
-  const [stageView, setStageView] = useState<'portrait' | 'suspension'>('portrait');
-
   // Typewriter effect state
   const [typewriterText, setTypewriterText] = useState('');
   const roleIndexRef = useRef(0);
@@ -283,135 +274,99 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
           {/* Right Column: Prominent Authentic Portrait with Restrained Engineering Accents (Col 5) */}
           <div className="lg:col-span-5 relative flex flex-col items-center">
-            {/* View Switcher: Authentic Portrait (Primary) vs Buggy Suspension CAD Simulation */}
-            <div className="mb-3 inline-flex p-1 rounded-full bg-cream-surface border border-burgundy/20 shadow-sm text-xs font-mono z-20">
-              <button
-                onClick={() => setStageView('portrait')}
-                className={`flex items-center space-x-1.5 px-3.5 py-1 rounded-full transition-all duration-200 ${
-                  stageView === 'portrait'
-                    ? 'bg-burgundy text-cream font-semibold shadow-sm'
-                    : 'text-taupe hover:text-wine'
-                }`}
-              >
-                <Sparkles className="w-3 h-3" />
-                <span>Real Portrait</span>
-              </button>
-
-              <button
-                onClick={() => setStageView('suspension')}
-                className={`flex items-center space-x-1.5 px-3.5 py-1 rounded-full transition-all duration-200 ${
-                  stageView === 'suspension'
-                    ? 'bg-burgundy text-cream font-semibold shadow-sm'
-                    : 'text-taupe hover:text-wine'
-                }`}
-              >
-                <Wrench className="w-3 h-3" />
-                <span>Buggy CAD Simulation</span>
-              </button>
-            </div>
-
-            {/* View 1: Authentic Portrait (Default & Prominent) */}
-            {stageView === 'portrait' && (
+            {/* Authentic Portrait Card */}
+            <div
+              ref={portraitRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[390px] cursor-pointer select-none mx-auto"
+            >
+              {/* Subtle Restrained Orbital Line (Fine dashed cadence) */}
               <div
-                ref={portraitRef}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[390px] cursor-pointer select-none mx-auto"
+                className="absolute -inset-3.5 border border-dashed border-dusky/40 rounded-[44px] pointer-events-none animate-spin"
+                style={{ animationDuration: '60s' }}
+              />
+
+              {/* Fine CAD Alignment Construction Corners */}
+              <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-burgundy/50 pointer-events-none" />
+              <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-burgundy/50 pointer-events-none" />
+              <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-burgundy/50 pointer-events-none" />
+              <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-burgundy/50 pointer-events-none" />
+
+              {/* Main Architectural Editorial Portrait Frame */}
+              <div
+                className="relative aspect-[4/5] rounded-[36px] overflow-hidden border-2 border-burgundy/30 bg-gradient-to-b from-[#3E1120] to-[#1F0711] shadow-2xl transition-all duration-200"
+                style={tiltStyle}
               >
-                {/* Subtle Restrained Orbital Line (Fine dashed cadence) */}
-                <div
-                  className="absolute -inset-3.5 border border-dashed border-dusky/40 rounded-[44px] pointer-events-none animate-spin"
-                  style={{ animationDuration: '60s' }}
+                {/* Blueprint fine coordinate grid lines */}
+                <div className="absolute inset-0 cad-grid-bg-dark opacity-30 pointer-events-none" />
+
+                {/* Authentic Burgundy-Shirt Portrait of Vasudev */}
+                <img
+                  src={getAssetUrl('assets/profile/vasudev-hero-portrait.jpg')}
+                  alt="Vasudev Saras K M — Robotics & Automation Engineer"
+                  className="absolute inset-0 w-full h-full object-cover z-10"
+                  style={{
+                    objectPosition: '52% 20%',
+                    filter: 'contrast(1.03) brightness(1.02)'
+                  }}
+                  loading="eager"
                 />
 
-                {/* Fine CAD Alignment Construction Corners */}
-                <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-burgundy/50 pointer-events-none" />
-                <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-burgundy/50 pointer-events-none" />
-                <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-burgundy/50 pointer-events-none" />
-                <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-burgundy/50 pointer-events-none" />
+                {/* Restrained soft gradient shade at base to anchor typography */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20 pointer-events-none" />
 
-                {/* Main Architectural Editorial Portrait Frame */}
-                <div
-                  className="relative aspect-[4/5] rounded-[36px] overflow-hidden border-2 border-burgundy/30 bg-gradient-to-b from-[#3E1120] to-[#1F0711] shadow-2xl transition-all duration-200"
-                  style={tiltStyle}
-                >
-                  {/* Blueprint fine coordinate grid lines */}
-                  <div className="absolute inset-0 cad-grid-bg-dark opacity-30 pointer-events-none" />
-
-                  {/* Authentic Burgundy-Shirt Portrait of Vasudev */}
-                  <img
-                    src={getAssetUrl('assets/profile/vasudev-hero-portrait.jpg')}
-                    alt="Vasudev Saras K M — Robotics & Automation Engineer"
-                    className="absolute inset-0 w-full h-full object-cover z-10"
-                    style={{
-                      objectPosition: '52% 20%',
-                      filter: 'contrast(1.03) brightness(1.02)'
-                    }}
-                    loading="eager"
-                  />
-
-                  {/* Restrained soft gradient shade at base to anchor typography */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20 pointer-events-none" />
-
-                  {/* Top Restrained Engineering Datum Marks */}
-                  <div className="absolute top-3 left-3 text-[9px] font-mono text-cream/90 z-20 flex items-center space-x-1.5 px-2 py-0.5 rounded-md bg-wine/70 backdrop-blur-sm border border-white/10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>SYS_ID // VASUDEV.SARAS</span>
-                  </div>
-
-                  <div className="absolute top-3 right-3 text-[9px] font-mono text-blush/90 z-20 px-2 py-0.5 rounded-md bg-wine/70 backdrop-blur-sm border border-white/10">
-                    S7_ROBOTICS
-                  </div>
-
-                  {/* Bottom Portrait Identity Badge */}
-                  <div className="absolute bottom-3.5 left-3.5 right-3.5 z-20 p-2.5 rounded-2xl bg-wine/85 backdrop-blur-md border border-white/15 text-cream space-y-0.5">
-                    <div className="flex items-center justify-between">
-                      <span className="font-display font-bold text-sm tracking-wide">
-                        {profile.name}
-                      </span>
-                      <span className="text-[9px] font-mono text-blush uppercase tracking-widest">
-                        SAINTGITS // KTU
-                      </span>
-                    </div>
-                    <p className="text-[10px] font-mono text-cream/80 truncate">
-                      Robotics &amp; Automation Engineer · Dabi
-                    </p>
-                  </div>
+                {/* Top Restrained Engineering Datum Marks */}
+                <div className="absolute top-3 left-3 text-[9px] font-mono text-cream/90 z-20 flex items-center space-x-1.5 px-2 py-0.5 rounded-md bg-wine/70 backdrop-blur-sm border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>SYS_ID // VASUDEV.SARAS</span>
                 </div>
 
-                {/* Botanical Red Spider Lily Curling Accent (Bottom Corner) */}
-                <div className="absolute -bottom-5 -left-5 sm:-left-7 z-30 pointer-events-none">
-                  <SpiderLily variant="curling" className="w-22 h-22 sm:w-26 sm:h-26 filter drop-shadow-xl opacity-95" />
+                <div className="absolute top-3 right-3 text-[9px] font-mono text-blush/90 z-20 px-2 py-0.5 rounded-md bg-wine/70 backdrop-blur-sm border border-white/10">
+                  S7_ROBOTICS
                 </div>
 
-                {/* Compact Restrained Technical Tags Around Portrait */}
-                <span
-                  className="chipf text-[10px] sm:text-[11px]"
-                  style={{ left: '-12px', bottom: '110px' }}
-                >
-                  ROS 2 / Jetson Orin
-                </span>
-                <span
-                  className="chipf text-[10px] sm:text-[11px]"
-                  style={{ right: '-10px', top: '75px' }}
-                >
-                  Lotus SHARK CAD
-                </span>
-                <span
-                  className="chipf text-[10px] sm:text-[11px]"
-                  style={{ right: '12px', bottom: '-12px' }}
-                >
-                  Autonomous Systems
-                </span>
+                {/* Bottom Portrait Identity Badge */}
+                <div className="absolute bottom-3.5 left-3.5 right-3.5 z-20 p-2.5 rounded-2xl bg-wine/85 backdrop-blur-md border border-white/15 text-cream space-y-0.5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-display font-bold text-sm tracking-wide">
+                      {profile.name}
+                    </span>
+                    <span className="text-[9px] font-mono text-blush uppercase tracking-widest">
+                      SAINTGITS // KTU
+                    </span>
+                  </div>
+                  <p className="text-[10px] font-mono text-cream/80 truncate">
+                    Robotics &amp; Automation Engineer · Dabi
+                  </p>
+                </div>
               </div>
-            )}
 
-            {/* View 2: Automotive Buggy Suspension & Steering CAD Simulation */}
-            {stageView === 'suspension' && (
-              <div className="w-full max-w-[440px] animate-in fade-in duration-300">
-                <BuggySuspensionCAD interactive={true} />
+              {/* Botanical Red Spider Lily Curling Accent (Bottom Corner) */}
+              <div className="absolute -bottom-5 -left-5 sm:-left-7 z-30 pointer-events-none">
+                <SpiderLily variant="curling" className="w-22 h-22 sm:w-26 sm:h-26 filter drop-shadow-xl opacity-95" />
               </div>
-            )}
+
+              {/* Compact Restrained Technical Tags Around Portrait */}
+              <span
+                className="chipf text-[10px] sm:text-[11px]"
+                style={{ left: '-12px', bottom: '110px' }}
+              >
+                ROS 2 / Jetson Orin
+              </span>
+              <span
+                className="chipf text-[10px] sm:text-[11px]"
+                style={{ right: '-10px', top: '75px' }}
+              >
+                Lotus SHARK CAD
+              </span>
+              <span
+                className="chipf text-[10px] sm:text-[11px]"
+                style={{ right: '12px', bottom: '-12px' }}
+              >
+                Autonomous Systems
+              </span>
+            </div>
           </div>
 
         </div>
