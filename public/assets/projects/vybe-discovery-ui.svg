@@ -20,7 +20,7 @@
 
   <rect x='40' y='35' width='1120' height='55' rx='8' fill='#451425' stroke='#C28B9A' stroke-width='1.5'/>
   <text x='65' y='68' fill='#F7F0E7' font-family='sans-serif' font-weight='bold' font-size='20' letter-spacing='2'>VYBE // SWIPE-BASED TRAVEL PACKAGE DISCOVERY</text>
-  <text x='960' y='68' fill='#C28B9A' font-family='monospace' font-size='16'>TINKERHUB 15.5H SPRINT</text>
+  <text x='940' y='68' fill='#C28B9A' font-family='monospace' font-size='16'>TINKERSPACE 15.5H SPRINT</text>
 
   <g transform='translate(420, 115)'>
     <rect width='360' height='500' rx='32' fill='#15060C' stroke='#641F36' stroke-width='3'/>
@@ -67,7 +67,7 @@
   <g transform='translate(820, 140)'>
     <rect width='320' height='440' rx='12' fill='#120409' stroke='#641F36' stroke-width='2'/>
     <text x='25' y='40' fill='#F7F0E7' font-family='monospace' font-size='16' font-weight='bold'>HACKATHON SPRINT STATS</text>
-    <text x='25' y='65' fill='#C28B9A' font-family='monospace' font-size='13'>TINKERHUB CALICUT</text>
+    <text x='25' y='65' fill='#C28B9A' font-family='monospace' font-size='13'>TINKERSPACE CALICUT (10-11 OCT)</text>
 
     <rect x='20' y='95' width='280' height='70' rx='8' fill='#240713'/>
     <text x='35' y='125' fill='#F7F0E7' font-family='sans-serif' font-weight='bold' font-size='22'>15.5 HOURS</text>
@@ -86,6 +86,6 @@
 
   <rect x='40' y='630' width='1120' height='120' rx='10' fill='#380F1F' stroke='#641F36' stroke-width='1.5'/>
   <text x='65' y='665' fill='#DFB9BF' font-family='serif' font-size='20' font-weight='bold'>VYBE: Travel Discovery Web App</text>
-  <text x='65' y='695' fill='#F7F0E7' font-family='sans-serif' font-size='14'>Developed at TinkerHub Calicut Travel Hackathon by Vasudev Saras &amp; Teammate</text>
+  <text x='65' y='695' fill='#F7F0E7' font-family='sans-serif' font-size='14'>Developed at TinkerSpace Calicut Hackathon (10 - 11 October) by Vasudev Saras &amp; Teammate</text>
   <text x='65' y='722' fill='#C28B9A' font-family='monospace' font-size='13'>Stack: Python, Flask, HTML5, CSS3, JavaScript · 15.5-Hour Rapid Sprint MVP</text>
 </svg>

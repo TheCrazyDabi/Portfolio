@@ -326,14 +326,14 @@ export const initialMilestones: Milestone[] = [
   },
   {
     id: "ms-tinkerhub-vybe",
-    year: "2025",
-    title: "VYBE: Travel Discovery Web App — TinkerHub Calicut Hackathon",
-    subtitle: "15.5-Hour Rapid Hackathon Sprint",
-    organization: "TinkerHub Calicut",
-    location: "Calicut, Kerala",
-    description: "Developed a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces in a two-member team sprint.",
+    year: "10 - 11 October",
+    title: "VYBE: Travel Discovery Web App — TinkerSpace Calicut Hackathon",
+    subtitle: "15.5-Hour Rapid Hackathon Sprint (10 - 11 October)",
+    organization: "TinkerSpace Calicut",
+    location: "TinkerSpace, Calicut, Kerala",
+    description: "Developed a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces during the hackathon on 10 - 11 October at TinkerSpace Calicut.",
     highlights: [
-      "Built an intuitive card-swiping concept for tour discovery in a 15.5-hour sprint",
+      "Built an intuitive card-swiping concept for tour discovery in a 15.5-hour sprint at TinkerSpace Calicut (10 - 11 October)",
       "Engineered Flask backend with role-based Traveller, Operator, and Admin portals"
     ],
     category: "Competition",

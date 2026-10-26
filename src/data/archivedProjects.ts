@@ -201,19 +201,19 @@ export const archivedProjects: Project[] = [
     slug: "vybe",
     title: "VYBE: Swipe-Based Travel Discovery Web App",
     category: "Software & AI",
-    shortDescription: "Developed at TinkerHub Calicut Travel Hackathon in a 15.5-hour sprint: a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces.",
+    shortDescription: "Developed at the hackathon on 10 - 11 October at TinkerSpace Calicut in a 15.5-hour sprint: a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces.",
     status: "published",
     projectState: "Completed",
     coverImage: "assets/projects/vybe-discovery-ui.svg",
     galleryImages: [
       {
         url: "assets/projects/vybe-discovery-ui.svg",
-        caption: "VYBE swipe-based tour package discovery interface, multi-role session flow, and TinkerHub Calicut sprint stats"
+        caption: "VYBE swipe-based tour package discovery interface, multi-role session flow, and TinkerSpace Calicut hackathon sprint stats (10 - 11 October)"
       }
     ],
-    technologies: ["Python", "Flask", "HTML", "CSS", "JavaScript", "TinkerHub Calicut Hackathon"],
+    technologies: ["Python", "Flask", "HTML", "CSS", "JavaScript", "TinkerSpace Calicut Hackathon"],
     problemStatement: "Traditional travel booking platforms present cluttered tables and text-heavy listings that lack engaging, intuitive discovery for young travellers.",
-    designProcess: "Developed a demo concept where travellers swipe through tour packages posted by travel operators. Planned separate Traveller, Operator, and Admin interfaces to support package discovery and management. Built the web experience with Flask and a simple UI focused on a fast, clear hackathon demo flow during a 15.5-hour sprint with a two-member team.",
+    designProcess: "Developed at the hackathon held on 10 - 11 October at TinkerSpace Calicut. A demo concept where travellers swipe through tour packages posted by travel operators. Planned separate Traveller, Operator, and Admin interfaces to support package discovery and management. Built the web experience with Flask and a simple UI focused on a fast, clear hackathon demo flow during a 15.5-hour sprint with a two-member team.",
     hardwareSoftwareArchitecture: "Flask backend routing -> Jinja2 templated UI with gesture-based swipe card interactions -> Multi-role session management (Traveller, Operator, Admin).",
     personalContribution: "Flask web architecture, routing logic, role-based interfaces, and hackathon presentation demo.",
     challengesAndSolutions: [
@@ -222,13 +222,13 @@ export const archivedProjects: Project[] = [
         solution: "Focused on an agile MVP architecture with clear separation between Traveller swipe discovery and Operator listing submission."
       }
     ],
-    results: "Completed and presented a working prototype at TinkerHub Calicut Travel Hackathon with interactive package swiping and operator management.",
+    results: "Completed and presented a working prototype at the TinkerSpace Calicut Hackathon (10 - 11 October) with interactive package swiping and operator management.",
     lessonsLearned: "Fast-paced hackathons require razor-sharp scope discipline to deliver an engaging, polished user experience.",
     sourceCodeUrl: "https://github.com/TheCrazyDabi/VYBE",
     demoUrl: "",
     documentationUrl: "",
     specifications: {
-      "Event": "TinkerHub Calicut Travel Hackathon",
+      "Event": "Hackathon at TinkerSpace Calicut (10 - 11 October)",
       "Sprint Duration": "15.5-Hour Rapid Sprint",
       "Team Size": "Two-Member Team",
       "Web Framework": "Python & Flask",

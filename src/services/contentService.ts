@@ -151,7 +151,12 @@ export class ContentService {
       }
     }
     const all = getLocalStorage<Milestone[]>(KEYS.MILESTONES, initialMilestones);
-    return all.sort((a, b) => a.orderIndex - b.orderIndex);
+    // Ensure fresh updates to initialMilestones (such as TinkerSpace Calicut hackathon) are synchronized
+    const synced = all.map(m => {
+      const fresh = initialMilestones.find(im => im.id === m.id);
+      return fresh ? { ...m, ...fresh } : m;
+    });
+    return synced.sort((a, b) => a.orderIndex - b.orderIndex);
   }
 
   static async getProfile(): Promise<Profile> {

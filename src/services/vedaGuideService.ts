@@ -453,6 +453,23 @@ export class VedaGuideService {
     }
 
     // -------------------------------------------------------------------------
+    // 8B. VYBE: Travel Discovery Web App (TinkerSpace Calicut Hackathon)
+    // -------------------------------------------------------------------------
+    if (has('vybe') || has('travel discovery') || has('tinkerspace')) {
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        pose: 'coding',
+        text: `🧭 **VYBE: Swipe-Based Travel Discovery Web App**\n\nDeveloped during a rapid **15.5-hour hackathon sprint on 10 - 11 October at TinkerSpace Calicut**:\n\n• **Core Concept**: An intuitive swipe-based destination and tour discovery web app designed for young travellers.\n• **Architecture**: Lightweight Python & Flask backend with gesture-driven swipe card physics.\n• **Role-Based Portals**: Clean separate portals for Travellers, Tour Operators, and Platform Administrators.\n• **Hackathon Result**: Successfully designed, engineered, and demonstrated as a working prototype with a two-member team in 15.5 hours!`,
+        actions: [
+          { label: 'View Milestones (Trajectory)', type: 'navigate', target: 'journey' },
+          { label: 'Explore Code on GitHub', type: 'external', target: 'https://github.com/TheCrazyDabi/VYBE' }
+        ]
+      };
+    }
+
+    // -------------------------------------------------------------------------
     // 9. General Projects Overview
     // -------------------------------------------------------------------------
     if (
@@ -470,7 +487,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'coding',
-        text: `Vasudev has engineered multiple flagship hardware, autonomy, and security systems:\n\n1. 🚗 **Autonomous First-Responder Buggy**: NVIDIA Jetson Orin Nano + ROS 2 Nav2 + YOLOv8 pathway segmentation + Drive-by-Wire CAN network.\n2. 🏎️ **Equinox aBAJA SAE 2026**: Double-wishbone suspension and 88% Ackermann steering synthesized in Lotus SHARK, SOLIDWORKS, and MSC Adams Car.\n3. 🦾 **MediArm**: 3-DOF articulated arm powered by dual-core ESP32, BTS7960 43A motor drivers, and offline voice control.\n4. 🛡️ **Silent Guardian**: In-browser acoustic threat firewall with real-time speech redaction.\n5. 🧭 **VYBE**: Fast gesture-driven travel discovery app (15.5h hackathon sprint).\n6. 📡 **NetSentinel v2.0**: Raw 802.11 monitor mode deauth threat detector.\n7. 🔐 **Rakuzan SOC**: High-speed Git entropy pre-commit security scanner.\n\nWhich project would you like to explore in detail?`,
+        text: `Vasudev has engineered multiple flagship hardware, autonomy, and security systems:\n\n1. 🚗 **Autonomous First-Responder Buggy**: NVIDIA Jetson Orin Nano + ROS 2 Nav2 + YOLOv8 pathway segmentation + Drive-by-Wire CAN network.\n2. 🏎️ **Equinox aBAJA SAE 2026**: Double-wishbone suspension and 88% Ackermann steering synthesized in Lotus SHARK, SOLIDWORKS, and MSC Adams Car.\n3. 🦾 **MediArm**: 3-DOF articulated arm powered by dual-core ESP32, BTS7960 43A motor drivers, and offline voice control.\n4. 🛡️ **Silent Guardian**: In-browser acoustic threat firewall with real-time speech redaction.\n5. 🧭 **VYBE**: Fast gesture-driven travel discovery app (15.5h hackathon sprint on 10 - 11 October at TinkerSpace Calicut).\n6. 📡 **NetSentinel v2.0**: Raw 802.11 monitor mode deauth threat detector.\n7. 🔐 **Rakuzan SOC**: High-speed Git entropy pre-commit security scanner.\n\nWhich project would you like to explore in detail?`,
         actions: [
           { label: 'Explore Flagship Projects', type: 'navigate', target: 'projects' },
           { label: 'Autonomous Rover 🚗', type: 'navigate', target: 'projects' },
