@@ -34,6 +34,19 @@ const KEYS = {
   LOCAL_SESSION: `${STORAGE_PREFIX}admin_session`
 };
 
+const EXCLUDED_PROJECT_IDS = new Set(['proj-netsentinel', 'proj-rakuzan-soc', 'proj-ik-solver']);
+const EXCLUDED_EXPERIMENT_IDS = new Set(['exp-ik-solver', 'exp-can-sniffer', 'exp-yolo-seg', 'exp-lotus-suspension']);
+
+function mergeCuratedProjects(records: Project[]): Project[] {
+  const merged = new Map<string, Project>(initialProjects.map(project => [project.id, project] as [string, Project]));
+  records.forEach(project => {
+    if (!EXCLUDED_PROJECT_IDS.has(project.id) && project.id !== 'proj-veda') {
+      merged.set(project.id, project);
+    }
+  });
+  return [...merged.values()].sort((a, b) => a.orderIndex - b.orderIndex);
+}
+
 // Helper to get from local storage or fallback to seed
 function getLocalStorage<T>(key: string, fallback: T): T {
   try {
@@ -66,14 +79,14 @@ export class ContentService {
           .order('order_index', { ascending: true });
 
         if (!error && data && data.length > 0) {
-          return data as Project[];
+          return mergeCuratedProjects(data as Project[]).filter(project => project.status === 'published');
         }
       } catch (err) {
         console.warn('Supabase query failed, falling back to bundled data:', err);
       }
     }
     const all = getLocalStorage<Project[]>(KEYS.PROJECTS, initialProjects);
-    return all.filter(p => p.status === 'published' && p.id !== 'proj-veda').sort((a, b) => a.orderIndex - b.orderIndex);
+    return mergeCuratedProjects(all).filter(project => project.status === 'published');
   }
 
   static async getPublicCertifications(): Promise<Certification[]> {
@@ -106,14 +119,14 @@ export class ContentService {
           .order('date', { ascending: false });
 
         if (!error && data && data.length > 0) {
-          return data as Experiment[];
+          return (data as Experiment[]).filter(experiment => !EXCLUDED_EXPERIMENT_IDS.has(experiment.id));
         }
       } catch (err) {
         console.warn('Supabase experiments query failed, falling back:', err);
       }
     }
     const all = getLocalStorage<Experiment[]>(KEYS.EXPERIMENTS, initialExperiments);
-    return all.filter(e => e.status === 'published');
+    return all.filter(e => e.status === 'published' && !EXCLUDED_EXPERIMENT_IDS.has(e.id));
   }
 
   static async getPublicSkills(): Promise<Skill[]> {
@@ -144,7 +157,10 @@ export class ContentService {
           .order('order_index', { ascending: true });
 
         if (!error && data && data.length > 0) {
-          return data as Milestone[];
+          return (data as Milestone[]).map(milestone => {
+            const fresh = initialMilestones.find(item => item.id === milestone.id);
+            return fresh ? { ...milestone, ...fresh } : milestone;
+          });
         }
       } catch (err) {
         console.warn('Supabase milestones query failed, falling back:', err);
@@ -168,13 +184,24 @@ export class ContentService {
           .single();
 
         if (!error && data) {
-          return data as Profile;
+          return {
+            ...(data as Profile),
+            title: initialProfile.title,
+            introduction: initialProfile.introduction,
+            aboutBio: initialProfile.aboutBio
+          };
         }
       } catch (err) {
         console.warn('Supabase profile query failed, falling back:', err);
       }
     }
-    return getLocalStorage<Profile>(KEYS.PROFILE, initialProfile);
+    const savedProfile = getLocalStorage<Profile>(KEYS.PROFILE, initialProfile);
+    return {
+      ...savedProfile,
+      title: initialProfile.title,
+      introduction: initialProfile.introduction,
+      aboutBio: initialProfile.aboutBio
+    };
   }
 
   static async getSiteSettings(): Promise<SiteSettings> {
@@ -205,12 +232,12 @@ export class ContentService {
           .select('*')
           .order('order_index', { ascending: true });
 
-        if (!error && data) return data as Project[];
+        if (!error && data) return mergeCuratedProjects(data as Project[]);
       } catch (err) {
         console.warn('Supabase admin projects fetch failed:', err);
       }
     }
-    return getLocalStorage<Project[]>(KEYS.PROJECTS, initialProjects).filter(p => p.id !== 'proj-veda');
+    return mergeCuratedProjects(getLocalStorage<Project[]>(KEYS.PROJECTS, initialProjects));
   }
 
   static async saveProject(project: Project): Promise<{ success: boolean; error?: string }> {
@@ -325,12 +352,12 @@ export class ContentService {
           .select('*')
           .order('date', { ascending: false });
 
-        if (!error && data) return data as Experiment[];
+        if (!error && data) return (data as Experiment[]).filter(experiment => !EXCLUDED_EXPERIMENT_IDS.has(experiment.id));
       } catch (err) {
         console.warn('Supabase admin experiments fetch failed:', err);
       }
     }
-    return getLocalStorage<Experiment[]>(KEYS.EXPERIMENTS, initialExperiments);
+    return getLocalStorage<Experiment[]>(KEYS.EXPERIMENTS, initialExperiments).filter(experiment => !EXCLUDED_EXPERIMENT_IDS.has(experiment.id));
   }
 
   static async saveExperiment(exp: Experiment): Promise<{ success: boolean; error?: string }> {

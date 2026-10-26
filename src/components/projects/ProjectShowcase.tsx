@@ -42,7 +42,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) =>
             </h2>
           </div>
           <p className="mt-4 md:mt-0 text-xs font-mono text-taupe max-w-sm">
-            Each one is a system I designed, built and shipped across robotics, CAD kinematics, AI, and cybersecurity.
+            Selected work across robotics, mechanical design, embedded systems, and software, with each case study showing its current stage.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) =>
           ))}
         </div>
 
-        {/* Project Grid or Empty Staging State */}
+        {/* Project Grid or Empty State */}
         {filteredProjects.length === 0 ? (
           <div className="rounded-2xl border-2 border-dashed border-burgundy/20 bg-cream-surface/80 p-10 sm:p-14 text-center max-w-2xl mx-auto space-y-5 shadow-sm">
             <div className="w-16 h-16 rounded-2xl bg-burgundy/10 border border-burgundy/20 flex items-center justify-center mx-auto text-burgundy shadow-sm">
@@ -75,15 +75,15 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) =>
             </div>
             <div className="space-y-2">
               <h3 className="font-display font-bold text-2xl sm:text-3xl text-wine">
-                Projects Staging in Progress
+                No projects are available yet
               </h3>
               <p className="text-sm font-sans text-taupe-dark max-w-md mx-auto leading-relaxed">
-                Project case studies, telemetry logs, and CAD models are currently being curated and will be uploaded sequentially.
+                Project case studies will appear here once they are published.
               </p>
             </div>
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3 text-xs font-mono">
               <span className="px-3.5 py-1.5 rounded-full bg-cream border border-burgundy/15 text-taupe font-medium">
-                [PIPELINE: ACTIVE]
+                [NO PUBLISHED PROJECTS]
               </span>
               <a
                 href="#veda"

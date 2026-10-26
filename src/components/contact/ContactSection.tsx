@@ -31,7 +31,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
               <SpiderLily variant="icon" className="w-6 h-6 opacity-80" />
             </h2>
             <p className="text-taupe-dark text-sm sm:text-base max-w-xl mx-auto font-sans">
-              Currently open for robotics engineering internships, embedded firmware projects, and motorsports CAD challenges.
+              Currently open to robotics and automation internships, embedded systems projects, and mechanical design opportunities.
             </p>
           </div>
 

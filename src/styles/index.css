@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Local enter-animation utilities used by dialogs, menus, and panels. */
+@keyframes portfolio-enter {
+  from {
+    opacity: var(--portfolio-enter-opacity, 1);
+    transform: translate3d(0, var(--portfolio-enter-y, 0), 0) scale(var(--portfolio-enter-scale, 1));
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-in {
+  animation-name: portfolio-enter;
+  animation-duration: 200ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+.fade-in { --portfolio-enter-opacity: 0; }
+.slide-in-from-bottom-2 { --portfolio-enter-y: 0.5rem; }
+.slide-in-from-bottom-3 { --portfolio-enter-y: 0.75rem; }
+.slide-in-from-bottom-4 { --portfolio-enter-y: 1rem; }
+.slide-in-from-top-2 { --portfolio-enter-y: -0.5rem; }
+.zoom-in-95 { --portfolio-enter-scale: 0.95; }
+.animate-in.duration-150 { animation-duration: 150ms; }
+.animate-in.duration-200 { animation-duration: 200ms; }
+.animate-in.duration-250 { animation-duration: 250ms; }
+
 :root {
   --color-burgundy: #641F36;
   --color-wine: #451425;
@@ -403,6 +432,58 @@ html.dark .bg-dusky\/20 {
   animation: chibiAura 2s ease-in-out infinite;
 }
 
+.chibi-3d-stage {
+  perspective: 720px;
+  perspective-origin: 55% 42%;
+}
+
+.chibi-3d-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(100, 31, 54, 0.2), rgba(31, 7, 17, 0.22));
+  transform-style: preserve-3d;
+  transform-origin: 52% 78%;
+  border: 1px solid rgba(223, 185, 191, 0.58);
+  box-shadow: 0 12px 28px rgba(31, 7, 17, 0.3), 0 0 0 3px rgba(100, 31, 54, 0.12);
+  animation: chibi3dFloat 4.2s ease-in-out infinite;
+  transition: filter 220ms ease, box-shadow 220ms ease;
+  backface-visibility: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chibi-3d-stage:hover .chibi-3d-card {
+    animation-play-state: paused;
+    transform: rotateY(-8deg) rotateX(4deg) translateY(-2px) scale(1.04);
+    filter: saturate(1.06) brightness(1.04);
+    box-shadow: 0 18px 32px rgba(31, 7, 17, 0.38), 0 0 0 3px rgba(194, 139, 154, 0.28);
+  }
+}
+
+@keyframes chibi3dFloat {
+  0%, 100% { transform: translateY(0) rotateY(-2deg) rotateX(1deg); }
+  50% { transform: translateY(-5px) rotateY(3deg) rotateX(-1deg); }
+}
+
+@keyframes chibi3dGreeting {
+  0%, 100% { transform: translateY(0) rotateY(-4deg) rotateZ(-1deg); }
+  50% { transform: translateY(-5px) rotateY(5deg) rotateZ(1deg); }
+}
+
+@keyframes chibi3dThinking {
+  0%, 100% { transform: translateY(0) rotateY(-5deg) rotateX(1deg); }
+  50% { transform: translateY(-3px) rotateY(4deg) rotateX(-2deg); }
+}
+
+.chibi-3d-stage[data-state='greeting'] .chibi-3d-card,
+.chibi-3d-stage[data-state='happy'] .chibi-3d-card,
+.chibi-3d-stage[data-state='celebrating'] .chibi-3d-card {
+  animation-name: chibi3dGreeting;
+}
+
+.chibi-3d-stage[data-state='thinking'] .chibi-3d-card,
+.chibi-3d-stage[data-state='explaining'] .chibi-3d-card {
+  animation-name: chibi3dThinking;
+}
+
 .chibi-code-spark-1 {
   animation: codeFloat 1.8s ease-out infinite;
 }
@@ -551,8 +632,8 @@ html.dark .bg-dusky\/20 {
   animation: mq 32s linear infinite;
 }
 
-.marq-track:hover {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .marq-track:hover { animation-play-state: paused; }
 }
 
 /* Floating Ambient Blur Blobs */
@@ -681,7 +762,7 @@ section[id] { scroll-margin-top: 6rem; }
   .chibi-companion .chibi-dialogue { max-width: calc(100vw - 1.5rem); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .chibi-breathe, .chibi-wave, .chibi-type-left, .chibi-type-right,
+  .chibi-3d-card, .chibi-breathe, .chibi-wave, .chibi-type-left, .chibi-type-right,
   .chibi-zzz-1, .chibi-zzz-2, .chibi-zzz-3, .chibi-celebrate-bounce,
   .chibi-sparkle, .chibi-overdrive-aura { animation: none !important; }
 }

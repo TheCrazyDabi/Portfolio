@@ -14,8 +14,8 @@ export const RoboticArmCAD: React.FC<RoboticArmCADProps> = ({ interactive = true
   });
   const [isHovered, setIsHovered] = useState(false);
 
-  // Mouse tracking for subtle forward kinematics
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  // Pointer tracking supports both a mouse and touch dragging.
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!interactive || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 800;
@@ -31,7 +31,7 @@ export const RoboticArmCAD: React.FC<RoboticArmCADProps> = ({ interactive = true
     });
   };
 
-  const handleMouseLeave = () => {
+  const resetArmPose = () => {
     setIsHovered(false);
     // Return to resting CAD equilibrium pose
     setAngles({
@@ -40,6 +40,17 @@ export const RoboticArmCAD: React.FC<RoboticArmCADProps> = ({ interactive = true
       elbow: -42,
       wrist: -16,
     });
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!interactive || e.pointerType === 'mouse') return;
+    setIsHovered(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+    handlePointerMove(e);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== 'mouse') resetArmPose();
   };
 
   // Autonomous breathing / subtle micro-motion when not interacting
@@ -108,9 +119,13 @@ export const RoboticArmCAD: React.FC<RoboticArmCADProps> = ({ interactive = true
   return (
     <div
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
+      onPointerMove={handlePointerMove}
+      onPointerEnter={(e) => { if (e.pointerType === 'mouse') setIsHovered(true); }}
+      onPointerLeave={(e) => { if (e.pointerType === 'mouse') resetArmPose(); }}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      style={{ touchAction: 'pan-y' }}
       className="relative w-full max-w-2xl mx-auto rounded-2xl bg-cream-surface/70 border border-burgundy/15 p-2 sm:p-4 shadow-cad backdrop-blur-sm select-none overflow-hidden transition-all duration-300"
     >
       {/* Top CAD Header Bar */}

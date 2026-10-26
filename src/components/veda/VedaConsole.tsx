@@ -48,14 +48,14 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
 \\ \\   / / ____|  _ \\  / \\    | | | |_ _| 
  \\ \\ / /|  _| | | | |/ _ \\   | | | || |  
   \\ V / | |___| |_| / ___ \\  | |_| || |  
-   \\_/  |_____|____/_/   \\_\\  \\___/|___| v2.4 (Virtual Engine for Data & Analysis)`,
+   \\_/  |_____|____/_/   \\_\\  \\___/|___| v2.4`,
         timestamp: getTimestamp(),
         badge: 'BOOT'
       },
       {
         type: 'system',
         content: `[✔] V.E.D.A. Core: ONLINE (Deterministic In-Browser Knowledge Engine)
-[✔] Verified Subject: Vasudev Saras K M (Robotics & Automation Engineer)
+[✔] Verified Subject: Vasudev Saras K M (Robotics & Automation Engineering Student)
 [✔] Host Institution: Saintgits College of Engineering | APJ KTU
 [✔] Domain Graph: ROS 2 · Jetson Orin Nano · Lotus SHARK CAD · aBAJA 2026 · Cybersecurity
 [✔] Telemetry Protocol: Strict Local Execution (Zero External Cloud Telemetry)
@@ -291,7 +291,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
           <div className="flex items-center space-x-2 pl-2 border-l border-burgundy/25">
             <Terminal className="w-4 h-4 text-dusky" />
             <span className="font-mono text-xs font-bold text-cream tracking-wide">
-              VEDA_TERMINAL // v2.4
+              VEDA
             </span>
           </div>
         </div>
@@ -299,7 +299,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
         <div className="flex items-center space-x-2 text-xs font-mono">
           <div className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-wine/60 border border-burgundy/25 text-[10px]">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-dusky uppercase">ZERO CLOUD LEAKAGE</span>
+            <span className="text-dusky uppercase">PORTFOLIO GUIDE</span>
           </div>
 
           {/* Sound Toggle */}

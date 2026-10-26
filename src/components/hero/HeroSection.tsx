@@ -15,7 +15,7 @@ interface HeroSectionProps {
 }
 
 const ROLES = [
-  'Robotics & Automation Engineer',
+  'Robotics & Automation Engineering Student',
   'Autonomous Navigation & ROS 2 / Nav2',
   'Drive-by-Wire CAN Bus & Embedded Firmware',
   'Vehicle Dynamics & CAD Kinematics',
@@ -96,7 +96,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
   }, []);
 
   // Subtle 3D mouse parallax tilt
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!portraitRef.current) return;
     const rect = portraitRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -107,7 +107,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     });
   };
 
-  const handleMouseLeave = () => {
+  const resetPortraitTilt = () => {
     setTiltStyle({
       transform: 'perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)',
       transition: 'transform 0.45s ease-out'
@@ -268,8 +268,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             {/* Authentic Portrait Card */}
             <div
               ref={portraitRef}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
+              onPointerMove={handlePointerMove}
+              onPointerLeave={resetPortraitTilt}
+              onPointerUp={resetPortraitTilt}
+              onPointerCancel={resetPortraitTilt}
+              style={{ touchAction: 'pan-y' }}
               className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[390px] cursor-pointer select-none mx-auto"
             >
               {/* Subtle Restrained Orbital Line (Fine dashed cadence) */}
@@ -295,7 +298,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 {/* Authentic Burgundy-Shirt Portrait of Vasudev */}
                 <img
                   src={getAssetUrl('assets/profile/vasudev-hero-portrait.jpg')}
-                  alt="Vasudev Saras K M — Robotics & Automation Engineer"
+                  alt="Vasudev Saras K M — Robotics & Automation Engineering Student"
                   className="absolute inset-0 w-full h-full object-cover z-10"
                   style={{
                     objectPosition: '52% 20%',

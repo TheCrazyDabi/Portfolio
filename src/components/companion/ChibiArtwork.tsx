@@ -29,7 +29,7 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
       case 'greeting':
         return getAssetUrl('assets/companion/poses/hello.png');
       case 'coding':
-        return getAssetUrl('assets/companion/poses/working.png');
+        return getAssetUrl('assets/companion/vasudev-chibi-working-3d.png');
       case 'engineering':
         return getAssetUrl('assets/companion/poses/engineering.png');
       case 'thinking':
@@ -48,18 +48,20 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
     }
   };
 
+  const isThreeDimensionalPose = state === 'coding';
   const poseSrc = getPoseImage(state);
 
   return (
     <div
       onClick={onClick}
-      className={`relative cursor-pointer transition-transform duration-200 hover:scale-105 active:scale-95 select-none ${className} ${
+      data-state={state}
+      className={`${isThreeDimensionalPose ? 'chibi-3d-stage w-[5.5rem] h-[5.5rem] sm:w-24 sm:h-24 md:w-28 md:h-28' : className} relative cursor-pointer select-none ${
         isOverdrive ? 'chibi-overdrive-aura rounded-full p-1' : ''
       }`}
       role={onClick ? 'button' : 'img'}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={onClick ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(); } } : undefined}
-      aria-label={`Vasudev Chibi Companion in ${state} mode`}
+      aria-label={`Vasudev's 3D chibi companion, ${state} mode`}
     >
       {/* Animated Prop 1: Floating Zzz Bubbles for Sleeping State */}
       {isSleeping && (
@@ -118,20 +120,20 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
 
       {/* Primary Character Image / Fallback */}
       {!imageError ? (
-        <div
-          className={`w-full h-full flex items-center justify-center filter drop-shadow-md transition-all duration-300 ${
-            isCelebrating
-              ? 'chibi-celebrate-bounce'
-              : state === 'greeting'
-              ? 'chibi-wave'
-              : 'chibi-breathe'
-          }`}
-        >
+        <div className={`w-full h-full flex items-center justify-center filter drop-shadow-md transition-all duration-300 ${
+          isThreeDimensionalPose
+            ? 'chibi-3d-card overflow-hidden rounded-[1.15rem]'
+            : isCelebrating
+            ? 'chibi-celebrate-bounce'
+            : state === 'greeting'
+            ? 'chibi-wave'
+            : 'chibi-breathe'
+        }`}>
           <img
             src={poseSrc}
-            alt={`Vasudev Chibi - ${state}`}
+            alt={`Vasudev's chibi companion, ${state} pose`}
             onError={() => setImageError(true)}
-            className="w-full h-full object-contain pointer-events-none"
+            className={`w-full h-full ${isThreeDimensionalPose ? 'object-contain rounded-[1.15rem]' : 'object-contain'} pointer-events-none`}
             loading="eager"
           />
         </div>

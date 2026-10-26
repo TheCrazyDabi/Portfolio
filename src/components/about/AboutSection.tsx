@@ -13,32 +13,32 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
     {
       icon: Box,
       title: 'Mechanical CAD & Kinematics',
-      desc: 'SolidWorks parametric modeling, GD&T, Ackermann steering geometries, 3D printing tolerances, and structural joint optimization.',
+      desc: 'SolidWorks modeling and vehicle steering and suspension geometry, including Ackermann principles and kinematics.',
     },
     {
       icon: Cpu,
       title: 'Embedded Systems & Firmware',
-      desc: 'Low-latency bare-metal C/C++, FreeRTOS multitasking, CAN-Bus 2.0B telemetry, and sensor fusion on STM32 and ESP32 architectures.',
+      desc: 'ESP32 control and embedded interfaces used in robotics and vehicle project work.',
     },
     {
       icon: Layers,
       title: 'Robotics Control & ROS 2',
-      desc: 'Closed-form inverse kinematics solvers, PWM trajectory generation, distributed ROS 2 nodes, and web-based robotic teleoperation.',
+      desc: 'Embedded control concepts, distributed ROS 2 nodes, and web-based robot control interfaces.',
     },
     {
       icon: Eye,
       title: 'AI & Edge Computer Vision',
-      desc: 'Real-time OpenCV marker tracking, 6-DoF pose estimation for robotic docking, and local-first LLM inference engines with zero cloud leaks.',
+      desc: 'Computer vision is part of the autonomous rover work; implementation and test results are still being documented.',
     },
     {
       icon: ShieldCheck,
       title: 'Cyber-Physical Systems Security',
-      desc: 'Securing embedded interfaces, preventing malicious CAN-bus packet injections, input sanitization, and cryptographic firmware integrity.',
+      desc: 'Cybersecurity training and a local speech-analysis prototype focused on scam indicators and sensitive-number redaction.',
     },
     {
       icon: Terminal,
       title: 'Systems Tooling & Automation',
-      desc: 'Deterministic test harnesses, Python CLI architectures, automated build pipelines, and reproducible engineering workflows.',
+      desc: 'Python and Flask web interfaces, JavaScript, and software integration across project prototypes.',
     },
   ];
 
@@ -118,11 +118,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
 
             <p className="text-taupe-dark text-sm sm:text-base leading-relaxed font-sans">
               {profile.aboutBio ||
-                'I am an undergraduate Robotics & Automation Engineering student at Saintgits College of Engineering. I build systems where mechanical linkages, embedded microcontrollers, and intelligent algorithms work as a cohesive whole.'}
+                'I am an undergraduate Robotics & Automation Engineering student at Saintgits College of Engineering. I am interested in building systems that connect mechanical design, embedded control, and software.'}
             </p>
 
             <p className="text-taupe-dark text-sm sm:text-base leading-relaxed font-sans">
-              Whether designing an Ackermann steering knuckle in SolidWorks with zero bump-steer, implementing real-time inverse kinematics on dual-core microcontrollers, or developing local-first diagnostic AI tooling, I focus on engineering integrity over superficial demos.
+              Across vehicle suspension and steering work, embedded control, and software prototypes, I focus on understanding how the parts of a system fit together and documenting what has actually been designed, implemented, and tested.
             </p>
 
             {/* Quick Location & Academic Pill */}

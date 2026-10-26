@@ -1,6 +1,6 @@
 import React from 'react';
 import { VedaConsole } from './VedaConsole';
-import { Terminal, Shield, Zap, Cpu, Sparkles } from 'lucide-react';
+import { Terminal, Zap, Sparkles } from 'lucide-react';
 import { Profile } from '../../types/content';
 import { SpiderLily } from '../common/SpiderLily';
 
@@ -25,27 +25,19 @@ export const VedaSection: React.FC<VedaSectionProps> = ({ profile }) => {
           <div className="space-y-3">
             <div className="flex items-center space-x-2 text-xs font-mono text-burgundy font-semibold uppercase tracking-wider">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>INTELLIGENT SYSTEM ARCHITECTURE // EMBEDDED AI</span>
+              <span>PORTFOLIO GUIDE</span>
             </div>
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-wine">
-              V.E.D.A. Interactive AI Terminal
+              VEDA
             </h2>
             <p className="text-sm sm:text-base text-taupe-dark max-w-2xl font-sans leading-relaxed">
-              Experience Vasudev’s <span className="font-semibold text-wine">Virtual Engine for Data &amp; Analysis</span> live in your browser. Engineered with a truthful diagnostics paradigm, deterministic knowledge retrieval, and zero cloud telemetry.
+              Ask V.E.D.A. about Vasudev’s projects and background, or use it to navigate the portfolio.
             </p>
           </div>
 
-          {/* Telemetry Architecture Badges */}
-          <div className="flex flex-wrap gap-2 text-xs font-mono">
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-wine/10 border border-burgundy/20 text-wine">
-              <Cpu className="w-3.5 h-3.5 text-burgundy" />
-              <span>In-Browser Knowledge Engine</span>
-            </span>
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-900">
-              <Shield className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Zero Cloud Telemetry</span>
-            </span>
-          </div>
+          <span className="rounded-lg border border-burgundy/20 bg-wine/10 px-3 py-1.5 text-xs font-mono text-wine">
+            Ask about projects, skills, and background
+          </span>
         </div>
 
         {/* Live Terminal Console Embed */}
@@ -61,7 +53,7 @@ export const VedaSection: React.FC<VedaSectionProps> = ({ profile }) => {
               <span>TRUTHFUL DIAGNOSTICS</span>
             </div>
             <p className="text-taupe-dark font-sans leading-relaxed">
-              Every checkmark in the console represents genuine local architecture verification—no superficial spinning mockups.
+              The console answers portfolio questions and helps navigate sections; it does not run live hardware diagnostics.
             </p>
           </div>
 
@@ -71,7 +63,7 @@ export const VedaSection: React.FC<VedaSectionProps> = ({ profile }) => {
               <span>CROSS-DOMAIN QUERYING</span>
             </div>
             <p className="text-taupe-dark font-sans leading-relaxed">
-              Query vehicle dynamics, Jetson Orin Nav2 costmaps, MediArm ESP32 schematics, or request contact endpoints.
+              Ask about documented work in vehicle dynamics, rover navigation, MediArm, and other portfolio topics.
             </p>
           </div>
 
@@ -81,7 +73,7 @@ export const VedaSection: React.FC<VedaSectionProps> = ({ profile }) => {
               <span>GUIDED WALKTHROUGH</span>
             </div>
             <p className="text-taupe-dark font-sans leading-relaxed">
-              Provides real-time mechatronic explanations, project specifications, and interactive guided walkthrough across the portfolio.
+              Explore project summaries and move through the portfolio with the guided walkthrough.
             </p>
           </div>
         </div>

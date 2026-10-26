@@ -30,7 +30,7 @@ export const TOUR_STEPS: TourStep[] = [
     sectionId: 'hero',
     title: 'Welcome to TheCrazyDabi Studio',
     subtitle: 'Robotics & Automation Engineering',
-    description: 'Welcome! I am V.E.D.A., your interactive engineering guide. This studio showcases Vasudev Saras K M—an undergraduate robotics engineer at Saintgits College of Engineering (APJ KTU) specializing in autonomous rovers, vehicle dynamics, and cyber-physical security.',
+    description: 'Welcome! I am V.E.D.A., your interactive portfolio guide. This studio showcases Vasudev Saras K M, a Robotics and Automation Engineering student at Saintgits College of Engineering (APJ KTU).',
     pose: 'greeting',
     highlightTips: [
       'Authentic engineering portrait with 3D parallax tilt',
@@ -242,7 +242,7 @@ export class VedaGuideService {
           timestamp,
           pose: 'thinking',
           navigationTarget: 'veda',
-          text: `Here is the **V.E.D.A. Core Interactive Terminal**! ⚡\n\nYou are currently interfacing directly with the in-browser knowledge engine. You can run terminal diagnostics or chat naturally.`,
+          text: `Here is **VEDA**! ⚡\n\nAsk about the portfolio or use the quick commands to navigate.`,
           actions: [
             { label: 'Run Help Command', type: 'navigate', target: 'veda' },
             { label: 'Explore Projects', type: 'navigate', target: 'projects' }
@@ -282,7 +282,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'thinking',
-        text: `**How This Portfolio Self-Adapts To You:** ⚡\n\n• **100% In-Browser Knowledge Engine**: Runs deterministically in your browser with near-zero latency and **zero cloud telemetry** or external data leakage.\n• **Context-Aware Guide**: V.E.D.A. monitors active scroll sections, dynamically adapting responses, visual poses, and action recommendations.\n• **Intent-Aware Navigation**: Asking to explore any project or skill automatically synchronizes the viewport with smooth, jump-free transitions.\n• **Truthful Engineering Matrix**: Verified against real hardware benchmarks (ROS 2 Humble, Jetson Orin Nano, Lotus SHARK CAD, and CAN Bus) with near-100% domain accuracy.\n\nWhat technical facet would you like to inspect next?`,
+        text: `V.E.D.A. is a portfolio guide. The console uses local topic matching and prepared responses to answer common questions and navigate to sections. Its responses describe the information documented in this portfolio; they do not verify hardware or benchmark results.`,
         actions: [
           { label: 'Inspect Skills Matrix', type: 'navigate', target: 'skills' },
           { label: 'View Verified Credentials', type: 'navigate', target: 'credentials' },
@@ -384,7 +384,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'engineering',
-        text: `🏎️ **Team Equinox at aBAJA SAE 2026 (Electric All-Terrain Racing Buggy)**\n\nVasudev was a core member of the **Suspension & Steering Development Team**:\n\n• **Kinematic Synthesis in Lotus SHARK**: Synthesized double-wishbone hardpoints, camber curves, and roll-centre migration envelopes (target RC = **+48mm** static).\n• **Steering Geometry in SOLIDWORKS**: Designed steering knuckles and upright hardpoints using **88% Ackermann** geometry, cutting high-articulation tire scrub by **34%**.\n• **Multibody Simulation in MSC Adams Car**: Verified full-vehicle transient roll behaviour, bump-steer suppression, and cornering compliance.\n• **Real-World Scrutiny**: The vehicle successfully cleared rigorous technical scrutiny and dynamic endurance events on track during aBAJA 2026!`,
+        text: `🏎️ **Team Equinox at aBAJA SAE 2026**\n\nVasudev is part of Team Equinox's Suspension & Steering Development Team. The portfolio documents suspension geometry work in Lotus SHARK, steering geometry and Ackermann principles in SOLIDWORKS, and multibody dynamics work in MSC Adams Car. The project entry does not yet include verified performance measurements or competition results.`,
         actions: [
           { label: 'View aBAJA Workshop Gallery', type: 'navigate', target: 'projects' },
           { label: 'Inspect CAD Architecture', type: 'navigate', target: 'skills' }
@@ -412,7 +412,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'engineering',
-        text: `🦾 **MediArm 3-DOF Articulated Robotic Manipulator**\n\nDesigned for laboratory sample handling and assistive rehabilitation:\n\n• **Embedded Core**: Dual-core ESP32 (240MHz) computing closed-form inverse kinematics (IK) in real time.\n• **Industrial High-Power Drivers**: BTS7960 43A H-bridge drivers with optocoupler isolation to shield digital logic from motor inductive spikes.\n• **Touchless Voice Control**: Integrated offline acoustic speech recognition powered by Vosk, allowing sterile, hands-free operation.\n• **Safety Protections**: Hardware emergency kill switch, angular software limits, and current monitoring to prevent kinematic singularities.`,
+        text: `🦾 **MediArm: 3-DOF Robotic Arm Prototype**\n\nThe S6 mini project combines ESP32 control, IBT-2 motor drivers, MG996R and SG90 servos, a Flask web interface, and offline voice commands using Vosk. The portfolio also describes an emergency kill switch. It is intended as a positioning and assisted-handling prototype; the project page can be updated with confirmed build and test results.`,
         actions: [
           { label: 'View MediArm Schematics', type: 'navigate', target: 'projects' },
           { label: 'Explore Embedded Skills', type: 'navigate', target: 'skills' }
@@ -421,7 +421,7 @@ export class VedaGuideService {
     }
 
     // -------------------------------------------------------------------------
-    // 8. Cyber-Physical Security (Silent Guardian, NetSentinel, Rakuzan SOC)
+    // 8. Cyber-Physical Security (Silent Guardian)
     // -------------------------------------------------------------------------
     if (
       has('silent guardian') ||
@@ -431,20 +431,14 @@ export class VedaGuideService {
       has('acoustic firewall') ||
       has('firewall') ||
       has('scam') ||
-      has('speech redaction') ||
-      has('netsentinel') ||
-      has('deauth') ||
-      has('sniffer') ||
-      has('rakuzan') ||
-      has('soc') ||
-      has('entropy')
+      has('speech redaction')
     ) {
       return {
         id,
         sender: 'veda',
         timestamp,
         pose: 'thinking',
-        text: `🛡️ **Cyber-Physical Security & Defensive Systems**\n\nVasudev's work bridges physical hardware safety with real-time defensive computing:\n\n• 🛡️ **Silent Guardian**: Built during Hack@Cooee (24h sprint), this is a 100% in-browser acoustic threat firewall. Using Vosk speech recognition and urgency heuristics, it redacts sensitive credentials (OTPs, PINs) in real time.\n• 📡 **NetSentinel v2.0**: Raw 802.11 monitor-mode packet sniffer that detects malicious deauthentication floods and rogue APs in **<180ms**.\n• 🔐 **Rakuzan SOC**: High-throughput Git entropy pre-commit engine that scans 10,000 lines of code in **<1.2s** to prevent secret key leakage.`,
+        text: `🛡️ **Cybersecurity Project: Silent Guardian**\n\nSilent Guardian is a call-scam firewall prototype developed for a Hack@Cooee 24-hour hackathon. The portfolio describes local speech processing, suspicious-call scoring, sensitive-number redaction, and evidence export.`,
         actions: [
           { label: 'View Security Projects', type: 'navigate', target: 'projects' },
           { label: 'Explore Skills Matrix', type: 'navigate', target: 'skills' }
@@ -461,7 +455,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'coding',
-        text: `🧭 **VYBE: Swipe-Based Travel Discovery Web App**\n\nDeveloped during a rapid **15.5-hour hackathon sprint on 10 - 11 October at TinkerSpace Calicut**:\n\n• **Core Concept**: An intuitive swipe-based destination and tour discovery web app designed for young travellers.\n• **Architecture**: Lightweight Python & Flask backend with gesture-driven swipe card physics.\n• **Role-Based Portals**: Clean separate portals for Travellers, Tour Operators, and Platform Administrators.\n• **Hackathon Result**: Successfully designed, engineered, and demonstrated as a working prototype with a two-member team in 15.5 hours!`,
+        text: `🧭 **VYBE: Swipe-Based Travel Discovery Web App**\n\nDeveloped during a **15.5-hour hackathon sprint on October 10–11, 2026 at TinkerSpace Calicut**. The prototype focused on swipe-based tour discovery, with Traveller, Operator, and Admin roles planned for the experience. The project record lists a two-member team.`,
         actions: [
           { label: 'View Milestones (Trajectory)', type: 'navigate', target: 'journey' },
           { label: 'Explore Code on GitHub', type: 'external', target: 'https://github.com/TheCrazyDabi/VYBE' }
@@ -487,7 +481,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'coding',
-        text: `Vasudev has engineered multiple flagship hardware, autonomy, and security systems:\n\n1. 🚗 **Autonomous First-Responder Buggy**: NVIDIA Jetson Orin Nano + ROS 2 Nav2 + YOLOv8 pathway segmentation + Drive-by-Wire CAN network.\n2. 🏎️ **Equinox aBAJA SAE 2026**: Double-wishbone suspension and 88% Ackermann steering synthesized in Lotus SHARK, SOLIDWORKS, and MSC Adams Car.\n3. 🦾 **MediArm**: 3-DOF articulated arm powered by dual-core ESP32, BTS7960 43A motor drivers, and offline voice control.\n4. 🛡️ **Silent Guardian**: In-browser acoustic threat firewall with real-time speech redaction.\n5. 🧭 **VYBE**: Fast gesture-driven travel discovery app (15.5h hackathon sprint on 10 - 11 October at TinkerSpace Calicut).\n6. 📡 **NetSentinel v2.0**: Raw 802.11 monitor mode deauth threat detector.\n7. 🔐 **Rakuzan SOC**: High-speed Git entropy pre-commit security scanner.\n\nWhich project would you like to explore in detail?`,
+        text: `The portfolio currently features these projects:\n\n1. 🚗 **Autonomous First-Responder**: An emergency-response rover project in development, using a buggy platform, Jetson Orin Nano, ROS 2/Nav2, and Drive-by-Wire integration.\n2. 🏎️ **Equinox aBAJA SAE 2026**: Suspension and steering development work with Team Equinox, using Lotus SHARK, SOLIDWORKS, and MSC Adams Car.\n3. 🦾 **MediArm**: A 3-DOF robotic-arm prototype with ESP32 control, a Flask interface, and offline voice commands.\n4. 🛡️ **Silent Guardian**: A call-scam firewall prototype developed during a hackathon.\n5. 🧭 **VYBE**: A swipe-based travel discovery web-app prototype developed during a TinkerSpace Calicut hackathon.\n\nWhich project would you like to explore?`,
         actions: [
           { label: 'Explore Flagship Projects', type: 'navigate', target: 'projects' },
           { label: 'Autonomous Rover 🚗', type: 'navigate', target: 'projects' },
@@ -690,7 +684,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'explaining',
-        text: `**Vasudev Saras K M** ("TheCrazyDabi") is an undergraduate **Robotics & Automation Engineer** at **Saintgits College of Engineering** (APJ KTU), hailing from Calicut, Kerala.\n\nHis engineering craft bridges physical mechanisms (CAD modeling, suspension kinematics, GD&T, 3D printing tolerances) with deterministic computing (ROS 2 Humble, NVIDIA Jetson Orin Nano, Drive-by-Wire CAN bus, and edge computer vision). He is dedicated to building robust, safety-critical autonomous systems that sense, decide, and act in the physical world!`,
+        text: `**Vasudev Saras K M** ("TheCrazyDabi") is an undergraduate **Robotics and Automation Engineering student** at **Saintgits College of Engineering** (APJ KTU), based in Calicut, Kerala. His documented project work includes mechanical design and suspension analysis, embedded control, ROS 2 and autonomous rover development, a robotic-arm prototype, and software projects.`,
         actions: [
           { label: 'Read Full Bio (About)', type: 'navigate', target: 'about' },
           { label: 'Inspect Skills & Subsystems', type: 'navigate', target: 'skills' },
@@ -719,7 +713,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'explaining',
-        text: `I'm **V.E.D.A.**—the **Virtual Engine for Data & Analysis**!\n\nI am Vasudev's interactive AI engineering guide. I run deterministically inside your browser with **zero cloud telemetry** to help you:\n• Explore Vasudev's background, education, and credentials\n• Inspect technical architectures of his autonomous rovers, vehicle dynamics, and robotic arms\n• Smoothly navigate directly to any section across this portfolio\n• Connect with him for engineering opportunities.\n\nFeel free to ask me anything about his work!`,
+        text: `I'm **V.E.D.A.**, Vasudev's interactive portfolio guide. I can help you:\n• Explore his background, education, and credentials\n• Browse his robotics, vehicle dynamics, and software projects\n• Navigate to sections of the portfolio\n• Find his contact information.\n\nWhat would you like to explore?`,
         actions: [
           { label: 'Take Guided Tour 🌸', type: 'tour', target: 'start' },
           { label: 'Explore Flagship Builds', type: 'navigate', target: 'projects' },
@@ -771,7 +765,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'greeting',
-        text: `Hey there! Wonderful to meet you! 👋\n\nI'm **V.E.D.A.** (Virtual Engine for Data & Analysis), Vasudev's interactive AI portfolio guide. I'm here to walk you through his engineering projects, break down technical architectures, or guide you through his credentials.\n\nWhat would you like to explore first?`,
+        text: `Hey there! I'm **V.E.D.A.**, Vasudev's interactive portfolio guide. I can help you explore his projects, background, and credentials, or navigate to a section.\n\nWhat would you like to explore?`,
         actions: [
           { label: 'Take Guided Tour 🌸', type: 'tour', target: 'start' },
           { label: 'Explore Flagship Projects', type: 'navigate', target: 'projects' },

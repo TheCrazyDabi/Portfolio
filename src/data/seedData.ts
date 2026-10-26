@@ -1,13 +1,14 @@
 import { Project, Certification, Experiment, Skill, Milestone, Profile, SiteSettings, MediaItem } from '../types/content';
+import { archivedProjects } from './archivedProjects';
 
 export const initialProfile: Profile = {
   name: "Vasudev Saras",
-  title: "Robotics & Automation Engineer",
+  title: "Robotics & Automation Engineering Student",
   college: "Saintgits College of Engineering",
   degree: "B.Tech in Robotics and Automation | APJ Abdul Kalam Technological University",
   headline: "Robotics & Automation · Autonomous Navigation · Cyber-Physical Security",
-  introduction: "Robotics and Automation Engineering student with hands-on experience in CAD modelling, multibody simulation, embedded systems, autonomous robotics, computer vision, and web-based robot control. Interested in combining robotics and cybersecurity to build reliable automation systems.",
-  aboutBio: "Robotics and Automation Engineering undergraduate at Saintgits College of Engineering (APJ Abdul Kalam Technological University) based in Calicut, Kerala. My engineering craft bridges physical mechanics with deterministic computing—from multibody simulation and vehicle dynamics in Lotus SHARK, SolidWorks, and MSC Adams Car to autonomous navigation on NVIDIA Jetson Orin Nano with ROS 2 and Nav2, Drive-by-Wire CAN communication, and edge computer vision with YOLOv8. I am deeply interested in combining robotics and cybersecurity to build reliable, safety-critical automation systems.",
+  introduction: "Robotics and Automation Engineering student at Saintgits College of Engineering, interested in autonomous systems, embedded control, mechanical design, and cybersecurity. My project work spans a campus response rover, vehicle suspension and steering, a robotic arm, and software prototypes.",
+  aboutBio: "I am a Robotics and Automation Engineering undergraduate at Saintgits College of Engineering, affiliated with APJ Abdul Kalam Technological University, based in Calicut, Kerala. I enjoy working across mechanical design, embedded systems, and software: from suspension and steering analysis with Team Equinox, to a robotic arm prototype and an autonomous campus response rover that is still in development. I am especially interested in building dependable systems that connect robotics and cybersecurity.",
   publicEmail: "vasudevb2w@gmail.com",
   githubUrl: "https://github.com/TheCrazyDabi",
   linkedinUrl: "https://linkedin.com/in/d4biie",
@@ -18,17 +19,63 @@ export const initialProfile: Profile = {
 };
 
 export const initialSiteSettings: SiteSettings = {
-  siteTitle: "Vasudev Saras | Robotics & Automation Engineer",
+  siteTitle: "Vasudev Saras | Robotics & Automation Engineering Student",
   metaDescription: "Vasudev Saras (TheCrazyDabi) — Robotics & Automation Engineering student at Saintgits College of Engineering. Autonomous vehicles, Jetson Orin Nano, ROS 2, CAD kinematics, and cybersecurity.",
   showCertifications: true,
-  showExperiments: true,
+  showExperiments: false,
   showMilestones: true,
   showSystemArchitecture: true,
   enableHeroAnimations: true,
   githubRepoUrl: "https://github.com/TheCrazyDabi/Portfolio"
 };
 
-export const initialProjects: Project[] = [];
+const restoredProjectIds = new Set([
+  'proj-first-responder',
+  'proj-baja-equinox',
+  'proj-silent-guardian',
+  'proj-mediarm',
+  'proj-vybe'
+]);
+
+export const initialProjects: Project[] = [
+  ...archivedProjects
+    .filter(project => restoredProjectIds.has(project.id))
+    .map((project, index) => ({ ...project, orderIndex: index + 1 })),
+  {
+    id: 'proj-lotus-suspension',
+    slug: 'lotus-shark-suspension-analysis',
+    title: 'Lotus SHARK Suspension Roll-Centre & Camber Analysis',
+    category: 'CAD & Mechanical',
+    shortDescription: 'A front double-wishbone suspension study using Lotus SHARK to examine roll-centre migration, camber change, and bump steer.',
+    status: 'published',
+    projectState: 'Completed',
+    coverImage: 'assets/projects/baja-suspension-kinematics.svg',
+    galleryImages: [{
+      url: 'assets/projects/baja-suspension-kinematics.svg',
+      caption: 'Lotus SHARK double-wishbone suspension kinematics study'
+    }],
+    technologies: ['Lotus SHARK', 'Vehicle Dynamics', 'Suspension Kinematics'],
+    problemStatement: 'Understand how front double-wishbone suspension geometry affects roll-centre migration, camber change, and bump steer through wheel travel.',
+    designProcess: 'Modeled front double-wishbone suspension kinematics in Lotus SHARK and studied roll-centre migration, camber change, and bump steer.',
+    hardwareSoftwareArchitecture: 'Front double-wishbone geometry -> Lotus SHARK kinematic model -> roll-centre, camber, and bump-steer analysis.',
+    personalContribution: 'Modeled the front suspension kinematics in Lotus SHARK and reviewed the resulting geometry.',
+    challengesAndSolutions: [],
+    results: 'The study examined roll-centre migration, camber change, and bump steer. No numerical performance figures are included.',
+    lessonsLearned: 'Kinematic analysis helps assess suspension geometry before committing to component design.',
+    sourceCodeUrl: '',
+    demoUrl: '',
+    documentationUrl: '',
+    specifications: {
+      'Software': 'Lotus SHARK',
+      'Suspension Type': 'Front double-wishbone',
+      'Analysis Areas': 'Roll-centre migration, camber change, bump steer'
+    },
+    isFeatured: false,
+    orderIndex: 6,
+    createdAt: '2025-08-01T00:00:00Z',
+    updatedAt: '2026-10-26T00:00:00Z'
+  }
+];
 
 export const initialCertifications: Certification[] = [
   {
@@ -83,48 +130,7 @@ export const initialCertifications: Certification[] = [
   }
 ];
 
-export const initialExperiments: Experiment[] = [
-  {
-    id: "exp-ik-solver",
-    title: "Analytical 3D Inverse Kinematics Geometric Solver",
-    category: "CAD Simulation",
-    date: "2026-01",
-    summary: "Formulated and coded closed-form trigonometric solutions for articulated linkages, eliminating iterative Jacobian computational overhead on low-power microcontrollers.",
-    technicalDetails: "Implemented in pure C++ on an ESP32. Compares analytical geometric decoupling against numerical pseudo-inverse methods, reducing calculation time from 4.8ms down to 0.12ms.",
-    tags: ["Kinematics", "C++", "Trigonometry", "ESP32"],
-    status: "published"
-  },
-  {
-    id: "exp-can-sniffer",
-    title: "Dual CAN-Bus 2.0B Sniffer with MCP2515 Transceiver",
-    category: "Firmware Test",
-    date: "2025-11",
-    summary: "Built an embedded diagnostic bridge capturing real-time telemetry frames between buggy sensors and steering angle encoders at 500 kbps.",
-    technicalDetails: "Constructed an isolated SPI hardware bridge using an ESP32 and MCP2515 CAN controller. Logged frame IDs, mask filters, and timing jitter under heavy bus loads.",
-    tags: ["CAN-Bus", "SPI", "Embedded C", "Telemetry"],
-    status: "published"
-  },
-  {
-    id: "exp-yolo-seg",
-    title: "YOLOv8 Instance Segmentation for Unstructured Pathways",
-    category: "Computer Vision",
-    date: "2025-10",
-    summary: "Trained and annotated a custom YOLOv8 instance segmentation dataset using Roboflow to mask dirt, paved, and grass boundary areas on campus grounds.",
-    technicalDetails: "Optimized model inference on edge hardware with TensorRT quantization, achieving 38 FPS inference rate on NVIDIA Jetson Orin Nano.",
-    tags: ["YOLOv8", "Roboflow", "Computer Vision", "Jetson Orin"],
-    status: "published"
-  },
-  {
-    id: "exp-lotus-suspension",
-    title: "Lotus SHARK Suspension Roll-Centre & Camber Analysis",
-    category: "Mechanism Test",
-    date: "2025-08",
-    summary: "Modeled front double wishbone suspension kinematics in Lotus SHARK to analyze roll-centre migration and eliminate bump steer.",
-    technicalDetails: "Iterated control arm hardpoint coordinates across 150mm dynamic wheel travel envelope to maintain minimal scrub radius and predictable cornering grip.",
-    tags: ["Lotus SHARK", "Vehicle Dynamics", "Kinematics", "Suspension"],
-    status: "published"
-  }
-];
+export const initialExperiments: Experiment[] = [];
 
 export const initialSkills: Skill[] = [
   // Robotics & OS
@@ -311,14 +317,14 @@ export const initialMilestones: Milestone[] = [
   },
   {
     id: "ms-hack-cooee",
-    year: "2025",
+    year: "October 7, 2026",
     title: "Silent Guardian: Acoustic Security Firewall — Hack@Cooee",
     subtitle: "24-Hour Hackathon Sprint",
     organization: "Hack@Cooee",
     location: "Kerala, India",
     description: "Built a simulated call-scam acoustic firewall that analyses call audio locally in-browser with threat scoring, sensitive-number redaction, and forensic evidence export.",
     highlights: [
-      "Engineered 100% local in-browser acoustic threat scoring using Vosk and Web Speech API",
+      "Built a browser-based call simulation with speech analysis using Vosk and Web Speech API",
       "Built automated OTP/PIN/card-number redaction and forensic evidence export"
     ],
     category: "Competition",
@@ -326,14 +332,14 @@ export const initialMilestones: Milestone[] = [
   },
   {
     id: "ms-tinkerhub-vybe",
-    year: "10 - 11 October",
+    year: "October 10–11, 2026",
     title: "VYBE: Travel Discovery Web App — TinkerSpace Calicut Hackathon",
-    subtitle: "15.5-Hour Rapid Hackathon Sprint (10 - 11 October)",
+    subtitle: "15.5-Hour Rapid Hackathon Sprint · October 10–11, 2026",
     organization: "TinkerSpace Calicut",
     location: "TinkerSpace, Calicut, Kerala",
-    description: "Developed a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces during the hackathon on 10 - 11 October at TinkerSpace Calicut.",
+    description: "Developed a swipe-based tour package discovery web app during the October 10–11, 2026 hackathon at TinkerSpace Calicut.",
     highlights: [
-      "Built an intuitive card-swiping concept for tour discovery in a 15.5-hour sprint at TinkerSpace Calicut (10 - 11 October)",
+      "Built an intuitive card-swiping concept for tour discovery during a 15.5-hour sprint at TinkerSpace Calicut (October 10–11, 2026)",
       "Engineered Flask backend with role-based Traveller, Operator, and Admin portals"
     ],
     category: "Competition",

@@ -55,7 +55,7 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
 
     if (state === 'thinking') {
       return {
-        text: 'Optimizing acoustic threat heuristics for Silent Guardian & multi-joint inverse kinematics for MediArm...',
+        text: 'Reviewing robotics, mechanical design, and software project details...',
         actionText: 'Read Lab Experiments',
         actionId: 'experiments',
       };
@@ -71,7 +71,7 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
         };
       case 'projects':
         return {
-          text: 'Each project case study features verified CAD models, ROS 2 pipelines, and truthful architecture!',
+          text: 'Each project case study describes the tools, architecture, and current project stage.',
           actionText: 'Query V.E.D.A. AI',
           actionId: 'veda',
         };
@@ -175,7 +175,7 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           <Terminal className="w-3 h-3 text-emerald-600" />
-          <span>Launch V.E.D.A. AI Terminal</span>
+          <span>Open VEDA</span>
         </button>
       </div>
 

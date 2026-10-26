@@ -82,8 +82,9 @@ export const SakuraSpiderLilyAmbience: React.FC = () => {
       height = canvas.height = window.innerHeight;
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY, active: true };
+    const handlePointerMove = (e: PointerEvent) => {
+      const active = e.pointerType !== 'touch' || e.buttons > 0;
+      mouseRef.current = { x: e.clientX, y: e.clientY, active };
     };
 
     const handleMouseLeave = () => {
@@ -91,7 +92,7 @@ export const SakuraSpiderLilyAmbience: React.FC = () => {
     };
 
     window.addEventListener('resize', handleResize, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
     document.addEventListener('mouseleave', handleMouseLeave, { passive: true });
 
     // Draw functions
@@ -204,7 +205,7 @@ export const SakuraSpiderLilyAmbience: React.FC = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('pointermove', handlePointerMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [isEnabled]);

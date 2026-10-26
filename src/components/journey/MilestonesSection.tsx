@@ -22,7 +22,7 @@ export const MilestonesSection: React.FC<MilestonesSectionProps> = ({ milestones
             </h2>
           </div>
           <p className="mt-4 md:mt-0 text-xs font-mono text-taupe max-w-sm">
-            Chronological engineering history, collegiate motorsport leadership, and research breakthroughs.
+            Education, project work, and team experience in chronological order.
           </p>
         </div>
 

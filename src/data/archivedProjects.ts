@@ -4,7 +4,7 @@ export const archivedProjects: Project[] = [
   {
     id: "proj-first-responder",
     slug: "autonomous-first-responder",
-    title: "Autonomous First-Responder: Vision-Inertial Navigation for Campus Emergencies",
+    title: "Autonomous First-Responder Rover for Campus Emergencies",
     category: "Robotics",
     shortDescription: "Developing a low-cost autonomous emergency-response rover by retrofitting an electric aBAJA buggy for campus navigation with NVIDIA Jetson Orin Nano, ROS 2/Nav2, Drive-by-Wire CAN integration, and YOLOv8.",
     status: "published",
@@ -35,7 +35,7 @@ export const archivedProjects: Project[] = [
         solution: "Trained and annotated a custom YOLOv8 instance segmentation dataset with Roboflow; preparing migration to high-speed PIDNet-S."
       }
     ],
-    results: "Current Phase-I status includes reported progress in the dispatch front end and MQTT–ROS 2 bridge; physical integration and HIL testing remain in progress/planned.",
+    results: "The project is documented as in development. Its current record describes the dispatch interface and MQTT–ROS 2 bridge; hardware integration and field-test results are not included.",
     lessonsLearned: "Retrofitting an existing electric buggy with Drive-by-Wire CAN provides a rigid, proven vehicular base while focusing development effort on autonomous control.",
     sourceCodeUrl: "https://github.com/TheCrazyDabi/Autonomous-First-Responder",
     demoUrl: "",
@@ -85,11 +85,11 @@ export const archivedProjects: Project[] = [
     personalContribution: "Modelled suspension geometry in Lotus SHARK, calculated Ackermann steering angles in SolidWorks, and configured Adams Car multibody simulations.",
     challengesAndSolutions: [
       {
-        challenge: "Bump-steer induced unintended yaw deviation during rapid suspension compression over rocky terrain.",
-        solution: "Re-synthesized the steering rack mounting plane to ensure tie-rods were parallel and proportional to control arms throughout the dynamic travel envelope."
+        challenge: "Reviewing steering geometry and bump steer across suspension travel.",
+        solution: "Reviewed suspension and steering geometry in Lotus SHARK and SolidWorks, with focus on bump steer through wheel travel."
       }
     ],
-    results: "Reduced simulated bump-steer to under 0.4° per 100mm travel and optimized Ackermann steering geometry to significantly mitigate tyre scrub in sharp turns.",
+    results: "Suspension and steering geometry were studied using Lotus SHARK, SOLIDWORKS, and MSC Adams Car. No measured performance figures are included.",
     lessonsLearned: "Iterative kinematic analysis in Lotus SHARK before CAD modeling prevents costly manufacturing rework in suspension uprights and linkages.",
     sourceCodeUrl: "",
     demoUrl: "",
@@ -112,7 +112,7 @@ export const archivedProjects: Project[] = [
     slug: "silent-guardian",
     title: "Silent Guardian: Acoustic Security Firewall",
     category: "Cybersecurity",
-    shortDescription: "A simulated call-scam firewall built at Hack@Cooee 24-hour hackathon that analyses call audio locally in the browser, scores suspicious behaviour using two local threat engines, and redacts sensitive numbers.",
+    shortDescription: "A simulated call-scam firewall prototype developed during a Hack@Cooee 24-hour hackathon. It analyses call audio locally, scores suspicious behaviour, and redacts sensitive numbers.",
     status: "published",
     projectState: "Completed",
     coverImage: "assets/projects/silent-guardian-cover.svg",
@@ -123,9 +123,9 @@ export const archivedProjects: Project[] = [
       }
     ],
     technologies: ["JavaScript", "Node.js", "Express", "Web Speech API", "Vosk", "Whisper", "Local Speech Processing", "Acoustic Security"],
-    problemStatement: "Social engineering and phone scam attacks deceive vulnerable users in real-time, while existing call-recording solutions transmit sensitive personal audio to external cloud servers.",
+    problemStatement: "Call-scam demonstrations need a way to show local speech analysis and privacy protections without sending sample audio to an external service.",
     designProcess: "Built a simulated call-scam firewall that analyses call audio locally in the browser and scores suspicious behaviour using two local threat engines. Designed a call simulation workflow with speech-to-text, a threat score, and a warning mode for suspicious calls. Added sensitive-number redaction for OTP/PIN/card-like numbers, scam evidence capture, and an intercept banner to confirm the call was silenced. Implemented evidence export for flagged calls, including audio, transcript, event log, and JSON summary; benign calls remain quiet with no evidence saved.",
-    hardwareSoftwareArchitecture: "Browser Web Speech API / Vosk offline model -> Node.js/Express local engine -> Dual heuristic threat score calculation -> OTP/PIN/Card number regex redaction -> Forensic evidence packager.",
+    hardwareSoftwareArchitecture: "Browser speech input (Web Speech API / Vosk) -> call-simulation and threat scoring -> sensitive-number redaction -> evidence export; Node.js/Express is listed as the local backend.",
     personalContribution: "Call simulation pipeline, dual heuristic threat scoring logic, automated sensitive-number redaction, and forensic evidence packaging.",
     challengesAndSolutions: [
       {
@@ -133,23 +133,24 @@ export const archivedProjects: Project[] = [
         solution: "Utilized local in-browser speech processing with Vosk and Web Speech API, keeping audio strictly on the user's device."
       }
     ],
-    results: "Built and demonstrated in a 24-hour hackathon sprint; accurately silences fraudulent calls, redacts OTPs/PINs, and generates full forensic evidence while keeping benign conversations completely private.",
-    lessonsLearned: "Local-first client security architecture guarantees user privacy while providing instantaneous protection against social engineering attacks.",
+    results: "Demonstrated a simulated call workflow with suspicious-call scoring, sensitive-number redaction, and evidence export. It does not intercept real incoming phone calls.",
+    lessonsLearned: "Keeping the demonstration's audio analysis local can reduce the need to send sample speech to an external service.",
     sourceCodeUrl: "https://github.com/TheCrazyDabi/Silent-Guardian",
     demoUrl: "",
     documentationUrl: "",
     specifications: {
       "Hackathon": "Hack@Cooee 24-Hour Hackathon",
-      "Architecture": "100% Local In-Browser Audio Threat Engine",
-      "Speech Recognition": "Web Speech API, Vosk, Whisper",
+      "Project Date": "October 7, 2026",
+      "Architecture": "Browser interface with speech analysis and local backend components",
+      "Speech Recognition": "Web Speech API and Vosk",
       "Backend": "Node.js & Express",
       "Privacy Guard": "Automatic OTP, PIN, and Card-number Redaction",
       "Forensics": "Audio, Transcript, Event Log & JSON Export"
     },
     isFeatured: true,
     orderIndex: 3,
-    createdAt: "2025-06-25T12:00:00Z",
-    updatedAt: "2026-01-10T14:00:00Z"
+    createdAt: "2026-10-07T12:00:00Z",
+    updatedAt: "2026-10-26T12:00:00Z"
   },
   {
     id: "proj-mediarm",
@@ -177,7 +178,7 @@ export const archivedProjects: Project[] = [
         solution: "Separated logic and actuator power rails using high-current IBT-2 motor drivers and decoupled power domains."
       }
     ],
-    results: "Successfully validated multi-joint positioning via web slider interface and offline voice actuation with sub-100ms response time and instant emergency kill-switch safety.",
+    results: "The design includes manual web control, offline voice commands, and an emergency kill switch. No measured response-time result is included.",
     lessonsLearned: "Integrating dedicated high-current motor drivers (IBT-2) ensures robust servo torque while protecting microcontroller logic.",
     sourceCodeUrl: "https://github.com/TheCrazyDabi/MediArm",
     demoUrl: "",
@@ -201,19 +202,19 @@ export const archivedProjects: Project[] = [
     slug: "vybe",
     title: "VYBE: Swipe-Based Travel Discovery Web App",
     category: "Software & AI",
-    shortDescription: "Developed at the hackathon on 10 - 11 October at TinkerSpace Calicut in a 15.5-hour sprint: a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces.",
+    shortDescription: "Developed at the October 10–11, 2026 hackathon at TinkerSpace Calicut in a 15.5-hour sprint: a swipe-based tour package discovery web app.",
     status: "published",
     projectState: "Completed",
     coverImage: "assets/projects/vybe-discovery-ui.svg",
     galleryImages: [
       {
         url: "assets/projects/vybe-discovery-ui.svg",
-        caption: "VYBE swipe-based tour package discovery interface, multi-role session flow, and TinkerSpace Calicut hackathon sprint stats (10 - 11 October)"
+        caption: "VYBE swipe-based tour package discovery interface and TinkerSpace Calicut hackathon sprint (October 10–11, 2026)"
       }
     ],
     technologies: ["Python", "Flask", "HTML", "CSS", "JavaScript", "TinkerSpace Calicut Hackathon"],
     problemStatement: "Traditional travel booking platforms present cluttered tables and text-heavy listings that lack engaging, intuitive discovery for young travellers.",
-    designProcess: "Developed at the hackathon held on 10 - 11 October at TinkerSpace Calicut. A demo concept where travellers swipe through tour packages posted by travel operators. Planned separate Traveller, Operator, and Admin interfaces to support package discovery and management. Built the web experience with Flask and a simple UI focused on a fast, clear hackathon demo flow during a 15.5-hour sprint with a two-member team.",
+    designProcess: "Developed at the October 10–11, 2026 hackathon at TinkerSpace Calicut. A demo concept where travellers swipe through tour packages posted by travel operators. Planned separate Traveller, Operator, and Admin interfaces to support package discovery and management. Built the web experience with Flask and a simple UI focused on a fast, clear hackathon demo flow during a 15.5-hour sprint with a two-member team.",
     hardwareSoftwareArchitecture: "Flask backend routing -> Jinja2 templated UI with gesture-based swipe card interactions -> Multi-role session management (Traveller, Operator, Admin).",
     personalContribution: "Flask web architecture, routing logic, role-based interfaces, and hackathon presentation demo.",
     challengesAndSolutions: [
@@ -222,13 +223,13 @@ export const archivedProjects: Project[] = [
         solution: "Focused on an agile MVP architecture with clear separation between Traveller swipe discovery and Operator listing submission."
       }
     ],
-    results: "Completed and presented a working prototype at the TinkerSpace Calicut Hackathon (10 - 11 October) with interactive package swiping and operator management.",
+    results: "Completed and presented a working prototype at the TinkerSpace Calicut Hackathon (October 10–11, 2026) with interactive package swiping and operator management.",
     lessonsLearned: "Fast-paced hackathons require razor-sharp scope discipline to deliver an engaging, polished user experience.",
     sourceCodeUrl: "https://github.com/TheCrazyDabi/VYBE",
     demoUrl: "",
     documentationUrl: "",
     specifications: {
-      "Event": "Hackathon at TinkerSpace Calicut (10 - 11 October)",
+      "Event": "Hackathon at TinkerSpace Calicut (October 10–11, 2026)",
       "Sprint Duration": "15.5-Hour Rapid Sprint",
       "Team Size": "Two-Member Team",
       "Web Framework": "Python & Flask",
@@ -236,8 +237,8 @@ export const archivedProjects: Project[] = [
     },
     isFeatured: true,
     orderIndex: 5,
-    createdAt: "2025-04-10T12:00:00Z",
-    updatedAt: "2026-02-15T09:00:00Z"
+    createdAt: "2026-10-10T12:00:00Z",
+    updatedAt: "2026-10-26T12:00:00Z"
   },
   {
     id: "proj-netsentinel",
