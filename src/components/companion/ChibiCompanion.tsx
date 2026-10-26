@@ -37,6 +37,9 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
         case 'projects':
           setChibiState('coding');
           break;
+        case 'veda':
+          setChibiState('thinking');
+          break;
         case 'skills':
           setChibiState('engineering');
           break;

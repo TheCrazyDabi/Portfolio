@@ -51,6 +51,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
     { label: 'Overview', href: '#hero' },
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
+    { label: 'V.E.D.A. AI', href: '#veda', isHighlight: true },
     { label: 'Systems & Skills', href: '#skills' },
     { label: 'Journey', href: '#journey' },
     { label: 'Credentials', href: '#credentials' },
@@ -93,13 +94,16 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
               <a
                 key={link.label}
                 href={link.href}
-                className={`px-3 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all ${
-                  isActive
+                className={`px-3 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all flex items-center gap-1.5 ${
+                  link.isHighlight
+                    ? 'text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/25 font-bold shadow-sm'
+                    : isActive
                     ? 'text-burgundy dark:text-cream bg-burgundy/10 dark:bg-white/10 font-semibold'
                     : 'text-taupe hover:text-burgundy dark:hover:text-cream hover:bg-cream-darker/50 dark:hover:bg-white/5'
                 }`}
               >
-                {link.label}
+                {link.isHighlight && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />}
+                <span>{link.label}</span>
               </a>
             );
           })}

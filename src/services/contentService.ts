@@ -73,7 +73,7 @@ export class ContentService {
       }
     }
     const all = getLocalStorage<Project[]>(KEYS.PROJECTS, initialProjects);
-    return all.filter(p => p.status === 'published').sort((a, b) => a.orderIndex - b.orderIndex);
+    return all.filter(p => p.status === 'published' && p.id !== 'proj-veda').sort((a, b) => a.orderIndex - b.orderIndex);
   }
 
   static async getPublicCertifications(): Promise<Certification[]> {
@@ -205,7 +205,7 @@ export class ContentService {
         console.warn('Supabase admin projects fetch failed:', err);
       }
     }
-    return getLocalStorage<Project[]>(KEYS.PROJECTS, initialProjects);
+    return getLocalStorage<Project[]>(KEYS.PROJECTS, initialProjects).filter(p => p.id !== 'proj-veda');
   }
 
   static async saveProject(project: Project): Promise<{ success: boolean; error?: string }> {

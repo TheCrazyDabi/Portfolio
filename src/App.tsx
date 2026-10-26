@@ -17,6 +17,7 @@ import { SakuraSpiderLilyAmbience } from './components/common/SakuraSpiderLilyAm
 import { HeroSection } from './components/hero/HeroSection';
 import { AboutSection } from './components/about/AboutSection';
 import { ProjectShowcase } from './components/projects/ProjectShowcase';
+import { VedaSection } from './components/veda/VedaSection';
 import { SkillsDiagram } from './components/skills/SkillsDiagram';
 import { MilestonesSection } from './components/journey/MilestonesSection';
 import { CertificationsSection } from './components/certifications/CertificationsSection';
@@ -120,7 +121,7 @@ export const App: React.FC = () => {
 
   // Intersection Observer for active section navigation indicator
   useEffect(() => {
-    const sectionIds = ['hero', 'about', 'projects', 'skills', 'journey', 'credentials', 'contact'];
+    const sectionIds = ['hero', 'about', 'projects', 'veda', 'skills', 'journey', 'credentials', 'contact'];
     const observers: IntersectionObserver[] = [];
 
     sectionIds.forEach((id) => {
@@ -202,6 +203,7 @@ export const App: React.FC = () => {
         <MarqueeBanner />
         <AboutSection profile={profile} />
         <ProjectShowcase projects={projects} />
+        <VedaSection profile={profile} />
         {settings.showSystemArchitecture && <SkillsDiagram skills={skills} />}
         {settings.showMilestones && <MilestonesSection milestones={milestones} />}
         {settings.showCertifications && <CertificationsSection certifications={certifications} />}

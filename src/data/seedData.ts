@@ -268,53 +268,6 @@ export const initialProjects: Project[] = [
     updatedAt: "2026-02-15T09:00:00Z"
   },
   {
-    id: "proj-veda",
-    slug: "veda",
-    title: "V.E.D.A.: Virtual Engine for Data & Analysis",
-    category: "Software & AI",
-    shortDescription: "A local-first, terminal-native personal AI assistant powered by Ollama with verified system health diagnostics, session persistence, and zero cloud telemetry.",
-    status: "published",
-    projectState: "Completed",
-    coverImage: "assets/projects/veda-terminal-hud.svg",
-    galleryImages: [
-      {
-        url: "assets/projects/veda-terminal-hud.svg",
-        caption: "V.E.D.A. verified diagnostic boot banner, Ollama token-by-token streaming REPL, and SQLite WAL"
-      }
-    ],
-    technologies: ["Python 3.11+", "Ollama", "SQLite (WAL mode)", "prompt_toolkit", "Rich CLI", "JSON-RPC", "Pytest"],
-    problemStatement: "Cloud-based developer assistants compromise sensitive intellectual property and depend on continuous internet connectivity. Existing local LLM scripts frequently suffer from poor terminal rendering, lost chat contexts, and misleading fake connection indicators.",
-    designProcess: "Engineered with a strict 'Truthful Diagnostics' paradigm: every checkmark in the startup banner represents a live TCP/HTTP probe. Built with a provider abstraction layer to allow seamless hot-swapping between Ollama, local models, and future inference engines.",
-    hardwareSoftwareArchitecture: "Pure local pipeline: Terminal input handled via prompt_toolkit with syntax highlighting -> routed through session database in SQLite with write-ahead logging -> streamed to loopback Ollama daemon over HTTP -> streamed tokens rendered via Rich markdown engines with graceful Ctrl+C cancellation.",
-    personalContribution: "Architected the complete system architecture, asynchronous token streaming engine, thread-safe cancellation tokens, SQLite session migration schema, and Windows ANSI console compatibility layer.",
-    challengesAndSolutions: [
-      {
-        challenge: "Legacy Windows cmd.exe consoles crashed with UnicodeEncodeError when rendering UTF-8 box-drawing characters and status glyphs.",
-        solution: "Engineered an automatic console capability detector with graceful ASCII character-set fallbacks."
-      },
-      {
-        challenge: "In-flight token streaming could cause lockups if user hit Ctrl+C to stop long generations.",
-        solution: "Decoupled model response streaming into a cancellable worker thread monitored by a cooperative cancellation event."
-      }
-    ],
-    results: "Idle RAM footprint of <200MB, zero telemetry packets sent across external network interfaces, verified 98+ offline unit tests passing without needing active Ollama connection.",
-    lessonsLearned: "Engineering honest CLI tooling with rock-solid error boundaries delivers a vastly superior developer experience compared to brittle graphical wrappers.",
-    sourceCodeUrl: "https://github.com/TheCrazyDabi/VEDA",
-    demoUrl: "",
-    documentationUrl: "",
-    specifications: {
-      "Runtime Engine": "Python 3.11 / 3.12",
-      "Model Host": "Ollama (qwen2.5-coder / llama3)",
-      "Database": "SQLite with WAL journaling",
-      "Security": "Strict loopback (127.0.0.1) bind, Redacted credential logs",
-      "Idle Memory": "~180 MB RAM"
-    },
-    isFeatured: true,
-    orderIndex: 6,
-    createdAt: "2025-06-01T08:00:00Z",
-    updatedAt: "2026-01-20T11:00:00Z"
-  },
-  {
     id: "proj-netsentinel",
     slug: "netsentinel-v2",
     title: "NetSentinel v2.0: Terminal WiFi Packet Sniffer & Threat Detector",
@@ -352,7 +305,7 @@ export const initialProjects: Project[] = [
       "Alerting": "Rich live terminal UI with ANSI color codes"
     },
     isFeatured: true,
-    orderIndex: 7,
+    orderIndex: 6,
     createdAt: "2025-05-12T14:00:00Z",
     updatedAt: "2026-01-15T18:00:00Z"
   },
@@ -394,7 +347,7 @@ export const initialProjects: Project[] = [
       "Deployment": "Docker Containerized"
     },
     isFeatured: true,
-    orderIndex: 8,
+    orderIndex: 7,
     createdAt: "2025-07-20T11:00:00Z",
     updatedAt: "2026-02-05T16:00:00Z"
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChibiState } from '../../types/chibi';
-import { X, Laptop, Wrench, Lightbulb, Compass, Send, Sparkles, Moon, ArrowRight } from 'lucide-react';
+import { X, Laptop, Wrench, Lightbulb, Sparkles, ArrowRight, Terminal, Hand } from 'lucide-react';
 
 interface CompanionDialogueProps {
   state: ChibiState;
@@ -72,7 +72,13 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
       case 'projects':
         return {
           text: 'Each project case study features verified CAD models, ROS 2 pipelines, and truthful architecture!',
-          actionText: 'Jump to Systems',
+          actionText: 'Query V.E.D.A. AI',
+          actionId: 'veda',
+        };
+      case 'veda':
+        return {
+          text: 'You are now interacting with V.E.D.A. AI! Ask any technical question or run commands like "baja" or "robotics".',
+          actionText: 'Explore Systems & Skills',
           actionId: 'skills',
         };
       case 'skills':
@@ -144,35 +150,60 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
         {dialogue.text}
       </p>
 
-      {/* Primary Action Button */}
-      {dialogue.actionText && (
+      {/* Action Buttons: Primary & VEDA AI Launcher */}
+      <div className="space-y-1.5 mb-3">
+        {dialogue.actionText && (
+          <button
+            onClick={() => {
+              if (dialogue.actionId === 'wake') {
+                onSetState('greeting');
+              } else if (dialogue.actionId) {
+                onNavigate(dialogue.actionId);
+              }
+            }}
+            className="w-full flex items-center justify-center space-x-1.5 px-3 py-2 rounded-xl bg-burgundy hover:bg-wine text-cream text-[11px] font-mono font-semibold transition-all shadow-sm active:scale-98"
+          >
+            <span>{dialogue.actionText}</span>
+            <ArrowRight className="w-3 h-3 text-dusky" />
+          </button>
+        )}
+
         <button
-          onClick={() => {
-            if (dialogue.actionId === 'wake') {
-              onSetState('greeting');
-            } else if (dialogue.actionId) {
-              onNavigate(dialogue.actionId);
-            }
-          }}
-          className="w-full flex items-center justify-center space-x-1.5 px-3 py-2 rounded-xl bg-burgundy hover:bg-wine text-cream text-[11px] font-mono font-semibold transition-all mb-3 shadow-sm active:scale-98"
+          onClick={() => onNavigate('veda')}
+          className="w-full flex items-center justify-center space-x-1.5 px-3 py-1.5 rounded-xl bg-cream-surface hover:bg-cream-darker/60 text-wine border border-emerald-600/30 text-[10px] font-mono font-semibold transition-all shadow-sm active:scale-98"
+          title="Launch V.E.D.A. AI Interactive Console"
         >
-          <span>{dialogue.actionText}</span>
-          <ArrowRight className="w-3 h-3 text-dusky" />
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <Terminal className="w-3 h-3 text-emerald-600" />
+          <span>Launch V.E.D.A. AI Terminal</span>
         </button>
-      )}
+      </div>
 
       {/* Mini Companion Interactive Modes Grid */}
-      <div className="pt-2 border-t border-burgundy/10 grid grid-cols-4 gap-1 text-[10px]">
+      <div className="pt-2 border-t border-burgundy/10 grid grid-cols-5 gap-1 text-[9px] font-mono">
+        <button
+          onClick={() => onSetState('greeting')}
+          className={`p-1.5 rounded-lg flex flex-col items-center justify-center transition-colors ${
+            state === 'greeting'
+              ? 'bg-burgundy text-cream font-bold shadow-sm'
+              : 'hover:bg-cream text-taupe hover:text-wine'
+          }`}
+          title="Switch to waving greeting mode"
+        >
+          <Hand className="w-3 h-3 mb-0.5" />
+          <span>Wave</span>
+        </button>
+
         <button
           onClick={() => onSetState('coding')}
           className={`p-1.5 rounded-lg flex flex-col items-center justify-center transition-colors ${
             state === 'coding'
-              ? 'bg-burgundy text-cream font-bold'
+              ? 'bg-burgundy text-cream font-bold shadow-sm'
               : 'hover:bg-cream text-taupe hover:text-wine'
           }`}
           title="Switch to coding mode"
         >
-          <Laptop className="w-3.5 h-3.5 mb-0.5" />
+          <Laptop className="w-3 h-3 mb-0.5" />
           <span>Code</span>
         </button>
 
@@ -180,12 +211,12 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
           onClick={() => onSetState('engineering')}
           className={`p-1.5 rounded-lg flex flex-col items-center justify-center transition-colors ${
             state === 'engineering'
-              ? 'bg-burgundy text-cream font-bold'
+              ? 'bg-burgundy text-cream font-bold shadow-sm'
               : 'hover:bg-cream text-taupe hover:text-wine'
           }`}
           title="Switch to CAD engineering mode"
         >
-          <Wrench className="w-3.5 h-3.5 mb-0.5" />
+          <Wrench className="w-3 h-3 mb-0.5" />
           <span>CAD</span>
         </button>
 
@@ -193,12 +224,12 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
           onClick={() => onSetState('thinking')}
           className={`p-1.5 rounded-lg flex flex-col items-center justify-center transition-colors ${
             state === 'thinking'
-              ? 'bg-burgundy text-cream font-bold'
+              ? 'bg-burgundy text-cream font-bold shadow-sm'
               : 'hover:bg-cream text-taupe hover:text-wine'
           }`}
           title="Switch to thinking mode"
         >
-          <Lightbulb className="w-3.5 h-3.5 mb-0.5" />
+          <Lightbulb className="w-3 h-3 mb-0.5" />
           <span>Think</span>
         </button>
 
@@ -206,13 +237,13 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
           onClick={() => onSetState('celebrating')}
           className={`p-1.5 rounded-lg flex flex-col items-center justify-center transition-colors ${
             state === 'celebrating'
-              ? 'bg-burgundy text-cream font-bold'
+              ? 'bg-burgundy text-cream font-bold shadow-sm'
               : 'hover:bg-cream text-taupe hover:text-wine'
           }`}
-          title="Trigger cherry blossom celebration"
+          title="Trigger petal celebration"
         >
-          <Sparkles className="w-3.5 h-3.5 mb-0.5 text-amber-500" />
-          <span>Celebrate</span>
+          <Sparkles className="w-3 h-3 mb-0.5 text-amber-500" />
+          <span>Party</span>
         </button>
       </div>
     </div>
