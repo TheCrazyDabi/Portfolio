@@ -27,12 +27,12 @@ export class VedaBackendAdapter {
     return this.getApiUrl() !== null;
   }
 
-  public static async query(rawQuery: string): Promise<GuideMessage> {
+  public static async query(rawQuery: string, currentSection?: string): Promise<GuideMessage> {
     const apiUrl = this.getApiUrl();
 
     // If no backend configured, use local deterministic guide engine
     if (!apiUrl) {
-      return VedaGuideService.answerQuestion(rawQuery);
+      return VedaGuideService.answerQuestion(rawQuery, currentSection);
     }
 
     try {
@@ -66,7 +66,7 @@ export class VedaBackendAdapter {
     } catch (err) {
       console.warn('V.E.D.A. backend unavailable, falling back to local guide engine:', err);
       // Graceful deterministic fallback
-      return VedaGuideService.answerQuestion(rawQuery);
+      return VedaGuideService.answerQuestion(rawQuery, currentSection);
     }
   }
 }

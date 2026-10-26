@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Send, Sparkles, Cpu, Shield, Zap, X, CornerDownLeft, Volume2, VolumeX, Maximize2, Minimize2, Trash2, HelpCircle } from 'lucide-react';
 import { Profile } from '../../types/content';
-import { VedaGuideService } from '../../services/vedaGuideService';
+import { VedaGuideService, GuideAction } from '../../services/vedaGuideService';
 
 interface VedaConsoleProps {
   profile?: Profile | null;
@@ -14,6 +14,7 @@ interface CommandHistoryItem {
   content: string;
   timestamp: string;
   badge?: string;
+  actions?: GuideAction[];
 }
 
 export const VedaConsole: React.FC<VedaConsoleProps> = ({
@@ -29,7 +30,7 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
   const [commandIndex, setCommandIndex] = useState<number>(-1);
   const [userCommands, setUserCommands] = useState<string[]>([]);
 
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const streamTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -59,7 +60,7 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
 [✔] Domain Graph: ROS 2 · Jetson Orin Nano · Lotus SHARK CAD · aBAJA 2026 · Cybersecurity
 [✔] Telemetry Protocol: Strict Local Execution (Zero External Cloud Telemetry)
 
-Ask me anything about Vasudev's robotics work, engineering builds, or background below! You can chat naturally (e.g. "hey veda", "explain MediArm") or type 'help' for terminal commands.`,
+Ask me anything about Vasudev's robotics work, engineering builds, or background below! You can chat naturally (e.g. "hey veda", "explain MediArm", "show projects") or type 'help' for terminal commands.`,
         timestamp: getTimestamp(),
         badge: 'READY'
       }
@@ -68,9 +69,11 @@ Ask me anything about Vasudev's robotics work, engineering builds, or background
     setHistory(bootSequence);
   }, []);
 
-  // Auto-scroll terminal to bottom
+  // Auto-scroll terminal buffer internally without scrolling the browser window
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (terminalContainerRef.current) {
+      terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
+    }
   }, [history, isStreaming]);
 
   // Audio typing sound effect (subtle high-tech chirp)
@@ -93,8 +96,8 @@ Ask me anything about Vasudev's robotics work, engineering builds, or background
     }
   };
 
-  // Streaming text emulator
-  const streamResponse = (fullText: string, badge = 'VEDA') => {
+  // Streaming text emulator with optional interactive actions
+  const streamResponse = (fullText: string, badge = 'VEDA', actions?: GuideAction[]) => {
     setIsStreaming(true);
     let currentIdx = 0;
     const chunkSize = 4;
@@ -103,7 +106,8 @@ Ask me anything about Vasudev's robotics work, engineering builds, or background
       type: 'output',
       content: '',
       timestamp: getTimestamp(),
-      badge
+      badge,
+      actions
     };
 
     setHistory(prev => [...prev, streamItem]);
@@ -131,6 +135,19 @@ Ask me anything about Vasudev's robotics work, engineering builds, or background
     };
 
     step();
+  };
+
+  const handleActionClick = (action: GuideAction) => {
+    if (action.type === 'navigate') {
+      const el = document.getElementById(action.target);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (action.type === 'tour') {
+      window.dispatchEvent(new CustomEvent('open-veda-guide', { detail: { mode: 'tour' } }));
+    } else if (action.type === 'external') {
+      window.open(action.target, '_blank', 'noopener,noreferrer');
+    }
   };
 
   // Process terminal command or natural language query
@@ -209,8 +226,18 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
 
     // 2. Adaptive Conversational AI Guide Engine (Natural Language & Projects)
     try {
-      const aiResponse = await VedaGuideService.answerQuestion(trimmed);
-      streamResponse(aiResponse.text, 'VEDA-AI');
+      const aiResponse = await VedaGuideService.answerQuestion(trimmed, 'veda');
+      streamResponse(aiResponse.text, 'VEDA-AI', aiResponse.actions);
+
+      // If intent specifically requests page navigation, smoothly navigate
+      if (aiResponse.navigationTarget) {
+        setTimeout(() => {
+          const el = document.getElementById(aiResponse.navigationTarget!);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 350);
+      }
     } catch {
       streamResponse(
         `I encountered a temporary processing glitch while analyzing your request. Please feel free to ask again or try clicking one of the quick suggestions below!`,
@@ -316,7 +343,10 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
       </div>
 
       {/* Terminal Screen Body */}
-      <div className="flex-1 p-4 sm:p-5 overflow-y-auto font-mono text-xs sm:text-[13px] leading-relaxed space-y-3.5 bg-gradient-to-b from-[#14050D] to-[#0D0308] select-text">
+      <div
+        ref={terminalContainerRef}
+        className="flex-1 p-4 sm:p-5 overflow-y-auto font-mono text-xs sm:text-[13px] leading-relaxed space-y-3.5 bg-gradient-to-b from-[#14050D] to-[#0D0308] select-text"
+      >
         {history.map((item, idx) => (
           <div key={idx} className="space-y-1">
             {item.type === 'input' ? (
@@ -335,11 +365,26 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
                 {isStreaming && idx === history.length - 1 && (
                   <span className="inline-block w-2 h-4 bg-emerald-400 ml-1 animate-pulse align-middle" />
                 )}
+
+                {/* Interactive Action Buttons */}
+                {item.actions && item.actions.length > 0 && (!isStreaming || idx < history.length - 1) && (
+                  <div className="mt-2.5 pt-2 border-t border-burgundy/25 flex flex-wrap gap-1.5 not-prose">
+                    {item.actions.map((act, i) => (
+                      <button
+                        key={i}
+                        onClick={() => handleActionClick(act)}
+                        className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-md bg-[#2A0B1A] hover:bg-burgundy text-dusky hover:text-cream border border-burgundy/30 text-[11px] font-mono transition-colors shadow-sm cursor-pointer"
+                      >
+                        <span>{act.label}</span>
+                        <CornerDownLeft className="w-2.5 h-2.5 opacity-60" />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
         ))}
-        <div ref={terminalEndRef} />
       </div>
 
       {/* Quick Prompt Command Suggestions Bar */}

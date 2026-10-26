@@ -61,13 +61,13 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
   const [currentTourIndex, setCurrentTourIndex] = useState(0);
   const currentStep = TOUR_STEPS[currentTourIndex];
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatScrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-scroll chat to bottom
+  // Auto-scroll chat internally to bottom without moving the browser viewport/window
   useEffect(() => {
-    if (activeTab === 'chat') {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (activeTab === 'chat' && chatScrollRef.current) {
+      chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
     }
   }, [messages, isTyping, activeTab]);
 
@@ -88,11 +88,17 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
     setIsTyping(true);
 
     try {
-      const botResponse = await VedaBackendAdapter.query(trimmed);
+      const botResponse = await VedaBackendAdapter.query(trimmed, activeSection);
       setMessages((prev) => [...prev, botResponse]);
+      if (botResponse.navigationTarget) {
+        onNavigate(botResponse.navigationTarget);
+      }
     } catch {
-      const fallback = await VedaGuideService.answerQuestion(trimmed);
+      const fallback = await VedaGuideService.answerQuestion(trimmed, activeSection);
       setMessages((prev) => [...prev, fallback]);
+      if (fallback.navigationTarget) {
+        onNavigate(fallback.navigationTarget);
+      }
     } finally {
       setIsTyping(false);
     }
@@ -229,7 +235,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       {activeTab === 'chat' && (
         <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
           {/* Scrollable Chat Area */}
-          <div className="flex-1 p-3.5 overflow-y-auto space-y-3 font-sans text-xs">
+          <div ref={chatScrollRef} className="flex-1 p-3.5 overflow-y-auto space-y-3 font-sans text-xs">
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -276,7 +282,6 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
                 <span className="text-[10px] pl-1">V.E.D.A. ...</span>
               </div>
             )}
-            <div ref={messagesEndRef} />
           </div>
 
           {/* Suggested Quick Question Chips */}
