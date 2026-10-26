@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layers, Cpu, Box, ShieldCheck, Eye, Terminal, MapPin, GraduationCap, Sparkles } from 'lucide-react';
+import { Layers, Cpu, Box, ShieldCheck, Eye, Terminal, MapPin, GraduationCap } from 'lucide-react';
 import { Profile } from '../../types/content';
 import { getAssetUrl } from '../../utils/assets';
 import { SpiderLily } from '../common/SpiderLily';
@@ -158,40 +158,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
               <div className="flex justify-between py-1">
                 <span className="text-taupe">Verification Standard:</span>
                 <span className="text-emerald-700 font-semibold">Offline Test-Harnessed &amp; Bench-Tested</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* "The Crazy Dabi / Mini Me" Spotlight Banner */}
-        <div className="mb-16 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-burgundy via-wine to-burgundy-surface text-cream border border-dusky/30 shadow-cad overflow-hidden relative">
-          <div className="absolute right-0 top-0 bottom-0 opacity-15 pointer-events-none cad-grid-bg-dark w-1/2" />
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center relative z-10">
-            <div className="md:col-span-4 flex justify-center">
-              <div className="w-48 sm:w-56 h-auto drop-shadow-xl hover:scale-105 transition-transform duration-300">
-                <img
-                  src={getAssetUrl('assets/companion/poses/hero-seated.png')}
-                  alt="The Crazy Dabi - Vasudev Chibi"
-                  className="w-full h-auto object-contain"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            <div className="md:col-span-8 space-y-3 text-center md:text-left">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cream/10 border border-blush/20 text-xs font-mono text-blush">
-                <Sparkles className="w-3.5 h-3.5 text-dusky" />
-                <span>MINI ME // SAME ENERGY, SMALLER SIZE, BIGGER IDEAS</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-cream">
-                The Crazy Dabi — Digital Engineering Studio Companion
-              </h3>
-              <p className="text-xs sm:text-sm text-blush/80 leading-relaxed font-sans max-w-xl">
-                Seated with his laptop stamped <span className="font-mono text-cream font-semibold">"BUILD. EXPLORE. AUTOMATE."</span> atop foundational volumes of <span className="text-cream">Robotics</span>, <span className="text-cream">Embedded Systems</span>, <span className="text-cream">AI &amp; Computer Vision</span>, <span className="text-cream">Cybersecurity</span>, and <span className="text-cream">CAD &amp; Design</span>.
-              </p>
-              <div className="text-xs font-mono text-dusky pt-1">
-                Tap the floating companion in the bottom corner anytime to interact, inspect code, or explore engineering systems!
               </div>
             </div>
           </div>
