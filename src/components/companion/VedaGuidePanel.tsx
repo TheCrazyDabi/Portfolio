@@ -25,7 +25,7 @@ import {
   VedaGuideService
 } from '../../services/vedaGuideService';
 import { VedaBackendAdapter } from '../../services/vedaBackendAdapter';
-import { VedaReplyLanguage } from '../../services/vedaLocalization';
+import { resolveVedaLanguage, VedaReplyLanguage } from '../../services/vedaLocalization';
 
 interface VedaGuidePanelProps {
   onClose: () => void;
@@ -49,6 +49,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       text: "Hey, I'm VEDA 😊 I can guide you through Vasudev's projects and chat in English, Malayalam, or Manglish. Choose a reply language below or just write naturally.",
       pose: 'greeting',
+      spokenLanguage: 'en-IN',
       actions: [
         { label: 'Start Guided Tour', type: 'tour', target: 'start' },
         { label: 'View Equinox aBAJA', type: 'navigate', target: 'projects' },
@@ -58,6 +59,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [speakingMessageId, setSpeakingMessageId] = useState<string | null>(null);
 
   // Guided Tour State
   const [currentTourIndex, setCurrentTourIndex] = useState(0);
@@ -72,6 +74,29 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       chatScrollRef.current.scrollTop = chatScrollRef.current.scrollHeight;
     }
   }, [messages, isTyping, activeTab]);
+
+  useEffect(() => () => {
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  }, []);
+
+  const speakMessage = (message: GuideMessage) => {
+    if (!('speechSynthesis' in window)) return;
+    if (speakingMessageId === message.id) {
+      window.speechSynthesis.cancel();
+      setSpeakingMessageId(null);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(
+      message.text.replace(/[*#`]/g, '').replace(/\s+/g, ' ').trim(),
+    );
+    utterance.lang = message.spokenLanguage || 'en-IN';
+    utterance.onend = () => setSpeakingMessageId(null);
+    utterance.onerror = () => setSpeakingMessageId(null);
+    setSpeakingMessageId(message.id);
+    window.speechSynthesis.speak(utterance);
+  };
 
   // Handle sending a question
   const handleSendMessage = async (textToSend: string) => {
@@ -90,13 +115,21 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
     setIsTyping(true);
 
     try {
-      const botResponse = await VedaBackendAdapter.query(trimmed, activeSection, replyLanguage);
+      const response = await VedaBackendAdapter.query(trimmed, activeSection, replyLanguage);
+      const botResponse: GuideMessage = {
+        ...response,
+        spokenLanguage: resolveVedaLanguage(trimmed, replyLanguage) === 'malayalam' ? 'ml-IN' : 'en-IN',
+      };
       setMessages((prev) => [...prev, botResponse]);
       if (botResponse.navigationTarget) {
         onNavigate(botResponse.navigationTarget);
       }
     } catch {
-      const fallback = await VedaGuideService.answerQuestion(trimmed, activeSection, replyLanguage);
+      const response = await VedaGuideService.answerQuestion(trimmed, activeSection, replyLanguage);
+      const fallback: GuideMessage = {
+        ...response,
+        spokenLanguage: resolveVedaLanguage(trimmed, replyLanguage) === 'malayalam' ? 'ml-IN' : 'en-IN',
+      };
       setMessages((prev) => [...prev, fallback]);
       if (fallback.navigationTarget) {
         onNavigate(fallback.navigationTarget);
@@ -279,6 +312,21 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
                   }`}
                 >
                   <p className="whitespace-pre-line leading-relaxed">{msg.text}</p>
+
+                  {msg.sender === 'veda' && 'speechSynthesis' in window && (
+                    <button
+                      type="button"
+                      onClick={() => speakMessage(msg)}
+                      aria-pressed={speakingMessageId === msg.id}
+                      className="mt-2 inline-flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-mono text-taupe dark:text-dusky hover:bg-burgundy/10 dark:hover:bg-white/10 transition-colors"
+                      title={speakingMessageId === msg.id ? 'Stop speaking' : 'Read this reply aloud'}
+                    >
+                      {speakingMessageId === msg.id
+                        ? <VolumeX className="w-3 h-3" />
+                        : <Volume2 className="w-3 h-3" />}
+                      <span>{speakingMessageId === msg.id ? 'Stop' : 'Speak'}</span>
+                    </button>
+                  )}
 
                   {/* Contextual Action Buttons in Bot Messages */}
                   {msg.actions && msg.actions.length > 0 && (

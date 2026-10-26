@@ -11,6 +11,7 @@ export interface GuideMessage {
   sender: 'user' | 'veda';
   text: string;
   timestamp: string;
+  spokenLanguage?: 'en-IN' | 'ml-IN';
   actions?: GuideAction[];
   pose?: 'greeting' | 'coding' | 'engineering' | 'thinking' | 'happy' | 'celebrating' | 'explaining';
   navigationTarget?: string; // Optional section ID if intent requires smooth page navigation
@@ -157,6 +158,7 @@ export class VedaGuideService {
         id,
         sender: 'veda',
         timestamp,
+        spokenLanguage: replyLanguage === 'malayalam' ? 'ml-IN' : 'en-IN',
         ...getLocalizedVedaReply(raw, replyLanguage),
       };
     }
