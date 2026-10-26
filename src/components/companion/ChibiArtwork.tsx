@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChibiState } from '../../types/chibi';
 import { getAssetUrl } from '../../utils/assets';
 
@@ -14,6 +14,11 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
   isOverdrive = false,
 }) => {
   const [imageError, setImageError] = useState(false);
+  const [isDisturbed, setIsDisturbed] = useState(false);
+  const [isStartled, setIsStartled] = useState(false);
+  const [isAngry, setIsAngry] = useState(false);
+  const disturbanceTimerRef = useRef<number | null>(null);
+  const startleTimerRef = useRef<number | null>(null);
 
   const isSleeping = state === 'sleeping';
   const isCelebrating = state === 'celebrating';
@@ -24,17 +29,47 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
   // Keep the companion consistent across every interaction state.
   const poseSrc = getAssetUrl('assets/companion/vasudev-chibi-working-3d.png');
 
+  useEffect(() => () => {
+    if (disturbanceTimerRef.current !== null) window.clearTimeout(disturbanceTimerRef.current);
+    if (startleTimerRef.current !== null) window.clearTimeout(startleTimerRef.current);
+  }, []);
+
+  const handlePointerEnter = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse') return;
+    if (disturbanceTimerRef.current !== null) window.clearTimeout(disturbanceTimerRef.current);
+    setIsDisturbed(true);
+    setIsStartled(true);
+    setIsAngry(false);
+    startleTimerRef.current = window.setTimeout(() => setIsStartled(false), 850);
+    disturbanceTimerRef.current = window.setTimeout(() => setIsAngry(true), 8000);
+  };
+
+  const handlePointerLeave = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse') return;
+    if (disturbanceTimerRef.current !== null) window.clearTimeout(disturbanceTimerRef.current);
+    if (startleTimerRef.current !== null) window.clearTimeout(startleTimerRef.current);
+    disturbanceTimerRef.current = null;
+    startleTimerRef.current = null;
+    setIsDisturbed(false);
+    setIsStartled(false);
+    setIsAngry(false);
+  };
+
   return (
     <div
       onClick={onClick}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
       data-state={state}
       className={`chibi-3d-stage w-[5.5rem] h-[5.5rem] sm:w-24 sm:h-24 md:w-28 md:h-28 relative cursor-pointer select-none ${
+        isAngry ? 'chibi-angry' : isStartled ? 'chibi-disturbed' : ''
+      } ${
         isOverdrive ? 'chibi-overdrive-aura rounded-full p-1' : ''
       }`}
       role={onClick ? 'button' : 'img'}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={onClick ? (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick(); } } : undefined}
-      aria-label={`Vasudev's animated 3D chibi companion, ${state} mode`}
+      aria-label={`Vasudev's animated 3D chibi companion, ${state} mode${isAngry ? ', annoyed by the cursor' : isDisturbed ? ', startled by the cursor' : ', working on a project'}`}
     >
       {/* Animated Prop 1: Floating Zzz Bubbles for Sleeping State */}
       {isSleeping && (
@@ -82,6 +117,18 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
         </div>
       )}
 
+      {isDisturbed && (
+        <div
+          className={`chibi-reaction absolute -top-3 -left-2 z-30 pointer-events-none rounded-full px-2 py-1 font-mono font-bold shadow-lg ${
+            isAngry ? 'bg-rose-600 text-white' : 'bg-cream-surface text-burgundy border border-burgundy/30'
+          }`}
+          role="status"
+          aria-live="polite"
+        >
+          {isAngry ? '💢 HEY!' : '?!'}
+        </div>
+      )}
+
       {/* Overdrive Flame Aura indicator */}
       {isOverdrive && (
         <div className="absolute -bottom-1 inset-x-0 text-center pointer-events-none z-20">
@@ -101,6 +148,11 @@ export const ChibiArtwork: React.FC<ChibiArtworkProps> = ({
             className="w-full h-full object-contain rounded-[1.15rem] pointer-events-none"
             loading="eager"
           />
+          {!isDisturbed && (
+            <span className="chibi-typing-cursor absolute top-[58%] right-[23%] z-10 pointer-events-none font-mono text-[7px] font-bold text-emerald-300 drop-shadow">
+              &gt;_
+            </span>
+          )}
         </div>
       ) : (
         /* Vector SVG Fallback in case of asset loading failure */
