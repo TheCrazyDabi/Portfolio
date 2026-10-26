@@ -44,11 +44,7 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
     const bootSequence: CommandHistoryItem[] = [
       {
         type: 'system',
-        content: `__     _______ ____    _      _   _ ___ 
-\\ \\   / / ____|  _ \\  / \\    | | | |_ _| 
- \\ \\ / /|  _| | | | |/ _ \\   | | | || |  
-  \\ V / | |___| |_| / ___ \\  | |_| || |  
-   \\_/  |_____|____/_/   \\_\\  \\___/|___| v2.4`,
+        content: 'VEDA',
         timestamp: getTimestamp(),
         badge: 'BOOT'
       },
