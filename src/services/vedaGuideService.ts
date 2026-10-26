@@ -36,9 +36,9 @@ export const TOUR_STEPS: TourStep[] = [
     description: 'Welcome! I am V.E.D.A., your interactive engineering guide. This studio showcases Vasudev Saras K M—an undergraduate robotics engineer at Saintgits College of Engineering (APJ KTU) specializing in autonomous rovers, vehicle dynamics, and cyber-physical security.',
     pose: 'greeting',
     highlightTips: [
-      'Interactive 3D Face Card with CAD kinematics',
+      'Authentic engineering portrait with 3D parallax tilt',
       'Ambient Sakura & Spider Lily procedural soundscape (bottom-left)',
-      'Direct navigation to verified research and credentials'
+      'Direct navigation to verified projects and credentials'
     ]
   },
   {
