@@ -307,16 +307,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 {/* Restrained soft gradient shade at base to anchor typography */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20 pointer-events-none" />
 
-                {/* Top Restrained Engineering Datum Marks */}
-                <div className="absolute top-3 left-3 text-[9px] font-mono text-cream/90 z-20 flex items-center space-x-1.5 px-2 py-0.5 rounded-md bg-wine/70 backdrop-blur-sm border border-white/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>SYS_ID // VASUDEV.SARAS</span>
-                </div>
-
-                <div className="absolute top-3 right-3 text-[9px] font-mono text-blush/90 z-20 px-2 py-0.5 rounded-md bg-wine/70 backdrop-blur-sm border border-white/10">
-                  S7_ROBOTICS
-                </div>
-
                 {/* Bottom Portrait Identity Badge */}
                 <div className="absolute bottom-3.5 left-3.5 right-3.5 z-20 p-2.5 rounded-2xl bg-wine/85 backdrop-blur-md border border-white/15 text-cream space-y-0.5">
                   <div className="flex items-center justify-between">
@@ -337,26 +327,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               <div className="absolute -bottom-5 -left-5 sm:-left-7 z-30 pointer-events-none">
                 <SpiderLily variant="curling" className="w-22 h-22 sm:w-26 sm:h-26 filter drop-shadow-xl opacity-95" />
               </div>
-
-              {/* Compact Restrained Technical Tags Around Portrait */}
-              <span
-                className="chipf text-[10px] sm:text-[11px]"
-                style={{ left: '-12px', bottom: '110px' }}
-              >
-                ROS 2 / Jetson Orin
-              </span>
-              <span
-                className="chipf text-[10px] sm:text-[11px]"
-                style={{ right: '-10px', top: '75px' }}
-              >
-                Lotus SHARK CAD
-              </span>
-              <span
-                className="chipf text-[10px] sm:text-[11px]"
-                style={{ right: '12px', bottom: '-12px' }}
-              >
-                Autonomous Systems
-              </span>
             </div>
           </div>
 
