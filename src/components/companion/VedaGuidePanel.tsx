@@ -45,7 +45,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       id: 'welcome-1',
       sender: 'veda',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      text: "Hello! I'm V.E.D.A., Vasudev's portfolio guide. Ask me about his robotics projects, aBAJA SAE CAD work, embedded firmware, or let me guide you through his work!",
+      text: "Hey, I'm VEDA 😊 I can help you explore Vasudev's projects, or we can just have a casual chat. What's on your mind?",
       pose: 'greeting',
       actions: [
         { label: 'Start Guided Tour', type: 'tour', target: 'start' },
@@ -279,7 +279,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
                 <span className="w-1.5 h-1.5 rounded-full bg-dusky animate-bounce" />
                 <span className="w-1.5 h-1.5 rounded-full bg-dusky animate-bounce [animation-delay:0.2s]" />
                 <span className="w-1.5 h-1.5 rounded-full bg-dusky animate-bounce [animation-delay:0.4s]" />
-                <span className="text-[10px] pl-1">V.E.D.A. ...</span>
+                <span className="text-[10px] pl-1">VEDA is thinking...</span>
               </div>
             )}
           </div>

@@ -124,8 +124,7 @@ export class VedaGuideService {
   }
 
   /**
-   * Process a visitor's question using a high-accuracy, self-adaptive conversational AI engine.
-   * Accurately recognizes intents, provides in-depth domain knowledge, and adaptively coordinates page navigation.
+   * Answer portfolio questions and lightweight small talk with a friendly local guide.
    */
   public static async answerQuestion(rawQuery: string, currentSection?: string): Promise<GuideMessage> {
     const id = `veda-msg-${Date.now()}`;
@@ -138,7 +137,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'greeting',
-        text: `Hello! I'm **V.E.D.A.**, Vasudev's interactive engineering companion. How can I assist you with his robotics projects or credentials today?`,
+        text: `Hey! I'm **VEDA** 😊 I can chat, answer questions about Vasudev, or help you find something around the portfolio. What's on your mind?`,
         actions: [
           { label: 'Explore Projects 🚀', type: 'navigate', target: 'projects' },
           { label: 'Start Guided Tour 🌸', type: 'tour', target: 'start' }
@@ -765,31 +764,58 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'greeting',
-        text: `Hey there! I'm **V.E.D.A.**, Vasudev's interactive portfolio guide. I can help you explore his projects, background, and credentials, or navigate to a section.\n\nWhat would you like to explore?`,
-        actions: [
-          { label: 'Take Guided Tour 🌸', type: 'tour', target: 'start' },
-          { label: 'Explore Flagship Projects', type: 'navigate', target: 'projects' },
-          { label: 'About Vasudev', type: 'navigate', target: 'about' },
-          { label: 'Get in Touch', type: 'navigate', target: 'contact' }
-        ]
+        text: `Hey! Good to see you 😊 How's your day going? I'm happy to chat, or help you explore anything in Vasudev's portfolio.`,
       };
     }
 
     // -------------------------------------------------------------------------
     // 20. Small Talk, Appreciation & Farewells
     // -------------------------------------------------------------------------
-    if (has('how are you') || has('how are you doing') || has("how s it going") || has('whats up') || has('what s up')) {
+    if (
+      has('how are you') || has('how are you doing') || has("how s it going") ||
+      has('whats up') || has('what s up') || clean === 'and you' ||
+      has('how about you') || has('what about you')
+    ) {
       return {
         id,
         sender: 'veda',
         timestamp,
         pose: 'happy',
-        text: `I'm doing fantastic, thank you! ⚡ Running at peak deterministic efficiency right in your browser with zero external cloud lag.\n\nI'm ready whenever you are! Would you like to check out Vasudev's latest autonomous vehicle builds, inspect his CAD kinematics, or learn about his college background?`,
-        actions: [
-          { label: 'Show Robotics Projects', type: 'navigate', target: 'projects' },
-          { label: 'Explore Skills Matrix', type: 'navigate', target: 'skills' },
-          { label: 'Start Guided Tour', type: 'tour', target: 'start' }
-        ]
+        text: `I'm doing well, thanks for asking! 😊 How are you?`,
+      };
+    }
+
+    if (
+      clean === 'good' || clean === 'great' || clean === 'fine' || clean === 'okay' || clean === 'ok' ||
+      clean === 'i m good' || clean === 'im good' || clean === 'i am good' ||
+      clean === 'i m doing well' || clean === 'im doing well' || clean === 'doing good'
+    ) {
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        pose: 'happy',
+        text: `Glad to hear it 😊 What are you up to today?`,
+      };
+    }
+
+    if (
+      has('you are so good') || has('you re so good') ||
+      has('you are amazing') || has('you re amazing') ||
+      has('you are awesome') || has('you re awesome') ||
+      has('you are wonderful') || has('you re wonderful') ||
+      has('you are the best') || has('you re the best') ||
+      has('you are so kind') || has('you re so kind') ||
+      has('you are great') || has('you re great') ||
+      has('you are helpful') || has('you re helpful') ||
+      has('you rock') || has('love chatting') || has('great assistant')
+    ) {
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        pose: 'celebrating',
+        text: `Aww, thank you! That's really kind of you to say 😊 I'm glad we can chat. What would you like to talk about next?`,
       };
     }
 
@@ -808,11 +834,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'celebrating',
-        text: `You're very welcome! Always glad to help! ✨\n\nIs there anything else you'd like to inspect? I can show you his verified certifications, dive into his aBAJA suspension kinematics, or bring up his direct contact info.`,
-        actions: [
-          { label: 'View Certifications', type: 'navigate', target: 'credentials' },
-          { label: 'Contact Channels', type: 'navigate', target: 'contact' }
-        ]
+        text: `You're very welcome! 😊 Happy to help. What else is on your mind?`,
       };
     }
 
@@ -831,20 +853,14 @@ export class VedaGuideService {
     }
 
     // -------------------------------------------------------------------------
-    // 21. Self-Adaptive Fallback (Conversational ChatGPT-Style)
+    // 21. Friendly, open-ended chat fallback
     // -------------------------------------------------------------------------
     return {
       id,
       sender: 'veda',
       timestamp,
       pose: 'thinking',
-      text: `That's a thoughtful question! While my knowledge graph is specifically calibrated to Vasudev's verified engineering portfolio, I can provide deep technical answers on his real-world builds:\n\n• 🚗 **Autonomous Rover**: Deploying ROS 2 Nav2 & YOLOv8 on an NVIDIA Jetson Orin Nano\n• 🏎️ **Equinox aBAJA SAE**: Double-wishbone geometry, roll-centre synthesis, and Ackermann steering CAD\n• 🦾 **MediArm**: 3-DOF articulated arm with dual-core ESP32 and voice control\n• 📜 **Verified Credentials**: NIT Calicut industrial automation and Dassault CSWA credentials\n\nWhat would you like to dive into next?`,
-      actions: [
-        { label: 'Explore Flagship Projects', type: 'navigate', target: 'projects' },
-        { label: 'View Skills Matrix', type: 'navigate', target: 'skills' },
-        { label: 'Take Guided Tour', type: 'tour', target: 'start' },
-        { label: 'Contact Vasudev', type: 'navigate', target: 'contact' }
-      ]
+      text: `I'm happy to chat 😊 I know Vasudev's portfolio well, and I can keep things casual too. What are you in the mood to talk about?`,
     };
   }
 }
