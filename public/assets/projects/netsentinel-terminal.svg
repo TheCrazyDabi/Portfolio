@@ -1,0 +1,69 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' width='1200' height='800'>
+
+<defs>
+  <linearGradient id='bgGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#200711' />
+    <stop offset='50%' stop-color='#340D1C' />
+    <stop offset='100%' stop-color='#15040B' />
+  </linearGradient>
+  <linearGradient id='wineGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#641F36' />
+    <stop offset='100%' stop-color='#451425' />
+  </linearGradient>
+  <pattern id='grid' width='30' height='30' patternUnits='userSpaceOnUse'>
+    <path d='M 30 0 L 0 0 0 30' fill='none' stroke='#DFB9BF' stroke-width='0.5' stroke-opacity='0.12'/>
+  </pattern>
+</defs>
+
+  <rect width='100%' height='100%' fill='url(#bgGrad)'/>
+  <rect width='100%' height='100%' fill='url(#grid)'/>
+
+  <g transform='translate(60, 40)'>
+    <rect width='1080' height='720' rx='12' fill='#0C0306' stroke='#641F36' stroke-width='2'/>
+    
+    <rect width='1080' height='40' rx='12' fill='#240713'/>
+    <circle cx='30' cy='20' r='6' fill='#EF4444'/>
+    <circle cx='50' cy='20' r='6' fill='#F59E0B'/>
+    <circle cx='70' cy='20' r='6' fill='#10B981'/>
+    <text x='380' y='25' fill='#EF4444' font-family='monospace' font-size='13' font-weight='bold'>NETSENTINEL v2.0 // RAW 802.11 SNIFFER (wlan0mon)</text>
+
+    <g transform='translate(35, 65)'>
+      <text x='0' y='25' fill='#F7F0E7' font-family='monospace' font-size='15' font-weight='bold'>RF MONITOR INTERFACE: wlan0mon | CH: 6 (2.437 GHz) | HOPPING: ENABLED</text>
+      
+      <rect x='0' y='45' width='1010' height='80' rx='8' fill='#EF4444' fill-opacity='0.2' stroke='#EF4444' stroke-width='1.5'/>
+      <text x='20' y='75' fill='#EF4444' font-family='monospace' font-size='16' font-weight='bold'>[CRITICAL ALERT] DEAUTHENTICATION FLOOD DETECTED!</text>
+      <text x='20' y='102' fill='#F7F0E7' font-family='monospace' font-size='13'>BURST RATE: 184 frames/sec | TARGET: 74:D2:1D:4A:88:B1 | ATTACK BSSID: 48:8F:5A:21:C0</text>
+
+      <text x='0' y='155' fill='#C28B9A' font-family='monospace' font-size='13' font-weight='bold'>TIME      TYPE          SUBTYPE       SRC MAC            DST MAC            PWR   STATUS</text>
+      <line x1='0' y1='165' x2='1010' y2='165' stroke='#380F1F' stroke-width='1.5'/>
+
+      <text x='0' y='190' fill='#EF4444' font-family='monospace' font-size='13'>11:24:02  MANAGEMENT    DEAUTH (0x0C) 48:8F:5A:21:C0     74:D2:1D:4A:88:B1  -32   [BURST 1/5]</text>
+      <text x='0' y='215' fill='#EF4444' font-family='monospace' font-size='13'>11:24:02  MANAGEMENT    DEAUTH (0x0C) 48:8F:5A:21:C0     74:D2:1D:4A:88:B1  -32   [BURST 2/5]</text>
+      <text x='0' y='240' fill='#10B981' font-family='monospace' font-size='13'>11:24:02  BEACON        SSID: CAMPUS  12:88:A4:91:02:44  FF:FF:FF:FF:FF:FF  -64   [NORMAL]</text>
+      <text x='0' y='265' fill='#38BDF8' font-family='monospace' font-size='13'>11:24:02  DATA          QoS DATA      A0:C5:89:14:B2:10  12:88:A4:91:02:44  -58   [ENCRYPTED]</text>
+      <text x='0' y='290' fill='#F59E0B' font-family='monospace' font-size='13'>11:24:03  PROBE REQ     SSID: FREE    B4:2E:99:38:11:02  FF:FF:FF:FF:FF:FF  -44   [UNASSOCIATED]</text>
+
+      <text x='0' y='335' fill='#DFB9BF' font-family='monospace' font-size='14' font-weight='bold'>SLIDING WINDOW FRAME FREQUENCY (LAST 60 SECONDS)</text>
+      
+      <g transform='translate(0, 350)'>
+        <rect x='0' y='80' width='18' height='40' fill='#38BDF8'/>
+        <rect x='25' y='75' width='18' height='45' fill='#38BDF8'/>
+        <rect x='50' y='70' width='18' height='50' fill='#38BDF8'/>
+        <rect x='75' y='65' width='18' height='55' fill='#38BDF8'/>
+        <rect x='100' y='10' width='18' height='110' fill='#EF4444'/>
+        <rect x='125' y='5' width='18' height='115' fill='#EF4444'/>
+        <rect x='150' y='8' width='18' height='112' fill='#EF4444'/>
+        <rect x='175' y='70' width='18' height='50' fill='#38BDF8'/>
+        <rect x='200' y='75' width='18' height='45' fill='#38BDF8'/>
+        <rect x='225' y='80' width='18' height='40' fill='#38BDF8'/>
+        
+        <text x='270' y='65' fill='#EF4444' font-family='monospace' font-size='13'>&lt;-- Anomalous Deauthentication Spike (Threshold: &gt;50 fps)</text>
+        <text x='270' y='95' fill='#10B981' font-family='monospace' font-size='13'>Zero-drop ring buffer thread with lockless consumer queue</text>
+      </g>
+
+      <rect x='0' y='505' width='1010' height='85' rx='6' fill='#240713' stroke='#451425'/>
+      <text x='20' y='535' fill='#DFB9BF' font-family='sans-serif' font-weight='bold' font-size='14'>NetSentinel v2.0 // Wireless Cyber-Physical Perimeter Defense</text>
+      <text x='20' y='565' fill='#C28B9A' font-family='monospace' font-size='12'>Python 3 + Scapy + C pcap · 802.11 Anomaly Engine · Rich ANSI curses UI · Response Latency: 180ms</text>
+    </g>
+  </g>
+</svg>

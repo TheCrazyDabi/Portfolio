@@ -3,6 +3,7 @@ import { ExternalLink, Github, ArrowRight, Layers, SlidersHorizontal, Sparkles }
 import { Project } from '../../types/content';
 import { CaseStudyModal } from '../common/CaseStudyModal';
 import { SpiderLily } from '../common/SpiderLily';
+import { getAssetUrl } from '../../utils/assets';
 
 interface ProjectShowcaseProps {
   projects: Project[];
@@ -77,7 +78,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) =>
               {/* Card Image Container */}
               <div className="relative aspect-video w-full overflow-hidden bg-burgundy/5 border-b border-burgundy/10">
                 <img
-                  src={project.coverImage}
+                  src={getAssetUrl(project.coverImage)}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   loading="lazy"

@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import { X, ExternalLink, Github, Layers, Wrench, AlertTriangle, CheckCircle, Cpu, Calendar } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { X, ExternalLink, Github, Layers, Wrench, AlertTriangle, CheckCircle, Cpu, Calendar, Image as ImageIcon } from 'lucide-react';
 import { Project } from '../../types/content';
+import { getAssetUrl } from '../../utils/assets';
 
 interface CaseStudyModalProps {
   project: Project | null;
@@ -8,6 +9,12 @@ interface CaseStudyModalProps {
 }
 
 export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose }) => {
+  const [activeImage, setActiveImage] = useState<string>('');
+
+  useEffect(() => {
+    setActiveImage(project?.coverImage || '');
+  }, [project]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -74,15 +81,70 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
             </p>
           </div>
 
-          {/* Cover & Gallery Images */}
-          {project.coverImage && (
-            <div className="rounded-xl overflow-hidden border border-burgundy/15 shadow-sm max-h-96">
-              <img
-                src={project.coverImage}
-                alt={project.title}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+          {/* Cover & Interactive Gallery Stage */}
+          {activeImage && (
+            <div className="space-y-3">
+              <div className="rounded-xl overflow-hidden border border-burgundy/15 shadow-sm max-h-[440px] bg-wine/5 flex items-center justify-center">
+                <img
+                  src={getAssetUrl(activeImage)}
+                  alt={project.title}
+                  className="w-full h-full max-h-[440px] object-contain transition-all duration-300"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Gallery Thumbnails Strip */}
+              {project.galleryImages && project.galleryImages.length > 0 && (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-1.5 text-[10px] font-mono text-taupe uppercase tracking-wider">
+                    <ImageIcon className="w-3 h-3 text-burgundy" />
+                    <span>Technical Gallery &amp; Photos ({project.galleryImages.length} items)</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 overflow-x-auto pb-2">
+                    {project.coverImage && (
+                      <button
+                        onClick={() => setActiveImage(project.coverImage)}
+                        className={`relative rounded-lg overflow-hidden border-2 flex-shrink-0 w-24 h-16 transition-all ${
+                          activeImage === project.coverImage
+                            ? 'border-burgundy ring-2 ring-burgundy/30 scale-105 shadow-md'
+                            : 'border-burgundy/20 opacity-70 hover:opacity-100'
+                        }`}
+                        title="Primary Cover"
+                      >
+                        <img
+                          src={getAssetUrl(project.coverImage)}
+                          alt="Cover"
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    )}
+                    {project.galleryImages.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveImage(img.url)}
+                        className={`relative rounded-lg overflow-hidden border-2 flex-shrink-0 w-24 h-16 transition-all ${
+                          activeImage === img.url
+                            ? 'border-burgundy ring-2 ring-burgundy/30 scale-105 shadow-md'
+                            : 'border-burgundy/20 opacity-70 hover:opacity-100'
+                        }`}
+                        title={img.caption || `Gallery ${idx + 1}`}
+                      >
+                        <img
+                          src={getAssetUrl(img.url)}
+                          alt={img.caption || `Gallery Image ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                  {/* Current Caption */}
+                  {project.galleryImages.find((g) => g.url === activeImage)?.caption && (
+                    <p className="text-xs font-mono text-taupe-dark italic bg-cream-surface px-3 py-2 rounded-lg border border-burgundy/15">
+                      ℹ {project.galleryImages.find((g) => g.url === activeImage)?.caption}
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
           )}
 

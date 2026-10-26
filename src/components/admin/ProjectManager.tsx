@@ -294,9 +294,10 @@ export const ProjectManager: React.FC<ProjectManagerProps> = ({
               </div>
 
               <div>
-                <label className="block text-taupe uppercase mb-1">Cover Image URL</label>
+                <label className="block text-taupe uppercase mb-1">Cover Image URL / Asset Path</label>
                 <input
-                  type="url"
+                  type="text"
+                  placeholder="assets/projects/... or https://..."
                   value={currentProject.coverImage || ''}
                   onChange={(e) => setCurrentProject({ ...currentProject, coverImage: e.target.value })}
                   className="w-full p-2.5 rounded-xl bg-cream-surface border border-burgundy/20 text-wine outline-none"

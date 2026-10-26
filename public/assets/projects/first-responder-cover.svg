@@ -1,0 +1,72 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' width='1200' height='800'>
+
+<defs>
+  <linearGradient id='bgGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#200711' />
+    <stop offset='50%' stop-color='#340D1C' />
+    <stop offset='100%' stop-color='#15040B' />
+  </linearGradient>
+  <linearGradient id='wineGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#641F36' />
+    <stop offset='100%' stop-color='#451425' />
+  </linearGradient>
+  <pattern id='grid' width='30' height='30' patternUnits='userSpaceOnUse'>
+    <path d='M 30 0 L 0 0 0 30' fill='none' stroke='#DFB9BF' stroke-width='0.5' stroke-opacity='0.12'/>
+  </pattern>
+</defs>
+
+  <rect width='100%' height='100%' fill='url(#bgGrad)'/>
+  <rect width='100%' height='100%' fill='url(#grid)'/>
+  <rect x='40' y='35' width='1120' height='55' rx='8' fill='#451425' fill-opacity='0.85' stroke='#C28B9A' stroke-width='1.5'/>
+  <circle cx='70' cy='62' r='8' fill='#10B981'/>
+  <text x='95' y='68' fill='#F7F0E7' font-family='sans-serif' font-weight='bold' font-size='20' letter-spacing='2'>AUTONOMOUS FIRST-RESPONDER // JETSON ORIN NANO + NAV2</text>
+  <text x='960' y='68' fill='#C28B9A' font-family='monospace' font-size='16'>FPS: 38.4 | ROS2 HUMBLE</text>
+
+  <g transform='translate(60, 120)'>
+    <rect width='580' height='480' rx='12' fill='#120409' stroke='#641F36' stroke-width='2'/>
+    <circle cx='290' cy='240' r='80' fill='none' stroke='#DFB9BF' stroke-opacity='0.2' stroke-dasharray='4 4'/>
+    <circle cx='290' cy='240' r='160' fill='none' stroke='#DFB9BF' stroke-opacity='0.2' stroke-dasharray='4 4'/>
+    <circle cx='290' cy='240' r='220' fill='none' stroke='#DFB9BF' stroke-opacity='0.15'/>
+    <path d='M 90 410 Q 180 320 230 270 T 360 170 T 500 110' fill='none' stroke='#38BDF8' stroke-width='4' stroke-linecap='round'/>
+    <path d='M 90 410 Q 180 320 230 270 T 360 170 T 500 110' fill='none' stroke='#38BDF8' stroke-opacity='0.35' stroke-width='14'/>
+    <circle cx='90' cy='410' r='8' fill='#10B981' stroke='#F7F0E7' stroke-width='2'/>
+    <circle cx='230' cy='270' r='6' fill='#F59E0B' stroke='#F7F0E7' stroke-width='1.5'/>
+    <circle cx='360' cy='170' r='6' fill='#F59E0B' stroke='#F7F0E7' stroke-width='1.5'/>
+    <circle cx='500' cy='110' r='12' fill='#EF4444' stroke='#F7F0E7' stroke-width='3'/>
+    <text x='518' y='116' fill='#F7F0E7' font-family='sans-serif' font-weight='bold' font-size='14'>TARGET [EMERGENCY DISPATCH]</text>
+    <g transform='translate(230, 270) rotate(-45)'>
+      <polygon points='0,-16 12,14 -12,14' fill='#DFB9BF' stroke='#641F36' stroke-width='2'/>
+    </g>
+    <text x='25' y='40' fill='#F7F0E7' font-family='monospace' font-size='16' font-weight='bold'>GLOBAL NAV2 COSTMAP // LIVE PLANNER</text>
+    <text x='25' y='65' fill='#C28B9A' font-family='monospace' font-size='13'>COORDINATES: X: 142.8m  Y: 88.4m  THETA: 42.1 DEG</text>
+  </g>
+
+  <g transform='translate(670, 120)'>
+    <rect width='470' height='260' rx='12' fill='#120409' stroke='#641F36' stroke-width='2'/>
+    <polygon points='235,50 30,230 440,230' fill='#641F36' fill-opacity='0.4' stroke='#10B981' stroke-width='2'/>
+    <polygon points='235,50 150,230 320,230' fill='#10B981' fill-opacity='0.25'/>
+    <rect x='280' y='110' width='70' height='90' fill='none' stroke='#EF4444' stroke-width='2' stroke-dasharray='4 2'/>
+    <rect x='280' y='92' width='70' height='18' fill='#EF4444'/>
+    <text x='284' y='105' fill='#F7F0E7' font-family='sans-serif' font-size='10' font-weight='bold'>OBSTACLE 94%</text>
+    <text x='20' y='32' fill='#F7F0E7' font-family='monospace' font-size='14' font-weight='bold'>CAMERA FEED // YOLOv8 ROAD SEGMENTATION</text>
+  </g>
+
+  <g transform='translate(670, 400)'>
+    <rect width='470' height='200' rx='12' fill='#120409' stroke='#641F36' stroke-width='2'/>
+    <text x='20' y='32' fill='#F7F0E7' font-family='monospace' font-size='14' font-weight='bold'>DRIVE-BY-WIRE CAN TELEMETRY</text>
+    <text x='30' y='75' fill='#C28B9A' font-family='monospace' font-size='13'>STEERING ANGLE</text>
+    <rect x='30' y='85' width='180' height='12' rx='6' fill='#380F1F'/>
+    <rect x='30' y='85' width='120' height='12' rx='6' fill='#10B981'/>
+    <text x='220' y='96' fill='#F7F0E7' font-family='monospace' font-size='13'>+14.2 DEG [CAN 0x120]</text>
+    <text x='30' y='130' fill='#C28B9A' font-family='monospace' font-size='13'>THROTTLE ACTUATOR</text>
+    <rect x='30' y='140' width='180' height='12' rx='6' fill='#380F1F'/>
+    <rect x='30' y='140' width='95' height='12' rx='6' fill='#38BDF8'/>
+    <text x='220' y='151' fill='#F7F0E7' font-family='monospace' font-size='13'>52% PWM [CAN 0x124]</text>
+    <text x='30' y='180' fill='#10B981' font-family='monospace' font-size='13'>[OK] MQTT REVERSE DISPATCH BRIDGE: CONNECTED</text>
+  </g>
+
+  <rect x='40' y='630' width='1120' height='120' rx='10' fill='#380F1F' stroke='#641F36' stroke-width='1.5'/>
+  <text x='65' y='665' fill='#DFB9BF' font-family='serif' font-size='20' font-weight='bold'>Autonomous First-Responder Buggy Retrofit</text>
+  <text x='65' y='695' fill='#F7F0E7' font-family='sans-serif' font-size='14'>Platform: Electric aBAJA Buggy Chassis · Edge: NVIDIA Jetson Orin Nano · Middleware: ROS 2 Humble &amp; Nav2</text>
+  <text x='65' y='722' fill='#C28B9A' font-family='monospace' font-size='13'>Perception: Smartphone Camera + YOLOv8/PIDNet-S · Actuation: Drive-by-Wire Electronic Steering &amp; Throttle CAN</text>
+</svg>

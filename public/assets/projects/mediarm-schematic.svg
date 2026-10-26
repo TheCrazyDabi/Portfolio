@@ -1,0 +1,82 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' width='1200' height='800'>
+
+<defs>
+  <linearGradient id='bgGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#200711' />
+    <stop offset='50%' stop-color='#340D1C' />
+    <stop offset='100%' stop-color='#15040B' />
+  </linearGradient>
+  <linearGradient id='wineGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#641F36' />
+    <stop offset='100%' stop-color='#451425' />
+  </linearGradient>
+  <pattern id='grid' width='30' height='30' patternUnits='userSpaceOnUse'>
+    <path d='M 30 0 L 0 0 0 30' fill='none' stroke='#DFB9BF' stroke-width='0.5' stroke-opacity='0.12'/>
+  </pattern>
+</defs>
+
+  <rect width='100%' height='100%' fill='url(#bgGrad)'/>
+  <rect width='100%' height='100%' fill='url(#grid)'/>
+
+  <rect x='40' y='35' width='1120' height='55' rx='8' fill='#451425' stroke='#C28B9A' stroke-width='1.5'/>
+  <text x='65' y='68' fill='#F7F0E7' font-family='sans-serif' font-weight='bold' font-size='20' letter-spacing='2'>MEDIARM // 3-DOF ROBOTIC MANIPULATOR (S6 MINI PROJECT)</text>
+  <text x='960' y='68' fill='#C28B9A' font-family='monospace' font-size='16'>ESP32 + IBT-2 + FLASK</text>
+
+  <g transform='translate(60, 120)'>
+    <rect width='620' height='480' rx='12' fill='#120409' stroke='#641F36' stroke-width='2'/>
+    <text x='30' y='40' fill='#F7F0E7' font-family='monospace' font-size='16' font-weight='bold'>KINEMATIC LINKAGE &amp; JOINT SPECS</text>
+
+    <rect x='120' y='420' width='140' height='25' rx='4' fill='#451425' stroke='#C28B9A' stroke-width='2'/>
+    <circle cx='190' cy='420' r='12' fill='#641F36' stroke='#DFB9BF' stroke-width='2'/>
+    <text x='155' y='465' fill='#C28B9A' font-family='monospace' font-size='12'>JOINT 1: BASE PAN</text>
+
+    <line x1='190' y1='420' x2='260' y2='250' stroke='#38BDF8' stroke-width='10' stroke-linecap='round'/>
+    <circle cx='260' cy='250' r='14' fill='#DFB9BF' stroke='#641F36' stroke-width='3'/>
+    <text x='200' y='235' fill='#DFB9BF' font-family='monospace' font-size='12'>THETA 1 (SHOULDER)</text>
+
+    <line x1='260' y1='250' x2='430' y2='170' stroke='#10B981' stroke-width='8' stroke-linecap='round'/>
+    <circle cx='430' cy='170' r='12' fill='#DFB9BF' stroke='#641F36' stroke-width='3'/>
+    <text x='400' y='145' fill='#DFB9BF' font-family='monospace' font-size='12'>THETA 2 (ELBOW)</text>
+
+    <line x1='430' y1='170' x2='510' y2='210' stroke='#F59E0B' stroke-width='6' stroke-linecap='round'/>
+    <circle cx='510' cy='210' r='8' fill='#DFB9BF' stroke='#641F36' stroke-width='2'/>
+    
+    <path d='M 510 210 L 545 190 M 510 210 L 545 230' stroke='#DFB9BF' stroke-width='4' stroke-linecap='round'/>
+    <circle cx='555' cy='210' r='12' fill='#EF4444' stroke='#F7F0E7' stroke-width='2'/>
+    <text x='510' y='255' fill='#EF4444' font-family='monospace' font-size='11'>PAYLOAD (MEDICINE)</text>
+  </g>
+
+  <g transform='translate(710, 120)'>
+    <rect width='430' height='480' rx='12' fill='#120409' stroke='#641F36' stroke-width='2'/>
+    <text x='25' y='40' fill='#F7F0E7' font-family='monospace' font-size='16' font-weight='bold'>FLASK CONTROL &amp; FIRMWARE</text>
+
+    <rect x='25' y='65' width='380' height='160' rx='8' fill='#240713' stroke='#451425'/>
+    <text x='40' y='95' fill='#DFB9BF' font-family='monospace' font-size='13' font-weight='bold'>CONTROLLER: ESP32 Dual-Core 240MHz</text>
+    <text x='40' y='125' fill='#C28B9A' font-family='monospace' font-size='13'>DRIVERS: IBT-2 (BTS7960 43A H-Bridge)</text>
+    <text x='40' y='155' fill='#C28B9A' font-family='monospace' font-size='13'>SERVOS: MG996R Metal Gear + SG90</text>
+    <text x='40' y='185' fill='#10B981' font-family='monospace' font-size='13'>VOICE: Vosk Offline Speech Engine</text>
+    <text x='40' y='210' fill='#EF4444' font-family='monospace' font-size='13'>SAFETY: Hardware E-Stop Kill Switch</text>
+
+    <text x='25' y='260' fill='#F7F0E7' font-family='monospace' font-size='14' font-weight='bold'>WEB DASHBOARD CONTROLS</text>
+    
+    <text x='30' y='295' fill='#C28B9A' font-family='monospace' font-size='12'>BASE ANGLE (0 - 180 DEG): 90 DEG</text>
+    <rect x='30' y='305' width='360' height='8' rx='4' fill='#380F1F'/>
+    <rect x='30' y='305' width='180' height='8' rx='4' fill='#10B981'/>
+
+    <text x='30' y='345' fill='#C28B9A' font-family='monospace' font-size='12'>SHOULDER (0 - 180 DEG): 120 DEG</text>
+    <rect x='30' y='355' width='360' height='8' rx='4' fill='#380F1F'/>
+    <rect x='30' y='355' width='240' height='8' rx='4' fill='#38BDF8'/>
+
+    <text x='30' y='395' fill='#C28B9A' font-family='monospace' font-size='12'>ELBOW (0 - 180 DEG): 45 DEG</text>
+    <rect x='30' y='405' width='360' height='8' rx='4' fill='#380F1F'/>
+    <rect x='30' y='405' width='90' height='8' rx='4' fill='#F59E0B'/>
+
+    <rect x='25' y='435' width='380' height='32' rx='6' fill='#EF4444'/>
+    <text x='115' y='456' fill='#F7F0E7' font-family='sans-serif' font-weight='bold' font-size='13'>EMERGENCY KILL SWITCH</text>
+  </g>
+
+  <rect x='40' y='630' width='1120' height='120' rx='10' fill='#380F1F' stroke='#641F36' stroke-width='1.5'/>
+  <text x='65' y='665' fill='#DFB9BF' font-family='serif' font-size='20' font-weight='bold'>MediArm: 3-DOF Semi-Autonomous Positioning Prototype</text>
+  <text x='65' y='695' fill='#F7F0E7' font-family='sans-serif' font-size='14'>Designed, Fabricated, and Programmed by Vasudev Saras K M</text>
+  <text x='65' y='722' fill='#C28B9A' font-family='monospace' font-size='13'>ESP32 Firmware · High-Current IBT-2 Actuation · Python/Flask Web Interface · Vosk Offline Voice Actuation</text>
+</svg>

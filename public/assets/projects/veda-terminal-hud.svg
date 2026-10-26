@@ -1,0 +1,58 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' width='1200' height='800'>
+
+<defs>
+  <linearGradient id='bgGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#200711' />
+    <stop offset='50%' stop-color='#340D1C' />
+    <stop offset='100%' stop-color='#15040B' />
+  </linearGradient>
+  <linearGradient id='wineGrad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#641F36' />
+    <stop offset='100%' stop-color='#451425' />
+  </linearGradient>
+  <pattern id='grid' width='30' height='30' patternUnits='userSpaceOnUse'>
+    <path d='M 30 0 L 0 0 0 30' fill='none' stroke='#DFB9BF' stroke-width='0.5' stroke-opacity='0.12'/>
+  </pattern>
+</defs>
+
+  <rect width='100%' height='100%' fill='url(#bgGrad)'/>
+  <rect width='100%' height='100%' fill='url(#grid)'/>
+
+  <g transform='translate(60, 40)'>
+    <rect width='1080' height='720' rx='12' fill='#100408' stroke='#641F36' stroke-width='2'/>
+    
+    <rect width='1080' height='40' rx='12' fill='#240713'/>
+    <circle cx='30' cy='20' r='6' fill='#EF4444'/>
+    <circle cx='50' cy='20' r='6' fill='#F59E0B'/>
+    <circle cx='70' cy='20' r='6' fill='#10B981'/>
+    <text x='420' y='25' fill='#DFB9BF' font-family='monospace' font-size='13' font-weight='bold'>veda --terminal --local-only (127.0.0.1)</text>
+
+    <g transform='translate(35, 70)'>
+      <text x='0' y='25' fill='#C28B9A' font-family='monospace' font-size='13' xml:space='preserve'>__     _______ ____    _      _   _ ___ </text>
+      <text x='0' y='42' fill='#C28B9A' font-family='monospace' font-size='13' xml:space='preserve'>\ \   / / ____|  _ \  / \    | | | |_ _| </text>
+      <text x='0' y='59' fill='#C28B9A' font-family='monospace' font-size='13' xml:space='preserve'> \ \ / /|  _| | | | |/ _ \   | | | || |  </text>
+      <text x='0' y='76' fill='#C28B9A' font-family='monospace' font-size='13' xml:space='preserve'>  \ V / | |___| |_| / ___ \  | |_| || |  </text>
+      <text x='0' y='93' fill='#C28B9A' font-family='monospace' font-size='13' xml:space='preserve'>   \_/  |_____|____/_/   \_\  \___/|___| v2.4 (Truthful Diagnostics) </text>
+
+      <text x='0' y='140' fill='#10B981' font-family='monospace' font-size='14'>[OK] Ollama loopback daemon verified (http://127.0.0.1:11434)</text>
+      <text x='0' y='165' fill='#10B981' font-family='monospace' font-size='14'>[OK] Model loaded: qwen2.5-coder:7b (quantized Q4_K_M)</text>
+      <text x='0' y='190' fill='#10B981' font-family='monospace' font-size='14'>[OK] Session DB: SQLite WAL journaling enabled (180MB RAM idle)</text>
+      <text x='0' y='215' fill='#10B981' font-family='monospace' font-size='14'>[OK] Security: Loopback bind verified. Zero cloud telemetry packets</text>
+      <text x='0' y='240' fill='#38BDF8' font-family='monospace' font-size='14'>[SYS] ANSI Console capability detector: Native VT100 enabled</text>
+
+      <line x1='0' y1='270' x2='1010' y2='270' stroke='#380F1F' stroke-width='1.5'/>
+      <text x='0' y='305' fill='#F59E0B' font-family='monospace' font-size='14' font-weight='bold'>veda&gt; explain ROS2 lifecycle nodes in C++</text>
+      
+      <text x='0' y='345' fill='#DFB9BF' font-family='monospace' font-size='13'>Assistant (streaming token-by-token at 42.6 t/s):</text>
+      <text x='0' y='375' fill='#F7F0E7' font-family='monospace' font-size='13'>ROS 2 Lifecycle Nodes introduce a deterministic state machine for robotic safety:</text>
+      <text x='0' y='400' fill='#C28B9A' font-family='monospace' font-size='13'>  1. Unconfigured -&gt; on_configure() -&gt; Inactive</text>
+      <text x='0' y='425' fill='#C28B9A' font-family='monospace' font-size='13'>  2. Inactive     -&gt; on_activate()  -&gt; Active (Sensors &amp; Actuators Live)</text>
+      <text x='0' y='450' fill='#C28B9A' font-family='monospace' font-size='13'>  3. Active       -&gt; on_deactivate()-&gt; Inactive</text>
+      <text x='0' y='475' fill='#C28B9A' font-family='monospace' font-size='13'>  4. Any Error    -&gt; on_error()     -&gt; Finalized</text>
+
+      <rect x='0' y='510' width='1010' height='80' rx='6' fill='#240713' stroke='#451425'/>
+      <text x='20' y='540' fill='#10B981' font-family='monospace' font-size='13'>TEST SUITE: 98 unit tests passing (100% offline verification)</text>
+      <text x='20' y='565' fill='#DFB9BF' font-family='monospace' font-size='12'>Cancellable worker thread: graceful Ctrl+C handling with cooperative tokens</text>
+    </g>
+  </g>
+</svg>

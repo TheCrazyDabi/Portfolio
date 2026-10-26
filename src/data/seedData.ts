@@ -37,15 +37,15 @@ export const initialProjects: Project[] = [
     shortDescription: "Developing a low-cost autonomous emergency-response rover by retrofitting an electric aBAJA buggy for campus navigation with NVIDIA Jetson Orin Nano, ROS 2/Nav2, Drive-by-Wire CAN integration, and YOLOv8.",
     status: "published",
     projectState: "In Development",
-    coverImage: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "assets/projects/first-responder-cover.svg",
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1200&q=80",
-        caption: "Electric aBAJA buggy retrofit for autonomous campus emergency navigation"
+        url: "assets/projects/first-responder-cover.svg",
+        caption: "Global Nav2 Costmap, Waypoint Trajectory & YOLOv8 Pathway Instance Segmentation"
       },
       {
-        url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
-        caption: "YOLOv8 instance-segmentation masking of unstructured campus pathways"
+        url: "assets/projects/first-responder-arch.svg",
+        caption: "End-to-End Emergency Dispatch & Drive-by-Wire Mechatronic Architecture"
       }
     ],
     technologies: ["ROS 2", "Nav2", "Jetson Orin Nano", "YOLOv8", "CAN", "MQTT", "Smartphone Camera/IMU/GPS", "Drive-by-Wire", "PIDNet-S", "Roboflow"],
@@ -91,11 +91,19 @@ export const initialProjects: Project[] = [
     shortDescription: "Modelled suspension geometry in Lotus SHARK to analyse roll-centre migration, bump steer, and camber variation; worked on steering geometry and Ackermann principles in SolidWorks to reduce tyre scrub; configured multibody dynamics in MSC Adams Car.",
     status: "published",
     projectState: "In Development",
-    coverImage: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "assets/projects/abaja-2026-workshop.png",
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
-        caption: "CAD assembly wireframe of steering knuckle, tie-rods, and rack mounting bracket"
+        url: "assets/projects/abaja-2026-workshop.png",
+        caption: "Vasudev Saras on-site with Team Equinox during aBAJA SAE 2026 vehicle staging and technical scrutiny"
+      },
+      {
+        url: "assets/projects/abaja-2026-transit.png",
+        caption: "Vasudev Saras wearing official aBAJA 2026 national competition transit gear"
+      },
+      {
+        url: "assets/projects/baja-suspension-kinematics.svg",
+        caption: "Lotus SHARK Double-Wishbone Roll-Centre Synthesis & SolidWorks Ackermann Steering Analysis"
       }
     ],
     technologies: ["Lotus SHARK", "SolidWorks", "MSC Adams Car", "Suspension Kinematics", "Ackermann Principles", "Multibody Dynamics", "Vehicle Dynamics"],
@@ -135,10 +143,10 @@ export const initialProjects: Project[] = [
     shortDescription: "A simulated call-scam firewall built at Hack@Cooee 24-hour hackathon that analyses call audio locally in the browser, scores suspicious behaviour using two local threat engines, and redacts sensitive numbers.",
     status: "published",
     projectState: "Completed",
-    coverImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "assets/projects/silent-guardian-cover.svg",
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+        url: "assets/projects/silent-guardian-cover.svg",
         caption: "Silent Guardian live acoustic analysis dashboard with sensitive number redaction and intercept banner"
       }
     ],
@@ -179,15 +187,11 @@ export const initialProjects: Project[] = [
     shortDescription: "Designed a 3-DOF robotic manipulator prototype for positioning and assisted handling with ESP32, IBT-2 motor drivers, MG996R and SG90 servos, Flask web dashboard, emergency kill switch, and Vosk offline voice control.",
     status: "published",
     projectState: "Completed",
-    coverImage: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "assets/projects/mediarm-schematic.svg",
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&w=1200&q=80",
-        caption: "Physical 3-DOF manipulator prototype during positioning and assisted-handling calibration"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
-        caption: "CAD assembly breakdown in SolidWorks highlighting joint pivot clearances"
+        url: "assets/projects/mediarm-schematic.svg",
+        caption: "MediArm 3-DOF manipulator kinematics, IBT-2 43A motor drivers, ESP32 web controller, and emergency E-Stop"
       }
     ],
     technologies: ["ESP32", "MG996R", "SG90", "IBT-2 (BTS7960)", "Python", "Flask", "Vosk", "Serial Communication", "C++ / Arduino"],
@@ -228,11 +232,11 @@ export const initialProjects: Project[] = [
     shortDescription: "Developed at TinkerHub Calicut Travel Hackathon in a 15.5-hour sprint: a swipe-based tour package discovery web app with separate Traveller, Operator, and Admin interfaces.",
     status: "published",
     projectState: "Completed",
-    coverImage: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "assets/projects/vybe-discovery-ui.svg",
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
-        caption: "VYBE swipe-based tour package discovery interface for travellers"
+        url: "assets/projects/vybe-discovery-ui.svg",
+        caption: "VYBE swipe-based tour package discovery interface, multi-role session flow, and TinkerHub Calicut sprint stats"
       }
     ],
     technologies: ["Python", "Flask", "HTML", "CSS", "JavaScript", "TinkerHub Calicut Hackathon"],
@@ -271,11 +275,11 @@ export const initialProjects: Project[] = [
     shortDescription: "A local-first, terminal-native personal AI assistant powered by Ollama with verified system health diagnostics, session persistence, and zero cloud telemetry.",
     status: "published",
     projectState: "Completed",
-    coverImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "assets/projects/veda-terminal-hud.svg",
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
-        caption: "V.E.D.A. verified diagnostic boot banner and token-by-token streaming REPL"
+        url: "assets/projects/veda-terminal-hud.svg",
+        caption: "V.E.D.A. verified diagnostic boot banner, Ollama token-by-token streaming REPL, and SQLite WAL"
       }
     ],
     technologies: ["Python 3.11+", "Ollama", "SQLite (WAL mode)", "prompt_toolkit", "Rich CLI", "JSON-RPC", "Pytest"],
@@ -318,10 +322,10 @@ export const initialProjects: Project[] = [
     shortDescription: "Terminal-based Python 802.11 packet inspection and rogue AP/deauthentication anomaly detection with real-time heuristic alarms.",
     status: "published",
     projectState: "Completed",
-    coverImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "assets/projects/netsentinel-terminal.svg",
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+        url: "assets/projects/netsentinel-terminal.svg",
         caption: "NetSentinel v2.0 live terminal monitor detecting high-rate deauthentication floods"
       }
     ],
@@ -360,10 +364,10 @@ export const initialProjects: Project[] = [
     shortDescription: "High-throughput cybersecurity operations dashboard with automated git repository entropy analysis to catch leaked credentials early.",
     status: "published",
     projectState: "Completed",
-    coverImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "assets/projects/rakuzan-soc-dashboard.svg",
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80",
+        url: "assets/projects/rakuzan-soc-dashboard.svg",
         caption: "Rakuzan SOC real-time entropy scanner dashboard showing flagged token alerts"
       }
     ],
@@ -739,32 +743,82 @@ export const initialMilestones: Milestone[] = [
 export const initialMediaItems: MediaItem[] = [
   {
     id: "med-1",
-    fileName: "mediarm-prototype.jpg",
-    fileUrl: "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?auto=format&fit=crop&w=1200&q=80",
+    fileName: "abaja-2026-workshop.png",
+    fileUrl: "assets/projects/abaja-2026-workshop.png",
     fileType: "image",
-    fileSize: 428000,
-    altText: "MediArm 3-DOF articulated robotic arm prototype",
+    fileSize: 674416,
+    altText: "Vasudev Saras with Team Equinox during aBAJA SAE 2026 vehicle staging",
     category: "projects",
-    uploadedAt: "2026-01-15T10:00:00Z"
+    uploadedAt: "2026-02-18T10:00:00Z"
   },
   {
     id: "med-2",
-    fileName: "solidworks-cad-assembly.jpg",
-    fileUrl: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
+    fileName: "abaja-2026-transit.png",
+    fileUrl: "assets/projects/abaja-2026-transit.png",
     fileType: "image",
-    fileSize: 382000,
-    altText: "CAD assembly wireframe of vehicle steering knuckle and suspension",
+    fileSize: 916340,
+    altText: "Vasudev Saras wearing official aBAJA 2026 national competition transit gear",
     category: "projects",
-    uploadedAt: "2026-01-20T12:00:00Z"
+    uploadedAt: "2026-02-18T11:00:00Z"
   },
   {
     id: "med-3",
-    fileName: "first-responder-rover.jpg",
-    fileUrl: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=1200&q=80",
+    fileName: "vasudev-burgundy-portrait.jpg",
+    fileUrl: "assets/profile/vasudev-burgundy-portrait.jpg",
     fileType: "image",
-    fileSize: 350000,
-    altText: "Autonomous First-Responder rover buggy chassis",
+    fileSize: 123860,
+    altText: "Vasudev Saras K M - Official Engineering Portrait",
+    category: "profile",
+    uploadedAt: "2026-02-15T12:00:00Z"
+  },
+  {
+    id: "med-4",
+    fileName: "vasudev-chibi-laptop-transparent.png",
+    fileUrl: "assets/companion/vasudev-chibi-laptop-transparent.png",
+    fileType: "image",
+    fileSize: 815444,
+    altText: "Illustrated Mini-Me Chibi Engineering Companion with Laptop and Reference Textbooks",
+    category: "profile",
+    uploadedAt: "2026-02-20T14:00:00Z"
+  },
+  {
+    id: "med-5",
+    fileName: "baja-suspension-kinematics.svg",
+    fileUrl: "assets/projects/baja-suspension-kinematics.svg",
+    fileType: "image",
+    fileSize: 5605,
+    altText: "Lotus SHARK Double-Wishbone & Ackermann Steering Kinematic Analysis",
     category: "projects",
-    uploadedAt: "2026-02-01T14:00:00Z"
+    uploadedAt: "2026-02-19T09:00:00Z"
+  },
+  {
+    id: "med-6",
+    fileName: "first-responder-cover.svg",
+    fileUrl: "assets/projects/first-responder-cover.svg",
+    fileType: "image",
+    fileSize: 5538,
+    altText: "Autonomous First-Responder Jetson Orin Nano & Nav2 Global Costmap",
+    category: "projects",
+    uploadedAt: "2026-02-21T10:00:00Z"
+  },
+  {
+    id: "med-7",
+    fileName: "silent-guardian-cover.svg",
+    fileUrl: "assets/projects/silent-guardian-cover.svg",
+    fileType: "image",
+    fileSize: 5356,
+    altText: "Silent Guardian In-Browser Acoustic Call Firewall & OTP Redaction",
+    category: "projects",
+    uploadedAt: "2026-02-22T11:00:00Z"
+  },
+  {
+    id: "med-8",
+    fileName: "mediarm-schematic.svg",
+    fileUrl: "assets/projects/mediarm-schematic.svg",
+    fileType: "image",
+    fileSize: 5692,
+    altText: "MediArm 3-DOF Manipulator Kinematic Linkage & ESP32 Wiring",
+    category: "projects",
+    uploadedAt: "2026-02-22T12:00:00Z"
   }
 ];

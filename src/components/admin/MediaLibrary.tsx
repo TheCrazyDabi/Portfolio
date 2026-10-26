@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { MediaItem } from '../../types/content';
 import { UploadCloud, Image, FileText, Trash2, Copy, CheckCircle2, Search, Filter, Sparkles } from 'lucide-react';
+import { getAssetUrl } from '../../utils/assets';
 
 interface MediaLibraryProps {
   media: MediaItem[];
@@ -210,7 +211,7 @@ export const MediaLibrary: React.FC<MediaLibraryProps> = ({
                   </div>
                 ) : (
                   <img
-                    src={item.fileUrl}
+                    src={getAssetUrl(item.fileUrl)}
                     alt={item.altText || item.fileName}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
