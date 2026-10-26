@@ -10,9 +10,11 @@
  */
 
 import { GuideMessage, VedaGuideService } from './vedaGuideService';
+import { resolveVedaLanguage, VedaReplyLanguage } from './vedaLocalization';
 
 export interface BackendChatRequest {
   query: string;
+  language?: 'english' | 'malayalam' | 'manglish';
   history?: Array<{ role: 'user' | 'assistant'; text: string }>;
 }
 
@@ -27,12 +29,17 @@ export class VedaBackendAdapter {
     return this.getApiUrl() !== null;
   }
 
-  public static async query(rawQuery: string, currentSection?: string): Promise<GuideMessage> {
+  public static async query(
+    rawQuery: string,
+    currentSection?: string,
+    preferredLanguage: VedaReplyLanguage = 'auto',
+  ): Promise<GuideMessage> {
     const apiUrl = this.getApiUrl();
+    const language = resolveVedaLanguage(rawQuery, preferredLanguage);
 
     // If no backend configured, use local deterministic guide engine
-    if (!apiUrl) {
-      return VedaGuideService.answerQuestion(rawQuery, currentSection);
+    if (!apiUrl || language !== 'english') {
+      return VedaGuideService.answerQuestion(rawQuery, currentSection, preferredLanguage);
     }
 
     try {
@@ -43,7 +50,8 @@ export class VedaBackendAdapter {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          query: rawQuery
+          query: rawQuery,
+          language,
         } as BackendChatRequest)
       });
 
@@ -66,7 +74,7 @@ export class VedaBackendAdapter {
     } catch (err) {
       console.warn('V.E.D.A. backend unavailable, falling back to local guide engine:', err);
       // Graceful deterministic fallback
-      return VedaGuideService.answerQuestion(rawQuery, currentSection);
+      return VedaGuideService.answerQuestion(rawQuery, currentSection, preferredLanguage);
     }
   }
 }

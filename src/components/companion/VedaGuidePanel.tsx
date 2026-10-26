@@ -25,6 +25,7 @@ import {
   VedaGuideService
 } from '../../services/vedaGuideService';
 import { VedaBackendAdapter } from '../../services/vedaBackendAdapter';
+import { VedaReplyLanguage } from '../../services/vedaLocalization';
 
 interface VedaGuidePanelProps {
   onClose: () => void;
@@ -40,12 +41,13 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
   initialMode = 'chat',
 }) => {
   const [activeTab, setActiveTab] = useState<'chat' | 'tour'>(initialMode);
+  const [replyLanguage, setReplyLanguage] = useState<VedaReplyLanguage>('auto');
   const [messages, setMessages] = useState<GuideMessage[]>([
     {
       id: 'welcome-1',
       sender: 'veda',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      text: "Hey, I'm VEDA 😊 I can help you explore Vasudev's projects, or we can just have a casual chat. What's on your mind?",
+      text: "Hey, I'm VEDA 😊 I can guide you through Vasudev's projects and chat in English, Malayalam, or Manglish. Choose a reply language below or just write naturally.",
       pose: 'greeting',
       actions: [
         { label: 'Start Guided Tour', type: 'tour', target: 'start' },
@@ -88,13 +90,13 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
     setIsTyping(true);
 
     try {
-      const botResponse = await VedaBackendAdapter.query(trimmed, activeSection);
+      const botResponse = await VedaBackendAdapter.query(trimmed, activeSection, replyLanguage);
       setMessages((prev) => [...prev, botResponse]);
       if (botResponse.navigationTarget) {
         onNavigate(botResponse.navigationTarget);
       }
     } catch {
-      const fallback = await VedaGuideService.answerQuestion(trimmed, activeSection);
+      const fallback = await VedaGuideService.answerQuestion(trimmed, activeSection, replyLanguage);
       setMessages((prev) => [...prev, fallback]);
       if (fallback.navigationTarget) {
         onNavigate(fallback.navigationTarget);
@@ -228,6 +230,32 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
             <Compass className="w-3.5 h-3.5" />
             <span>Guided Tour</span>
           </button>
+        </div>
+
+        <div className="flex items-center gap-1.5" aria-label="Reply language">
+          <span className="shrink-0 text-[9px] font-mono uppercase tracking-wider text-taupe dark:text-dusky">Reply in</span>
+          <div className="grid grid-cols-4 flex-1 gap-1 rounded-lg bg-burgundy/5 dark:bg-white/5 p-0.5">
+            {([
+              ['auto', 'Auto'],
+              ['english', 'English'],
+              ['malayalam', 'മലയാളം'],
+              ['manglish', 'Manglish'],
+            ] as Array<[VedaReplyLanguage, string]>).map(([language, label]) => (
+              <button
+                key={language}
+                type="button"
+                onClick={() => setReplyLanguage(language)}
+                aria-pressed={replyLanguage === language}
+                className={`min-w-0 rounded-md px-1 py-1.5 text-[9px] font-mono transition-colors ${
+                  replyLanguage === language
+                    ? 'bg-burgundy text-cream shadow-sm'
+                    : 'text-taupe dark:text-dusky hover:bg-burgundy/10 dark:hover:bg-white/10'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

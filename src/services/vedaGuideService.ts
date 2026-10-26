@@ -1,3 +1,5 @@
+import { getLocalizedVedaReply, resolveVedaLanguage, VedaReplyLanguage } from './vedaLocalization';
+
 export interface GuideAction {
   label: string;
   type: 'navigate' | 'external' | 'tour';
@@ -126,11 +128,16 @@ export class VedaGuideService {
   /**
    * Answer portfolio questions and lightweight small talk with a friendly local guide.
    */
-  public static async answerQuestion(rawQuery: string, currentSection?: string): Promise<GuideMessage> {
+  public static async answerQuestion(
+    rawQuery: string,
+    currentSection?: string,
+    preferredLanguage: VedaReplyLanguage = 'auto',
+  ): Promise<GuideMessage> {
     const id = `veda-msg-${Date.now()}`;
     const timestamp = this.getTimestamp();
 
     const raw = rawQuery.trim();
+    const replyLanguage = resolveVedaLanguage(raw, preferredLanguage);
     if (!raw) {
       return {
         id,
@@ -142,6 +149,15 @@ export class VedaGuideService {
           { label: 'Explore Projects 🚀', type: 'navigate', target: 'projects' },
           { label: 'Start Guided Tour 🌸', type: 'tour', target: 'start' }
         ]
+      };
+    }
+
+    if (replyLanguage !== 'english') {
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        ...getLocalizedVedaReply(raw, replyLanguage),
       };
     }
 
