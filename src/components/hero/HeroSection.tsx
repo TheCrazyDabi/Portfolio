@@ -312,11 +312,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
                 {/* Bottom Portrait Identity Badge */}
                 <div className="absolute bottom-3.5 left-3.5 right-3.5 z-20 p-2.5 rounded-2xl bg-wine/85 backdrop-blur-md border border-white/15 text-cream space-y-0.5">
-                  <div className="flex items-center justify-between">
-                    <span className="font-display font-bold text-sm tracking-wide">
-                      {profile.name}
-                    </span>
-                    <span className="text-[9px] font-mono text-blush uppercase tracking-widest">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex min-w-0 items-center gap-2">
+                      <img
+                        src={getAssetUrl('assets/brand/vasudev-dragon-lily-mark.png')}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-7 h-7 shrink-0 rounded-full bg-[#240A17] border border-white/20 object-contain p-0.5"
+                      />
+                      <span className="min-w-0 truncate font-display font-bold text-sm tracking-wide">
+                        {profile.name}
+                      </span>
+                    </div>
+                    <span className="shrink-0 text-[9px] font-mono text-blush uppercase tracking-widest">
                       SAINTGITS // KTU
                     </span>
                   </div>
