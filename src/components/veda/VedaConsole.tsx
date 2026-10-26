@@ -54,7 +54,7 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
       },
       {
         type: 'system',
-        content: `[✔] V.E.D.A. Core: ONLINE (Deterministic In-Browser Knowledge Engine)
+        content: `[✔] VEDA: ONLINE (Deterministic In-Browser Knowledge Engine)
 [✔] Verified Subject: Vasudev Saras K M (Robotics & Automation Engineering Student)
 [✔] Host Institution: Saintgits College of Engineering | APJ KTU
 [✔] Domain Graph: ROS 2 · Jetson Orin Nano · Lotus SHARK CAD · aBAJA 2026 · Cybersecurity
@@ -179,7 +179,7 @@ Ask me anything about Vasudev's robotics work, engineering builds, or background
     }
 
     if (lower === 'help') {
-      const helpText = `Available V.E.D.A. Core Commands & Conversational Prompts:
+      const helpText = `Available VEDA Commands & Conversational Prompts:
   • projects     - Flagship robotics, CAD, and cybersecurity systems
   • baja         - Team Equinox aBAJA SAE 2026 vehicle dynamics & CAD
   • robotics     - Autonomous first-responder rover & MediArm 3-DOF arm
@@ -204,7 +204,7 @@ You can also chat naturally like with an AI assistant:
       const perf = window.performance as unknown as { memory?: { usedJSHeapSize: number; totalJSHeapSize: number } };
       const heapUsed = perf.memory ? `${Math.round(perf.memory.usedJSHeapSize / (1024 * 1024))}MB` : '~42MB (estimated)';
       const heapTotal = perf.memory ? `${Math.round(perf.memory.totalJSHeapSize / (1024 * 1024))}MB` : '64MB';
-      const diagText = `V.E.D.A. Core Diagnostic Telemetry:
+      const diagText = `VEDA Diagnostic Telemetry:
 • Host Platform:     ${navigator.userAgent.slice(0, 48)}...
 • Screen Resolution: ${window.innerWidth} x ${window.innerHeight} (${window.devicePixelRatio}x DPR)
 • Browser Heap:      ${heapUsed} used / ${heapTotal} allocated
@@ -427,7 +427,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={isStreaming}
-          placeholder={isStreaming ? 'V.E.D.A. is typing response...' : 'Type a command (e.g. help, baja, robotics) or ask a question...'}
+          placeholder={isStreaming ? 'VEDA is typing response...' : 'Type a command (e.g. help, baja, robotics) or ask a question...'}
           className="flex-1 bg-transparent text-cream placeholder-taupe/50 outline-none font-mono text-xs sm:text-sm"
           autoFocus
         />
