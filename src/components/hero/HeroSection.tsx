@@ -308,6 +308,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   loading="eager"
                 />
 
+                {/* Soft VS watermark overlay, tinted to the portfolio's blush/burgundy palette */}
+                <div className="absolute inset-0 z-[21] overflow-hidden pointer-events-none" aria-hidden="true">
+                  <VSMonogram className="absolute right-4 top-[43%] h-28 w-28 rounded-none border-0 bg-transparent opacity-[0.16] shadow-none mix-blend-screen [filter:grayscale(1)_sepia(.55)_hue-rotate(295deg)_saturate(.8)_brightness(1.25)] sm:right-6 sm:h-36 sm:w-36" />
+                </div>
+
                 {/* Restrained soft gradient shade at base to anchor typography */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-20 pointer-events-none" />
 
