@@ -691,6 +691,52 @@ export class VedaGuideService {
     }
 
     // -------------------------------------------------------------------------
+    // 16. Assistant Identity — check self-references before the broad "about" match
+    // -------------------------------------------------------------------------
+    const isReciprocalSmallTalk = clean === 'and you' || clean === 'what about you' || clean === 'how about you' || clean.startsWith('how are you');
+    const isAssistantQuery = !isReciprocalSmallTalk && (
+      clean === 'who are you' ||
+      clean === 'what are you' ||
+      clean === 'what is veda' ||
+      clean === 'what is eliz' ||
+      clean === 'what is your name' ||
+      clean === 'whats your name' ||
+      clean === 'what s your name' ||
+      clean === 'introduce yourself' ||
+      clean === 'tell me about yourself' ||
+      clean === 'tell me about you' ||
+      clean.includes('about you') ||
+      clean.includes('about eliz') ||
+      clean.includes('about veda') ||
+      clean.startsWith('who are you') ||
+      clean.startsWith('who is eliz') ||
+      clean.startsWith('what is veda') ||
+      clean.startsWith('what is eliz') ||
+      clean.startsWith('tell me about yourself') ||
+      clean.startsWith('can you introduce yourself') ||
+      clean.includes('your name') ||
+      clean.includes('about yourself') ||
+      has('what can you do') ||
+      has('what do you do') ||
+      has('what is your role') ||
+      has('what is your purpose')
+    );
+
+    if (isAssistantQuery) {
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        pose: 'greeting',
+        text: `I'm ELIZ 😊 I'm a local portfolio guide built into this site. I can chat casually, answer questions from Vasudev's portfolio, and help you find its projects, skills, and contact details. I don't use a general-purpose AI model, so I may not know every open-ended answer—but there's no API usage charge. What would you like to know about me?`,
+        actions: [
+          { label: 'Take Guided Tour 🌸', type: 'tour', target: 'start' },
+          { label: 'Explore Projects', type: 'navigate', target: 'projects' }
+        ]
+      };
+    }
+
+    // -------------------------------------------------------------------------
     // 16. Vasudev Bio & Profile Overview
     // -------------------------------------------------------------------------
     if (
@@ -716,37 +762,6 @@ export class VedaGuideService {
           { label: 'Read Full Bio (About)', type: 'navigate', target: 'about' },
           { label: 'Inspect Skills & Subsystems', type: 'navigate', target: 'skills' },
           { label: 'Contact Vasudev Directly', type: 'navigate', target: 'contact' }
-        ]
-      };
-    }
-
-    // -------------------------------------------------------------------------
-    // 17. Assistant Identity (V.E.D.A. Core)
-    // -------------------------------------------------------------------------
-    const isAssistantQuery = (
-      clean === 'who are you' ||
-      clean === 'what are you' ||
-      clean === 'what is veda' ||
-      clean === 'what is eliz' ||
-      clean === 'what can you do' ||
-      clean.startsWith('who are you') ||
-      clean.startsWith('what is veda') ||
-      clean.startsWith('what is eliz') ||
-      has('what is your role') ||
-      has('what is your purpose')
-    );
-
-    if (isAssistantQuery) {
-      return {
-        id,
-        sender: 'veda',
-        timestamp,
-        pose: 'explaining',
-        text: `I'm **ELIZ**, Vasudev's interactive portfolio guide. I can help you:\n• Explore his background, education, and credentials\n• Browse his robotics, vehicle dynamics, and software projects\n• Navigate to sections of the portfolio\n• Find his contact information.\n\nWhat would you like to explore?`,
-        actions: [
-          { label: 'Take Guided Tour 🌸', type: 'tour', target: 'start' },
-          { label: 'Explore Flagship Builds', type: 'navigate', target: 'projects' },
-          { label: 'Ask About MediArm', type: 'navigate', target: 'projects' }
         ]
       };
     }

@@ -39,6 +39,18 @@ export function getLocalizedVedaReply(
   const word = (...words: string[]) => words.some((value) => new RegExp(`(^|\\s)${value}($|\\s)`, 'i').test(q));
   const ml = language === 'malayalam';
 
+  if (
+    !has('how about you', 'what about you') &&
+    has('tell me about yourself', 'tell me about you', 'about you', 'about yourself', 'who are you', 'who is eliz', 'what is your name', 'what is your role', 'introduce yourself')
+  ) {
+    return {
+      pose: 'greeting',
+      text: ml
+        ? 'ഞാൻ ELIZ 😊 ഈ portfolio-യിൽ പ്രവർത്തിക്കുന്ന local guide ആണ്. വാസുദേവിന്റെ portfolio വിവരങ്ങൾ പറയാനും projects, skills, contact എന്നിവ കണ്ടെത്താനും സഹായിക്കും. General AI model ഇല്ലാത്തതിനാൽ എല്ലാത്തിനും അറിയാം എന്ന് പറയില്ല; API usage charge-ഉം ഇല്ല. എന്നെക്കുറിച്ച് എന്താണ് അറിയേണ്ടത്?'
+        : 'Njan ELIZ 😊 Ee portfolio-il local aayi pravarthikkunna guide aanu. Vasudev-inde portfolio details parayanum projects, skills, contact kandethanum help cheyyam. General AI model illathathukondu ellathinum answer ariyamennu parayilla; API charge-um illa. Enne kurichu entha ariyanullathu?',
+    };
+  }
+
   if (has('how are you', 'how are you doing', 'sughamano', 'sugham aano', 'sukhamano', 'how about you', 'what about you') || q === 'and you') {
     return {
       pose: 'happy',
