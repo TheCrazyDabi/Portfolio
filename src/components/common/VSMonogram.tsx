@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAssetUrl } from '../../utils/assets';
 
 interface VSMonogramProps {
   className?: string;
@@ -9,9 +10,11 @@ export const VSMonogram: React.FC<VSMonogramProps> = ({ className = 'h-10 w-10' 
     aria-hidden="true"
     className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-xl border border-dusky/40 bg-[#240A17] shadow-sm ${className}`}
   >
-    <span className="-ml-0.5 font-display text-[17px] font-black leading-none tracking-[-0.13em] text-[#F0C7D0]">
-      VS
-    </span>
-    <span className="absolute bottom-[18%] left-[24%] right-[24%] h-px bg-dusky/90" />
+    <img
+      src={getAssetUrl('assets/brand/vasudev-vs-logo.png')}
+      alt=""
+      className="absolute left-[-37%] top-[-38%] h-[210%] w-[180%] max-w-none select-none object-fill"
+      draggable={false}
+    />
   </span>
 );
