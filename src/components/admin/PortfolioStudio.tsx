@@ -22,6 +22,7 @@ import {
   LogOut,
   ExternalLink,
   Shield,
+  MessageSquare,
   Menu,
   X
 } from 'lucide-react';
@@ -34,6 +35,7 @@ import { MilestoneManager } from './MilestoneManager';
 import { MediaLibrary } from './MediaLibrary';
 import { ProfileEditor } from './ProfileEditor';
 import { SiteSettingsEditor } from './SiteSettingsEditor';
+import { ElizChatDataManager } from './ElizChatDataManager';
 import { ContentService } from '../../services/contentService';
 import { isSupabaseConfigured, supabase } from '../../services/supabase';
 
@@ -76,6 +78,7 @@ export const PortfolioStudio: React.FC<PortfolioStudioProps> = ({
     { id: 'experiments', label: 'Experiments', icon: FlaskConical },
     { id: 'skills', label: 'Skills & Systems', icon: Layers },
     { id: 'milestones', label: 'Milestones', icon: Calendar },
+    { id: 'eliz-data', label: 'ELIZ Chat Data', icon: MessageSquare },
     { id: 'media', label: 'Media Library', icon: Image },
     { id: 'profile', label: 'Profile & Links', icon: User },
     { id: 'settings', label: 'Site Settings', icon: Settings },
@@ -264,6 +267,8 @@ export const PortfolioStudio: React.FC<PortfolioStudioProps> = ({
                 }}
               />
             )}
+
+            {activeTab === 'eliz-data' && <ElizChatDataManager />}
 
             {activeTab === 'media' && (
               <MediaLibrary

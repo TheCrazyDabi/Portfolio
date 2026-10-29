@@ -98,6 +98,17 @@ export interface Milestone {
   orderIndex: number;
 }
 
+export interface ElizChatSample {
+  id: string;
+  session_id: string;
+  turn_index: number;
+  visitor_message: string;
+  eliz_reply: string;
+  consent_version: string;
+  consented_at: string;
+  created_at: string;
+}
+
 export interface Profile {
   name: string;
   title: string;

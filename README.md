@@ -46,7 +46,7 @@
 | :--- | :--- | :--- |
 | **Public Portfolio** | GitHub Pages (`https://thecrazydabi.github.io/Portfolio/`) | Publicly viewable, fast static Jamstack delivery |
 | **Portfolio Studio (Admin)** | Direct client-side authenticated route (same app or hosted URL) | Protected by Supabase Auth (or session key in local dev) |
-| **Content Records** | Supabase Cloud PostgreSQL (Tables: `projects`, `certifications`, `experiments`, `skills`, `milestones`, `profile`, `site_settings`) | **Row-Level Security (RLS)**: Public anonymous role can **ONLY** `SELECT` records where `status = 'published'`. Drafts and archived records are strictly invisible. |
+| **Content Records** | Supabase Cloud PostgreSQL (`projects`, `certifications`, `experiments`, `skills`, `milestones`, `profile`, `site_settings`, `media_items`, and opt-in `eliz_chat_samples`) | **Row-Level Security (RLS)**: visitors can submit only consented ELIZ samples; only authenticated Studio users can review or delete them. |
 | **Media & PDFs** | Supabase Storage (`portfolio-media` bucket) | Public read for published assets; authenticated admin upload/delete with MIME & size validation |
 | **Publishing Flow** | Studio Admin publishes record &rarr; Supabase immediately reflects live data &rarr; Public visitors see updates instantly | Offline builds can export JSON snapshots to commit into Git |
 
@@ -150,7 +150,7 @@ To enable live cloud database synchronization and storage:
 3. Open the **SQL Editor** tab in your Supabase dashboard.
 4. Copy the contents of [`supabase/schema.sql`](./supabase/schema.sql) and paste it into the editor.
 5. Click **Run**. This automatically creates:
-   - All 8 tables with proper constraints and types.
+   - All 9 tables with proper constraints and types.
    - Row-Level Security (RLS) policies protecting drafts and private data.
    - The `portfolio-media` storage bucket for images and PDFs.
 6. Create an administrator user in **Authentication &rarr; Users** (e.g. `vasudevsaraskm@gmail.com`).
@@ -162,7 +162,19 @@ VITE_SUPABASE_ANON_KEY=your-anon-public-key
 VITE_BASE_PATH=/Portfolio/
 ```
 
+For GitHub Pages, add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` under **Settings → Secrets and variables → Actions** so the deployed chat can reach Supabase. Use only the public anon key here; never add a service-role key to the frontend or Actions build.
+
 *Note: If no `.env` is configured, Portfolio Studio automatically runs in **Local Dev Mode**, storing changes safely in local storage and providing a 1-click JSON snapshot export.*
+
+### Optional ELIZ conversation samples
+
+The public ELIZ guide remains local and works without model/API charges. Visitors can optionally opt in to share future question-and-reply pairs for review; common email, phone, and credential patterns are masked before saving. No chats are sent until the visitor enables sharing, and the chat remains usable when sharing is off.
+
+- For a new database, the `eliz_chat_samples` table and its row-level security policies are included in `supabase/schema.sql`.
+- For an existing database, run [`supabase/eliz_chat_samples.sql`](./supabase/eliz_chat_samples.sql) once in the Supabase SQL Editor.
+- In Portfolio Studio, use **ELIZ Chat Data** to review, export as JSONL, or delete saved turns. The exported samples do not train the assistant automatically.
+- Keep Supabase sign-ups limited to trusted administrators. Only authenticated Portfolio Studio users can read or delete the samples.
+- Database quotas or charges may apply depending on your Supabase plan.
 
 ---
 

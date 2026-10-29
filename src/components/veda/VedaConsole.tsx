@@ -58,7 +58,7 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
 [✔] Verified Subject: Vasudev Saras K M (Robotics & Automation Engineering Student)
 [✔] Host Institution: Saintgits College of Engineering | APJ KTU
 [✔] Domain Graph: ROS 2 · Jetson Orin Nano · Lotus SHARK CAD · aBAJA 2026 · Cybersecurity
-[✔] Telemetry Protocol: Strict Local Execution (Zero External Cloud Telemetry)
+[✔] Telemetry Protocol: Local Replies (Opt-In Chat Samples Only)
 
 Ask me anything about Vasudev's robotics work, engineering builds, or background below! You can chat naturally (e.g. "hey ELIZ", "explain MediArm", "show projects") or type 'help' for terminal commands.`,
         timestamp: getTimestamp(),

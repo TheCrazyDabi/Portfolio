@@ -46,7 +46,7 @@ export function getLocalizedVedaReply(
     return {
       pose: 'greeting',
       text: ml
-        ? 'ഞാൻ ELIZ 😊 ഈ portfolio-യിൽ പ്രവർത്തിക്കുന്ന local guide ആണ്. വാസുദേവിന്റെ portfolio വിവരങ്ങൾ പറയാനും projects, skills, contact എന്നിവ കണ്ടെത്താനും സഹായിക്കും. General AI model ഇല്ലാത്തതിനാൽ എല്ലാത്തിനും അറിയാം എന്ന് പറയില്ല; API usage charge-ഉം ഇല്ല. എന്നെക്കുറിച്ച് എന്താണ് അറിയേണ്ടത്?'
+        ? 'ഞാൻ ELIZ 😊 ഈ portfolio-യിൽ പ്രവർത്തിക്കുന്ന local guide ആണ്. വാസുദേവിന്റെ portfolio വിവരങ്ങൾ പറയാനും projects, skills, contact എന്നിവ കണ്ടെത്താനും സഹായിക്കും. General AI model ഇല്ലാത്തതിനാൽ എല്ലാത്തിനും അറിയാം എന്ന് പറയില്ല. Chat-ിന് paid AI API വേണ്ട; optional online sharing database storage ഉപയോഗിക്കാം. എന്നെക്കുറിച്ച് എന്താണ് അറിയേണ്ടത്?'
         : 'Njan ELIZ 😊 Ee portfolio-il local aayi pravarthikkunna guide aanu. Vasudev-inde portfolio details parayanum projects, skills, contact kandethanum help cheyyam. General AI model illathathukondu ellathinum answer ariyamennu parayilla; API charge-um illa. Enne kurichu entha ariyanullathu?',
     };
   }

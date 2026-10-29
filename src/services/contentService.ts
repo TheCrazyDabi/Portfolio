@@ -7,7 +7,8 @@ import {
   Milestone,
   Profile,
   SiteSettings,
-  MediaItem
+  MediaItem,
+  ElizChatSample
 } from '../types/content';
 import {
   initialProjects,
@@ -173,6 +174,50 @@ export class ContentService {
       return fresh ? { ...m, ...fresh } : m;
     });
     return synced.sort((a, b) => a.orderIndex - b.orderIndex);
+  }
+
+  static async saveElizChatSample(sample: Omit<ElizChatSample, 'id' | 'created_at' | 'consent_version'>): Promise<{ success: boolean; error?: string }> {
+    if (!isSupabaseConfigured() || !supabase) {
+      return { success: false, error: 'Online chat storage is not configured.' };
+    }
+
+    const redact = (value: string) => value
+      .replace(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi, '[email redacted]')
+      .replace(/\b(?:sk-[A-Za-z0-9_-]{12,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16})\b/g, '[credential redacted]')
+      .replace(/(?:\+?\d[\s().-]*){10,15}/g, '[number redacted]');
+
+    const { error } = await supabase.from('eliz_chat_samples').insert({
+      session_id: sample.session_id,
+      turn_index: sample.turn_index,
+      visitor_message: redact(sample.visitor_message).slice(0, 1000),
+      eliz_reply: redact(sample.eliz_reply).slice(0, 6000),
+      consent_version: 'eliz-chat-v1',
+      consented_at: sample.consented_at,
+    });
+
+    return error ? { success: false, error: error.message } : { success: true };
+  }
+
+  static async getElizChatSamples(limit = 1000): Promise<{ data: ElizChatSample[]; error?: string }> {
+    if (!isSupabaseConfigured() || !supabase) return { data: [], error: 'Supabase is not configured.' };
+    const { data, error } = await supabase
+      .from('eliz_chat_samples')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(limit);
+    return error ? { data: [], error: error.message } : { data: (data || []) as ElizChatSample[] };
+  }
+
+  static async deleteElizChatSample(id: string): Promise<{ success: boolean; error?: string }> {
+    if (!isSupabaseConfigured() || !supabase) return { success: false, error: 'Supabase is not configured.' };
+    const { error } = await supabase.from('eliz_chat_samples').delete().eq('id', id);
+    return error ? { success: false, error: error.message } : { success: true };
+  }
+
+  static async clearElizChatSamples(): Promise<{ success: boolean; error?: string }> {
+    if (!isSupabaseConfigured() || !supabase) return { success: false, error: 'Supabase is not configured.' };
+    const { error } = await supabase.from('eliz_chat_samples').delete().gte('created_at', '1970-01-01T00:00:00.000Z');
+    return error ? { success: false, error: error.message } : { success: true };
   }
 
   static async getProfile(): Promise<Profile> {

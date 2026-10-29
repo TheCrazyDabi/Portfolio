@@ -25,6 +25,8 @@ import {
   VedaGuideService
 } from '../../services/vedaGuideService';
 import { resolveVedaLanguage, VedaReplyLanguage } from '../../services/vedaLocalization';
+import { ContentService } from '../../services/contentService';
+import { isSupabaseConfigured } from '../../services/supabase';
 
 interface VedaGuidePanelProps {
   onClose: () => void;
@@ -46,7 +48,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       id: 'welcome-1',
       sender: 'veda',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      text: "Hey, I'm ELIZ 😊 I run locally from the portfolio information, so there are no API or usage charges. Ask me about Vasudev's work, chat casually, or write in English, Malayalam, or Manglish.",
+      text: "Hey, I'm ELIZ 😊 My replies run locally, so chatting doesn't use a paid AI API. Sharing chat turns online is optional. Ask about Vasudev's work, chat casually, or write in English, Malayalam, or Manglish.",
       pose: 'greeting',
       spokenLanguage: 'en-IN',
       actions: [
@@ -59,6 +61,15 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [speakingMessageId, setSpeakingMessageId] = useState<string | null>(null);
+  const [shareConversation, setShareConversation] = useState(false);
+  const [shareConsentAt, setShareConsentAt] = useState<string | null>(null);
+  const [sharingStatus, setSharingStatus] = useState('');
+  const sessionIdRef = useRef(
+    typeof crypto !== 'undefined' && 'randomUUID' in crypto
+      ? crypto.randomUUID()
+      : `eliz-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+  );
+  const turnIndexRef = useRef(0);
 
   // Guided Tour State
   const [currentTourIndex, setCurrentTourIndex] = useState(0);
@@ -101,6 +112,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
   const handleSendMessage = async (textToSend: string) => {
     const trimmed = textToSend.trim();
     if (!trimmed || isTyping) return;
+    const shareThisTurn = shareConversation;
 
     const userMsg: GuideMessage = {
       id: `user-${Date.now()}`,
@@ -127,6 +139,23 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       setMessages((prev) => [...prev, localReply]);
       if (localReply.navigationTarget) {
         onNavigate(localReply.navigationTarget);
+      }
+      if (shareThisTurn) {
+        turnIndexRef.current += 1;
+        setSharingStatus('Saving this opted-in chat turn…');
+        void ContentService.saveElizChatSample({
+          session_id: sessionIdRef.current,
+          turn_index: turnIndexRef.current,
+          visitor_message: trimmed,
+          eliz_reply: localReply.text,
+          consented_at: shareConsentAt || new Date().toISOString(),
+        }).then((result) => {
+          setSharingStatus(result.success
+            ? 'This turn was saved for ELIZ review.'
+            : 'This turn could not be saved. Your chat still works normally.');
+        }).catch(() => {
+          setSharingStatus('This turn could not be saved. Your chat still works normally.');
+        });
       }
     } finally {
       setIsTyping(false);
@@ -214,7 +243,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
               </div>
               <div className="flex items-center space-x-1 text-[9px] font-mono text-emerald-600 dark:text-emerald-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Local Guide · No API Usage</span>
+                <span>Local Guide · No AI API</span>
               </div>
             </div>
           </div>
@@ -351,6 +380,36 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
                 <span className="w-1.5 h-1.5 rounded-full bg-dusky animate-bounce [animation-delay:0.4s]" />
                 <span className="text-[10px] pl-1">ELIZ is thinking...</span>
               </div>
+            )}
+          </div>
+
+          <div className="px-3 py-2 border-t border-burgundy/10 dark:border-white/10 bg-cream/40 dark:bg-[#200A13]/40 shrink-0">
+            <label className={`flex items-center gap-2 text-[10px] font-mono ${isSupabaseConfigured() ? 'cursor-pointer text-wine dark:text-cream' : 'text-taupe dark:text-dusky'}`}>
+              <input
+                type="checkbox"
+                checked={shareConversation}
+                disabled={!isSupabaseConfigured()}
+                onChange={(event) => {
+                  setShareConversation(event.target.checked);
+                  setShareConsentAt(event.target.checked ? new Date().toISOString() : null);
+                  setSharingStatus(event.target.checked
+                    ? 'Only messages sent after opting in will be shared.'
+                    : 'Sharing is off for future messages. Previously saved turns remain until deleted.');
+                }}
+                className="accent-burgundy"
+              />
+              <span>Optionally share future chat turns to improve ELIZ</span>
+            </label>
+            <p className="pl-5 pt-1 text-[9px] leading-relaxed text-taupe dark:text-dusky">
+              If enabled, your messages and ELIZ’s replies are saved online until Vasudev deletes them. No name or email field is collected; common email, phone, and credential patterns are masked. Avoid sharing sensitive details. Database limits or charges may apply. Chat works without sharing.
+            </p>
+            {!isSupabaseConfigured() && (
+              <p className="pl-5 pt-1 text-[9px] text-amber-700 dark:text-amber-300">
+                Online storage is not configured on this deployment, so chats stay local.
+              </p>
+            )}
+            {sharingStatus && (
+              <p className="pl-5 pt-1 text-[9px] text-taupe dark:text-dusky" aria-live="polite">{sharingStatus}</p>
             )}
           </div>
 
@@ -497,7 +556,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       <div className="px-3.5 py-1.5 bg-cream-darker/80 dark:bg-[#18050E] text-[9px] font-mono text-taupe dark:text-dusky/80 flex items-center justify-between border-t border-burgundy/10 dark:border-white/10 select-none shrink-0">
         <span className="flex items-center gap-1">
           <Shield className="w-2.5 h-2.5 text-emerald-600" />
-          <span>Local Replies · No API Usage · 0 Cloud Tracking</span>
+          <span>Local Replies · No AI API · Optional Online Storage</span>
         </span>
         <span>v2.4</span>
       </div>

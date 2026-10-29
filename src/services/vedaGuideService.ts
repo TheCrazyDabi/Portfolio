@@ -728,7 +728,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'greeting',
-        text: `I'm ELIZ 😊 I'm a local portfolio guide built into this site. I can chat casually, answer questions from Vasudev's portfolio, and help you find its projects, skills, and contact details. I don't use a general-purpose AI model, so I may not know every open-ended answer—but there's no API usage charge. What would you like to know about me?`,
+        text: `I'm ELIZ 😊 I'm a local portfolio guide built into this site. I can chat casually, answer questions from Vasudev's portfolio, and help you find its projects, skills, and contact details. I don't use a general-purpose AI model, so I may not know every open-ended answer. Chatting doesn't use a paid AI API; optional online sharing may use database storage. What would you like to know about me?`,
         actions: [
           { label: 'Take Guided Tour 🌸', type: 'tour', target: 'start' },
           { label: 'Explore Projects', type: 'navigate', target: 'projects' }
