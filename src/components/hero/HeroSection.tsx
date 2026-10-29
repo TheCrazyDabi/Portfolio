@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Profile } from '../../types/content';
 import { SpiderLily } from '../common/SpiderLily';
+import { VSMonogram } from '../common/VSMonogram';
 import { getAssetUrl } from '../../utils/assets';
 
 interface HeroSectionProps {
@@ -314,12 +315,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 <div className="absolute bottom-3.5 left-3.5 right-3.5 z-20 p-2.5 rounded-2xl bg-wine/85 backdrop-blur-md border border-white/15 text-cream space-y-0.5">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex min-w-0 items-center gap-2">
-                      <img
-                        src={getAssetUrl('assets/brand/vasudev-dragon-lily-mark.png')}
-                        alt=""
-                        aria-hidden="true"
-                        className="w-7 h-7 shrink-0 rounded-full bg-[#240A17] border border-white/20 object-contain p-0.5"
-                      />
+                      <VSMonogram className="h-7 w-7 rounded-lg" />
                       <span className="min-w-0 truncate font-display font-bold text-sm tracking-wide">
                         {profile.name}
                       </span>

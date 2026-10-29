@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Settings, ArrowUpRight, Sun, Moon } from 'lucide-react';
-import { SpiderLily } from './SpiderLily';
-import { getAssetUrl } from '../../utils/assets';
+import { VSMonogram } from './VSMonogram';
 
 interface NavigationProps {
   onOpenStudio: () => void;
@@ -73,18 +72,10 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
           href="#hero"
           className="group flex items-center space-x-2.5 text-burgundy focus:outline-none"
         >
-          <div className="w-10 h-10 shrink-0 rounded-xl bg-[#240A17] border border-burgundy/20 flex items-center justify-center shadow-sm overflow-hidden group-hover:border-dusky/60 transition-colors">
-            <img
-              src={getAssetUrl('assets/brand/vasudev-dragon-lily-mark.png')}
-              alt=""
-              aria-hidden="true"
-              className="w-full h-full object-contain p-0.5 drop-shadow-sm group-hover:scale-110 transition-transform duration-300"
-            />
-          </div>
+          <VSMonogram className="h-10 w-10 transition-transform duration-300 group-hover:scale-105" />
           <div className="flex flex-col">
-            <span className="font-display font-bold text-sm tracking-tight text-wine flex items-center gap-1.5">
+            <span className="font-display font-bold text-sm tracking-tight text-wine">
               VASUDEV SARAS K M
-              <SpiderLily variant="icon" className="w-3.5 h-3.5 opacity-80" />
             </span>
             <span className="text-[10px] font-mono text-taupe uppercase tracking-widest hidden sm:inline">
               ROBOTICS &amp; AUTOMATION · DABI
