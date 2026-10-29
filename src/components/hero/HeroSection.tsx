@@ -9,7 +9,7 @@ import {
 import { Profile } from '../../types/content';
 import { SpiderLily } from '../common/SpiderLily';
 import { VSMonogram } from '../common/VSMonogram';
-import { LoveStoryBackdrop } from './LoveStoryBackdrop';
+import { SamuraiBackdrop } from './SamuraiBackdrop';
 import { getAssetUrl } from '../../utils/assets';
 
 interface HeroSectionProps {
@@ -132,8 +132,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       {/* Floating Spider Lily Botanical Petals */}
       <SpiderLily variant="petals" className="pointer-events-none z-0" />
 
-      {/* Subtle storybook vignette behind hero content */}
-      <LoveStoryBackdrop className="absolute left-1/2 top-[49%] z-[1] w-[min(84vw,440px)] -translate-x-1/2 opacity-25 sm:top-[46%] lg:top-[42%]" />
+      {/* Animated samurai vignette behind hero content */}
+      <SamuraiBackdrop className="absolute left-1/2 top-[49%] z-[1] w-[min(84vw,440px)] -translate-x-1/2 opacity-25 sm:top-[46%] lg:top-[42%]" />
 
       {/* Subtle CAD Technical Coordinate Callout */}
       <div className="absolute top-20 left-6 hidden 2xl:block text-[10px] font-mono text-taupe/60 space-y-0.5 select-none pointer-events-none z-10">

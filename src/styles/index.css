@@ -31,148 +31,83 @@
 .animate-in.duration-200 { animation-duration: 200ms; }
 .animate-in.duration-250 { animation-duration: 250ms; }
 
-/* A quiet storybook loop in the hero's background. */
-.love-story-girl {
+/* A restrained anime samurai practice loop behind the hero. */
+.samurai-character {
   transform-box: view-box;
-  transform-origin: 84px 150px;
-  animation: love-story-approach 12s ease-in-out infinite;
+  transform-origin: 205px 247px;
+  animation: samurai-idle 9s ease-in-out infinite;
 }
 
-.love-story-girl-body {
-  transform-box: view-box;
-  transform-origin: 83px 145px;
-  animation: love-story-body-bounce 12s ease-in-out infinite;
+.samurai-body { transform-box: view-box; transform-origin: 196px 168px; animation: samurai-body 9s ease-in-out infinite; }
+.samurai-head { transform-box: view-box; transform-origin: 195px 85px; animation: samurai-head 9s ease-in-out infinite; }
+.samurai-hair-flow { transform-box: view-box; transform-origin: 176px 75px; animation: samurai-hair 2.8s ease-in-out infinite; }
+.samurai-sword-arm { transform-box: view-box; transform-origin: 226px 126px; animation: samurai-sword-arm 9s cubic-bezier(.3,.7,.2,1) infinite; }
+.samurai-off-arm { transform-box: view-box; transform-origin: 159px 132px; animation: samurai-guard 9s ease-in-out infinite; }
+.samurai-katana { transform-box: view-box; transform-origin: 265px 107px; }
+.samurai-slash { opacity: 0; transform-box: view-box; transform-origin: 250px 110px; animation: samurai-slash 9s ease-out infinite; }
+.samurai-petal { opacity: .52; animation: samurai-petal-drift 6s ease-in-out infinite; }
+.samurai-petal:nth-of-type(2) { animation-delay: -2s; }
+.samurai-spark { opacity: .18; transform-box: view-box; transform-origin: 330px 108px; animation: samurai-spark 2.8s ease-in-out infinite alternate; }
+
+@keyframes samurai-idle {
+  0%, 15%, 45%, 100% { transform: translateY(0) rotate(0); }
+  21%, 39% { transform: translateY(-2px) rotate(-.6deg); }
+  28% { transform: translateY(1px) rotate(.5deg); }
+  53% { transform: translateY(-4px) rotate(-2deg); }
+  61%, 70% { transform: translateY(0) rotate(0); }
 }
-
-.love-story-girl-arm-back,
-.love-story-girl-arm-front {
-  transform-box: view-box;
-  animation-duration: 12s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+@keyframes samurai-body {
+  0%, 15%, 45%, 100% { transform: rotate(0); }
+  22%, 36% { transform: rotate(-2deg); }
+  51% { transform: rotate(-8deg); }
+  60%, 70% { transform: rotate(1deg); }
 }
-
-.love-story-leg {
-  transform-box: view-box;
-  animation: love-story-run 12s linear infinite;
+@keyframes samurai-head {
+  0%, 15%, 45%, 100% { transform: rotate(0); }
+  22%, 36% { transform: rotate(-2deg); }
+  52% { transform: rotate(-6deg); }
+  62%, 70% { transform: rotate(2deg); }
 }
-
-.love-story-girl-leg-a { transform-origin: 71px 150px; }
-.love-story-girl-leg-b { transform-origin: 94px 151px; animation-delay: -120ms; }
-.love-story-girl-arm-back { transform-origin: 67px 101px; animation-name: love-story-girl-arm-back; }
-.love-story-girl-arm-front { transform-origin: 96px 98px; animation-name: love-story-girl-arm-front; }
-
-.love-story-boy-arm {
-  transform-box: view-box;
-  animation: love-story-boy-arm 12s ease-in-out infinite;
+@keyframes samurai-hair {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(4deg); }
 }
-
-.love-story-boy {
-  transform-box: view-box;
-  transform-origin: 255px 106px;
-  animation: love-story-boy-jump 12s ease-in-out infinite;
+@keyframes samurai-sword-arm {
+  0%, 15%, 100% { transform: rotate(0); }
+  22% { transform: rotate(-8deg); }
+  32% { transform: rotate(-19deg); }
+  44% { transform: rotate(3deg); }
+  51% { transform: rotate(58deg); }
+  55% { transform: rotate(69deg); }
+  64% { transform: rotate(8deg); }
+  72% { transform: rotate(0); }
 }
-
-.love-story-boy-arm-left { transform-origin: 409px 102px; }
-.love-story-boy-arm-right { transform-origin: 449px 101px; animation: love-story-boy-arm-right 12s ease-in-out infinite; }
-
-.love-story-heart {
-  opacity: .1;
-  transform-box: view-box;
-  transform-origin: 401px 42px;
-  animation: love-story-heart 12s ease-in-out infinite;
+@keyframes samurai-guard {
+  0%, 15%, 100% { transform: rotate(0); }
+  32%, 44% { transform: rotate(-10deg); }
+  54%, 64% { transform: rotate(8deg); }
+  72% { transform: rotate(0); }
 }
-
-.love-story-sparkle {
-  opacity: .25;
-  animation: love-story-sparkle 2.4s ease-in-out infinite alternate;
+@keyframes samurai-slash {
+  0%, 49%, 63%, 100% { opacity: 0; transform: scale(.55) rotate(-8deg); }
+  53% { opacity: .9; transform: scale(1) rotate(0); }
+  57% { opacity: .65; transform: scale(1.08) rotate(2deg); }
 }
-
-.love-story-sparkle-b { animation-delay: -1.2s; }
-
-@keyframes love-story-approach {
-  0%, 9% { transform: translate(0, 0) rotate(0); }
-  31% { transform: translate(105px, 0) rotate(0); }
-  42% { transform: translate(236px, -18px) rotate(-5deg); }
-  49% { transform: translate(292px, -5px) rotate(3deg); }
-  56%, 72% { transform: translate(292px, 0) rotate(0); }
-  82% { transform: translate(198px, 0) rotate(0); }
-  100% { transform: translate(0, 0) rotate(0); }
+@keyframes samurai-petal-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0); opacity: .22; }
+  50% { transform: translate(10px, -13px) rotate(30deg); opacity: .65; }
 }
-
-@keyframes love-story-body-bounce {
-  0%, 10%, 42%, 50%, 72%, 100% { transform: translateY(0); }
-  17%, 27%, 37% { transform: translateY(-3px); }
-  46% { transform: translateY(-12px); }
-  55% { transform: translateY(-2px); }
-}
-
-@keyframes love-story-run {
-  0%, 10%, 43%, 73%, 100% { transform: rotate(0); }
-  15%, 27%, 39% { transform: rotate(24deg); }
-  21%, 33% { transform: rotate(-24deg); }
-  46% { transform: rotate(-12deg); }
-  52% { transform: rotate(0); }
-}
-
-@keyframes love-story-girl-arm-back {
-  0%, 37%, 82%, 100% { transform: rotate(0); }
-  45%, 72% { transform: rotate(-115deg); }
-}
-
-@keyframes love-story-girl-arm-front {
-  0%, 37%, 82%, 100% { transform: rotate(0); }
-  45%, 72% { transform: rotate(-54deg); }
-}
-
-@keyframes love-story-boy-arm {
-  0%, 35%, 82%, 100% { transform: rotate(0); }
-  47%, 72% { transform: rotate(72deg); }
-}
-
-@keyframes love-story-boy-arm-right {
-  0%, 35%, 82%, 100% { transform: rotate(0); }
-  47%, 72% { transform: rotate(125deg); }
-}
-
-@keyframes love-story-boy-jump {
-  0%, 42%, 78%, 100% { transform: translateY(0); }
-  48% { transform: translateY(-9px); }
-  54%, 72% { transform: translateY(0); }
-  58% { transform: translateY(-3px); }
-}
-
-@keyframes love-story-heart {
-  0%, 43%, 78%, 100% { opacity: .05; transform: translateY(5px) scale(.75); }
-  52%, 68% { opacity: .85; transform: translateY(-4px) scale(1); }
-}
-
-@keyframes love-story-sparkle {
-  from { opacity: .15; transform: scale(.75); }
-  to { opacity: .65; transform: scale(1.25); }
+@keyframes samurai-spark {
+  from { transform: scale(.7); opacity: .08; }
+  to { transform: scale(1.18); opacity: .45; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .love-story-girl,
-  .love-story-girl-body,
-  .love-story-girl-arm-back,
-  .love-story-girl-arm-front,
-  .love-story-leg,
-  .love-story-boy-arm,
-  .love-story-boy,
-  .love-story-heart,
-  .love-story-sparkle {
+  .samurai-character, .samurai-body, .samurai-head, .samurai-hair-flow,
+  .samurai-sword-arm, .samurai-off-arm, .samurai-slash, .samurai-petal, .samurai-spark {
     animation: none !important;
   }
-
-  .love-story-girl { transform: translate(292px, 0); }
-  .love-story-girl-arm-back { transform: rotate(-115deg); }
-  .love-story-girl-arm-front { transform: rotate(-54deg); }
-  .love-story-boy { transform: translateY(0); }
-  .love-story-boy-arm-left { transform: rotate(72deg); }
-  .love-story-boy-arm-right { transform: rotate(125deg); }
-  .love-story-heart { opacity: .85; }
-  .love-story-sparkle { opacity: .4; }
+  .samurai-slash { display: none; }
 }
 
 :root {
