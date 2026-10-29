@@ -24,7 +24,6 @@ import {
   SUGGESTED_QUESTIONS,
   VedaGuideService
 } from '../../services/vedaGuideService';
-import { VedaBackendAdapter } from '../../services/vedaBackendAdapter';
 import { resolveVedaLanguage, VedaReplyLanguage } from '../../services/vedaLocalization';
 
 interface VedaGuidePanelProps {
@@ -47,7 +46,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       id: 'welcome-1',
       sender: 'veda',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      text: "Hey, I'm ELIZ 😊 I can guide you through Vasudev's projects and chat in English, Malayalam, or Manglish. Choose a reply language below or just write naturally.",
+      text: "Hey, I'm ELIZ 😊 I run locally from the portfolio information, so there are no API or usage charges. Ask me about Vasudev's work, chat casually, or write in English, Malayalam, or Manglish.",
       pose: 'greeting',
       spokenLanguage: 'en-IN',
       actions: [
@@ -115,24 +114,19 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
     setIsTyping(true);
 
     try {
-      const response = await VedaBackendAdapter.query(trimmed, activeSection, replyLanguage);
-      const botResponse: GuideMessage = {
+      const response = await VedaGuideService.answerQuestion(
+        trimmed,
+        activeSection,
+        replyLanguage,
+        messages.slice(-6),
+      );
+      const localReply: GuideMessage = {
         ...response,
         spokenLanguage: resolveVedaLanguage(trimmed, replyLanguage) === 'malayalam' ? 'ml-IN' : 'en-IN',
       };
-      setMessages((prev) => [...prev, botResponse]);
-      if (botResponse.navigationTarget) {
-        onNavigate(botResponse.navigationTarget);
-      }
-    } catch {
-      const response = await VedaGuideService.answerQuestion(trimmed, activeSection, replyLanguage);
-      const fallback: GuideMessage = {
-        ...response,
-        spokenLanguage: resolveVedaLanguage(trimmed, replyLanguage) === 'malayalam' ? 'ml-IN' : 'en-IN',
-      };
-      setMessages((prev) => [...prev, fallback]);
-      if (fallback.navigationTarget) {
-        onNavigate(fallback.navigationTarget);
+      setMessages((prev) => [...prev, localReply]);
+      if (localReply.navigationTarget) {
+        onNavigate(localReply.navigationTarget);
       }
     } finally {
       setIsTyping(false);
@@ -220,7 +214,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
               </div>
               <div className="flex items-center space-x-1 text-[9px] font-mono text-emerald-600 dark:text-emerald-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Local Deterministic Engine</span>
+                <span>Local Guide · No API Usage</span>
               </div>
             </div>
           </div>
@@ -503,7 +497,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       <div className="px-3.5 py-1.5 bg-cream-darker/80 dark:bg-[#18050E] text-[9px] font-mono text-taupe dark:text-dusky/80 flex items-center justify-between border-t border-burgundy/10 dark:border-white/10 select-none shrink-0">
         <span className="flex items-center gap-1">
           <Shield className="w-2.5 h-2.5 text-emerald-600" />
-          <span>Strict In-Browser Memory · 0 Cloud Tracking</span>
+          <span>Local Replies · No API Usage · 0 Cloud Tracking</span>
         </span>
         <span>v2.4</span>
       </div>

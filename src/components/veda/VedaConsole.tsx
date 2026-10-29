@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Send, Sparkles, Cpu, Shield, Zap, X, CornerDownLeft, Volume2, VolumeX, Maximize2, Minimize2, Trash2, HelpCircle } from 'lucide-react';
 import { Profile } from '../../types/content';
-import { VedaGuideService, GuideAction } from '../../services/vedaGuideService';
+import { VedaGuideService, GuideAction, GuideMessage } from '../../services/vedaGuideService';
 
 interface VedaConsoleProps {
   profile?: Profile | null;
@@ -226,7 +226,16 @@ Keep exploring the case studies or ask ELIZ about any engineering builds!`;
 
     // 2. Adaptive Conversational AI Guide Engine (Natural Language & Projects)
     try {
-      const aiResponse = await VedaGuideService.answerQuestion(trimmed, 'veda');
+      const conversationContext: GuideMessage[] = history
+        .filter((item) => item.type === 'input' || item.type === 'output')
+        .slice(-6)
+        .map((item, index) => ({
+          id: `terminal-context-${index}`,
+          sender: item.type === 'input' ? 'user' : 'veda',
+          timestamp: item.timestamp,
+          text: item.content,
+        }));
+      const aiResponse = await VedaGuideService.answerQuestion(trimmed, 'veda', 'auto', conversationContext);
       streamResponse(aiResponse.text, 'ELIZ-AI', aiResponse.actions);
 
       // If intent specifically requests page navigation, smoothly navigate

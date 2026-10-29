@@ -48,6 +48,24 @@ export function getLocalizedVedaReply(
     };
   }
 
+  if (has('tell me a joke', 'make me laugh', 'got a joke')) {
+    return {
+      pose: 'happy',
+      text: ml
+        ? 'ഒരു റോബോട്ട് പെൻസിൽ എടുത്തത് എന്തിന്? സ്വന്തം conclusions വരയ്ക്കാൻ 🤖✏️ വേറൊരു തമാശ വേണോ, അതോ projects നോക്കാമോ?'
+        : 'Robot pencil eduthathu enthinanu? Swantham conclusions draw cheyyan 🤖✏️ Iniyum joke venamo, atho projects nokkamo?',
+    };
+  }
+
+  if (has('i feel sad', 'feeling down', 'rough day', 'bad day', 'stressed', 'വിഷമം', 'സങ്കടം', 'ടെൻഷൻ')) {
+    return {
+      pose: 'thinking',
+      text: ml
+        ? 'അങ്ങനെ തോന്നുന്നതിൽ വിഷമമുണ്ട്. പറയാൻ തോന്നിയാൽ എന്താണ് സംഭവിച്ചതെന്ന് പറയൂ; അല്ലെങ്കിൽ നമുക്ക് ലളിതമായ മറ്റെന്തെങ്കിലും സംസാരിക്കാം 💛'
+        : 'Athu kettittu vishamam thonnunnu. Parayan thonnunnenkil entha sambhavichathennu parayu; allenkil namukku vere light aaya karyam samsarikkam 💛',
+    };
+  }
+
   if (has('you are so good', 'you re so good', 'you are amazing', 'you re amazing', 'you are awesome', 'you re awesome', 'you rock', 'nalla ai', 'nannayi paranju') ||
       (has('good') && has('you are', 'you re'))) {
     return {
@@ -178,10 +196,11 @@ export function getLocalizedVedaReply(
     };
   }
 
+  const quotedMessage = message.length > 90 ? `${message.slice(0, 87).trimEnd()}…` : message;
   return {
     pose: 'thinking',
     text: ml
-      ? 'ഞാൻ മലയാളത്തിൽ സഹായിക്കാം 😊 വാസുദേവിന്റെ projects, skills, education, contact എന്നിവയെക്കുറിച്ചോ മറ്റെന്തിനെക്കുറിച്ചോ ചോദിക്കൂ.'
-      : 'Malayalathil help cheyyam 😊 Vasudev-inde projects, skills, education, contact ennivayekkuricho casual aayitto chodikkam.',
+      ? `നിങ്ങൾ ചോദിച്ചത് “${quotedMessage}” എന്നതിനെക്കുറിച്ചാണ് 😊 ഞാൻ ബ്രൗസറിൽ തന്നെ പ്രവർത്തിക്കുന്ന local guide ആണ്; എന്റെ മറുപടികൾ portfolio വിവരങ്ങളും കുറച്ച് സംഭാഷണ cues-ഉം ആശ്രയിച്ചാണ്. കുറച്ച് കൂടി context തരാമോ? അപ്പോൾ സഹായിക്കാൻ ശ്രമിക്കാം.`
+      : `“${quotedMessage}” alle 😊 Njan local guide aanu; portfolio details-um kurachu conversation cues-um aanu use cheyyunnathu. Kurachu context koodi parayamo? Appol nannayi help cheyyan nokkam.`,
   };
 }

@@ -133,6 +133,7 @@ export class VedaGuideService {
     rawQuery: string,
     currentSection?: string,
     preferredLanguage: VedaReplyLanguage = 'auto',
+    conversationContext: GuideMessage[] = [],
   ): Promise<GuideMessage> {
     const id = `veda-msg-${Date.now()}`;
     const timestamp = this.getTimestamp();
@@ -169,6 +170,15 @@ export class VedaGuideService {
     // Helper predicate to check if clean text contains a phrase or token
     const has = (keyword: string) => clean.includes(keyword);
     const hasToken = (t: string) => tokens.has(t);
+
+    const recentUserMessage = [...conversationContext].reverse().find((message) => message.sender === 'user')?.text;
+    const recentAssistantMessage = [...conversationContext].reverse().find((message) => message.sender === 'veda')?.text;
+    const isFollowUp = /^(tell me more|more details|go on|continue|why|how so|what about that|and that|explain it|what do you mean)\b/.test(clean);
+    const followUpContext = isFollowUp ? [recentUserMessage, recentAssistantMessage].filter(Boolean).join(' ') : '';
+    const topicText = followUpContext
+      ? followUpContext.toLowerCase().replace(/[^\w\s-]/g, ' ').replace(/\s+/g, ' ').trim()
+      : clean;
+    const topicHas = (keyword: string) => topicText.includes(keyword);
 
     // -------------------------------------------------------------------------
     // 1. Explicit Page Navigation Commands (Self-Adaptive Navigation)
@@ -741,6 +751,80 @@ export class VedaGuideService {
       };
     }
 
+    // Friendly local chat cues for messages that are not portfolio questions.
+    if (has('tell me a joke') || has('make me laugh') || has('got a joke')) {
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        pose: 'happy',
+        text: `Why did the robot bring a pencil to the workshop? It wanted to draw its own conclusions. 🤖✏️ Want another one, or shall we get back to the projects?`,
+      };
+    }
+
+    if (has('i feel sad') || has('i m sad') || has('im sad') || has('feeling down') || has('rough day') || has('bad day') || has('i feel stressed') || has('i m stressed')) {
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        pose: 'thinking',
+        text: `I'm sorry it's been a rough one. You don't have to turn it into a question—if you want, tell me what's been going on, or we can switch to something lighter. 💛`,
+      };
+    }
+
+    if (has('i love ') || has('i like ') || has('i enjoy ') || has('i m excited') || has('im excited')) {
+      const sharedInterest = raw.replace(/^(i('| a)?m?\s+excited\s*(about\s+)?|i\s+(?:really\s+)?(?:love|like|enjoy)\s+)/i, '').replace(/[.!?]+$/, '').trim();
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        pose: 'happy',
+        text: sharedInterest
+          ? `Oh, nice—${sharedInterest} sounds like something you really enjoy 😊 What got you interested in it?`
+          : `That sounds exciting 😊 What are you looking forward to most?`,
+      };
+    }
+
+    if (has('your favorite') || has('your favourite') || has('do you like') || has('what do you think about')) {
+      return {
+        id,
+        sender: 'veda',
+        timestamp,
+        pose: 'explaining',
+        text: `I don't have personal favorites or experiences, but I can still talk it through with you 😊 Give me a little more context and I'll share what I can, or tell you how it connects to Vasudev's engineering work.`,
+      };
+    }
+
+    if (isFollowUp && followUpContext) {
+      if (topicHas('rover') || topicHas('first responder') || topicHas('nav2') || topicHas('jetson')) {
+        return {
+          id,
+          sender: 'veda',
+          timestamp,
+          pose: 'coding',
+          text: `Sure—on the rover, the main idea is to combine onboard perception with ROS 2/Nav2 so it can understand a route and move through it. The portfolio documents the Jetson Orin Nano, pathway vision, navigation, and drive-by-wire work. Which piece should I unpack first?`,
+        };
+      }
+      if (topicHas('baja') || topicHas('equinox') || topicHas('suspension')) {
+        return {
+          id,
+          sender: 'veda',
+          timestamp,
+          pose: 'engineering',
+          text: `Sure—Team Equinox's aBAJA work is centered on suspension and steering development. The portfolio mentions geometry work in Lotus SHARK, steering design in SOLIDWORKS, and dynamics work in MSC Adams Car. Want to start with suspension geometry or Ackermann steering?`,
+        };
+      }
+      if (topicHas('mediarm') || topicHas('robotic arm')) {
+        return {
+          id,
+          sender: 'veda',
+          timestamp,
+          pose: 'engineering',
+          text: `Sure—MediArm is a 3-DOF arm prototype. Its documented build combines ESP32 control, motor drivers and servos, with a web interface and offline voice commands. Are you curious about the electronics, control, or interface?`,
+        };
+      }
+    }
+
     // -------------------------------------------------------------------------
     // 18. Creator / Developer
     // -------------------------------------------------------------------------
@@ -875,12 +959,16 @@ export class VedaGuideService {
     // -------------------------------------------------------------------------
     // 21. Friendly, open-ended chat fallback
     // -------------------------------------------------------------------------
+    const quotedMessage = raw.length > 110 ? `${raw.slice(0, 107).trimEnd()}…` : raw;
+    const lastAssistantWasFallback = recentAssistantMessage?.includes('local version') ?? false;
     return {
       id,
       sender: 'veda',
       timestamp,
       pose: 'thinking',
-      text: `I'm happy to chat 😊 I know Vasudev's portfolio well, and I can keep things casual too. What are you in the mood to talk about?`,
+      text: lastAssistantWasFallback
+        ? `I'm following you 😊 About “${quotedMessage}”—give me one more detail and I'll try to respond more usefully. I can also switch gears to robotics, projects, or just casual chat.`
+        : `I hear you 😊 You're asking about “${quotedMessage}”. I can chat casually, but this local version doesn't have a general-purpose language model behind it, so I may not know the answer yet. Share a little context and I'll do my best—or ask me about Vasudev's projects, robotics, CAD, or embedded systems.`,
     };
   }
 }
