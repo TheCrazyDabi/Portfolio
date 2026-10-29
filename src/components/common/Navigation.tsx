@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Settings, ArrowUpRight, Sun, Moon } from 'lucide-react';
-import { VSMonogram } from './VSMonogram';
 
 interface NavigationProps {
   onOpenStudio: () => void;
@@ -70,9 +69,8 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
         {/* Brand / Logo */}
         <a
           href="#hero"
-          className="group flex items-center space-x-2.5 text-burgundy focus:outline-none"
+          className="group flex items-center text-burgundy focus:outline-none"
         >
-          <VSMonogram className="h-10 w-10 transition-transform duration-300 group-hover:scale-105" />
           <div className="flex flex-col">
             <span className="font-display font-bold text-sm tracking-tight text-wine">
               VASUDEV SARAS K M
