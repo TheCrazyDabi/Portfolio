@@ -111,7 +111,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
             onClick={toggleTheme}
             id="th"
             aria-label="Toggle dark/light theme"
-            className="p-2 rounded-full border border-burgundy/20 dark:border-white/20 text-wine hover:text-burgundy dark:hover:text-cream hover:bg-cream-darker/50 dark:hover:bg-white/10 transition-colors"
+            className="hidden 2xl:inline-flex p-2 rounded-full border border-burgundy/20 dark:border-white/20 text-wine hover:text-burgundy dark:hover:text-cream hover:bg-cream-darker/50 dark:hover:bg-white/10 transition-colors"
             title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           >
             {isDark ? (
@@ -123,7 +123,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
 
           <button
             onClick={onOpenStudio}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-mono bg-burgundy/5 hover:bg-burgundy text-burgundy hover:text-cream border border-burgundy/20 hover:border-burgundy transition-all duration-200"
+            className="hidden 2xl:flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-mono bg-burgundy/5 hover:bg-burgundy text-burgundy hover:text-cream border border-burgundy/20 hover:border-burgundy transition-all duration-200"
             title="Open Portfolio Studio Admin"
           >
             <Settings className="w-3.5 h-3.5 text-dusky" />
@@ -133,7 +133,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
 
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center space-x-1 px-4 py-1.5 rounded-full text-xs font-mono font-medium bg-burgundy text-cream hover:bg-wine shadow-sm transition-colors"
+            className="hidden 2xl:inline-flex items-center space-x-1 px-4 py-1.5 rounded-full text-xs font-mono font-medium bg-burgundy text-cream hover:bg-wine shadow-sm transition-colors"
           >
             <span>Inquire</span>
             <ArrowUpRight className="w-3 h-3 text-dusky" />
@@ -143,7 +143,9 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="2xl:hidden p-2 rounded-lg text-burgundy hover:bg-cream-darker/60 focus:outline-none"
-            aria-label="Toggle navigation menu"
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -152,20 +154,37 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
 
       {/* Mobile Drawer Menu */}
       {isOpen && (
-        <div className="lg:hidden bg-cream dark:bg-[#220B14] border-b border-burgundy/15 dark:border-white/10 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
+        <div id="mobile-navigation" className="2xl:hidden bg-cream dark:bg-[#220B14] border-b border-burgundy/15 dark:border-white/10 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
           <div className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="px-3 py-2 rounded-md text-sm font-mono text-wine hover:bg-cream-darker/60 flex items-center justify-between"
-              >
-                <span>{link.label}</span>
-                <span className="text-[10px] text-taupe">#</span>
-              </a>
-            ))}
+            <nav aria-label="Mobile site navigation" className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  aria-current={activeSection === link.href.slice(1) ? 'page' : undefined}
+                  className={`px-3 py-2.5 rounded-lg text-sm font-mono flex items-center justify-between transition-colors ${
+                    activeSection === link.href.slice(1)
+                      ? 'bg-burgundy/10 text-burgundy font-semibold'
+                      : 'text-wine hover:bg-cream-darker/60'
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  {link.isHighlight && <span className="w-2 h-2 rounded-full bg-emerald-500" />}
+                </a>
+              ))}
+            </nav>
             <div className="pt-3 border-t border-burgundy/10 flex flex-col gap-2">
+              <button
+                onClick={() => {
+                  toggleTheme();
+                  setIsOpen(false);
+                }}
+                className="w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-xs font-mono text-wine bg-cream-surface hover:bg-cream-darker/60 border border-burgundy/10"
+              >
+                <span>{isDark ? 'Switch to light theme' : 'Switch to dark theme'}</span>
+                {isDark ? <Sun className="w-4 h-4 text-burgundy" /> : <Moon className="w-4 h-4 text-burgundy" />}
+              </button>
               <button
                 onClick={() => {
                   setIsOpen(false);
