@@ -1,6 +1,4 @@
 import React from 'react';
-import { SpiderLily } from './SpiderLily';
-
 const ITEMS = [
   'Robotics',
   'Automation',
@@ -10,7 +8,7 @@ const ITEMS = [
   'Local AI',
   'Navigation',
   'Kinematic Control',
-  'Red Spider Lily',
+  'Robotics Integration',
   'Autonomous Systems',
   'Reverse Kinematics',
   'ROS 2 Humble',
@@ -30,11 +28,7 @@ export const MarqueeBanner: React.FC = () => {
               {item}
             </span>
             <span className="inline-flex items-center text-blush text-sm">
-              {idx % 3 === 0 ? (
-                <SpiderLily variant="icon" className="w-4 h-4 mx-2 opacity-80" />
-              ) : (
-                <span className="mx-2 text-blush text-xs">✦</span>
-              )}
+              <span className="mx-2 text-blush text-xs">✦</span>
             </span>
           </React.Fragment>
         ))}
@@ -46,11 +40,7 @@ export const MarqueeBanner: React.FC = () => {
               {item}
             </span>
             <span className="inline-flex items-center text-blush text-sm">
-              {idx % 3 === 0 ? (
-                <SpiderLily variant="icon" className="w-4 h-4 mx-2 opacity-80" />
-              ) : (
-                <span className="mx-2 text-blush text-xs">✦</span>
-              )}
+              <span className="mx-2 text-blush text-xs">✦</span>
             </span>
           </React.Fragment>
         ))}
