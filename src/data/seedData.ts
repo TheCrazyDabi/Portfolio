@@ -253,7 +253,7 @@ export const initialMilestones: Milestone[] = [
       "Core coursework in Robot Kinematics, Vehicle Dynamics, Industrial Automation, and Embedded Systems"
     ],
     category: "Education",
-    orderIndex: 1
+    orderIndex: 3
   },
   {
     id: "ms-nit-calicut",
@@ -268,7 +268,7 @@ export const initialMilestones: Milestone[] = [
       "Investigated secure data communication between distributed robotic nodes and remote web dashboards"
     ],
     category: "Leadership",
-    orderIndex: 2
+    orderIndex: 4
   },
   {
     id: "ms-techmaghi",
@@ -283,7 +283,7 @@ export const initialMilestones: Milestone[] = [
       "Conducted threat modelling and system hardening across networked environments"
     ],
     category: "Leadership",
-    orderIndex: 3
+    orderIndex: 5
   },
   {
     id: "ms-offenso",
@@ -298,7 +298,7 @@ export const initialMilestones: Milestone[] = [
       "Applied defensive security frameworks to protect critical cyber-physical systems"
     ],
     category: "Leadership",
-    orderIndex: 4
+    orderIndex: 6
   },
   {
     id: "ms-equinox-baja",
@@ -313,7 +313,7 @@ export const initialMilestones: Milestone[] = [
       "Configured multibody dynamics simulations in MSC Adams Car to evaluate handling and transient roll behaviour"
     ],
     category: "Competition",
-    orderIndex: 5
+    orderIndex: 7
   },
   {
     id: "ms-hack-cooee",
@@ -328,7 +328,7 @@ export const initialMilestones: Milestone[] = [
       "Built automated OTP/PIN/card-number redaction and forensic evidence export"
     ],
     category: "Competition",
-    orderIndex: 6
+    orderIndex: 8
   },
   {
     id: "ms-tinkerhub-vybe",
@@ -343,7 +343,7 @@ export const initialMilestones: Milestone[] = [
       "Engineered Flask backend with role-based Traveller, Operator, and Admin portals"
     ],
     category: "Competition",
-    orderIndex: 7
+    orderIndex: 9
   },
   {
     id: "ms-school-plus-two",
@@ -358,7 +358,7 @@ export const initialMilestones: Milestone[] = [
       "Active participation in science exhibitions and technical clubs"
     ],
     category: "Education",
-    orderIndex: 8
+    orderIndex: 2
   },
   {
     id: "ms-school-tenth",
@@ -372,7 +372,7 @@ export const initialMilestones: Milestone[] = [
       "Strong academic foundation in science, computer applications, and mathematics"
     ],
     category: "Education",
-    orderIndex: 9
+    orderIndex: 1
   }
 ];
 

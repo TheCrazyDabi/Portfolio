@@ -160,7 +160,7 @@ export class ContentService {
           return (data as Milestone[]).map(milestone => {
             const fresh = initialMilestones.find(item => item.id === milestone.id);
             return fresh ? { ...milestone, ...fresh } : milestone;
-          });
+          }).sort((a, b) => a.orderIndex - b.orderIndex);
         }
       } catch (err) {
         console.warn('Supabase milestones query failed, falling back:', err);
