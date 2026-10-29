@@ -72,12 +72,12 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
       case 'projects':
         return {
           text: 'Each project case study describes the tools, architecture, and current project stage.',
-          actionText: 'Query V.E.D.A. AI',
+          actionText: 'Ask ELIZ AI',
           actionId: 'veda',
         };
       case 'veda':
         return {
-          text: 'You are now interacting with V.E.D.A. AI! Ask any technical question or run commands like "baja" or "robotics".',
+          text: 'You are now chatting with ELIZ! Ask about the portfolio or try prompts like "baja" or "robotics".',
           actionText: 'Explore Systems & Skills',
           actionId: 'skills',
         };
@@ -150,7 +150,7 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
         {dialogue.text}
       </p>
 
-      {/* Action Buttons: Primary & VEDA AI Launcher */}
+      {/* Action Buttons: Primary & ELIZ AI Launcher */}
       <div className="space-y-1.5 mb-3">
         {dialogue.actionText && (
           <button
@@ -171,11 +171,11 @@ export const CompanionDialogue: React.FC<CompanionDialogueProps> = ({
         <button
           onClick={() => onNavigate('veda')}
           className="w-full flex items-center justify-center space-x-1.5 px-3 py-1.5 rounded-xl bg-cream-surface hover:bg-cream-darker/60 text-wine border border-emerald-600/30 text-[10px] font-mono font-semibold transition-all shadow-sm active:scale-98"
-          title="Launch V.E.D.A. AI Interactive Console"
+          title="Launch ELIZ AI Interactive Console"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           <Terminal className="w-3 h-3 text-emerald-600" />
-          <span>Open VEDA</span>
+          <span>Open ELIZ</span>
         </button>
       </div>
 

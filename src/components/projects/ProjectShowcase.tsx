@@ -89,7 +89,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) =>
                 href="#veda"
                 className="px-4 py-1.5 rounded-full bg-burgundy text-cream font-semibold hover:bg-wine shadow-sm transition-all flex items-center gap-1.5"
               >
-                <span>Query V.E.D.A. AI Console</span>
+                <span>Ask ELIZ AI</span>
                 <ArrowRight className="w-3.5 h-3.5 text-dusky" />
               </a>
             </div>

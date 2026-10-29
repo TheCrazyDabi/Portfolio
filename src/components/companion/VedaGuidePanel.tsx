@@ -47,7 +47,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
       id: 'welcome-1',
       sender: 'veda',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      text: "Hey, I'm VEDA 😊 I can guide you through Vasudev's projects and chat in English, Malayalam, or Manglish. Choose a reply language below or just write naturally.",
+      text: "Hey, I'm ELIZ 😊 I can guide you through Vasudev's projects and chat in English, Malayalam, or Manglish. Choose a reply language below or just write naturally.",
       pose: 'greeting',
       spokenLanguage: 'en-IN',
       actions: [
@@ -200,7 +200,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
     <div
       className="veda-guide-panel w-[min(24rem,calc(100vw-1.5rem))] sm:w-96 max-h-[min(540px,calc(100vh-6.5rem))] rounded-2xl bg-cream-surface/98 dark:bg-[#2A0E1A]/98 border border-burgundy/25 dark:border-white/20 shadow-2xl backdrop-blur-md flex flex-col overflow-hidden text-wine dark:text-cream animate-in fade-in slide-in-from-bottom-4 duration-250 select-text"
       role="region"
-      aria-label="V.E.D.A. AI Portfolio Walkthrough Guide"
+      aria-label="ELIZ AI Portfolio Walkthrough Guide"
     >
       {/* Chrome Header with Branding and Tab Switcher */}
       <div className="p-3 bg-cream dark:bg-[#200A13] border-b border-burgundy/15 dark:border-white/10 flex flex-col gap-2 shrink-0">
@@ -212,7 +212,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
             <div>
               <div className="flex items-center space-x-1.5">
                 <span className="font-display font-bold text-xs tracking-tight text-wine dark:text-cream">
-                  V.E.D.A.
+                  ELIZ
                 </span>
                 <span className="text-[10px] font-mono text-taupe dark:text-dusky uppercase tracking-wider">
                   // Portfolio Guide
@@ -246,7 +246,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
             }`}
           >
             <MessageSquare className="w-3.5 h-3.5" />
-            <span>Ask V.E.D.A.</span>
+            <span>Ask ELIZ</span>
           </button>
 
           <button
@@ -355,7 +355,7 @@ export const VedaGuidePanel: React.FC<VedaGuidePanelProps> = ({
                 <span className="w-1.5 h-1.5 rounded-full bg-dusky animate-bounce" />
                 <span className="w-1.5 h-1.5 rounded-full bg-dusky animate-bounce [animation-delay:0.2s]" />
                 <span className="w-1.5 h-1.5 rounded-full bg-dusky animate-bounce [animation-delay:0.4s]" />
-                <span className="text-[10px] pl-1">VEDA is thinking...</span>
+                <span className="text-[10px] pl-1">ELIZ is thinking...</span>
               </div>
             )}
           </div>

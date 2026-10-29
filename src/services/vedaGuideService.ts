@@ -33,7 +33,7 @@ export const TOUR_STEPS: TourStep[] = [
     sectionId: 'hero',
     title: 'Welcome to TheCrazyDabi Studio',
     subtitle: 'Robotics & Automation Engineering',
-    description: 'Welcome! I am V.E.D.A., your interactive portfolio guide. This studio showcases Vasudev Saras K M, a Robotics and Automation Engineering student at Saintgits College of Engineering (APJ KTU).',
+    description: 'Welcome! I am ELIZ, your interactive portfolio guide. This studio showcases Vasudev Saras K M, a Robotics and Automation Engineering student at Saintgits College of Engineering (APJ KTU).',
     pose: 'greeting',
     highlightTips: [
       'Authentic engineering portrait with 3D parallax tilt',
@@ -145,7 +145,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'greeting',
-        text: `Hey! I'm **VEDA** 😊 I can chat, answer questions about Vasudev, or help you find something around the portfolio. What's on your mind?`,
+        text: `Hey! I'm **ELIZ** 😊 I can chat, answer questions about Vasudev, or help you find something around the portfolio. What's on your mind?`,
         actions: [
           { label: 'Explore Projects 🚀', type: 'navigate', target: 'projects' },
           { label: 'Start Guided Tour 🌸', type: 'tour', target: 'start' }
@@ -259,7 +259,7 @@ export class VedaGuideService {
           timestamp,
           pose: 'thinking',
           navigationTarget: 'veda',
-          text: `Here is **VEDA**! ⚡\n\nAsk about the portfolio or use the quick commands to navigate.`,
+          text: `Here is **ELIZ**! ⚡\n\nAsk about the portfolio or use the quick commands to navigate.`,
           actions: [
             { label: 'Run Help Command', type: 'navigate', target: 'veda' },
             { label: 'Explore Projects', type: 'navigate', target: 'projects' }
@@ -299,7 +299,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'thinking',
-        text: `V.E.D.A. is a portfolio guide. The console uses local topic matching and prepared responses to answer common questions and navigate to sections. Its responses describe the information documented in this portfolio; they do not verify hardware or benchmark results.`,
+        text: `ELIZ is a portfolio guide. The console uses local topic matching and prepared responses to answer common questions and navigate to sections. Its responses describe the information documented in this portfolio; they do not verify hardware or benchmark results.`,
         actions: [
           { label: 'Inspect Skills Matrix', type: 'navigate', target: 'skills' },
           { label: 'View Verified Credentials', type: 'navigate', target: 'credentials' },
@@ -717,9 +717,11 @@ export class VedaGuideService {
       clean === 'who are you' ||
       clean === 'what are you' ||
       clean === 'what is veda' ||
+      clean === 'what is eliz' ||
       clean === 'what can you do' ||
       clean.startsWith('who are you') ||
       clean.startsWith('what is veda') ||
+      clean.startsWith('what is eliz') ||
       has('what is your role') ||
       has('what is your purpose')
     );
@@ -730,7 +732,7 @@ export class VedaGuideService {
         sender: 'veda',
         timestamp,
         pose: 'explaining',
-        text: `I'm **V.E.D.A.**, Vasudev's interactive portfolio guide. I can help you:\n• Explore his background, education, and credentials\n• Browse his robotics, vehicle dynamics, and software projects\n• Navigate to sections of the portfolio\n• Find his contact information.\n\nWhat would you like to explore?`,
+        text: `I'm **ELIZ**, Vasudev's interactive portfolio guide. I can help you:\n• Explore his background, education, and credentials\n• Browse his robotics, vehicle dynamics, and software projects\n• Navigate to sections of the portfolio\n• Find his contact information.\n\nWhat would you like to explore?`,
         actions: [
           { label: 'Take Guided Tour 🌸', type: 'tour', target: 'start' },
           { label: 'Explore Flagship Builds', type: 'navigate', target: 'projects' },

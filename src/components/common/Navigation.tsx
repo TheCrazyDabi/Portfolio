@@ -52,7 +52,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenStudio, activeSect
     { label: 'Overview', href: '#hero' },
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
-    { label: 'V.E.D.A. AI', href: '#veda', isHighlight: true },
+    { label: 'ELIZ AI', href: '#veda', isHighlight: true },
     { label: 'Systems & Skills', href: '#skills' },
     { label: 'Journey', href: '#journey' },
     { label: 'Credentials', href: '#credentials' },

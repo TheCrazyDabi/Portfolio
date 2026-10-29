@@ -28,10 +28,10 @@ export const VedaSection: React.FC<VedaSectionProps> = ({ profile }) => {
               <span>PORTFOLIO GUIDE</span>
             </div>
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-wine">
-              VEDA
+              ELIZ
             </h2>
             <p className="text-sm sm:text-base text-taupe-dark max-w-2xl font-sans leading-relaxed">
-              Ask V.E.D.A. about Vasudev’s projects and background, or use it to navigate the portfolio.
+              Ask ELIZ about Vasudev’s projects and background, or use it to navigate the portfolio.
             </p>
           </div>
 

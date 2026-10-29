@@ -176,12 +176,12 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
             setIsDialogueOpen(true);
           }}
           className="flex items-center space-x-2 px-3.5 py-2 rounded-full bg-cream-surface/95 dark:bg-[#2A0E1A]/95 hover:bg-burgundy text-wine dark:text-cream hover:text-cream border border-burgundy/25 dark:border-white/20 shadow-xl backdrop-blur-md text-xs font-mono transition-transform hover:scale-105 active:scale-95"
-          title="Restore V.E.D.A. Guide Companion"
-          aria-label="Expand V.E.D.A. companion"
+          title="Restore ELIZ Guide Companion"
+          aria-label="Expand ELIZ companion"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <Bot className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-          <span className="font-semibold">V.E.D.A. Guide</span>
+          <span className="font-semibold">ELIZ Guide</span>
           <ChevronUp className="w-3.5 h-3.5 text-dusky" />
         </button>
       </div>
@@ -191,9 +191,9 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
   return (
     <aside
       className="chibi-companion fixed bottom-3 right-3 sm:bottom-4 sm:right-4 z-40 flex flex-col items-end pointer-events-none select-none"
-      aria-label="Interactive V.E.D.A. portfolio companion"
+      aria-label="Interactive ELIZ portfolio companion"
     >
-      {/* V.E.D.A. Guide Conversation & Walkthrough Panel */}
+      {/* ELIZ Guide Conversation & Walkthrough Panel */}
       {isDialogueOpen && (
         <div className="pointer-events-auto mb-2 mr-1 sm:mr-2">
           <VedaGuidePanel
@@ -205,17 +205,17 @@ export const ChibiCompanion: React.FC<ChibiCompanionProps> = ({ activeSection })
         </div>
       )}
 
-      {/* Floating Modern V.E.D.A. Guide Pill */}
+      {/* Floating Modern ELIZ Guide Pill */}
       {!isDialogueOpen && (
         <button
           onClick={() => setIsDialogueOpen(true)}
           className="pointer-events-auto mb-1.5 px-3 py-1.5 rounded-full bg-cream-surface/95 dark:bg-[#2A0E1A]/95 hover:bg-burgundy text-wine dark:text-cream hover:text-cream border border-burgundy/20 dark:border-white/15 shadow-md text-xs font-mono flex items-center gap-1.5 backdrop-blur-sm transition-all duration-200 transform hover:scale-105 active:scale-95 group"
-          title="Open V.E.D.A. Portfolio Guide"
-          aria-label="Open V.E.D.A. Portfolio Guide"
+          title="Open ELIZ Portfolio Guide"
+          aria-label="Open ELIZ Portfolio Guide"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           <Bot className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 group-hover:text-cream transition-colors" />
-          <span className="font-semibold">Ask V.E.D.A. for guides</span>
+          <span className="font-semibold">Ask ELIZ for guides</span>
           <Sparkles className="w-3 h-3 text-dusky group-hover:text-amber-300" />
         </button>
       )}

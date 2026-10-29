@@ -64,7 +64,7 @@ export class VedaBackendAdapter {
         id: `veda-ai-${Date.now()}`,
         sender: 'veda',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        text: data.text || data.message || 'Response received from V.E.D.A. core.',
+        text: data.text || data.message || 'Response received from ELIZ.',
         pose: data.pose || 'thinking',
         actions: data.actions || [
           { label: 'Explore Projects', type: 'navigate', target: 'projects' },

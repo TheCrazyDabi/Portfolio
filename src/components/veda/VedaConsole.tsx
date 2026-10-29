@@ -44,23 +44,23 @@ export const VedaConsole: React.FC<VedaConsoleProps> = ({
     const bootSequence: CommandHistoryItem[] = [
       {
         type: 'system',
-        content: `\\     /   _____   ____     /\\
- \\   /   | ____| |  _ \\   /  \\
-  \\ /    | |__   | | | | / /\\ \\
-   \\/    | |___  | |__/ / ____ \\
-          |_____| |____/ /_/    \\_\\`,
+        content: `##### #... #### #####
+#.... #... .##. ....#
+####. #... .##. ...#.
+#.... #... .##. ..#..
+##### ##### #### #####`,
         timestamp: getTimestamp(),
         badge: 'BOOT'
       },
       {
         type: 'system',
-        content: `[✔] VEDA: ONLINE (Deterministic In-Browser Knowledge Engine)
+        content: `[✔] ELIZ: ONLINE (Deterministic In-Browser Knowledge Engine)
 [✔] Verified Subject: Vasudev Saras K M (Robotics & Automation Engineering Student)
 [✔] Host Institution: Saintgits College of Engineering | APJ KTU
 [✔] Domain Graph: ROS 2 · Jetson Orin Nano · Lotus SHARK CAD · aBAJA 2026 · Cybersecurity
 [✔] Telemetry Protocol: Strict Local Execution (Zero External Cloud Telemetry)
 
-Ask me anything about Vasudev's robotics work, engineering builds, or background below! You can chat naturally (e.g. "hey veda", "explain MediArm", "show projects") or type 'help' for terminal commands.`,
+Ask me anything about Vasudev's robotics work, engineering builds, or background below! You can chat naturally (e.g. "hey ELIZ", "explain MediArm", "show projects") or type 'help' for terminal commands.`,
         timestamp: getTimestamp(),
         badge: 'READY'
       }
@@ -97,7 +97,7 @@ Ask me anything about Vasudev's robotics work, engineering builds, or background
   };
 
   // Streaming text emulator with optional interactive actions
-  const streamResponse = (fullText: string, badge = 'VEDA', actions?: GuideAction[]) => {
+  const streamResponse = (fullText: string, badge = 'ELIZ', actions?: GuideAction[]) => {
     setIsStreaming(true);
     let currentIdx = 0;
     const chunkSize = 4;
@@ -179,7 +179,7 @@ Ask me anything about Vasudev's robotics work, engineering builds, or background
     }
 
     if (lower === 'help') {
-      const helpText = `Available VEDA Commands & Conversational Prompts:
+      const helpText = `Available ELIZ Commands & Conversational Prompts:
   • projects     - Flagship robotics, CAD, and cybersecurity systems
   • baja         - Team Equinox aBAJA SAE 2026 vehicle dynamics & CAD
   • robotics     - Autonomous first-responder rover & MediArm 3-DOF arm
@@ -191,7 +191,7 @@ Ask me anything about Vasudev's robotics work, engineering builds, or background
   • overdrive    - Trigger Sakura and Spider Lily ambience dispersion
 
 You can also chat naturally like with an AI assistant:
-  "Hey Veda, what are you working on?"
+  "Hey ELIZ, what are you working on?"
   "Tell me about the Autonomous First-Responder Rover"
   "Explain MediArm"
   "What was his contribution to Baja SAE?"
@@ -204,7 +204,7 @@ You can also chat naturally like with an AI assistant:
       const perf = window.performance as unknown as { memory?: { usedJSHeapSize: number; totalJSHeapSize: number } };
       const heapUsed = perf.memory ? `${Math.round(perf.memory.usedJSHeapSize / (1024 * 1024))}MB` : '~42MB (estimated)';
       const heapTotal = perf.memory ? `${Math.round(perf.memory.totalJSHeapSize / (1024 * 1024))}MB` : '64MB';
-      const diagText = `VEDA Diagnostic Telemetry:
+      const diagText = `ELIZ Diagnostic Telemetry:
 • Host Platform:     ${navigator.userAgent.slice(0, 48)}...
 • Screen Resolution: ${window.innerWidth} x ${window.innerHeight} (${window.devicePixelRatio}x DPR)
 • Browser Heap:      ${heapUsed} used / ${heapTotal} allocated
@@ -219,7 +219,7 @@ You can also chat naturally like with an AI assistant:
     if (lower.includes('easter') || lower === 'overdrive') {
       const easterText = `🌸 ROBOTICS OVERDRIVE PROTOCOL ENGAGED! 🌺
 Triggering Sakura and Spider Lily breeze dispersion across all viewports.
-Keep exploring the case studies or ask VEDA about any engineering builds!`;
+Keep exploring the case studies or ask ELIZ about any engineering builds!`;
       streamResponse(easterText, 'OVERDRIVE');
       return;
     }
@@ -227,7 +227,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
     // 2. Adaptive Conversational AI Guide Engine (Natural Language & Projects)
     try {
       const aiResponse = await VedaGuideService.answerQuestion(trimmed, 'veda');
-      streamResponse(aiResponse.text, 'VEDA-AI', aiResponse.actions);
+      streamResponse(aiResponse.text, 'ELIZ-AI', aiResponse.actions);
 
       // If intent specifically requests page navigation, smoothly navigate
       if (aiResponse.navigationTarget) {
@@ -241,7 +241,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
     } catch {
       streamResponse(
         `I encountered a temporary processing glitch while analyzing your request. Please feel free to ask again or try clicking one of the quick suggestions below!`,
-        'VEDA-AI'
+        'ELIZ-AI'
       );
     }
   };
@@ -291,7 +291,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
           <div className="flex items-center space-x-2 pl-2 border-l border-burgundy/25">
             <Terminal className="w-4 h-4 text-dusky" />
             <span className="font-mono text-xs font-bold text-cream tracking-wide">
-              VEDA
+              ELIZ
             </span>
           </div>
         </div>
@@ -351,7 +351,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
           <div key={idx} className="space-y-1">
             {item.type === 'input' ? (
               <div className="flex items-center space-x-2 text-amber-300">
-                <span className="text-dusky select-none">veda&gt;</span>
+                <span className="text-dusky select-none">eliz&gt;</span>
                 <span className="font-semibold">{item.content}</span>
                 <span className="text-[10px] text-taupe/60 select-none ml-auto">[{item.timestamp}]</span>
               </div>
@@ -398,7 +398,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
           <span>Quick Commands:</span>
         </span>
         {[
-          { label: 'Say Hello 👋', cmd: 'hey veda' },
+          { label: 'Say Hello 👋', cmd: 'hey eliz' },
           { label: 'Featured Projects 🚀', cmd: 'projects' },
           { label: 'Autonomous Rover 🚗', cmd: 'tell me about the rover' },
           { label: 'Equinox aBAJA 🏎️', cmd: 'baja' },
@@ -431,7 +431,7 @@ Keep exploring the case studies or ask VEDA about any engineering builds!`;
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={isStreaming}
-          placeholder={isStreaming ? 'VEDA is typing response...' : 'Type a command (e.g. help, baja, robotics) or ask a question...'}
+          placeholder={isStreaming ? 'ELIZ is typing response...' : 'Type a command (e.g. help, baja, robotics) or ask a question...'}
           className="flex-1 bg-transparent text-cream placeholder-taupe/50 outline-none font-mono text-xs sm:text-sm"
           autoFocus
         />

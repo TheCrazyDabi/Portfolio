@@ -114,7 +114,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     });
   };
 
-  const handleOpenVeda = (mode: 'chat' | 'tour' = 'chat') => {
+  const handleOpenEliz = (mode: 'chat' | 'tour' = 'chat') => {
     window.dispatchEvent(new CustomEvent('open-veda-guide', { detail: { mode } }));
   };
 
@@ -191,19 +191,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 <ChevronRight className="w-4 h-4 text-dusky" />
               </a>
 
-              {/* V.E.D.A. AI Guide Trigger */}
+              {/* ELIZ AI Guide Trigger */}
               <button
-                onClick={() => handleOpenVeda('chat')}
+                onClick={() => handleOpenEliz('chat')}
                 className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-cream-surface hover:bg-cream-darker/70 text-wine border border-emerald-600/30 hover:border-emerald-600 font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm group"
-                title="Open V.E.D.A. interactive guide"
+                title="Open ELIZ interactive guide"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <Bot className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform" />
-                <span>Ask V.E.D.A.</span>
+                <span>Ask ELIZ</span>
               </button>
 
               <button
-                onClick={() => handleOpenVeda('tour')}
+                onClick={() => handleOpenEliz('tour')}
                 className="inline-flex items-center space-x-1.5 px-4 py-2.5 rounded-full bg-cream-surface hover:bg-cream-darker/60 text-taupe-dark hover:text-wine border border-burgundy/20 font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-sm"
                 title="Start step-by-step guided portfolio tour"
               >
