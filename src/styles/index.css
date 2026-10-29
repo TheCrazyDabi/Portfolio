@@ -31,6 +31,118 @@
 .animate-in.duration-200 { animation-duration: 200ms; }
 .animate-in.duration-250 { animation-duration: 250ms; }
 
+/* A quiet storybook loop in the hero's background. */
+.love-story-girl {
+  transform-box: view-box;
+  transform-origin: 41px 80px;
+  animation: love-story-approach 12s ease-in-out infinite;
+}
+
+.love-story-girl-hug-arm {
+  transform-box: view-box;
+  transform-origin: 50px 58px;
+  animation: love-story-girl-arm 12s ease-in-out infinite;
+}
+
+.love-story-leg {
+  transform-box: view-box;
+  transform-origin: 42px 84px;
+  animation: love-story-run 12s ease-in-out infinite;
+}
+
+.love-story-girl-leg-b { animation-delay: -150ms; }
+
+.love-story-boy-arm {
+  transform-box: view-box;
+  animation: love-story-boy-arm 12s ease-in-out infinite;
+}
+
+.love-story-boy {
+  transform-box: view-box;
+  transform-origin: 255px 106px;
+  animation: love-story-boy-jump 12s ease-in-out infinite;
+}
+
+.love-story-boy-arm-left { transform-origin: 243px 60px; }
+.love-story-boy-arm-right { transform-origin: 267px 60px; animation-delay: 60ms; }
+
+.love-story-heart {
+  opacity: .1;
+  transform-box: view-box;
+  transform-origin: 208px 34px;
+  animation: love-story-heart 12s ease-in-out infinite;
+}
+
+.love-story-sparkle {
+  opacity: .25;
+  animation: love-story-sparkle 2.4s ease-in-out infinite alternate;
+}
+
+.love-story-sparkle-b { animation-delay: -1.2s; }
+
+@keyframes love-story-approach {
+  0%, 9% { transform: translate(0, 0) rotate(0); }
+  31% { transform: translate(62px, 0) rotate(0); }
+  42% { transform: translate(125px, -13px) rotate(-5deg); }
+  49% { transform: translate(168px, -4px) rotate(3deg); }
+  56%, 72% { transform: translate(168px, 0) rotate(0); }
+  82% { transform: translate(115px, 0) rotate(0); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+@keyframes love-story-girl-arm {
+  0%, 38% { transform: rotate(0); }
+  47%, 72% { transform: rotate(-52deg); }
+  84%, 100% { transform: rotate(0); }
+}
+
+@keyframes love-story-run {
+  0%, 10%, 46%, 73%, 100% { transform: rotate(0); }
+  18%, 32% { transform: rotate(16deg); }
+  25%, 39% { transform: rotate(-16deg); }
+}
+
+@keyframes love-story-boy-arm {
+  0%, 35%, 82%, 100% { transform: rotate(0); }
+  47%, 72% { transform: rotate(72deg); }
+}
+
+@keyframes love-story-boy-jump {
+  0%, 42%, 78%, 100% { transform: translateY(0); }
+  48% { transform: translateY(-9px); }
+  54%, 72% { transform: translateY(0); }
+  58% { transform: translateY(-3px); }
+}
+
+@keyframes love-story-heart {
+  0%, 43%, 78%, 100% { opacity: .05; transform: translateY(5px) scale(.75); }
+  52%, 68% { opacity: .85; transform: translateY(-4px) scale(1); }
+}
+
+@keyframes love-story-sparkle {
+  from { opacity: .15; transform: scale(.75); }
+  to { opacity: .65; transform: scale(1.25); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .love-story-girl,
+  .love-story-girl-hug-arm,
+  .love-story-leg,
+  .love-story-boy-arm,
+  .love-story-boy,
+  .love-story-heart,
+  .love-story-sparkle {
+    animation: none !important;
+  }
+
+  .love-story-girl { transform: translate(168px, 0); }
+  .love-story-boy { transform: translateY(0); }
+  .love-story-girl-hug-arm { transform: rotate(-52deg); }
+  .love-story-boy-arm { transform: rotate(72deg); }
+  .love-story-heart { opacity: .85; }
+  .love-story-sparkle { opacity: .4; }
+}
+
 :root {
   --color-burgundy: #641F36;
   --color-wine: #451425;
